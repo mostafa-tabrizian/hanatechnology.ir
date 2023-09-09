@@ -5,6 +5,8 @@ export interface IProduct {
    _id: string
    barcode: string
    name: string
+   category: string
+   subcategory: string
    price: number
    discount: number
    thumbnail: string
@@ -21,6 +23,16 @@ const ProductSchema = new mongoose.Schema({
    },
    barcode: String,
    name: String,
+   category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Category',
+      required: true
+   },
+   subcategory: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Subategory',
+      required: true
+   },
    price: Number,
    discount: Number,
    thumbnail: String,
