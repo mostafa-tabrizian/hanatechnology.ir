@@ -8,14 +8,22 @@ import Subcategory from '@/models/subcategory'
 
 import ProductCards from '@/components/product/cards'
 import Slides from './components/slides'
+import ProductSwiper from './components/productSwiper'
 
-const GetCCTV = async () => {
+const getCategories = async () => {
    dbConnect()
-   // console.log('category', await Category.find())
-   // console.log('subcategory', await Subcategory.find())
-   return await Product.find({
+   const cctv = await Product.find({
       category: '64fcaf60a459b97a56a24291',
    }).exec()
+
+   const modem = await Product.find({
+      category: '64fcd981a459b97a56a24295',
+   }).exec()
+
+   return {
+      cctv,
+      modem,
+   }
 }
 
 export const metadata = {
@@ -24,9 +32,7 @@ export const metadata = {
 }
 
 async function Home() {
-   const CCTVs = await GetCCTV()
-
-   console.log('cctv', CCTVs.length)
+   const categories = await getCategories()
 
    return (
       <div className='px-3 md:px-0 md:mx-auto max-w-screen-md space-y-8 my-6'>
@@ -173,7 +179,9 @@ async function Home() {
 
          <div className='bg-white rounded-lg p-5'>
             <div className='flex justify-between items-center'>
-               <Link href='#'><span>...بیشتر</span></Link>
+               <Link href='#'>
+                  <span>...بیشتر</span>
+               </Link>
                <h2>دوربین مداربسته</h2>
             </div>
 
@@ -183,6 +191,17 @@ async function Home() {
             pageTarget='/product/'
             userTarget='client'
          /> */}
+         </div>
+
+         <div className='bg-white rounded-lg p-5'>
+            <div className='flex justify-between items-center'>
+               <Link href='#'>
+                  <span>...بیشتر</span>
+               </Link>
+               <h2>مودم</h2>
+            </div>
+
+            <ProductSwiper products={JSON.parse(JSON.stringify(categories.modem))} />
          </div>
       </div>
    )
