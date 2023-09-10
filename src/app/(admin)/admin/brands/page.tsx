@@ -7,7 +7,7 @@ import { prisma } from '@/lib/prisma'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 
 export const metadata = {
-   title: '‌هانا تکنولوژی | پنل ادمین | برند ها',
+   title: '‌حانا تکنولوژی | پنل ادمین | برند ها',
 }
 
 const getBrand = async () => {

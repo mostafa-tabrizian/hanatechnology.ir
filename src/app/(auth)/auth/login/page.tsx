@@ -2,7 +2,7 @@ import LoginForm from './form'
 import User from '@/lib/user'
 
 export const metadata = {
-   title: 'هانا تکنولوژی | ورود',
+   title: 'حانا تکنولوژی | ورود',
 }
 
 const LoginPage = async () => {

@@ -27,8 +27,8 @@ const getCategories = async () => {
 }
 
 export const metadata = {
-   title: 'هانا تکنولوژی',
-   description: 'هانا تکنولوژی',
+   title: 'حانا تکنولوژی',
+   description: 'حانا تکنولوژی',
 }
 
 async function Home() {

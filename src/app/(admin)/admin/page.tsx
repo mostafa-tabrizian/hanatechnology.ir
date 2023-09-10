@@ -4,7 +4,7 @@ import isAdmin from '@/lib/isAdmin'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 
 export const metadata = {
-   title: 'هانا تکنولوژی | پنل ادمین',
+   title: 'حانا تکنولوژی | پنل ادمین',
 }
 
 const AdminPanel = async () => {

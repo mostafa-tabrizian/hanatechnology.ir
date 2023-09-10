@@ -36,7 +36,7 @@ async function getProducts() {
 }
 
 export const metadata = {
-   title: 'هانا تکنولوژی | پنل ادمین',
+   title: 'حانا تکنولوژی | پنل ادمین',
 }
 
 const AdminProducts = async () => {

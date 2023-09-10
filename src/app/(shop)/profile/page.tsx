@@ -4,7 +4,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-   title: 'هانا تکنولوژی | پروفایل من',
+   title: 'حانا تکنولوژی | پروفایل من',
 }
 
 const Profile = async () => {

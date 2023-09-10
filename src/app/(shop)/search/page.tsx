@@ -43,7 +43,7 @@ const Search = () => {
    }, [query])
 
    useEffect(() => {
-      document.title = 'Search | هانا تکنولوژی'
+      document.title = 'Search | حانا تکنولوژی'
       fetchProducts()
    }, [fetchProducts])
 

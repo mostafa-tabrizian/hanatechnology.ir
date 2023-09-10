@@ -22,7 +22,7 @@ type OrderAndItems = Order & {
 }
 
 export const metadata = {
-   title: 'هانا تکنولوژی | سفارش های من',
+   title: 'حانا تکنولوژی | سفارش های من',
 }
 
 const Orders = async () => {

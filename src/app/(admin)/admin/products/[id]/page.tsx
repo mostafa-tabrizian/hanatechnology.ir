@@ -42,7 +42,7 @@ async function getProductLocations(productId: string) {
 }
 
 export const metadata = {
-   title: 'هانا تکنولوژی | ادمین | چهره های محصول',
+   title: 'حانا تکنولوژی | ادمین | چهره های محصول',
 }
 
 const ProductLocations = async ({ params }: { params: { id: string } }) => {

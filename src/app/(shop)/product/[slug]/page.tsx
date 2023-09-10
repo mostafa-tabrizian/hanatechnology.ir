@@ -25,7 +25,7 @@ export const generateMetadata = async ({ params }: { params: { slug: string } })
    const product = await getProduct(params.slug)
 
    return {
-      title: (product?.name || 'محصولی یافت نشد!') + ' | هانا تکنولوژی',
+      title: (product?.name || 'محصولی یافت نشد!') + ' | حانا تکنولوژی',
    }
 }
 

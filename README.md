@@ -5,7 +5,7 @@
     <img src="public/hero.png" alt="Logo" width="200" height="200">
   </a>
 
-<h3 align="center">هانا تکنولوژی</h3>
+<h3 align="center">حانا تکنولوژی</h3>
 
   <p align="center">
     نوشته شده با React/Next.js

@@ -29,7 +29,7 @@ const Edit = () => {
    }
 
    useEffect(() => {
-      document.title = 'هانا تکنولوژی | اطلاعات حساب'
+      document.title = 'حانا تکنولوژی | اطلاعات حساب'
    }, [])
 
    const onSubmit = async (values: FormType) => {

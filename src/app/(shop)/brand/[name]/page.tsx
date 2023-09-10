@@ -2,7 +2,7 @@ import BrandProducts from './brand.products'
 
 export const generateMetadata = async ({ params }: { params: { name: string } }) => {
    return {
-      title: params.name + ' | هانا تکنولوژی',
+      title: params.name + ' | حانا تکنولوژی',
    }
 }
 

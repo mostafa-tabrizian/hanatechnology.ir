@@ -87,7 +87,7 @@ const LoginForm = () => {
             ))}
          </Stepper>
 
-         <h1>هانا تکنولوژی</h1>
+         <h1>حانا تکنولوژی</h1>
 
          <Formik
             initialValues={{ email: '', password: '' }}

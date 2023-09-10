@@ -39,7 +39,7 @@ const AdminProduct = () => {
    }
 
    useEffect(() => {
-      document.title = 'هانا تکنولوژی | ادمین | ‌افزودن/تغییر محصول'
+      document.title = 'حانا تکنولوژی | ادمین | ‌افزودن/تغییر محصول'
    }, [])
 
    const { data: session } = useSession()
