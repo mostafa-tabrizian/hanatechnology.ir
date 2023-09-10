@@ -28,7 +28,7 @@ const ProductCards = ({ product }: { product: IProduct }) => {
                               {product.price.toLocaleString('per')}
                            </span>
                         </div>
-                        <div className='bg-rose-500 px-3 rounded-full'>
+                        <div className='bg-rose-500 shadow-md shadow-rose-300 px-3 rounded-full'>
                            <span className='text-white text-sm md:text-xl'>
                               {Math.round((product.discount / product.price) * 100).toLocaleString(
                                  'per',

@@ -131,7 +131,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                                     {product.price.toLocaleString('per')}
                                  </span>
                               </div>
-                              <div className='bg-rose-500 px-3 rounded-full'>
+                              <div className='bg-rose-500 shadow-md shadow-rose-300 px-3 rounded-full'>
                                  <span className='text-white text-lg md:text-xl'>
                                     {Math.round(
                                        (product.discount / product.price) * 100,
