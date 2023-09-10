@@ -11,7 +11,7 @@ export interface IProduct {
    price: number
    discount: number
    thumbnail: string
-   image: [string]
+   images: [string]
    description: string
    createdAt: Date
    updatedAt: Date

@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const ProductCards = ({ product }: { product: IProduct }) => {
    return (
-      <Link key={product._id} href={'/product/' + product._id}>
+      <Link key={product._id} href={'/product/' + product.slug}>
          <div className='p-2 shadow-slate-200 shadow-lg space-y-5 rounded-xl'>
             <div className='flex justify-center'>
                <Image
