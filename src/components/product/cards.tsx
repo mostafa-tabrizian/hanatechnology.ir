@@ -14,6 +14,7 @@ const ProductCards = ({ product }: { product: IProduct }) => {
                   width='170'
                   height='170'
                   objectFit='contain'
+                  loading="lazy"
                />
             </div>
             <div className='mx-1 md:mx-3 space-y-1 relative text-right'>

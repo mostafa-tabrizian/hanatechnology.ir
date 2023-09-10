@@ -10,7 +10,12 @@ const ProductSwiper = ({ products }: { products: IProduct[] }) => {
    useEffect(() => {
       new Swiper('.productSwiper', {
          slidesPerView: 2,
-         spaceBetween: 10,
+         breakpoints: {
+            640: {
+               slidesPerView: 4,
+            },
+         },
+         spaceBetween: 5,
          freeMode: {
             enabled: true,
             sticky: true,
@@ -19,12 +24,13 @@ const ProductSwiper = ({ products }: { products: IProduct[] }) => {
    }, [])
 
    return (
-      <div className='productSwiper rtl overflow-hidden'>
-         <div className='swiper-wrapper pb-3'>
+      <div className='productSwiper rtl relative overflow-hidden pl-6'>
+         <div className='swiper-wrapper pb-4'>
             {products.map((product) => {
                return (
-                  <div key={product._id} className='swiper-slide rounded-xl'>
+                  <div key={product._id} className='swiper-slide rounded-xl mx-2'>
                      <ProductCards key={product._id} product={product} />
+                     <div className='swiper-lazy-preloader animate-spin'></div>
                   </div>
                )
             })}

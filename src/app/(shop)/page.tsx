@@ -193,7 +193,7 @@ async function Home() {
          /> */}
          </div>
 
-         <div className='bg-white rounded-lg p-5'>
+         <div className='bg-white rounded-lg p-3'>
             <div className='flex justify-between items-center'>
                <Link href='#'>
                   <span>...بیشتر</span>
