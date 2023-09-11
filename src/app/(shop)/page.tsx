@@ -185,12 +185,7 @@ async function Home() {
                <h2>دوربین مداربسته</h2>
             </div>
 
-            {/* <ProductCards
-            // @ts-ignore
-            products={products}
-            pageTarget='/product/'
-            userTarget='client'
-         /> */}
+            <ProductSwiper products={JSON.parse(JSON.stringify(categories.cctv))} />
          </div>
 
          <div className='bg-white shadow shadow-slate-200 rounded-lg p-3'>

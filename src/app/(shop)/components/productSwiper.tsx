@@ -30,7 +30,6 @@ const ProductSwiper = ({ products }: { products: IProduct[] }) => {
                return (
                   <div key={product._id} className='swiper-slide rounded-xl mx-2'>
                      <ProductCards key={product._id} product={product} />
-                     <div className='swiper-lazy-preloader animate-spin'></div>
                   </div>
                )
             })}
