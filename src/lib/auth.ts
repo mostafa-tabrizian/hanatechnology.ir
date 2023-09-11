@@ -29,6 +29,7 @@ const authOptions: NextAuthOptions = {
             },
          },
 
+         // @ts-ignore
          async authorize(credentials: Credential | undefined) {
             if (!credentials) return null
 

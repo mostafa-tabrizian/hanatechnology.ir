@@ -77,12 +77,12 @@ const Contents = ({ dbProducts }: { dbProducts: IProduct[] }) => {
             <div className='flex gap-x-4 text-gray-400 md:hidden mb-8'>
                <FilterComponent
                   params={{
-                     priceRangeFilter,
-                     setPriceRangeFilter,
                      typeValue,
                      setTypeValue,
                      categoryValue,
                      setCategoryValue,
+                     priceRangeFilter,
+                     setPriceRangeFilter,
                   }}
                />
                <SortComponent

@@ -1,9 +1,11 @@
 'use client'
 
 import { useEffect } from 'react'
+import Image from 'next/legacy/image'
+
+// @ts-ignore
 import Swiper from 'swiper/bundle'
 import 'swiper/css/bundle'
-import Image from 'next/legacy/image'
 
 const Slides = () => {
    useEffect(() => {

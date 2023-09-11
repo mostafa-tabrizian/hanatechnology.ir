@@ -9,13 +9,13 @@ interface BodyType {
 export async function POST(req: Request) {
    const { key, productId, imageName }: BodyType = await req.json()
 
-   const res = await prisma.image.create({
-      data: {
-         productId: productId,
-         src: 'https://tabrizian.storage.iran.liara.space/' + key,
-         alt: imageName,
-      },
-   })
+   // const res = await prisma.image.create({
+   //    data: {
+   //       productId: productId,
+   //       src: 'https://tabrizian.storage.iran.liara.space/' + key,
+   //       alt: imageName,
+   //    },
+   // })
 
-   return NextResponse.json({ res })
+   // return NextResponse.json({ res })
 }

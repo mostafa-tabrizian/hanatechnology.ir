@@ -4,21 +4,21 @@ import { Formik, Form } from 'formik'
 import { toast } from 'react-toastify'
 import CircularProgress from '@mui/material/CircularProgress'
 
-import { TitleAndDescriptionSchemaValidation } from '@/formik/schema/validation'
+import { NameAndDescriptionSchemaValidation } from '@/formik/schema/validation'
 
-const ProductTitleDescription = ({
+const ProductNameDescription = ({
    id,
-   title,
+   name,
    description,
 }: {
    id: string
-   title: string
+   name: string
    description: string | null
 }) => {
-   const handleSubmit = async (values: { title: string; description: string }) => {
-      const submitData: { title?: string; description?: string } = {}
+   const handleSubmit = async (values: { name: string; description: string }) => {
+      const submitData: { name?: string; description?: string } = {}
 
-      if (values.title !== title) submitData.title = values.title
+      if (values.name !== name) submitData.name = values.name
       if (values.description !== description) submitData.description = values.description
 
       if (!Object.keys(submitData).length) return
@@ -46,15 +46,15 @@ const ProductTitleDescription = ({
    return (
       <Formik
          initialValues={{
-            title: title,
+            name: name,
             description: description || '',
          }}
-         validationSchema={TitleAndDescriptionSchemaValidation}
+         validationSchema={NameAndDescriptionSchemaValidation}
          onSubmit={handleSubmit}
       >
          {({ values, setFieldValue, handleBlur, isSubmitting, errors, touched }) => (
             <Form className='flex justify-center space-x-2'>
-               {Object.keys(touched).length && !errors.title && !errors.description ? (
+               {Object.keys(touched).length && !errors.name && !errors.description ? (
                   <button
                      type='submit'
                      disabled={isSubmitting}
@@ -75,10 +75,10 @@ const ProductTitleDescription = ({
                <div className='space-y-5 '>
                   <div className='justify-end flex space-x-5 bg-blue-50 rounded-lg p-3'>
                      <input
-                        name='title'
-                        onChange={(e) => setFieldValue('title', e.target.value)}
+                        name='name'
+                        onChange={(e) => setFieldValue('name', e.target.value)}
                         onBlur={handleBlur}
-                        value={values.title}
+                        value={values.name}
                         className='mr-3 w-full bg-transparent'
                         type='text'
                         placeholder='عنوان محصول'
@@ -86,8 +86,8 @@ const ProductTitleDescription = ({
                      <h2>:عنوان</h2>
                   </div>
 
-                  {errors.title && touched.title ? (
-                     <p className='text-sm text-red-500'>{errors.title}</p>
+                  {errors.name && touched.name ? (
+                     <p className='text-sm text-red-500'>{errors.name}</p>
                   ) : (
                      ''
                   )}
@@ -117,4 +117,4 @@ const ProductTitleDescription = ({
    )
 }
 
-export default ProductTitleDescription
+export default ProductNameDescription

@@ -39,7 +39,7 @@ async function Home() {
          <Slides />
 
          <div className='grid grid-cols-2 gap-x-3'>
-            <Link href='#'>
+            <Link href='/category/cable'>
                <Image
                   className='rounded-xl'
                   src={'/category/cable.webp'}
@@ -49,7 +49,7 @@ async function Home() {
                   objectFit='contain'
                />
             </Link>
-            <Link href='#'>
+            <Link href='/category/fiberoptic'>
                <Image
                   className='rounded-xl'
                   src={'/category/fiberoptic.webp'}
@@ -59,7 +59,7 @@ async function Home() {
                   objectFit='contain'
                />
             </Link>
-            <Link href='#'>
+            <Link href='/category/router'>
                <Image
                   className='rounded-xl'
                   src={'/category/router.webp'}
@@ -69,7 +69,7 @@ async function Home() {
                   objectFit='contain'
                />
             </Link>
-            <Link href='#'>
+            <Link href='/category/switch'>
                <Image
                   className='rounded-xl'
                   src={'/category/switch.webp'}

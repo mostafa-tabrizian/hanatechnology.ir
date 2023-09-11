@@ -1,6 +1,5 @@
 import FormikInput from '@/formik/input'
 import FormikTextarea from '@/formik/textarea'
-import { Brand } from '@prisma/client'
 
 import Dialog from '@mui/material/Dialog'
 import { useState } from 'react'
@@ -26,7 +25,7 @@ const CreateProductForm = () => {
    }
 
    const handleSubmit = async (
-      values: { title: string; description: string; brand: string },
+      values: { name: string; description: string; brand: string },
       // @ts-ignore
       { resetForm },
    ) => {
@@ -69,7 +68,7 @@ const CreateProductForm = () => {
             <div className='bg-slate-100 p-3'>
                <Formik
                   initialValues={{
-                     title: '',
+                     name: '',
                      description: '',
                      brand: '',
                   }}
@@ -80,14 +79,14 @@ const CreateProductForm = () => {
                      <Form>
                         <FormikInput
                            label='عنوان محصول'
-                           name='title'
+                           name='name'
                            type='text'
                            placeholder='عنوان'
                         />
 
                         <hr />
 
-                        <Autocomplete
+                        {/* <Autocomplete
                            id='brand'
                            options={brands}
                            onChange={(e, value) => {
@@ -96,7 +95,7 @@ const CreateProductForm = () => {
                            getOptionLabel={(option: Brand) => option.name}
                            renderInput={(params) => <TextField {...params} label='برند' />}
                            sx={{ width: '100%' }}
-                        />
+                        /> */}
 
                         {errors.brand && touched.brand ? (
                            <p className='text-sm text-red-500'>{errors.brand}</p>

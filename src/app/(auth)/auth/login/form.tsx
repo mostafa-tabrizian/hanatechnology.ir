@@ -135,14 +135,6 @@ const LoginForm = () => {
                </Form>
             )}
          </Formik>
-
-         <div className='text-green-900 text-center mt-10'>
-            <Link href='/auth/register'>
-               <h6 className='font-semibold underline underline-offset-4'>
-                  حساب کاربری ندارید؟ برای اینجا کلیک کنید
-               </h6>
-            </Link>
-         </div>
       </div>
    )
 }

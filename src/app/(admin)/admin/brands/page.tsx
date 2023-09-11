@@ -3,7 +3,6 @@ import isAdmin from '@/lib/isAdmin'
 import BrandNewInput from './create.Input'
 import DeleteButton from './delete.button'
 import Name from './name.component'
-import { prisma } from '@/lib/prisma'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 
 export const metadata = {
@@ -11,11 +10,11 @@ export const metadata = {
 }
 
 const getBrand = async () => {
-   return await prisma.brand.findMany({
-      include: {
-         products: true,
-      },
-   })
+   // return await prisma.brand.findMany({
+   //    include: {
+   //       products: true,
+   //    },
+   // })
 }
 
 const AdminBrands = async () => {
@@ -53,7 +52,7 @@ const AdminBrands = async () => {
                   </div>
 
                   <div className='md:grid md:grid-cols-2 md:gap-2'>
-                     {brands.length ? (
+                     {/* {brands.length ? (
                         brands.map((brand) => {
                            return (
                               <div
@@ -68,7 +67,7 @@ const AdminBrands = async () => {
                         })
                      ) : (
                         <h3 className='text-center'>هیچ برندی ثبت نشده است</h3>
-                     )}
+                     )} */}
                   </div>
                </div>
             </>

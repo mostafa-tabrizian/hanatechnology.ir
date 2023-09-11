@@ -1,44 +1,43 @@
 import Link from 'next/link'
 import Images from '@/components/product/images'
 import PriceDiscountQtyEdit from './priceDiscountQtyEdit'
-import { prisma } from '@/lib/prisma'
 import PublicEdit from './button.publicEdit'
 
 import isAdmin from '@/lib/isAdmin'
-import ProductTitleDescription from './titleAndDescription'
+import ProductNameDescription from './titleAndDescription'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 
 async function getProductLocations(productId: string) {
-   return await prisma.product
-      .findUnique({
-         where: {
-            id: productId,
-         },
-         include: {
-            productLocation: {
-               include: {
-                  color: {
-                     select: {
-                        color: true,
-                     },
-                  },
-                  size: {
-                     select: {
-                        size: true,
-                     },
-                  },
-               },
-            },
-            gallery: {
-               select: {
-                  id: true,
-                  src: true,
-                  alt: true,
-               },
-            },
-         },
-      })
-      .then((res) => res)
+   // return await prisma.product
+   //    .findUnique({
+   //       where: {
+   //          id: productId,
+   //       },
+   //       include: {
+   //          productLocation: {
+   //             include: {
+   //                color: {
+   //                   select: {
+   //                      color: true,
+   //                   },
+   //                },
+   //                size: {
+   //                   select: {
+   //                      size: true,
+   //                   },
+   //                },
+   //             },
+   //          },
+   //          gallery: {
+   //             select: {
+   //                id: true,
+   //                src: true,
+   //                alt: true,
+   //             },
+   //          },
+   //       },
+   //    })
+   //    .then((res) => res)
 }
 
 export const metadata = {
@@ -48,15 +47,15 @@ export const metadata = {
 const ProductLocations = async ({ params }: { params: { id: string } }) => {
    const product = await getProductLocations(params.id)
 
-   return (
-      <div className='mx-6 my-16 relative'>
-         {(await isAdmin()) ? (
-            pageContent(product)
-         ) : (
-            <h3 className='text-center'>شما اجازه وارد شدن به این صفحه را ندارید!</h3>
-         )}
-      </div>
-   )
+   // return (
+      // <div className='mx-6 my-16 relative'>
+      //    {(await isAdmin()) ? (
+      //       pageContent(product)
+      //    ) : (
+      //       <h3 className='text-center'>شما اجازه وارد شدن به این صفحه را ندارید!</h3>
+      //    )}
+      // </div>
+   // )
 }
 
 export default ProductLocations
@@ -76,7 +75,7 @@ type TypeProduct =
         gallery: { id: string; src: string; alt: string }[]
      } & {
         id: string
-        title: string
+        name: string
         brandId: string | null
         description: string | null
         createdAt: Date
@@ -99,7 +98,7 @@ const pageContent = (product: TypeProduct) => {
                   <Link className='text-gray-400' href='/admin/products'>
                      محصولات
                   </Link>
-                  <h5 className='font-semibold'>{product.title}</h5>
+                  <h5 className='font-semibold'>{product.name}</h5>
                </Breadcrumbs>
 
                <div className='max-w-md mx-auto'>
@@ -122,14 +121,14 @@ const pageContent = (product: TypeProduct) => {
                   </Link>
 
                   <div className='space-y-3'>
-                     <ProductTitleDescription
+                     <ProductNameDescription
                         id={product.id}
-                        title={product.title}
+                        name={product.name}
                         description={product.description}
                      />
                   </div>
 
-                  <Images isAdmin={true} thumbnail={product.gallery[0]} product={product} />
+                  {/* <Images isAdmin={true} thumbnail={product.gallery[0]} product={product} /> */}
 
                   <hr />
 

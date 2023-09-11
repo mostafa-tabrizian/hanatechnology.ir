@@ -1,38 +1,37 @@
 import Link from 'next/link'
 
-import { prisma } from '@/lib/prisma'
 import isAdmin from '@/lib/isAdmin'
 
 import ProductCards from '@/components/product/cards'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 
 async function getProducts() {
-   return await prisma.product
-      .findMany({
-         include: {
-            productLocation: {
-               include: {
-                  color: {
-                     select: {
-                        color: true,
-                     },
-                  },
-                  size: {
-                     select: {
-                        size: true,
-                     },
-                  },
-               },
-            },
-            gallery: {
-               select: {
-                  src: true,
-                  alt: true,
-               },
-            },
-         },
-      })
-      .then((res) => res)
+   // return await prisma.product
+   //    .findMany({
+   //       include: {
+   //          productLocation: {
+   //             include: {
+   //                color: {
+   //                   select: {
+   //                      color: true,
+   //                   },
+   //                },
+   //                size: {
+   //                   select: {
+   //                      size: true,
+   //                   },
+   //                },
+   //             },
+   //          },
+   //          gallery: {
+   //             select: {
+   //                src: true,
+   //                alt: true,
+   //             },
+   //          },
+   //       },
+   //    })
+   //    .then((res) => res)
 }
 
 export const metadata = {

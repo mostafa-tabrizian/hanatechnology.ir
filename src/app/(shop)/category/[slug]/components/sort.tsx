@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 
 import Drawer from '@mui/material/Drawer'
 import Collapse from '@mui/material/Collapse'
@@ -9,7 +9,11 @@ import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 
-const SortComponent = ({ params: { sortValue, setSortValue } }) => {
+const SortComponent = ({
+   params: { sortValue, setSortValue },
+}: {
+   params: { sortValue: string; setSortValue: Dispatch<SetStateAction<string>> }
+}) => {
    const [sortToolsDrawer, setSortToolsDrawer] = useState(false)
    const [sortCollapse, setSortCollapse] = useState(false)
 

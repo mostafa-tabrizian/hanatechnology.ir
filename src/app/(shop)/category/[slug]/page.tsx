@@ -6,11 +6,11 @@ import Contents from './components/contents'
 
 const getProducts = async ({ slug }: { slug: string }) => {
    dbConnect()
-   const categoryId = await Category.findOne({
-      slug: slug,
-   })
-      .exec()
-      .then((res) => res._id)
+   // const categoryId = await Category.findOne({
+   //    slug: slug,
+   // })
+   //    .exec()
+   //    .then((res) => res._id)
 
    const products = await Product.find({
       // category: categoryId,  // ! uncomment

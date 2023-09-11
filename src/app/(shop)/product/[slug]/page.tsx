@@ -45,13 +45,16 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                         <span className='text-xs hover:text-blue-500'>خانه</span>
                      </Link>
                      <Link className='text-gray-400' href='#'>
+                        {/* @ts-ignore */}
                         <span className='text-xs hover:text-blue-500'>{product.category.name}</span>
                      </Link>
                      <Link className='text-gray-400' href='#'>
+                        {/* @ts-ignore */}
                         <span className='text-xs hover:text-blue-500'>{product.model.name}</span>
                      </Link>
 
                      <Link className='text-gray-400' href='#'>
+                        {/* @ts-ignore */}
                         <span className='text-xs hover:text-blue-500'>{product.brand.name}</span>
                      </Link>
                      <span className='text-xs font-semibold'>{product.name}</span>
@@ -74,6 +77,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                               <span>دسته: </span>
                               <Link href='#'>
                                  <span className='text-blue-500 font-bold'>
+                                    {/* @ts-ignore */}
                                     {product.category.name}
                                  </span>
                               </Link>
@@ -83,6 +87,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                               <span>مدل: </span>
                               <Link href='#'>
                                  <span className='text-blue-500 font-bold'>
+                                    {/* @ts-ignore */}
                                     {product.model.name}
                                  </span>
                               </Link>
@@ -92,6 +97,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                               <span>برند: </span>
                               <Link href='#'>
                                  <span className='text-blue-500 font-bold'>
+                                    {/* @ts-ignore */}
                                     {product.brand.name}
                                  </span>
                               </Link>

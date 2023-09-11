@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 
 import Drawer from '@mui/material/Drawer'
 import Collapse from '@mui/material/Collapse'
@@ -19,6 +19,15 @@ const FilterComponent = ({
       priceRangeFilter,
       setPriceRangeFilter,
    },
+}: {
+   params: {
+      typeValue: string | null
+      setTypeValue: Dispatch<SetStateAction<string | null>>
+      categoryValue: string | null
+      setCategoryValue: Dispatch<SetStateAction<string | null>>
+      priceRangeFilter: number[]
+      setPriceRangeFilter: Dispatch<SetStateAction<number[]>>
+   }
 }) => {
    const [filterToolsDrawer, setFilterToolsDrawer] = useState(false)
    const [typeCollapse, setTypeCollapse] = useState(false)
@@ -83,9 +92,9 @@ const FilterComponent = ({
                   </span>
 
                   <Slider
-                     getAriaLabel={() => 'Temperature range'}
+                     getAriaLabel={() => 'بازه قیمتی'}
                      value={priceRangeFilter}
-                     onChange={(e, newValue) => setPriceRangeFilter(newValue)}
+                     onChange={(e, newValue) => setPriceRangeFilter(newValue as number[])}
                      valueLabelDisplay='auto'
                      getAriaValueText={(value) => `تومان ${(value * 100_000).toLocaleString('fa')}`}
                      valueLabelFormat={(value) => `تومان ${(value * 100_000).toLocaleString('fa')}`}

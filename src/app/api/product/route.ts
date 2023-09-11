@@ -58,11 +58,11 @@ export async function PATCH(request: Request) {
 
    const submitData: IProduct | object = {}
 
-   if (typeof(publicStatus) == 'boolean') submitData['public'] = publicStatus
-   if (name) submitData['name'] = name
-   if (description) submitData['description'] = description
-   if (price?.length) submitData['price'] = price
-   if (discount?.length) submitData['discount'] = discount
+   // if (typeof(publicStatus) == 'boolean') submitData['public'] = publicStatus
+   // if (name) submitData['name'] = name
+   // if (description) submitData['description'] = description
+   // if (price?.length) submitData['price'] = price
+   // if (discount?.length) submitData['discount'] = discount
 
    await dbConnect()
    const product = await Product.findOneAndUpdate({
