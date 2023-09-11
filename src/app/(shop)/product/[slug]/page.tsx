@@ -99,18 +99,18 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                         </div>
                      </div>
 
-                     <div className='bg-white shadow shadow-slate-200 rounded-lg px-3 py-5 rtl'>
+                     <div className='bg-white shadow shadow-slate-200 space-y-5 rounded-lg px-3 py-5 rtl'>
+                        <span className='yekanBlack text-xl'>جزئیات</span>
                         <ul className='space-y-2'>
-                           <li className='text-slate-500 text-sm'>
-                              کیفیت تصویر : دو مگاپیکسل واقعی FULL HD با نرم افزار v380 pro
-                           </li>
-                           <li className='text-slate-500 text-sm'>زاویه دید : 360 درجه پانوراما</li>
-                           <li className='text-slate-500 text-sm'>اتصال : بی سیم وایرلس</li>
-                           <li className='text-slate-500 text-sm'>ولتاژ : برق شهری 220 ولت</li>
-                           <li className='text-slate-500 text-sm'>
-                              قابلیت : صدا دو طرفه (قابلیت مکالمه)
-                           </li>
-                           <li className='text-slate-500 text-sm'>قابلیت تعقیب سوژه</li>
+                           {product.detail
+                              ? Object.entries(product.detail).map((data) => {
+                                   return (
+                                      <li key={data[0]} className='text-slate-500 text-sm'>
+                                         {data[0]} : {data[1]}
+                                      </li>
+                                   )
+                                })
+                              : ''}
                         </ul>
                      </div>
 
@@ -159,7 +159,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                         )}
                      </div>
 
-                     <div className='text-right space-y-2 bg-white shadow shadow-slate-200 rounded-lg px-3 py-5 rtl'>
+                     <div className='text-right space-y-5 bg-white shadow shadow-slate-200 rounded-lg px-3 py-5 rtl'>
                         <span className='yekanBlack text-xl'>توضیحات</span>
                         <p className='whitespace-break-spaces text-justify leading-8 text-slate-500'>
                            {product.description}

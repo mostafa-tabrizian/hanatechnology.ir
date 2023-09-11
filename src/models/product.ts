@@ -13,6 +13,7 @@ export interface IProduct {
    discount: number
    thumbnail: string
    images: [string]
+   detail: object
    description: string
    createdAt: Date
    updatedAt: Date
@@ -45,6 +46,7 @@ const ProductSchema = new mongoose.Schema({
    discount: Number,
    thumbnail: String,
    images: [String],
+   detail: Object,
    description: String,
 })
 
