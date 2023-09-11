@@ -5,7 +5,7 @@ import Link from 'next/link'
 const ProductCards = ({ product }: { product: IProduct }) => {
    return (
       <Link key={product._id} href={'/product/' + product.slug}>
-         <div className='p-2 shadow-slate-200 shadow-lg space-y-5 rounded-xl'>
+         <div className='p-2 shadow-slate-200 bg-white shadow-lg h-full space-y-5 rounded-xl'>
             <div className='flex justify-center'>
                <Image
                   className='object-contain aspect-square'
@@ -14,7 +14,7 @@ const ProductCards = ({ product }: { product: IProduct }) => {
                   width='170'
                   height='170'
                   objectFit='contain'
-                  loading="lazy"
+                  loading='lazy'
                />
             </div>
             <div className='mx-1 md:mx-3 space-y-1 relative text-right'>
@@ -38,13 +38,10 @@ const ProductCards = ({ product }: { product: IProduct }) => {
                         </div>
                      </div>
                   ) : (
-                     ''
+                     <div className='py-3'></div>
                   )}
                   <div className='flex'>
                      <div className='font-bold flex items-center'>
-                        <span className='text-slate-800 yekan1 text-base ml-2 md:text-xl'>
-                           {(product.price - product.discount).toLocaleString('per')}
-                        </span>
                         <svg
                            xmlns='http://www.w3.org/2000/svg'
                            data-name='Layer 2'
@@ -60,6 +57,9 @@ const ProductCards = ({ product }: { product: IProduct }) => {
                               data-name='Layer 1'
                            ></path>
                         </svg>
+                        <span className='text-slate-800 yekan1 text-base ml-2 md:text-xl'>
+                           {(product.price - product.discount).toLocaleString('per')}
+                        </span>
                      </div>
                   </div>
                </div>
