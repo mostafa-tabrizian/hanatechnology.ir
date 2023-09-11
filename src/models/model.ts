@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-export interface ISubcategory {
+export interface IModel {
    _id: string
    slug: string
    name: string
@@ -9,7 +9,7 @@ export interface ISubcategory {
    updatedAt: Date
 }
 
-const SubcategorySchema = new mongoose.Schema({
+const ModelSchema = new mongoose.Schema({
    slug: String,
    name: String,
    category: {
@@ -19,6 +19,6 @@ const SubcategorySchema = new mongoose.Schema({
    }
 })
 
-SubcategorySchema.set('timestamps', true)
+ModelSchema.set('timestamps', true)
 
-export default mongoose.models.Subcategory || mongoose.model('Subcategory', SubcategorySchema)
+export default mongoose.models.Model || mongoose.model('Model', ModelSchema)

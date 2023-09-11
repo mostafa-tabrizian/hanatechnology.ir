@@ -4,7 +4,7 @@ import Image from 'next/legacy/image'
 import dbConnect from '@/lib/dbConnect'
 import Product, { IProduct } from '@/models/product'
 import Category from '@/models/category'
-import Subcategory from '@/models/subcategory'
+import Model from '@/models/model'
 
 import ProductCards from '@/components/product/cards'
 import Slides from './components/slides'
@@ -87,7 +87,7 @@ async function Home() {
                <Link href='#'>
                   <Image
                      className='rounded-xl'
-                     src={'/subcategory/etesalat.webp'}
+                     src={'/model/etesalat.webp'}
                      alt='slide1'
                      width={460}
                      height={260}
@@ -98,7 +98,7 @@ async function Home() {
                <Link href='#'>
                   <Image
                      className='rounded-xl'
-                     src={'/subcategory/fiberoptic-cable.webp'}
+                     src={'/model/fiberoptic-cable.webp'}
                      alt='slide1'
                      width={460}
                      height={260}
@@ -109,7 +109,7 @@ async function Home() {
                <Link href='#'>
                   <Image
                      className='rounded-xl'
-                     src={'/subcategory/network-cable.webp'}
+                     src={'/model/network-cable.webp'}
                      alt='slide1'
                      width={460}
                      height={260}
@@ -120,7 +120,7 @@ async function Home() {
                <Link href='#'>
                   <Image
                      className='rounded-xl'
-                     src={'/subcategory/network-switch.webp'}
+                     src={'/model/network-switch.webp'}
                      alt='slide1'
                      width={460}
                      height={260}
@@ -131,7 +131,7 @@ async function Home() {
                <Link href='#'>
                   <Image
                      className='rounded-xl'
-                     src={'/subcategory/rack.webp'}
+                     src={'/model/rack.webp'}
                      alt='slide1'
                      width={460}
                      height={260}
@@ -142,7 +142,7 @@ async function Home() {
                <Link href='#'>
                   <Image
                      className='rounded-xl'
-                     src={'/subcategory/router.webp'}
+                     src={'/model/router.webp'}
                      alt='slide1'
                      width={460}
                      height={260}

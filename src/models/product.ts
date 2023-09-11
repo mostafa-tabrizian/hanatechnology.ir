@@ -7,7 +7,8 @@ export interface IProduct {
    name: string
    slug: string
    category: string
-   subcategory: string
+   model: string
+   brand: string
    price: number
    discount: number
    thumbnail: string
@@ -30,9 +31,14 @@ const ProductSchema = new mongoose.Schema({
       ref: 'Category',
       required: true
    },
-   subcategory: {
+   model: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Subcategory',
+      ref: 'Model',
+      required: true
+   },
+   brand: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Brand',
       required: true
    },
    price: Number,

@@ -4,20 +4,23 @@ import Images from '@/components/product/images'
 import dbConnect from '@/lib/dbConnect'
 import Product, { IProduct } from '@/models/product'
 import Category from '@/models/category'
-import Subcategory from '@/models/subcategory'
+import Model from '@/models/model'
+import Brand from '@/models/brand'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 
 const getProduct = async (slug: string) => {
    dbConnect()
 
    await Category.find({}) // ! remove
-   await Subcategory.find({}) // ! remove
+   await Model.find({}) // ! remove
+   await Brand.find({}) // ! remove
 
    return await Product.findOne({
       slug: decodeURI(slug),
    })
       .populate('category')
-      .populate('subcategory')
+      .populate('brand')
+      .populate('model')
       .exec()
 }
 
@@ -45,9 +48,11 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                         <span className='text-xs hover:text-blue-500'>{product.category.name}</span>
                      </Link>
                      <Link className='text-gray-400' href='#'>
-                        <span className='text-xs hover:text-blue-500'>
-                           {product.subcategory.name}
-                        </span>
+                        <span className='text-xs hover:text-blue-500'>{product.model.name}</span>
+                     </Link>
+
+                     <Link className='text-gray-400' href='#'>
+                        <span className='text-xs hover:text-blue-500'>{product.brand.name}</span>
                      </Link>
                      <span className='text-xs font-semibold'>{product.name}</span>
                   </Breadcrumbs>
@@ -75,10 +80,19 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                            </div>
 
                            <div>
-                              <span>زیردسته: </span>
+                              <span>مدل: </span>
                               <Link href='#'>
                                  <span className='text-blue-500 font-bold'>
-                                    {product.subcategory.name}
+                                    {product.model.name}
+                                 </span>
+                              </Link>
+                           </div>
+
+                           <div>
+                              <span>برند: </span>
+                              <Link href='#'>
+                                 <span className='text-blue-500 font-bold'>
+                                    {product.brand.name}
                                  </span>
                               </Link>
                            </div>
