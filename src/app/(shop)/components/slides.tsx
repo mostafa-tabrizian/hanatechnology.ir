@@ -35,7 +35,7 @@ const Slides = () => {
             <div className='swiper-slide rounded-xl'>
                <Image
                   className='rounded-xl'
-                  src={'/slide/s1.jpg'}
+                  src={'/slide/1.jpg'}
                   alt='slide1'
                   width={690}
                   height={388}
@@ -46,7 +46,7 @@ const Slides = () => {
             <div className='swiper-slide rounded-xl'>
                <Image
                   className='rounded-xl'
-                  src={'/slide/s2.jpg'}
+                  src={'/slide/2.jpg'}
                   alt='slide2'
                   width={690}
                   height={388}
@@ -57,7 +57,7 @@ const Slides = () => {
             <div className='swiper-slide rounded-xl'>
                <Image
                   className='rounded-xl'
-                  src={'/slide/s3.jpg'}
+                  src={'/slide/3.jpg'}
                   alt='slide3'
                   width={690}
                   height={388}
@@ -68,7 +68,7 @@ const Slides = () => {
             <div className='swiper-slide rounded-xl'>
                <Image
                   className='rounded-xl'
-                  src={'/slide/s4.jpg'}
+                  src={'/slide/4.jpg'}
                   alt='slide4'
                   width={690}
                   height={388}

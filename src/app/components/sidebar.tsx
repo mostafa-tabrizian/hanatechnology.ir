@@ -151,7 +151,12 @@ const Sidebar = () => {
                            <Collapse in={contactUsOptions}>
                               <ul className='mt-3 border-b border-white border-opacity-10'>
                                  <li className='flex items-center rounded-lg opacity-90 mb-4 pr-2'>
-                                    <a href='#' className='flex items-center'>
+                                    <a
+                                       rel='noreferrer'
+                                       className=' flex items-center'
+                                       href='#'
+                                       target='_blank'
+                                    >
                                        <span className='bg-gradient-to-br from-blue-500 via-rose-500 to-yellow-500 rounded-md'>
                                           <svg
                                              className='h-5 w-5 text-white'
@@ -181,7 +186,12 @@ const Sidebar = () => {
                                     </a>
                                  </li>
                                  <li className='flex items-center rounded-lg opacity-90 mb-4 pr-2'>
-                                    <a href='#' className='flex items-center'>
+                                    <a
+                                       rel='noreferrer'
+                                       className=' flex items-center'
+                                       href='#'
+                                       target='_blank'
+                                    >
                                        <span className='bg-blue-500 rounded-md'>
                                           <svg
                                              stroke='currentColor'
@@ -209,7 +219,12 @@ const Sidebar = () => {
                                  </li>
 
                                  <li className='flex items-center rounded-lg opacity-90 mb-4 pr-2'>
-                                    <a href='tel:+989128521769' className=' flex items-center'>
+                                    <a
+                                       rel='noreferrer'
+                                       className=' flex items-center'
+                                       href='tel:+989128521769'
+                                       target='_blank'
+                                    >
                                        <span className='bg-green-400 rounded-md p-[0.17rem]'>
                                           <svg
                                              className='h-4 w-4 text-white'
