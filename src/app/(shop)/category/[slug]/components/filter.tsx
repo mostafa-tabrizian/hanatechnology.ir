@@ -12,23 +12,21 @@ import Slider from '@mui/material/Slider'
 import { IBrand } from '@/models/brand'
 
 const FilterComponent = ({
-   params: {
-      priceRangeFilter,
-      setPriceRangeFilter,
-      typeValue,
-      setTypeValue,
-      brandValue,
-      setBrandValue,
-      brands,
-   },
+   params: { filters, setFilters, brands },
 }: {
    params: {
-      priceRangeFilter: number[]
-      setPriceRangeFilter: Dispatch<SetStateAction<number[]>>
-      typeValue: string | null
-      setTypeValue: Dispatch<SetStateAction<string | null>>
-      brandValue: string | null
-      setBrandValue: Dispatch<SetStateAction<string | null>>
+      filters: {
+         type: null | string
+         priceRange: number[]
+         brand: null | string
+      }
+      setFilters: Dispatch<
+         SetStateAction<{
+            type: null | string
+            priceRange: number[]
+            brand: null | string
+         }>
+      >
       brands: IBrand[]
    }
 }) => {
@@ -86,18 +84,23 @@ const FilterComponent = ({
                   <span>
                      بازه قیمتی از{' '}
                      <span className='mx-2'>
-                        {(priceRangeFilter[0] * 200_000).toLocaleString('fa')} تومان
+                        {(filters.priceRange[0] * 200_000).toLocaleString('fa')} تومان
                      </span>{' '}
                      تا{' '}
                      <span className='mx-2'>
-                        {(priceRangeFilter[1] * 200_000).toLocaleString('fa')} تومان
+                        {(filters.priceRange[1] * 200_000).toLocaleString('fa')} تومان
                      </span>
                   </span>
 
                   <Slider
                      getAriaLabel={() => 'بازه قیمتی'}
-                     value={priceRangeFilter}
-                     onChange={(e, newValue) => setPriceRangeFilter(newValue as number[])}
+                     value={filters.priceRange}
+                     onChange={(e, newValue) =>
+                        setFilters({
+                           ...filters,
+                           priceRange: newValue as number[],
+                        })
+                     }
                      valueLabelDisplay='auto'
                      getAriaValueText={(value) => `تومان ${(value * 200_000).toLocaleString('fa')}`}
                      valueLabelFormat={(value) => `تومان ${(value * 200_000).toLocaleString('fa')}`}
@@ -156,9 +159,14 @@ const FilterComponent = ({
                      <RadioGroup
                         aria-labelledby='demo-controlled-radio-buttons-group'
                         name='controlled-radio-buttons-group'
-                        value={typeValue}
+                        value={filters.type}
                         className='rtl'
-                        onChange={(e) => setTypeValue((e.target as HTMLInputElement).value)}
+                        onChange={(e) =>
+                           setFilters({
+                              ...filters,
+                              type: (e.target as HTMLInputElement).value,
+                           })
+                        }
                      >
                         <FormControlLabel
                            value='discounted'
@@ -216,9 +224,14 @@ const FilterComponent = ({
                      <RadioGroup
                         aria-labelledby='demo-controlled-radio-buttons-group'
                         name='controlled-radio-buttons-group'
-                        value={brandValue}
+                        value={filters.brand}
                         className='rtl'
-                        onChange={(e) => setBrandValue((e.target as HTMLInputElement).value)}
+                        onChange={(e) =>
+                           setFilters({
+                              ...filters,
+                              brand: (e.target as HTMLInputElement).value,
+                           })
+                        }
                      >
                         {brands.map((brand) => (
                            <FormControlLabel

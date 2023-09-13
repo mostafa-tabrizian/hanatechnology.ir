@@ -20,10 +20,17 @@ const Contents = ({
    const [initProducts, setInitProducts] = useState<IProduct[]>(dbProducts)
    const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([])
 
+   const [filters, setFilters] = useState<{
+      type: null | string
+      priceRange: number[]
+      brand: null | string
+   }>({
+      type: null,
+      priceRange: [0, 100],
+      brand: null,
+   })
+
    const [sortValue, setSortValue] = useState<string>('latest')
-   const [typeValue, setTypeValue] = useState<string | null>(null)
-   const [priceRangeFilter, setPriceRangeFilter] = useState([0, 100])
-   const [brandValue, setBrandValue] = useState<string | null>(null)
 
    useEffect(() => {
       dbProducts?.sort((a, b) => stringtoDate(b.createdAt) - stringtoDate(a.createdAt))
@@ -31,54 +38,57 @@ const Contents = ({
       setFilteredProducts(dbProducts)
    }, [dbProducts])
 
-   useEffect(() => {
+   useEffect(() => handleSort(filteredProducts), [sortValue])
+   useEffect(() => handleFilter(), [filters])
+
+   const handleFilter = () => {
+      let products = initProducts
+
+      if (filters.type) {
+         switch (filters.type) {
+            case 'discounted':
+               products = products.filter((product) => product.discount !== 0)
+         }
+      }
+
+      if (filters.priceRange[0] !== 0 || filters.priceRange[1] !== 100) {
+         products = products.filter(
+            (product) =>
+               filters.priceRange[0] * 200_000 <= product.price &&
+               product.price <= filters.priceRange[1] * 200_000,
+         )
+      }
+
+      if (filters.brand) {
+         products = products.filter((product) => product.brand == filters.brand)
+      }
+
+      setFilteredProducts(products)
+      if (products) handleSort(products)
+   }
+
+   const handleSort = (products: IProduct[]) => {
       let newSort
       switch (sortValue) {
          case 'latest':
-            newSort = filteredProducts
+            newSort = products
                .slice()
                .sort((a, b) => stringtoDate(b.createdAt) - stringtoDate(a.createdAt))
             break
          case 'oldest':
-            newSort = filteredProducts
+            newSort = products
                .slice()
                .sort((a, b) => stringtoDate(a.createdAt) - stringtoDate(b.createdAt))
             break
          case 'expensive':
-            newSort = filteredProducts.slice().sort((a, b) => b.price - a.price)
+            newSort = products.slice().sort((a, b) => b.price - a.price)
             break
          case 'cheap':
-            newSort = filteredProducts.slice().sort((a, b) => a.price - b.price)
+            newSort = products.slice().sort((a, b) => a.price - b.price)
             break
       }
       if (newSort) setFilteredProducts(newSort)
-   }, [sortValue])
-
-   useEffect(() => {
-      switch (typeValue) {
-         case 'discounted':
-            setFilteredProducts(initProducts.filter((product) => product.discount !== 0))
-            break
-         default:
-            break
-      }
-   }, [typeValue])
-
-   useEffect(() => {
-      setFilteredProducts(
-         initProducts.filter(
-            (product) =>
-               priceRangeFilter[0] * 200_000 <= product.price &&
-               product.price <= priceRangeFilter[1] * 200_000,
-         ),
-      )
-   }, [priceRangeFilter])
-
-   useEffect(() => {
-      if (brandValue) {
-         setFilteredProducts(initProducts.filter((product) => product.brand == brandValue))
-      }
-   }, [brandValue])
+   }
 
    return (
       <div>
@@ -86,12 +96,8 @@ const Contents = ({
             <div className='flex gap-x-4 text-gray-400 md:hidden mb-8'>
                <FilterComponent
                   params={{
-                     priceRangeFilter,
-                     setPriceRangeFilter,
-                     typeValue,
-                     setTypeValue,
-                     brandValue,
-                     setBrandValue,
+                     filters,
+                     setFilters,
                      brands,
                   }}
                />
