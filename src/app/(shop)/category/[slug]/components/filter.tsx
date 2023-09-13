@@ -9,29 +9,32 @@ import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Slider from '@mui/material/Slider'
+import { IBrand } from '@/models/brand'
 
 const FilterComponent = ({
    params: {
-      typeValue,
-      setTypeValue,
-      categoryValue,
-      setCategoryValue,
       priceRangeFilter,
       setPriceRangeFilter,
+      typeValue,
+      setTypeValue,
+      brandValue,
+      setBrandValue,
+      brands,
    },
 }: {
    params: {
-      typeValue: string | null
-      setTypeValue: Dispatch<SetStateAction<string | null>>
-      categoryValue: string | null
-      setCategoryValue: Dispatch<SetStateAction<string | null>>
       priceRangeFilter: number[]
       setPriceRangeFilter: Dispatch<SetStateAction<number[]>>
+      typeValue: string | null
+      setTypeValue: Dispatch<SetStateAction<string | null>>
+      brandValue: string | null
+      setBrandValue: Dispatch<SetStateAction<string | null>>
+      brands: IBrand[]
    }
 }) => {
    const [filterToolsDrawer, setFilterToolsDrawer] = useState(false)
    const [typeCollapse, setTypeCollapse] = useState(false)
-   const [categoryCollapse, setCategoryCollapse] = useState(false)
+   const [brandCollapse, setBrandCollapse] = useState(false)
 
    const toggleDrawer = () => (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
@@ -44,7 +47,7 @@ const FilterComponent = ({
 
       setFilterToolsDrawer(false)
       setTypeCollapse(false)
-      setCategoryCollapse(false)
+      setBrandCollapse(false)
    }
 
    return (
@@ -83,11 +86,11 @@ const FilterComponent = ({
                   <span>
                      بازه قیمتی از{' '}
                      <span className='mx-2'>
-                        {(priceRangeFilter[0] * 100_000).toLocaleString('fa')} تومان
+                        {(priceRangeFilter[0] * 200_000).toLocaleString('fa')} تومان
                      </span>{' '}
                      تا{' '}
                      <span className='mx-2'>
-                        {(priceRangeFilter[1] * 100_000).toLocaleString('fa')} تومان
+                        {(priceRangeFilter[1] * 200_000).toLocaleString('fa')} تومان
                      </span>
                   </span>
 
@@ -96,8 +99,8 @@ const FilterComponent = ({
                      value={priceRangeFilter}
                      onChange={(e, newValue) => setPriceRangeFilter(newValue as number[])}
                      valueLabelDisplay='auto'
-                     getAriaValueText={(value) => `تومان ${(value * 100_000).toLocaleString('fa')}`}
-                     valueLabelFormat={(value) => `تومان ${(value * 100_000).toLocaleString('fa')}`}
+                     getAriaValueText={(value) => `تومان ${(value * 200_000).toLocaleString('fa')}`}
+                     valueLabelFormat={(value) => `تومان ${(value * 200_000).toLocaleString('fa')}`}
                   />
                </div>
 
@@ -168,7 +171,7 @@ const FilterComponent = ({
                <div className='bg-white py-2 my-6 px-5 rounded-xl'>
                   <button
                      className='flex justify-between w-full'
-                     onClick={() => setCategoryCollapse((prev) => !prev)}
+                     onClick={() => setBrandCollapse((prev) => !prev)}
                   >
                      <div>
                         <svg
@@ -189,7 +192,7 @@ const FilterComponent = ({
                         </svg>
                      </div>
                      <div className='flex gap-x-2'>
-                        <span className='font-bold text-base'>دسته محصولات</span>
+                        <span className='font-bold text-base'>برند محصولات</span>
                         <svg
                            xmlns='http://www.w3.org/2000/svg'
                            viewBox='0 0 48 48'
@@ -208,16 +211,23 @@ const FilterComponent = ({
                         </svg>
                      </div>
                   </button>
-                  <Collapse in={categoryCollapse}>
+                  <Collapse in={brandCollapse}>
                      <hr />
                      <RadioGroup
                         aria-labelledby='demo-controlled-radio-buttons-group'
                         name='controlled-radio-buttons-group'
-                        value={categoryValue}
+                        value={brandValue}
                         className='rtl'
-                        onChange={(e) => setCategoryValue((e.target as HTMLInputElement).value)}
+                        onChange={(e) => setBrandValue((e.target as HTMLInputElement).value)}
                      >
-                        {/* <FormControlLabel value='backend' control={<Radio />} label='بک اند' /> */}
+                        {brands.map((brand) => (
+                           <FormControlLabel
+                              key={brand._id}
+                              value={brand._id}
+                              control={<Radio />}
+                              label={`${brand.name} | ${brand.slug}`}
+                           />
+                        ))}
                      </RadioGroup>
                   </Collapse>
                </div>

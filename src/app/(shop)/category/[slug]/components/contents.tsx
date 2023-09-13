@@ -7,15 +7,23 @@ import stringtoDate from '@/lib/stringToDate'
 import ProductCards from '@/components/product/cards'
 import FilterComponent from './filter'
 import SortComponent from './sort'
+import { IBrand } from '@/models/brand'
 
-const Contents = ({ dbProducts }: { dbProducts: IProduct[] }) => {
+const Contents = ({
+   params: { dbProducts, brands },
+}: {
+   params: {
+      dbProducts: IProduct[]
+      brands: IBrand[]
+   }
+}) => {
    const [initProducts, setInitProducts] = useState<IProduct[]>(dbProducts)
    const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([])
 
    const [sortValue, setSortValue] = useState<string>('latest')
    const [typeValue, setTypeValue] = useState<string | null>(null)
    const [priceRangeFilter, setPriceRangeFilter] = useState([0, 100])
-   const [categoryValue, setCategoryValue] = useState<string | null>(null)
+   const [brandValue, setBrandValue] = useState<string | null>(null)
 
    useEffect(() => {
       dbProducts?.sort((a, b) => stringtoDate(b.createdAt) - stringtoDate(a.createdAt))
@@ -42,13 +50,8 @@ const Contents = ({ dbProducts }: { dbProducts: IProduct[] }) => {
          case 'cheap':
             newSort = filteredProducts.slice().sort((a, b) => a.price - b.price)
             break
-         default:
-            newSort = filteredProducts
-               .slice()
-               .sort((a, b) => stringtoDate(b.createdAt) - stringtoDate(a.createdAt))
-            break
       }
-      setFilteredProducts(newSort)
+      if (newSort) setFilteredProducts(newSort)
    }, [sortValue])
 
    useEffect(() => {
@@ -65,11 +68,17 @@ const Contents = ({ dbProducts }: { dbProducts: IProduct[] }) => {
       setFilteredProducts(
          initProducts.filter(
             (product) =>
-               priceRangeFilter[0] * 100_000 <= product.price &&
-               product.price <= priceRangeFilter[1] * 100_000,
+               priceRangeFilter[0] * 200_000 <= product.price &&
+               product.price <= priceRangeFilter[1] * 200_000,
          ),
       )
    }, [priceRangeFilter])
+
+   useEffect(() => {
+      if (brandValue) {
+         setFilteredProducts(initProducts.filter((product) => product.brand == brandValue))
+      }
+   }, [brandValue])
 
    return (
       <div>
@@ -77,12 +86,13 @@ const Contents = ({ dbProducts }: { dbProducts: IProduct[] }) => {
             <div className='flex gap-x-4 text-gray-400 md:hidden mb-8'>
                <FilterComponent
                   params={{
-                     typeValue,
-                     setTypeValue,
-                     categoryValue,
-                     setCategoryValue,
                      priceRangeFilter,
                      setPriceRangeFilter,
+                     typeValue,
+                     setTypeValue,
+                     brandValue,
+                     setBrandValue,
+                     brands,
                   }}
                />
                <SortComponent
