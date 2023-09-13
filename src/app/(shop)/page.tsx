@@ -2,13 +2,10 @@ import Link from 'next/link'
 import Image from 'next/legacy/image'
 
 import dbConnect from '@/lib/dbConnect'
-import Product, { IProduct } from '@/models/product'
-import Category from '@/models/category'
-import Model from '@/models/model'
+import Product from '@/models/product'
 
-import ProductCards from '@/components/product/cards'
-import Slides from './components/slides'
-import ProductSwiper from './components/productSwiper'
+import Slides from '@/components/slides'
+import ProductSwiper from '../../components/product/swiper'
 
 const getCategories = async () => {
    dbConnect()

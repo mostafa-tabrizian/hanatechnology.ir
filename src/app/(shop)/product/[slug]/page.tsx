@@ -7,6 +7,7 @@ import Category from '@/models/category'
 import Model from '@/models/model'
 import Brand from '@/models/brand'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
+import ProductSuggestion from './components/productSuggestion'
 
 const getProduct = async (slug: string) => {
    dbConnect()
@@ -24,6 +25,17 @@ const getProduct = async (slug: string) => {
       .exec()
 }
 
+const getProductsByBrand = async (category: { _id: string }, brand: { _id: string }) => {
+   dbConnect()
+
+   return await Product.find({
+      category: category._id,
+      brand: brand._id,
+   })
+      .limit(7)
+      .exec()
+}
+
 export const generateMetadata = async ({ params }: { params: { slug: string } }) => {
    const product = await getProduct(params.slug)
 
@@ -34,6 +46,9 @@ export const generateMetadata = async ({ params }: { params: { slug: string } })
 
 const ProductPage = async ({ params }: { params: { slug: string } }) => {
    const product: IProduct = await getProduct(params.slug)
+
+   // @ts-ignore
+   const productsByBrand: IProduct[] = await getProductsByBrand(product.category, product.brand)
 
    return (
       <div className='mx-6 md:mx-auto max-w-screen-lg my-6'>
@@ -182,6 +197,8 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                      }}
                   />
                </div>
+
+               <ProductSuggestion products={productsByBrand} />
             </div>
          ) : (
             <div className='space-y-10 m-10'>
