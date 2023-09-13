@@ -161,12 +161,15 @@ const FilterComponent = ({
                         name='controlled-radio-buttons-group'
                         value={filters.type}
                         className='rtl'
-                        onChange={(e) =>
+                        onClick={(e) => {
+                           const newValue = (e.target as HTMLInputElement).value
+                           const prevValue = filters.type
+
                            setFilters({
                               ...filters,
-                              type: (e.target as HTMLInputElement).value,
+                              type: newValue == prevValue ? null : newValue,
                            })
-                        }
+                        }}
                      >
                         <FormControlLabel
                            value='discounted'
@@ -226,12 +229,15 @@ const FilterComponent = ({
                         name='controlled-radio-buttons-group'
                         value={filters.brand}
                         className='rtl'
-                        onChange={(e) =>
+                        onClick={(e) => {
+                           const newValue = (e.target as HTMLInputElement).value
+                           const prevValue = filters.brand
+                           
                            setFilters({
                               ...filters,
-                              brand: (e.target as HTMLInputElement).value,
+                              brand: newValue == prevValue ? null : newValue,
                            })
-                        }
+                        }}
                      >
                         {brands.map((brand) => (
                            <FormControlLabel
