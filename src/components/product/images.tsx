@@ -31,19 +31,20 @@ const Images = ({ params: { isAdmin, name, thumbnail, images } }: ParamsType) =>
 
       galleryList.push({
          id: thumbnail,
-         src: thumbnail,
+         src: `/product/${thumbnail}`,
          alt: name,
       })
 
       images.map((image) => {
          galleryList.push({
             id: image,
-            src: image,
+            src: `/product/${image}`,
             alt: name,
          })
       })
 
       setGalleryList(galleryList)
+      console.log('galleryList', galleryList)
    }, [thumbnail, images])
 
    // const deleteButton = () => {
@@ -142,7 +143,7 @@ const Images = ({ params: { isAdmin, name, thumbnail, images } }: ParamsType) =>
                      }}
                   >
                      <Image
-                        src={`/product/${data.src}`}
+                        src={data.src}
                         alt={data.alt}
                         width={70}
                         height={70}

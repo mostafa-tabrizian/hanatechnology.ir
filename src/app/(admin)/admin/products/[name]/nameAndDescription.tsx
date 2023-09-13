@@ -4,32 +4,25 @@ import { Formik, Form } from 'formik'
 import { toast } from 'react-toastify'
 import CircularProgress from '@mui/material/CircularProgress'
 
-import { NameAndDescriptionSchemaValidation } from '@/formik/schema/validation'
+// import { TitleAndDescriptionSchemaValidation } from '@/formik/schema/validation'
 
-const ProductNameDescription = ({
-   id,
-   name,
-   description,
+const CourseTitleDescription = ({
+   params: { _id, name, description },
 }: {
-   id: string
-   name: string
-   description: string | null
+   params: {
+      _id: string
+      name: string
+      description: string | null
+   }
 }) => {
    const handleSubmit = async (values: { name: string; description: string }) => {
-      const submitData: { name?: string; description?: string } = {}
-
-      if (values.name !== name) submitData.name = values.name
-      if (values.description !== description) submitData.description = values.description
-
-      if (!Object.keys(submitData).length) return
-
       const payload = {
-         id: id,
-         data: submitData,
+         _id: _id,
+         ...values,
       }
 
       try {
-         const res = await fetch('/api/product', {
+         const res = await fetch('/api/course', {
             method: 'PATCH',
             body: JSON.stringify(payload),
          })
@@ -49,41 +42,35 @@ const ProductNameDescription = ({
             name: name,
             description: description || '',
          }}
-         validationSchema={NameAndDescriptionSchemaValidation}
+         // validationSchema={NameAndDescriptionSchemaValidation}
          onSubmit={handleSubmit}
       >
          {({ values, setFieldValue, handleBlur, isSubmitting, errors, touched }) => (
-            <Form className='flex justify-center space-x-2'>
+            <Form className='flex justify-end gap-2'>
                {Object.keys(touched).length && !errors.name && !errors.description ? (
                   <button
                      type='submit'
                      disabled={isSubmitting}
                      className='border-2 border-green-600 px-1 rounded-md'
                   >
-                     {isSubmitting ? (
-                        <div className='flex justify-center'>
-                           <CircularProgress color='success' size={25} />
-                        </div>
-                     ) : (
-                        'ذخیره'
-                     )}
+                     {isSubmitting ? <CircularProgress color='success' size={25} /> : 'ذخیره'}
                   </button>
                ) : (
                   ''
                )}
 
-               <div className='space-y-5 '>
-                  <div className='justify-end flex space-x-5 bg-blue-50 rounded-lg p-3'>
+               <div className='space-y-5 w-full'>
+                  <div className='w-full flex bg-slate-200 rounded-lg p-3'>
                      <input
                         name='name'
                         onChange={(e) => setFieldValue('name', e.target.value)}
                         onBlur={handleBlur}
                         value={values.name}
-                        className='mr-3 w-full bg-transparent'
+                        className='mr-3 rtl w-full text-sm bg-transparent'
                         type='text'
                         placeholder='عنوان محصول'
                      />
-                     <h2>:عنوان</h2>
+                     <h2 className='text-sm'>:عنوان</h2>
                   </div>
 
                   {errors.name && touched.name ? (
@@ -92,17 +79,17 @@ const ProductNameDescription = ({
                      ''
                   )}
 
-                  <div className='justify-end flex space-x-5 bg-blue-50 rounded-lg p-3'>
+                  <div className='justify-end flex bg-slate-200 rounded-lg p-3'>
                      <textarea
                         name='description'
                         onChange={(e) => setFieldValue('description', e.target.value)}
-                        rows={3}
+                        rows={8}
                         onBlur={handleBlur}
                         value={values.description}
-                        className='mr-3 w-full bg-transparent'
+                        className='mr-3 rtl w-full text-sm bg-transparent'
                         placeholder='توضیحات محصول'
                      />
-                     <h2>:توضیحات</h2>
+                     <h2 className='text-sm'>:توضیحات</h2>
                   </div>
 
                   {errors.description && touched.description ? (
@@ -117,4 +104,4 @@ const ProductNameDescription = ({
    )
 }
 
-export default ProductNameDescription
+export default CourseTitleDescription
