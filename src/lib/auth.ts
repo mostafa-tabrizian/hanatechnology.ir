@@ -5,7 +5,7 @@ import User, { IUser } from '@/models/user'
 import dbConnect from './dbConnect'
 
 interface Credential {
-   mobileNumber: string
+   username: string
    password: string
 }
 
@@ -17,15 +17,13 @@ const authOptions: NextAuthOptions = {
          name: 'Credentials',
 
          credentials: {
-            mobileNumber: {
-               label: 'شماره تماس',
+            username: {
+               label: 'نام کاربری',
                type: 'text',
-               placeholder: '09123456789',
             },
             password: {
                label: 'رمز عبور',
                type: 'password',
-               placeholder: 'Abc1234',
             },
          },
 
@@ -33,21 +31,22 @@ const authOptions: NextAuthOptions = {
          async authorize(credentials: Credential | undefined) {
             if (!credentials) return null
 
-            const { mobileNumber, password } = credentials
+            const { username, password } = credentials
 
             await dbConnect()
             const user = await User.findOne({
-               mobileNumber: mobileNumber
+               username: username
             })
 
             if (!user) return null
 
-            user.save()
-
             const passwordsMatch = bcrypt.compareSync(password, user.password)
-
             if (!passwordsMatch) return null
 
+            user.lastVisit = new Date()
+            user.save()
+
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const { password: _, ...filteredUser } = user as IUser & {
                password: string
             }
@@ -72,10 +71,7 @@ const authOptions: NextAuthOptions = {
 
          return token
       },
-   },
-   pages: {
-      signIn: '/auth',
-   },
+   }
 }
 
 export default authOptions
