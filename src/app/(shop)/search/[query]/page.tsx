@@ -1,22 +1,12 @@
 import dbConnect from '@/lib/dbConnect'
-import Category from '@/models/category'
 import Product from '@/models/product'
 import Brand from '@/models/brand'
 
 import Contents from './components/contents'
 
-const getProducts = async ({ slug }: { slug: string }) => {
+const getProducts = async ({ query }: { query: string }) => {
    dbConnect()
-
-   const categoryId = await Category.findOne({
-      slug: slug,
-   })
-      .exec()
-      .then((res) => res._id)
-
-   const products = await Product.find({
-      category: categoryId,
-   }).exec()
+   const products = await Product.find({ $text: { $search: query } }).exec()
 
    const productBrands: string[] = []
 
@@ -34,23 +24,20 @@ const getProducts = async ({ slug }: { slug: string }) => {
    return { products, brands }
 }
 
-export const generateMetadata = async ({ params }: { params: { slug: string } }) => {
-   const categoryName = await Category.findOne({
-      slug: params.slug,
-   })
-      .exec()
-      .then((res) => res?.name)
-
+export const generateMetadata = async ({ params }: { params: { query: string } }) => {
    return {
-      title: (categoryName || 'دسته یافت نشد!') + ' | حانا تکنولوژی',
+      title: decodeURI(params.query) + ' | حانا تکنولوژی',
    }
 }
 
-const CoursesPage = async ({ params }: { params: { slug: string } }) => {
-   const { products, brands } = await getProducts({ slug: params.slug })
+const Search = async ({ params: { query } }: { params: { query: string } }) => {
+   query = decodeURI(query)
+   const { products, brands } = await getProducts({ query })
 
    return (
       <div className='px-3 md:px-0 md:mx-auto max-w-screen-md space-y-8 my-6'>
+         <h1 className='text-center font-bold'>{query}</h1>
+
          <div className='mb-20 text-center space-y-6'>
             <Contents
                params={JSON.parse(
@@ -65,4 +52,4 @@ const CoursesPage = async ({ params }: { params: { slug: string } }) => {
    )
 }
 
-export default CoursesPage
+export default Search

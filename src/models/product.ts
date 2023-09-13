@@ -52,4 +52,6 @@ const ProductSchema = new mongoose.Schema({
 
 ProductSchema.set('timestamps', true)
 
+ProductSchema.index({name: 'text', slug: 'text', description: 'text'});
+
 export default mongoose.models.Product || mongoose.model('Product', ProductSchema)

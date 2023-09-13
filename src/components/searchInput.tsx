@@ -1,9 +1,7 @@
 'use client'
 
-import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Image from 'next/image'
 
 const SearchInput = () => {
    const [searchQuery, setSearchQuery] = useState('')
@@ -13,7 +11,7 @@ const SearchInput = () => {
       e.preventDefault()
 
       if (searchQuery.trim()) {
-         router.push(`/search?query=${searchQuery}`)
+         router.push(`/search/${searchQuery}`)
       }
    }
 
