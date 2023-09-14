@@ -1,9 +1,8 @@
-import dbConnect from '@/lib/dbConnect'
-import Product, { IProduct } from '@/models/product'
-
 import { NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import authOptions from '@/lib/auth'
+
+import dbConnect from '@/lib/dbConnect'
+import Product from '@/models/product'
+
 
 export async function GET() {
    await dbConnect()
@@ -12,39 +11,50 @@ export async function GET() {
    return NextResponse.json(products)
 }
 
-// export async function POST(request: Request) {
-//    const { publicState, productId, color, size, quantity, price, discount } = await request.json()
+export async function POST(request: Request) {
+   const {
+      barcode,
+      name,
+      slug,
+      description,
+      category,
+      brand,
+      model,
+      price,
+      discount,
+      detail,
+      publicStatus
+   }: {
+      barcode: string
+      name: string
+      slug: string
+      description: string
+      category: object
+      brand: object
+      model: object
+      price: number
+      discount: number
+      detail: string
+      publicStatus: boolean
+   } = await request.json()
 
-//    const colorData = await prisma.color
-//       .create({
-//          data: {
-//             color: color,
-//          },
-//       })
-//       .then((res) => res)
+   await dbConnect()
+   const product = await Product.create({
+      barcode,
+      name,
+      slug,
+      description,
+      category,
+      brand,
+      model,
+      price,
+      discount,
+      detail: JSON.parse(detail),
+      publicStatus
+   })
 
-//    const sizeData = await prisma.size
-//       .create({
-//          data: {
-//             size: parseInt(size),
-//          },
-//       })
-//       .then((res) => res)
-
-//    const locationData = await prisma.productLocation.create({
-//       data: {
-//          public: publicState,
-//          productId: productId,
-//          colorId: colorData.id,
-//          sizeId: sizeData.id,
-//          quantity: parseInt(quantity),
-//          price: parseInt(price),
-//          discount: parseInt(discount),
-//       },
-//    })
-
-//    return NextResponse.json(locationData)
-// }
+   return NextResponse.json(product)
+}
 
 export async function PATCH(request: Request) {
    const {
@@ -71,7 +81,7 @@ export async function PATCH(request: Request) {
       model: object
       price: number
       discount: number
-      detail: object
+      detail: string
       publicStatus: boolean
    } = await request.json()
 

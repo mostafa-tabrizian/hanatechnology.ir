@@ -20,11 +20,11 @@ export const ProductSchemaValidation = yup.object().shape({
 export const ProductEditForm = yup.object().shape({
    barcode: yup.string().required('کد محصول را وارد کنید'),
    name: yup.string().min(3, 'عنوان حداقل باید ۳ کارکتر باشد').required('عنوان محصول را وارد کنید'),
-   slug: yup.string().min(3, 'عنوان حداقل باید ۳ کارکتر باشد').required('اسلاگ محصول را وارد کنید'),
+   slug: yup.string().min(3, 'اسلاگ حداقل باید ۳ کارکتر باشد').required('اسلاگ محصول را وارد کنید'),
    description: yup
       .string()
       .min(30, 'توضیحات حداقل باید ۳۰ کارکتر باشد')
-      .required('عنوان محصول را وارد کنید'),
+      .required('توضیحات محصول را وارد کنید'),
    category: yup.object().required('دسته را وارد کنید'),
    brand: yup.object().required('برند را وارد کنید'),
    model: yup.object().required('مدل را وارد کنید'),

@@ -31,7 +31,7 @@ const AdminProducts = async () => {
                <h5 className='font-semibold'>محصولات</h5>
             </Breadcrumbs>
 
-            <Link href='/admin/products/add'>
+            <Link href='/admin/products/new'>
                <button className='bg-blue-400 rounded-full p-3 fixed bottom-24 right-5'>
                   <svg
                      className='h-6 w-6 text-white'

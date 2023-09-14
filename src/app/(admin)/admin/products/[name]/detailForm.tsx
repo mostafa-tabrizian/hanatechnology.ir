@@ -17,48 +17,56 @@ import Autocomplete from '@mui/material/Autocomplete'
 import { ProductEditForm } from '@/formik/schema/validation'
 
 const DetailForm = ({
-   params: { product, categories, brands, models },
+   params: { addingNewProduct, product, categories, brands, models },
 }: {
    params: {
+      addingNewProduct: boolean
       product: IProduct
       categories: ICategory[]
       brands: IBrand[]
       models: IModel[]
    }
 }) => {
-   // @ts-ignore
-   const [selectedCategoryId, selectCategoryId] = useState(product.category._id)
+   const [selectedCategoryId, selectCategoryId] = useState(
+      // @ts-ignore
+      addingNewProduct ? null : product.category._id,
+   )
    const [categoryModels, setCategoryModels] = useState([])
 
-   const handleSubmit = async (values: {
-      barcode: string
-      name: string
-      slug: string
-      description: string
-      category: object
-      brand: object
-      model: object
-      price: number
-      discount: number
-      detail: object
-      publicStatus: boolean
-   }) => {
+   const handleSubmit = async (
+      values: {
+         barcode: string
+         name: string
+         slug: string
+         description: string
+         category: object
+         brand: object
+         model: object
+         price: number
+         discount: number
+         detail: object
+         publicStatus: boolean
+      },
+      // @ts-ignore
+      { resetForm },
+   ) => {
       try {
          const payload = {
-            _id: product._id,
+            _id: addingNewProduct ? null : product._id,
             ...values,
          }
 
          const res = await fetch('/api/product', {
-            method: 'PATCH',
+            method: addingNewProduct ? 'POST' : 'PATCH',
             body: JSON.stringify(payload),
          })
 
          if (!res.ok) throw new Error()
 
-         toast.success('تغییرات با موفقیت ثبت گردید.')
+         toast.success('اطلاعات محصول با موفقیت ثبت گردید.')
+         resetForm()
       } catch (err) {
-         toast.error('در ثبت تغییرات خطایی رخ داد. لطفا مجدد تلاش کنید.')
+         toast.error('در ثبت اطلاعات خطایی رخ داد. لطفا مجدد تلاش کنید.')
          console.error(err)
       }
    }
@@ -74,26 +82,28 @@ const DetailForm = ({
 
       // @ts-ignore
       setCategoryModels(matchedCategoryModels)
-   }, [selectedCategoryId])
+   }, [selectedCategoryId, models])
 
    return (
       <Formik
          initialValues={{
-            barcode: product.barcode,
-            name: product.name,
-            slug: product.slug,
-            description: product.description,
+            barcode: addingNewProduct ? '' : product.barcode,
+            name: addingNewProduct ? '' : product.name,
+            slug: addingNewProduct ? '' : product.slug,
+            description: addingNewProduct ? '' : product.description,
             // @ts-ignore
-            category: product.category,
+            category: addingNewProduct ? categories[0] : product.category,
             // @ts-ignore
-            brand: product.brand,
+            brand: addingNewProduct ? brands[0] : product.brand,
             // @ts-ignore
-            model: product.model,
-            price: product.price,
-            discount: product.discount,
+            model: addingNewProduct ? models[0] : product.model,
+            price: addingNewProduct ? 0 : product.price,
+            discount: addingNewProduct ? 0 : product.discount,
             // @ts-ignore
-            detail: JSON.stringify(product.detail),
-            publicStatus: product.public,
+            detail: addingNewProduct
+               ? JSON.stringify({ عنوان: 'ارزش', عنوان۲: 'ارزش۲' })
+               : JSON.stringify(product.detail),
+            publicStatus: addingNewProduct ? true : product.public,
          }}
          validationSchema={ProductEditForm}
          onSubmit={handleSubmit}
@@ -182,7 +192,9 @@ const DetailForm = ({
                      id='category'
                      value={values.category as unknown as ICategory}
                      options={categories}
-                     isOptionEqualToValue={(option, value) => option._id === value._id}
+                     isOptionEqualToValue={(option, value) =>
+                        option === value || option._id === value._id
+                     }
                      getOptionLabel={(option: ICategory) => option.name}
                      onChange={(e, value) => {
                         if (value) {
@@ -206,7 +218,9 @@ const DetailForm = ({
                      id='brand'
                      value={values.brand as unknown as IBrand}
                      options={brands}
-                     isOptionEqualToValue={(option, value) => option._id === value._id}
+                     isOptionEqualToValue={(option, value) =>
+                        option === value || option._id === value._id
+                     }
                      getOptionLabel={(option: IBrand) => option.name}
                      onChange={(e, value) => value && setFieldValue('brand', value)}
                      renderInput={(params) => <TextField {...params} label='برند' />}
@@ -225,7 +239,9 @@ const DetailForm = ({
                      id='model'
                      value={values.model as unknown as IModel}
                      options={categoryModels}
-                     isOptionEqualToValue={(option, value) => option._id === value._id}
+                     isOptionEqualToValue={(option, value) =>
+                        option === value || option._id === value._id
+                     }
                      getOptionLabel={(option: IModel) => option.name}
                      onChange={(e, value) => value && setFieldValue('model', value)}
                      renderInput={(params) => <TextField {...params} label='مدل' />}
@@ -287,7 +303,7 @@ const DetailForm = ({
                         rows={8}
                         // @ts-ignore
                         value={values.detail}
-                        className='mr-3 rtl w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
+                        className='mr-3 rtl w-full text-base tracking-widest bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
                      />
                   </div>
 

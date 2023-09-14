@@ -29,7 +29,7 @@ const ProductSwiper = ({ products }: { products: IProduct[] }) => {
          <div className='swiper-wrapper pb-4'>
             {products.map((product) => {
                return (
-                  <div key={product._id} className='swiper-slide ltr rounded-xl mx-2'>
+                  <div key={product._id} className='swiper-slide !h-auto ltr rounded-xl mx-2'>
                      <ProductCards key={product._id} product={product} />
                   </div>
                )

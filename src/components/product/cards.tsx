@@ -5,7 +5,7 @@ import Link from 'next/link'
 const ProductCards = ({ product }: { product: IProduct }) => {
    return (
       <Link key={product._id} href={'/product/' + product.slug}>
-         <div className='p-2 shadow-slate-200 bg-white shadow-lg h-full space-y-5 rounded-xl'>
+         <div className='p-2 flex flex-col justify-between shadow-slate-200 bg-white shadow-lg h-full space-y-5 rounded-xl'>
             <div className='flex justify-center'>
                <Image
                   className='object-contain aspect-square'
@@ -17,7 +17,7 @@ const ProductCards = ({ product }: { product: IProduct }) => {
                   loading='lazy'
                />
             </div>
-            <div className='mx-1 md:mx-3 space-y-1 relative text-right'>
+            <div className='mx-1 md:mx-3 space-y-2 relative text-right'>
                <h2 className='text-xs yekan1 md:text-lg'>{product.name}</h2>
 
                <div className='space-y-2'>

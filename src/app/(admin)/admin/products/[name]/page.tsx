@@ -40,6 +40,7 @@ export const metadata = {
 }
 
 const ProductPage = async ({ params }: { params: { name: string } }) => {
+   const addingNewProduct = (params.name == 'new')
    const product = await getProduct(params.name)
    const categories = await getCategories()
    const brands = await getBrands()
@@ -48,7 +49,7 @@ const ProductPage = async ({ params }: { params: { name: string } }) => {
    return (
       <div className='mx-6 my-16 relative'>
          <div className='mx-6 md:mx-auto max-w-screen-md space-y-10 my-16'>
-            {product ? (
+            {product || addingNewProduct ? (
                <>
                   <Breadcrumbs aria-label='breadcrumb'>
                      <Link className='text-gray-400' href='/'>
@@ -60,11 +61,11 @@ const ProductPage = async ({ params }: { params: { name: string } }) => {
                      <Link className='text-gray-400' href='/admin/products'>
                         محصولات
                      </Link>
-                     <h5 className='font-semibold rtl'>{product.name}</h5>
+                     <h5 className='font-semibold rtl'>{addingNewProduct ? 'افزودن محصول جدید' : product.name}</h5>
                   </Breadcrumbs>
 
                   <div className='max-w-md mx-auto'>
-                     <Link href='/admin/courses/add'>
+                     <Link href='/admin/products/new'>
                         <button className='bg-white z-10 border-2 border-blue-500 rounded-full p-3 fixed bottom-10 right-5'>
                            <svg
                               className='h-6 w-6 text-blue-500'
@@ -94,6 +95,7 @@ const ProductPage = async ({ params }: { params: { name: string } }) => {
                      <DetailProduct
                         params={JSON.parse(
                            JSON.stringify({
+                              addingNewProduct,
                               product,
                               categories,
                               brands,
