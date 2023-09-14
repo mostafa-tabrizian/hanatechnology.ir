@@ -4,7 +4,6 @@ export interface IBrand {
    _id: string
    slug: string
    name: string
-   category: string
    createdAt: Date
    updatedAt: Date
 }

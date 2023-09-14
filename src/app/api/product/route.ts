@@ -47,31 +47,50 @@ export async function GET() {
 // }
 
 export async function PATCH(request: Request) {
-   const { _id, publicStatus, name, description, price, discount }: {
-      _id: string,
-      publicStatus: boolean,
-      name: string,
-      description: string,
-      price: string,
-      discount: string
+   const {
+      _id,
+      barcode,
+      name,
+      slug,
+      description,
+      category,
+      brand,
+      model,
+      price,
+      discount,
+      detail,
+      publicStatus
+   }: {
+      _id: string
+      barcode: string
+      name: string
+      slug: string
+      description: string
+      category: object
+      brand: object
+      model: object
+      price: number
+      discount: number
+      detail: object
+      publicStatus: boolean
    } = await request.json()
-
-   const submitData: IProduct | object = {}
-
-   // if (typeof(publicStatus) == 'boolean') submitData['public'] = publicStatus
-   // if (name) submitData['name'] = name
-   // if (description) submitData['description'] = description
-   // if (price?.length) submitData['price'] = price
-   // if (discount?.length) submitData['discount'] = discount
 
    await dbConnect()
    const product = await Product.findOneAndUpdate({
       _id: _id,
    }, {
-      ...submitData
+      barcode,
+      name,
+      slug,
+      description,
+      category,
+      brand,
+      model,
+      price,
+      discount,
+      detail: JSON.parse(detail),
+      publicStatus
    })
-   
-   product.save()
 
    return NextResponse.json(product)
 }

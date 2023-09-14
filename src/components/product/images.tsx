@@ -44,7 +44,6 @@ const Images = ({ params: { isAdmin, name, thumbnail, images } }: ParamsType) =>
       })
 
       setGalleryList(galleryList)
-      console.log('galleryList', galleryList)
    }, [thumbnail, images])
 
    // const deleteButton = () => {

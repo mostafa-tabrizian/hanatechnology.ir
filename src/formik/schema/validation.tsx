@@ -17,16 +17,18 @@ export const ProductSchemaValidation = yup.object().shape({
    brand: yup.string().required('برند محصول را وارد کنید'),
 })
 
-export const NameAndDescriptionSchemaValidation = yup.object().shape({
-   name: yup
-      .string()
-      .min(3, 'عنوان حداقل باید ۳ کارکتر باشد')
-      .required('عنوان محصول را وارد کنید')
-      .matches(rule.persian, { message: 'لطفا عنوان را به فارسی وارد کنید' }),
-
+export const ProductEditForm = yup.object().shape({
+   barcode: yup.string().required('کد محصول را وارد کنید'),
+   name: yup.string().min(3, 'عنوان حداقل باید ۳ کارکتر باشد').required('عنوان محصول را وارد کنید'),
+   slug: yup.string().min(3, 'عنوان حداقل باید ۳ کارکتر باشد').required('اسلاگ محصول را وارد کنید'),
    description: yup
       .string()
       .min(30, 'توضیحات حداقل باید ۳۰ کارکتر باشد')
-      .required('عنوان محصول را وارد کنید')
-      .matches(rule.persian, { message: 'لطفا توضیحات را به فارسی وارد کنید' }),
+      .required('عنوان محصول را وارد کنید'),
+   category: yup.object().required('دسته را وارد کنید'),
+   brand: yup.object().required('برند را وارد کنید'),
+   model: yup.object().required('مدل را وارد کنید'),
+   price: yup.number().required('قیمت را وارد کنید'),
+   discount: yup.number().required('تخفیف را وارد کنید'),
+   detail: yup.string().required('جزئیات را وارد کنید').matches(rule.object, { message: 'جزئیات شما آبجکت نمی‌باشد و اشتباه می‌باشد' })
 })
