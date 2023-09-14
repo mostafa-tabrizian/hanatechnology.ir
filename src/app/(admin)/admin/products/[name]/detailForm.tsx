@@ -182,6 +182,7 @@ const DetailForm = ({
                      id='category'
                      value={values.category as unknown as ICategory}
                      options={categories}
+                     isOptionEqualToValue={(option, value) => option._id === value._id}
                      getOptionLabel={(option: ICategory) => option.name}
                      onChange={(e, value) => {
                         if (value) {
@@ -205,6 +206,7 @@ const DetailForm = ({
                      id='brand'
                      value={values.brand as unknown as IBrand}
                      options={brands}
+                     isOptionEqualToValue={(option, value) => option._id === value._id}
                      getOptionLabel={(option: IBrand) => option.name}
                      onChange={(e, value) => value && setFieldValue('brand', value)}
                      renderInput={(params) => <TextField {...params} label='برند' />}
@@ -223,6 +225,7 @@ const DetailForm = ({
                      id='model'
                      value={values.model as unknown as IModel}
                      options={categoryModels}
+                     isOptionEqualToValue={(option, value) => option._id === value._id}
                      getOptionLabel={(option: IModel) => option.name}
                      onChange={(e, value) => value && setFieldValue('model', value)}
                      renderInput={(params) => <TextField {...params} label='مدل' />}
