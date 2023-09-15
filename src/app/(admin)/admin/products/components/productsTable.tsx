@@ -40,9 +40,89 @@ const ProductsTable = ({ products }: { products: IProduct[] }) => {
          ),
       },
       {
+         field: 'public',
+         headerName: <span>عمومی</span>,
+         width: 75,
+         type: 'element',
+         renderCell: ({ value }) =>
+            value ? (
+               <svg
+                  className='h-5 w-5 text-green-700'
+                  width='24'
+                  height='24'
+                  viewBox='0 0 24 24'
+                  strokeWidth='2'
+                  stroke='currentColor'
+                  fill='none'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+               >
+                  {' '}
+                  <path stroke='none' d='M0 0h24v24H0z' /> <circle cx='12' cy='12' r='9' />{' '}
+                  <path d='M9 12l2 2l4 -4' />
+               </svg>
+            ) : (
+               <svg
+                  className='h-5 w-5 text-rose-700'
+                  width='24'
+                  height='24'
+                  viewBox='0 0 24 24'
+                  strokeWidth='2'
+                  stroke='currentColor'
+                  fill='none'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+               >
+                  {' '}
+                  <path stroke='none' d='M0 0h24v24H0z' /> <circle cx='12' cy='12' r='9' />{' '}
+                  <path d='M10 10l4 4m0 -4l-4 4' />
+               </svg>
+            ),
+      },
+      {
+         field: 'inStock',
+         headerName: <span>موجود</span>,
+         width: 75,
+         type: 'element',
+         renderCell: ({ value }) =>
+            value ? (
+               <svg
+                  className='h-5 w-5 text-green-700'
+                  width='24'
+                  height='24'
+                  viewBox='0 0 24 24'
+                  strokeWidth='2'
+                  stroke='currentColor'
+                  fill='none'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+               >
+                  {' '}
+                  <path stroke='none' d='M0 0h24v24H0z' /> <circle cx='12' cy='12' r='9' />{' '}
+                  <path d='M9 12l2 2l4 -4' />
+               </svg>
+            ) : (
+               <svg
+                  className='h-5 w-5 text-rose-700'
+                  width='24'
+                  height='24'
+                  viewBox='0 0 24 24'
+                  strokeWidth='2'
+                  stroke='currentColor'
+                  fill='none'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+               >
+                  {' '}
+                  <path stroke='none' d='M0 0h24v24H0z' /> <circle cx='12' cy='12' r='9' />{' '}
+                  <path d='M10 10l4 4m0 -4l-4 4' />
+               </svg>
+            ),
+      },
+      {
          field: 'name',
          headerName: <span>عنوان</span>,
-         width: 250,
+         width: 300,
          type: 'element',
          renderCell: ({ value }) => (
             <Link href={`/admin/products/${value}`}>
@@ -53,16 +133,24 @@ const ProductsTable = ({ products }: { products: IProduct[] }) => {
       {
          field: 'price',
          headerName: <span>قیمت</span>,
-         type: 'number',
+         type: 'element',
          width: 100,
          renderCell: ({ value }) => <span>{value.toLocaleString('fa')}</span>,
       },
       {
          field: 'discount',
          headerName: <span>تخفیف</span>,
-         type: 'number',
+         type: 'element',
          width: 100,
          renderCell: ({ value }) => <span>{value.toLocaleString('fa')}</span>,
+      },
+      
+      {
+         field: 'createdAt',
+         headerName: <span>تاریخ ایجاد</span>,
+         type: 'element',
+         width: 200,
+         renderCell: ({ value }) => <span>{value}</span>,
       },
    ]
 

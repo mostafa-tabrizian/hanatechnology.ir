@@ -19,7 +19,7 @@ const AdminProducts = async () => {
    const products = (await getProducts()).reverse()
 
    return (
-      <div className='md:mx-auto mx-6 max-w-screen-md space-y-10 my-16 relative'>
+      <div className='md:mx-auto mx-6 max-w-screen-lg space-y-10 my-16 relative'>
          <>
             <Breadcrumbs aria-label='breadcrumb'>
                <Link className='text-gray-400' href='/'>
