@@ -40,6 +40,7 @@ const Slides = () => {
                   width={690}
                   height={388}
                   objectFit='contain'
+                  priority
                />
             </div>
 
@@ -51,6 +52,7 @@ const Slides = () => {
                   width={690}
                   height={388}
                   objectFit='contain'
+                  priority
                />
             </div>
 
@@ -62,6 +64,7 @@ const Slides = () => {
                   width={690}
                   height={388}
                   objectFit='contain'
+                  priority
                />
             </div>
 
@@ -73,6 +76,7 @@ const Slides = () => {
                   width={690}
                   height={388}
                   objectFit='contain'
+                  priority
                />
             </div>
 

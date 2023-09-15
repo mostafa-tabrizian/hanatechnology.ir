@@ -8,6 +8,8 @@ import { usePathname } from 'next/navigation'
 
 const Sidebar = () => {
    const [sidebar, setSidebar] = useState(false)
+   const [categories, setCategories] = useState(false)
+   const [brands, setBrands] = useState(false)
    const [contactUsOptions, setContactUsOptions] = useState(false)
 
    const pathname = usePathname()
@@ -35,7 +37,7 @@ const Sidebar = () => {
             </svg>
          </button>
          <Drawer anchor='right' open={sidebar} onClose={() => setSidebar(false)}>
-            <div className='w-[16rem]'>
+            <div className='w-[16rem] h-full bg-slate-100'>
                <div className='p-5'>
                   <div className='flex gap-20 items-center justify-between'>
                      <button onClick={() => setSidebar(false)}>
@@ -81,49 +83,225 @@ const Sidebar = () => {
 
                   <hr />
 
-                  <ul className='gap-y-2 rtl mt-10 md:gap-y-0 flex flex-col md:flex-row md:items-center justify-between gap-x-8 text-gray-700 md:text-skin-base'>
-                     <li className='block md:hidden'>
-                        <Link href='/'>
-                           <div className='relative menu-item flex items-center text-blue-600'>
-                              <span className='py-2 md:py-1 flex items-center gap-x-2 md:hover:text-blue-600 cursor-pointer font-bold'>
+                  <ul className='gap-y-2 rtl mt-10 flex flex-col justify-between gap-x-8 text-gray-700'>
+                     <li className='block'>
+                        <div className='text-gray-700 bg-gradient-to-l from-white to-transparent shadow-inner rounded-lg pr-1'>
+                           <Link href='/'>
+                              <div className='relative menu-item flex items-center text-blue-600'>
+                                 <span className='py-2 md:py-1 flex items-center gap-x-2 md:hover:text-blue-600 cursor-pointer font-bold'>
+                                    <svg
+                                       xmlns='http://www.w3.org/2000/svg'
+                                       viewBox='0 0 22 22'
+                                       fill='none'
+                                       className='h-5 w-5'
+                                       stroke='currentColor'
+                                       strokeWidth={0}
+                                    >
+                                       <path
+                                          fill='currentColor'
+                                          d='M20.04 9.719a.75.75 0 0 0-1.5 0h1.5Zm-14.58 0a.75.75 0 1 0-1.5 0h1.5Zm9.053 10.988-.172-.73.172.73Zm-5.026 0 .172-.73-.172.73Zm5.341-15.693-.532.529.532-.529Zm5.64 6.744a.75.75 0 1 0 1.064-1.057l-1.064 1.057ZM9.172 5.014l.532.529-.532-.529Zm-6.704 5.687a.75.75 0 1 0 1.064 1.057l-1.064-1.057Zm7.25 7.62-.737-.14.737.14Zm.02-.104.737.139-.737-.139Zm4.524 0-.737.139.737-.139Zm.02.103.737-.138-.737.138Zm-.29 2.232-.677-.322.677.322Zm-.794-.077a.75.75 0 0 0 1.354.645l-1.354-.645Zm-3.19.077-.677.322.677-.322Zm-.56.568a.75.75 0 0 0 1.354-.645l-1.354.645Zm1.913-4.677-.2-.723.2.723Zm1.278 0 .2-.723-.2.723Zm5.901-6.724v4.918h1.5V9.72h-1.5ZM5.46 14.637V9.72h-1.5v4.918h1.5Zm8.88 5.34a10.18 10.18 0 0 1-4.68 0l-.346 1.46a11.68 11.68 0 0 0 5.372 0l-.345-1.46Zm-4.68 0c-2.457-.58-4.2-2.79-4.2-5.34h-1.5c0 3.24 2.214 6.058 5.354 6.8l.345-1.46Zm5.026 1.46c3.14-.742 5.354-3.56 5.354-6.8h-1.5c0 2.55-1.743 4.76-4.2 5.34l.346 1.46Zm-.39-15.894 6.172 6.215 1.064-1.057-6.171-6.215-1.065 1.057ZM8.64 4.486 2.468 10.7l1.064 1.057 6.172-6.215-1.065-1.057Zm6.722 0c-.652-.657-1.193-1.204-1.68-1.577-.502-.387-1.035-.659-1.681-.659v1.5c.183 0 .397.064.768.348.387.298.847.758 1.528 1.445l1.065-1.057ZM9.704 5.543c.681-.687 1.14-1.147 1.528-1.445.37-.284.585-.348.768-.348v-1.5c-.646 0-1.178.272-1.682.659-.486.373-1.027.92-1.679 1.577l1.065 1.057Zm.752 12.916.019-.103L9 18.079l-.02.103 1.475.277Zm3.07-.103.018.103 1.475-.277-.02-.103-1.474.277Zm-.211 1.874-.117.245 1.354.645.117-.246-1.354-.644Zm-3.984.644.117.246 1.354-.645-.117-.245-1.354.644Zm4.213-2.415c.113.6.032 1.22-.23 1.77l1.355.645c.399-.837.52-1.78.35-2.692l-1.475.277Zm-4.563-.277a4.385 4.385 0 0 0 .35 2.692l1.354-.644a2.884 2.884 0 0 1-.23-1.771l-1.474-.277Zm2.58-1.017c.287-.08.59-.08.877 0l.401-1.445a3.138 3.138 0 0 0-1.678 0l.4 1.445ZM15 18.08a3.024 3.024 0 0 0-2.16-2.36l-.4 1.446c.554.154.978.614 1.086 1.19L15 18.08Zm-4.524.277a1.524 1.524 0 0 1 1.087-1.19l-.401-1.446A3.024 3.024 0 0 0 9 18.079l1.474.277Z'
+                                       ></path>
+                                    </svg>
+                                    <span className='text-base'>صفحه اصلی</span>
+                                 </span>
+                              </div>
+                           </Link>
+                        </div>
+                     </li>
+
+                     <li className='block'>
+                        <div className='text-gray-700 bg-gradient-to-l from-white to-transparent shadow-inner rounded-lg pr-1'>
+                           <button
+                              onClick={() => setCategories((prev) => !prev)}
+                              className='w-full'
+                           >
+                              <span className='py-1 flex items-center gap-x-2 cursor-pointer font-bold '>
                                  <svg
-                                    xmlns='http://www.w3.org/2000/svg'
-                                    viewBox='0 0 22 22'
-                                    fill='none'
                                     className='h-5 w-5'
+                                    width='24'
+                                    height='24'
+                                    viewBox='0 0 24 24'
+                                    strokeWidth='2'
                                     stroke='currentColor'
-                                    strokeWidth={0}
+                                    fill='none'
+                                    strokeLinecap='round'
+                                    strokeLinejoin='round'
+                                 >
+                                    {' '}
+                                    <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                                    <rect x='4' y='4' width='6' height='6' rx='1' />{' '}
+                                    <rect x='14' y='4' width='6' height='6' rx='1' />{' '}
+                                    <rect x='4' y='14' width='6' height='6' rx='1' />{' '}
+                                    <rect x='14' y='14' width='6' height='6' rx='1' />
+                                 </svg>
+                                 <span className='text-base'>دسته بندی ها</span>
+                                 <svg
+                                    stroke='currentColor'
+                                    fill='none'
+                                    strokeWidth='0'
+                                    viewBox='0 0 24 24'
+                                    className={`h-4 w-4 transition ease-in-out duration-300 ${
+                                       categories ? 'rotate-90' : 'rotate-0'
+                                    }`}
+                                    height='1em'
+                                    width='1em'
+                                    xmlns='http://www.w3.org/2000/svg'
                                  >
                                     <path
-                                       fill='currentColor'
-                                       d='M20.04 9.719a.75.75 0 0 0-1.5 0h1.5Zm-14.58 0a.75.75 0 1 0-1.5 0h1.5Zm9.053 10.988-.172-.73.172.73Zm-5.026 0 .172-.73-.172.73Zm5.341-15.693-.532.529.532-.529Zm5.64 6.744a.75.75 0 1 0 1.064-1.057l-1.064 1.057ZM9.172 5.014l.532.529-.532-.529Zm-6.704 5.687a.75.75 0 1 0 1.064 1.057l-1.064-1.057Zm7.25 7.62-.737-.14.737.14Zm.02-.104.737.139-.737-.139Zm4.524 0-.737.139.737-.139Zm.02.103.737-.138-.737.138Zm-.29 2.232-.677-.322.677.322Zm-.794-.077a.75.75 0 0 0 1.354.645l-1.354-.645Zm-3.19.077-.677.322.677-.322Zm-.56.568a.75.75 0 0 0 1.354-.645l-1.354.645Zm1.913-4.677-.2-.723.2.723Zm1.278 0 .2-.723-.2.723Zm5.901-6.724v4.918h1.5V9.72h-1.5ZM5.46 14.637V9.72h-1.5v4.918h1.5Zm8.88 5.34a10.18 10.18 0 0 1-4.68 0l-.346 1.46a11.68 11.68 0 0 0 5.372 0l-.345-1.46Zm-4.68 0c-2.457-.58-4.2-2.79-4.2-5.34h-1.5c0 3.24 2.214 6.058 5.354 6.8l.345-1.46Zm5.026 1.46c3.14-.742 5.354-3.56 5.354-6.8h-1.5c0 2.55-1.743 4.76-4.2 5.34l.346 1.46Zm-.39-15.894 6.172 6.215 1.064-1.057-6.171-6.215-1.065 1.057ZM8.64 4.486 2.468 10.7l1.064 1.057 6.172-6.215-1.065-1.057Zm6.722 0c-.652-.657-1.193-1.204-1.68-1.577-.502-.387-1.035-.659-1.681-.659v1.5c.183 0 .397.064.768.348.387.298.847.758 1.528 1.445l1.065-1.057ZM9.704 5.543c.681-.687 1.14-1.147 1.528-1.445.37-.284.585-.348.768-.348v-1.5c-.646 0-1.178.272-1.682.659-.486.373-1.027.92-1.679 1.577l1.065 1.057Zm.752 12.916.019-.103L9 18.079l-.02.103 1.475.277Zm3.07-.103.018.103 1.475-.277-.02-.103-1.474.277Zm-.211 1.874-.117.245 1.354.645.117-.246-1.354-.644Zm-3.984.644.117.246 1.354-.645-.117-.245-1.354.644Zm4.213-2.415c.113.6.032 1.22-.23 1.77l1.355.645c.399-.837.52-1.78.35-2.692l-1.475.277Zm-4.563-.277a4.385 4.385 0 0 0 .35 2.692l1.354-.644a2.884 2.884 0 0 1-.23-1.771l-1.474-.277Zm2.58-1.017c.287-.08.59-.08.877 0l.401-1.445a3.138 3.138 0 0 0-1.678 0l.4 1.445ZM15 18.08a3.024 3.024 0 0 0-2.16-2.36l-.4 1.446c.554.154.978.614 1.086 1.19L15 18.08Zm-4.524.277a1.524 1.524 0 0 1 1.087-1.19l-.401-1.446A3.024 3.024 0 0 0 9 18.079l1.474.277Z'
+                                       strokeLinecap='round'
+                                       strokeLinejoin='round'
+                                       strokeWidth='2'
+                                       d='M19 9l-7 7-7-7'
                                     ></path>
                                  </svg>
-                                 <span className='text-base'>صفحه اصلی</span>
                               </span>
-                           </div>
-                        </Link>
+                           </button>
+
+                           <Collapse in={categories}>
+                              <ul className='border-b border-white border-opacity-10 opacity-90 space-y-4 p-3'>
+                                 <li className='flex items-center'>
+                                    <Link className=' flex items-center' href='#'>
+                                       <svg
+                                          className='h-5 w-5'
+                                          viewBox='0 0 24 24'
+                                          fill='none'
+                                          stroke='currentColor'
+                                          strokeWidth='2'
+                                          strokeLinecap='round'
+                                          strokeLinejoin='round'
+                                       >
+                                          {' '}
+                                          <polygon points='23 7 16 12 23 17 23 7' />{' '}
+                                          <rect x='1' y='5' width='15' height='14' rx='2' ry='2' />
+                                       </svg>
+                                       <p className='font-semibold px-2'>
+                                          <span className='text-sm'>دوربین مداربسته</span>
+                                       </p>
+                                    </Link>
+                                 </li>
+
+                                 <li className='flex items-center'>
+                                    <Link className=' flex items-center' href='#'>
+                                       <svg
+                                          className='h-5 w-5'
+                                          width='24'
+                                          height='24'
+                                          viewBox='0 0 24 24'
+                                          strokeWidth='2'
+                                          stroke='currentColor'
+                                          fill='none'
+                                          strokeLinecap='round'
+                                          strokeLinejoin='round'
+                                       >
+                                          {' '}
+                                          <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                                          <rect x='3' y='13' width='18' height='8' rx='2' />{' '}
+                                          <line x1='17' y1='17' x2='17' y2='17.01' />{' '}
+                                          <line x1='13' y1='17' x2='13' y2='17.01' />{' '}
+                                          <line x1='15' y1='13' x2='15' y2='11' />{' '}
+                                          <path d='M11.75 8.75a4 4 0 0 1 6.5 0' />{' '}
+                                          <path d='M8.5 6.5a8 8 0 0 1 13 0' />
+                                       </svg>
+                                       <p className='font-semibold px-2'>
+                                          <span className='text-sm'>مودم</span>
+                                       </p>
+                                    </Link>
+                                 </li>
+                              </ul>
+                           </Collapse>
+                        </div>
                      </li>
+
+                     <li className='block'>
+                        <div className='text-gray-700 bg-gradient-to-l from-white to-transparent shadow-inner rounded-lg pr-1'>
+                           <button onClick={() => setBrands((prev) => !prev)} className='w-full'>
+                              <span className='py-1 flex items-center gap-x-2 cursor-pointer font-bold '>
+                                 <svg
+                                    className='h-5 w-5'
+                                    width='24'
+                                    height='24'
+                                    viewBox='0 0 24 24'
+                                    strokeWidth='2'
+                                    stroke='currentColor'
+                                    fill='none'
+                                    strokeLinecap='round'
+                                    strokeLinejoin='round'
+                                 >
+                                    {' '}
+                                    <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                                    <path d='M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4' />{' '}
+                                    <circle cx='9' cy='9' r='2' />
+                                 </svg>
+                                 <span className='text-base'>برند ها</span>
+                                 <svg
+                                    stroke='currentColor'
+                                    fill='none'
+                                    strokeWidth='0'
+                                    viewBox='0 0 24 24'
+                                    className={`h-4 w-4 transition ease-in-out duration-300 ${
+                                       brands ? 'rotate-90' : 'rotate-0'
+                                    }`}
+                                    height='1em'
+                                    width='1em'
+                                    xmlns='http://www.w3.org/2000/svg'
+                                 >
+                                    <path
+                                       strokeLinecap='round'
+                                       strokeLinejoin='round'
+                                       strokeWidth='2'
+                                       d='M19 9l-7 7-7-7'
+                                    ></path>
+                                 </svg>
+                              </span>
+                           </button>
+
+                           <Collapse in={brands}>
+                              <ul className='border-b border-white border-opacity-10 opacity-90 space-y-4 p-3'>
+                                 <li className='flex items-center'>
+                                    <Link className=' flex items-center' href='#'>
+                                       <svg
+                                          className='h-5 w-5'
+                                          width='24'
+                                          height='24'
+                                          viewBox='0 0 24 24'
+                                          strokeWidth='2'
+                                          stroke='currentColor'
+                                          fill='none'
+                                          strokeLinecap='round'
+                                          strokeLinejoin='round'
+                                       >
+                                          {' '}
+                                          <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                                          <circle cx='12' cy='12' r='4' />
+                                       </svg>
+                                       <p className='font-semibold px-2'>
+                                          <span className='text-sm'>داهوا</span>
+                                       </p>
+                                    </Link>
+                                 </li>
+                              </ul>
+                           </Collapse>
+                        </div>
+                     </li>
+
                      <li className='block '>
-                        <div className='text-gray-700'>
+                        <div className='text-gray-700 bg-gradient-to-l from-white to-transparent shadow-inner rounded-lg pr-1'>
                            <button
                               onClick={() => setContactUsOptions((prev) => !prev)}
                               className='w-full'
                            >
-                              <span className='py-1 flex items-center gap-x-2 cursor-pointer '>
+                              <span className='py-1 flex items-center gap-x-2 cursor-pointer font-bold'>
                                  <svg
-                                    xmlns='http://www.w3.org/2000/svg'
-                                    viewBox='0 0 20 20'
-                                    fill='none'
                                     className='h-5 w-5'
+                                    viewBox='0 0 24 24'
+                                    fill='none'
                                     stroke='currentColor'
+                                    strokeWidth='2'
+                                    strokeLinecap='round'
+                                    strokeLinejoin='round'
                                  >
-                                    <path
-                                       stroke='currentColor'
-                                       strokeLinecap='round'
-                                       strokeWidth='1.5'
-                                       d='m6.793 8.625 2.142 1.53a1.832 1.832 0 0 0 2.13 0l2.142-1.53M2.404 12.626a10.897 10.897 0 0 1 0-5.252 6.127 6.127 0 0 1 4.621-4.506l.379-.084a12 12 0 0 1 5.192 0l.379.084a6.127 6.127 0 0 1 4.62 4.506 10.897 10.897 0 0 1 0 5.252 6.127 6.127 0 0 1-4.62 4.506l-.379.084c-1.71.379-3.482.379-5.192 0l-.379-.084a6.127 6.127 0 0 1-4.62-4.506Z'
-                                    ></path>
+                                    {' '}
+                                    <path d='M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z' />
                                  </svg>
                                  <span className='text-base'>ارتباط با ما</span>
                                  <svg
@@ -149,7 +327,7 @@ const Sidebar = () => {
                            </button>
 
                            <Collapse in={contactUsOptions}>
-                              <ul className='mt-3 border-b border-white border-opacity-10'>
+                              <ul className='border-b border-white border-opacity-10 opacity-90 space-y-4 p-3'>
                                  <li className='flex items-center rounded-lg opacity-90 mb-4 pr-2'>
                                     <a
                                        rel='noreferrer'
@@ -180,7 +358,7 @@ const Sidebar = () => {
                                              <line x1='17.5' y1='6.5' x2='17.51' y2='6.5' />
                                           </svg>
                                        </span>
-                                       <p className='font-medium px-2'>
+                                       <p className='font-semibold px-2'>
                                           <span className='text-sm'>صفحه اینستاگرام</span>
                                        </p>
                                     </a>
@@ -212,7 +390,7 @@ const Sidebar = () => {
                                              </g>
                                           </svg>
                                        </span>
-                                       <p className='font-medium px-2'>
+                                       <p className='font-semibold px-2'>
                                           <span className='text-sm'>کانال تلگرام</span>
                                        </p>
                                     </a>
@@ -239,7 +417,7 @@ const Sidebar = () => {
                                              <path d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z' />
                                           </svg>
                                        </span>
-                                       <p className='font-medium px-2'>
+                                       <p className='font-semibold px-2'>
                                           <span className='text-sm'>تماس تلفنی</span>
                                        </p>
                                     </a>
@@ -275,13 +453,39 @@ const Sidebar = () => {
                                              ></circle>
                                           </svg>
                                        </span>
-                                       <p className='font-medium px-1'>
+                                       <p className='font-semibold px-1'>
                                           <span className='text-sm'>درباره ما</span>
                                        </p>
                                     </Link>
                                  </li>
                               </ul>
                            </Collapse>
+                        </div>
+                     </li>
+
+                     <li className='block'>
+                        <div className='text-gray-700 bg-gradient-to-l from-white to-transparent shadow-inner rounded-lg pr-1'>
+                           <Link href='#'>
+                              <div className='relative menu-item flex items-center text-blue-600'>
+                                 <span className='py-2 md:py-1 flex items-center gap-x-2 md:hover:text-blue-600 cursor-pointer font-bold'>
+                                    <svg
+                                       className='h-5 w-5'
+                                       fill='none'
+                                       viewBox='0 0 24 24'
+                                       stroke='currentColor'
+                                    >
+                                       <path
+                                          strokeLinecap='round'
+                                          strokeLinejoin='round'
+                                          strokeWidth='2'
+                                          d='M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z'
+                                       />
+                                    </svg>
+
+                                    <span className='text-base'>درباره ما</span>
+                                 </span>
+                              </div>
+                           </Link>
                         </div>
                      </li>
                   </ul>
