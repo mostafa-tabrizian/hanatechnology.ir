@@ -66,10 +66,10 @@ const ProductsTable = ({ products }: { products: IProduct[] }) => {
       },
    ]
 
-   const rows = products?.map((course, index) => {
+   const rows = products?.map((product, index) => {
       return {
          id: index,
-         ...course,
+         ...product,
       }
    })
 

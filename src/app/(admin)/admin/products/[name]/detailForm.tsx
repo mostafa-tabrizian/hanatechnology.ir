@@ -46,6 +46,7 @@ const DetailForm = ({
          discount: number
          detail: object
          publicStatus: boolean
+         inStock: boolean
       },
       // @ts-ignore
       { resetForm },
@@ -104,6 +105,7 @@ const DetailForm = ({
                ? JSON.stringify({ عنوان: 'ارزش', عنوان۲: 'ارزش۲' })
                : JSON.stringify(product.detail),
             publicStatus: addingNewProduct ? true : product.public,
+            inStock: addingNewProduct ? true : product.inStock,
          }}
          validationSchema={ProductEditForm}
          onSubmit={handleSubmit}
@@ -315,13 +317,24 @@ const DetailForm = ({
                   )}
 
                   <div className='flex items-center gap-5 rtl'>
-                     <span className='text-slate-400'>عمومی</span>
+                     <span className='text-slate-400'>محصول نمایش داده شود</span>
 
                      <Switch
                         checked={values.publicStatus}
                         name='publicStatus'
                         color='success'
                         onChange={() => setFieldValue('publicStatus', !values.publicStatus)}
+                     />
+                  </div>
+
+                  <div className='flex items-center gap-5 rtl'>
+                     <span className='text-slate-400'>محصول موجود است</span>
+
+                     <Switch
+                        checked={values.inStock}
+                        name='inStock'
+                        color='success'
+                        onChange={() => setFieldValue('inStock', !values.inStock)}
                      />
                   </div>
 

@@ -15,6 +15,7 @@ export interface IProduct {
    images: [string]
    detail: object
    description: string
+   inStock: boolean
    createdAt: Date
    updatedAt: Date
 }
@@ -48,10 +49,14 @@ const ProductSchema = new mongoose.Schema({
    images: [String],
    detail: Object,
    description: String,
+   inStock: {
+      type: Boolean,
+      default: true
+   },
 })
 
 ProductSchema.set('timestamps', true)
 
-ProductSchema.index({name: 'text', slug: 'text', description: 'text'});
+ProductSchema.index({ name: 'text', slug: 'text', description: 'text' });
 
 export default mongoose.models.Product || mongoose.model('Product', ProductSchema)
