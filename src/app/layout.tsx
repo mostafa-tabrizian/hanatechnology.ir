@@ -8,7 +8,7 @@ import { ToastContainer } from 'react-toastify'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
    return (
-      <html lang='en'>
+      <html lang='fa'>
          <body>
             <SessionProvider>
                <ToastContainer
