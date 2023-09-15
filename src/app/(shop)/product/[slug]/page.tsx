@@ -80,7 +80,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
          priceCurrency: 'IRR',
          price: product.price * 10, // rial
          itemCondition: 'https://schema.org/NewCondition',
-         availability: 'https://schema.org/InStock',
+         availability: `https://schema.org/${product.inStock ? 'InStock' : 'SoldOut'}`,
       },
    }
 
