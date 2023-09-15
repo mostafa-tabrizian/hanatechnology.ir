@@ -422,42 +422,6 @@ const Sidebar = () => {
                                        </p>
                                     </a>
                                  </li>
-                                 <li className='flex items-center rounded-lg opacity-90 mb-4 pr-2'>
-                                    <Link href='/about-us' className='flex items-center'>
-                                       <span>
-                                          <svg
-                                             viewBox='0 0 24 24'
-                                             fill='none'
-                                             xmlns='http://www.w3.org/2000/svg'
-                                             className='opacity-70 md:opacity-100 h-6 w-6 ml-1 md:text-skin-base'
-                                          >
-                                             <path
-                                                d='M3.353 8.95A7.511 7.511 0 0 1 8.95 3.353c2.006-.47 4.094-.47 6.1 0a7.511 7.511 0 0 1 5.597 5.597c.47 2.006.47 4.094 0 6.1a7.511 7.511 0 0 1-5.597 5.597c-2.006.47-4.094.47-6.1 0a7.511 7.511 0 0 1-5.597-5.597 13.354 13.354 0 0 1 0-6.1Z'
-                                                stroke='currentColor'
-                                                strokeWidth='1.5'
-                                             ></path>
-                                             <path
-                                                d='M12 15.5v-4'
-                                                stroke='currentColor'
-                                                strokeWidth='1.5'
-                                                strokeLinecap='round'
-                                                strokeLinejoin='round'
-                                             ></path>
-                                             <circle
-                                                cx='12'
-                                                cy='9'
-                                                r='0.5'
-                                                stroke='currentColor'
-                                                strokeLinecap='round'
-                                                strokeLinejoin='round'
-                                             ></circle>
-                                          </svg>
-                                       </span>
-                                       <p className='font-semibold px-1'>
-                                          <span className='text-sm'>درباره ما</span>
-                                       </p>
-                                    </Link>
-                                 </li>
                               </ul>
                            </Collapse>
                         </div>
@@ -465,7 +429,7 @@ const Sidebar = () => {
 
                      <li className='block'>
                         <div className='text-gray-700 bg-gradient-to-l from-white to-transparent shadow-inner rounded-lg pr-1'>
-                           <Link href='#'>
+                           <a href='#about-us' onClick={() => setSidebar(false)}>
                               <div className='relative menu-item flex items-center text-blue-600'>
                                  <span className='py-2 md:py-1 flex items-center gap-x-2 md:hover:text-blue-600 cursor-pointer font-bold'>
                                     <svg
@@ -485,7 +449,7 @@ const Sidebar = () => {
                                     <span className='text-base'>درباره ما</span>
                                  </span>
                               </div>
-                           </Link>
+                           </a>
                         </div>
                      </li>
                   </ul>
