@@ -4,6 +4,8 @@ import Button from '@mui/material/Button'
 import { toast } from 'react-toastify'
 import CircularProgress from '@mui/material/CircularProgress'
 import ImageDelete from './imageDelete'
+import filesSizeValidation from '@/lib/filesSizeValidation'
+import filesTypeValidation from '@/lib/filesTypeValidation'
 
 const ImageInput = ({
    params: { product },
@@ -113,38 +115,6 @@ const ImageInput = ({
       }
    }
 
-   const checkIfFilesAreTooBig = (files: File[]): { valid: boolean; invalidFile: File | null } => {
-      let valid = true
-      let invalidFile = null
-
-      files.map((file) => {
-         const size = file.size / 1024 / 1024 // ex: 0.4 MB
-
-         if (size > 0.3) {
-            invalidFile = file
-            valid = false
-         }
-      })
-
-      return { valid, invalidFile }
-   }
-
-   const checkIfFilesAreCorrectType = (
-      files: File[],
-   ): { valid: boolean; invalidFile: File | null } => {
-      let valid = true
-      let invalidFile = null
-
-      files.map((file) => {
-         if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
-            invalidFile = file
-            valid = false
-         }
-      })
-
-      return { valid, invalidFile }
-   }
-
    // @ts-ignore
    const onChange = (e) => {
       const files = e?.target?.files
@@ -153,23 +123,17 @@ const ImageInput = ({
 
       const filesList: File[] = Object.values(files)
 
-      const typeCheckRes: { invalidFile: File | null; valid: boolean } =
-         checkIfFilesAreCorrectType(filesList)
+      const typeCheckRes = filesTypeValidation(filesList)
 
-      if (!typeCheckRes.valid && typeCheckRes.invalidFile)
+      if (!typeCheckRes.valid)
+         return toast.warning(`تایپ فایل ${typeCheckRes.name} می‌بایست jpeg یا webp باشد`)
+
+      const sizeCheckRes = filesSizeValidation(filesList)
+
+      if (!sizeCheckRes.valid) {
          return toast.warning(
-            `تایپ فایل ${typeCheckRes.invalidFile.name} می‌بایست png, jpeg یا webp باشد`,
+            `سایز فایل ${sizeCheckRes.name} برابر با ${sizeCheckRes.fileSize} کیلوبایت می‌باشد. حداکثر هر فایل می‌بایست 100 کیلوبایت باشد`,
          )
-
-      const sizeCheckRes: { invalidFile: File | null; valid: boolean } =
-         checkIfFilesAreTooBig(filesList)
-
-      if (!sizeCheckRes.valid && sizeCheckRes.invalidFile) {
-         const fileSize = Math.round((sizeCheckRes.invalidFile.size / 1024 / 1024) * 1000)
-         toast.warning(
-            `سایز فایل ${sizeCheckRes.invalidFile.name} برابر با ${fileSize} کیلوبایت می‌باشد. حداکثر هر فایل می‌بایست 300 کیلوبایت باشد`,
-         )
-         return
       }
 
       setImageToUpload(files)
@@ -218,7 +182,11 @@ const ImageInput = ({
                         loading='lazy'
                      />
 
-                     <ImageDelete type={'thumbnail'} product={product._id} imageUrl={product.thumbnail} />
+                     <ImageDelete
+                        type={'thumbnail'}
+                        product={product._id}
+                        imageUrl={product.thumbnail}
+                     />
                   </div>
                </div>
             ) : (

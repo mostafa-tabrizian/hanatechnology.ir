@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, ChangeEventHandler } from 'react'
+import { useState, useMemo } from 'react'
 import Image from 'next/legacy/image'
 import { useRouter } from 'next/navigation'
 import { Formik, Form } from 'formik'
@@ -11,6 +11,8 @@ import { SlideValidation } from '@/formik/schema/validation'
 import CircularProgress from '@mui/material/CircularProgress'
 import Button from '@mui/material/Button'
 import { Switch } from '@mui/material'
+import filesSizeValidation from '@/lib/filesSizeValidation'
+import filesTypeValidation from '@/lib/filesTypeValidation'
 
 const NewSlide = () => {
    const router = useRouter()
@@ -125,38 +127,6 @@ const NewSlide = () => {
       }
    }
 
-   const checkIfFilesAreTooBig = (files: File[]): { valid: boolean; invalidFile: File | null } => {
-      let valid = true
-      let invalidFile = null
-
-      files.map((file) => {
-         const size = file.size / 1024 / 1024 // ex: 0.4 MB
-
-         if (size > 0.1) {
-            invalidFile = file
-            valid = false
-         }
-      })
-
-      return { valid, invalidFile }
-   }
-
-   const checkIfFilesAreCorrectType = (
-      files: File[],
-   ): { valid: boolean; invalidFile: File | null } => {
-      let valid = true
-      let invalidFile = null
-
-      files.map((file) => {
-         if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
-            invalidFile = file
-            valid = false
-         }
-      })
-
-      return { valid, invalidFile }
-   }
-
    // @ts-ignore
    const handleSlideImageSelect = (e) => {
       const files = e?.target?.files
@@ -165,23 +135,15 @@ const NewSlide = () => {
 
       const filesList: File[] = Object.values(files)
 
-      const typeCheckRes: { invalidFile: File | null; valid: boolean } =
-         checkIfFilesAreCorrectType(filesList)
+      const typeCheckRes = filesTypeValidation(filesList)
+      if (!typeCheckRes.valid)
+         return toast.warning(`تایپ فایل ${typeCheckRes.name} می‌بایست jpeg یا webp باشد`)
 
-      if (!typeCheckRes.valid && typeCheckRes.invalidFile)
+      const sizeCheckRes = filesSizeValidation(filesList)
+      if (!sizeCheckRes.valid) {
          return toast.warning(
-            `تایپ فایل ${typeCheckRes.invalidFile.name} می‌بایست png, jpeg یا webp باشد`,
+            `سایز فایل ${sizeCheckRes.name} برابر با ${sizeCheckRes.fileSize} کیلوبایت می‌باشد. حداکثر هر فایل می‌بایست 100 کیلوبایت باشد`,
          )
-
-      const sizeCheckRes: { invalidFile: File | null; valid: boolean } =
-         checkIfFilesAreTooBig(filesList)
-
-      if (!sizeCheckRes.valid && sizeCheckRes.invalidFile) {
-         const fileSize = Math.round((sizeCheckRes.invalidFile.size / 1024 / 1024) * 1000)
-         toast.warning(
-            `سایز فایل ${sizeCheckRes.invalidFile.name} برابر با ${fileSize} کیلوبایت می‌باشد. حداکثر هر فایل می‌بایست 100 کیلوبایت باشد`,
-         )
-         return
       }
 
       setSlideImageToUpload(files)
