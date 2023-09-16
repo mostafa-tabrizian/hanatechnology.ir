@@ -47,6 +47,30 @@ const AdminPanel = async () => {
                </div>
 
                <div className='bg-white rounded-lg py-2 px-2'>
+                  <Link href='/admin/brands'>
+                     <div className='flex justify-end space-x-3 items-center'>
+                        <span className='text-base text-black'>برند ها</span>
+                        <svg
+                           className='h-6 w-6'
+                           width='24'
+                           height='24'
+                           viewBox='0 0 24 24'
+                           strokeWidth='2'
+                           stroke='currentColor'
+                           fill='none'
+                           strokeLinecap='round'
+                           strokeLinejoin='round'
+                        >
+                           {' '}
+                           <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                           <path d='M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4' />{' '}
+                           <circle cx='9' cy='9' r='2' />
+                        </svg>
+                     </div>
+                  </Link>
+               </div>
+
+               <div className='bg-white rounded-lg py-2 px-2'>
                   <Link href='/admin/categories'>
                      <div className='flex justify-end space-x-3 items-center'>
                         <span className='text-base text-black'>دسته بندی ها</span>
@@ -73,11 +97,11 @@ const AdminPanel = async () => {
                </div>
 
                <div className='bg-white rounded-lg py-2 px-2'>
-                  <Link href='/admin/brands'>
+                  <Link href='/admin/models'>
                      <div className='flex justify-end space-x-3 items-center'>
-                        <span className='text-base text-black'>برند ها</span>
+                        <span className='text-base text-black'>مدل ها</span>
                         <svg
-                           className='h-6 w-6'
+                           className='h-6 w-6 text-black'
                            width='24'
                            height='24'
                            viewBox='0 0 24 24'
@@ -88,9 +112,10 @@ const AdminPanel = async () => {
                            strokeLinejoin='round'
                         >
                            {' '}
-                           <path stroke='none' d='M0 0h24v24H0z' />{' '}
-                           <path d='M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4' />{' '}
-                           <circle cx='9' cy='9' r='2' />
+                           <path stroke='none' d='M0 0h24v24H0z' /> <circle cx='12' cy='18' r='2' />{' '}
+                           <circle cx='7' cy='6' r='2' /> <circle cx='17' cy='6' r='2' />{' '}
+                           <path d='M7 8v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2 -2v-2' />{' '}
+                           <line x1='12' y1='12' x2='12' y2='16' />
                         </svg>
                      </div>
                   </Link>

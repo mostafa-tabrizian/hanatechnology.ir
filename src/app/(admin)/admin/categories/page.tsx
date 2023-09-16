@@ -57,12 +57,12 @@ const AdminCategories = async () => {
             <CategoryNewInput />
 
             <div className='rtl'>
-               <div className='bg-white grid grid-cols-3 mb-3 justify-between rounded-lg p-5 py-2 text-center items-center'>
-                  <div className='grid grid-cols-2'>
+               <div className='bg-white grid grid-cols-6 mb-3 justify-between rounded-lg p-5 py-2 text-center items-center'>
+                  <div className='grid grid-cols-2 col-span-4'>
                      <p className='flex'>نام</p>
                      <p className='flex'>اسلاگ</p>
                   </div>
-                  <p>محصولات</p>
+                  <p className='col-span-1'>محصولات</p>
                </div>
 
                <div className='space-y-3'>
@@ -72,7 +72,7 @@ const AdminCategories = async () => {
                         return (
                            <div
                               key={category._id}
-                              className='bg-white grid grid-cols-3 justify-between rounded-lg p-5 py-2 text-center items-center'
+                              className='bg-white grid grid-cols-6 justify-between rounded-lg p-2 text-center items-center'
                            >
                               <NameAndSlug params={JSON.parse(JSON.stringify({ ...category }))} />
                               <Link href={`/category/${category.slug}`}>

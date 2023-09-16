@@ -44,8 +44,8 @@ const NameAndSlug = ({
          onSubmit={handleSubmit}
       >
          {({ values, setFieldValue, isSubmitting, errors, touched, submitForm }) => (
-            <Form className='flex justify-center rtl items-center w-full'>
-               <div>
+            <Form className='grid grid-cols-4 col-span-4 rtl items-center w-full'>
+               <div className='col-span-2'>
                   <div className='text-right space-y-1 ml-2'>
                      <input
                         disabled={isSubmitting}
@@ -67,7 +67,7 @@ const NameAndSlug = ({
                      ''
                   )}
                </div>
-               <div>
+               <div className='col-span-2'>
                   <div className='text-right space-y-1'>
                      <input
                         disabled={isSubmitting}

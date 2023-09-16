@@ -20,16 +20,16 @@ const NameAndSlug = ({
       }
 
       try {
-         const res = await fetch('/api/brand', {
+         const res = await fetch('/api/model', {
             method: 'PATCH',
             body: JSON.stringify(payload),
          })
 
          if (!res.ok) throw new Error()
 
-         toast.success('نام برند با موفقیت تغییر کرد')
+         toast.success('نام دسته بندی با موفقیت تغییر کرد')
       } catch (err) {
-         toast.error('در تغییر نام برند خطایی رخ داد')
+         toast.error('در تغییر نام دسته بندی خطایی رخ داد')
          console.error(err)
       }
    }
