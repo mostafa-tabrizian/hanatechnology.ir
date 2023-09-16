@@ -10,13 +10,13 @@ const s3 = new S3({
 })
 
 export async function POST(req: Request) {
-   const { imageName }: { imageName: string } = await req.json()
+   const { imageName, folder }: { imageName: string } = await req.json()
 
    const uniqueId = Math.random().toString(36).substring(2, 7)
    const Key = `${uniqueId}-${imageName}`
 
    const params = {
-      Bucket: process.env.LIARA_BUCKET_NAME,
+      Bucket: `${process.env.LIARA_BUCKET_NAME}/${folder}`,
       Key: Key,
    }
 
@@ -26,10 +26,10 @@ export async function POST(req: Request) {
 }
 
 export async function DELETE(req: Request) {
-   const { key } = await req.json()
+   const { key, folder } = await req.json()
 
    const params = {
-      Bucket: process.env.LIARA_BUCKET_NAME as string,
+      Bucket: `${process.env.LIARA_BUCKET_NAME}/${folder}`,
       Key: key,
    }
 

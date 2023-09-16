@@ -1,0 +1,61 @@
+import { NextResponse } from 'next/server'
+
+import Slide, { ISlide } from '@/models/slide'
+import dbConnect from '@/lib/dbConnect'
+
+interface BodyType {
+    key: string
+    _id: string
+}
+
+export async function POST(req: Request) {
+    const { values, key }: BodyType = await req.json()
+
+    await dbConnect()
+
+    const newSlide = await Slide.create({
+        src: `https://${process.env.LIARA_BUCKET_NAME}.${process.env.LIARA_ENDPOINT}/slides/${key}`,
+        alt: values.alt,
+        link: values.link,
+        public: values.publicStatus
+    });
+
+    return NextResponse.json({ newSlide })
+}
+
+export async function PATCH(req: Request) {
+    const { _id } = await req.json()
+
+    try {
+        await dbConnect()
+        const slide: ISlide | null = await Slide.findOne(
+            {
+                _id: _id
+            }
+        )
+
+        if (slide) {
+            slide.public = !slide.public
+            // @ts-ignore
+            slide.save()
+        } else throw new Error()
+
+        return NextResponse.json({
+            slide,
+        })
+    } catch (err) {
+        return NextResponse.json({
+            statue: 500,
+            message: err,
+        })
+    }
+}
+
+export async function DELETE(req: Request) {
+    const { _id }: BodyType = await req.json()
+
+    await dbConnect()
+    const res = await Slide.findOneAndDelete({ _id })
+
+    return NextResponse.json({ res })
+}

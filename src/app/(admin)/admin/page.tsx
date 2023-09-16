@@ -26,6 +26,35 @@ const AdminPanel = async () => {
 
             <div className='px-4 py-10 space-y-4 from-gray-50 to-gray-100 bg-gradient-to-b rounded-lg max-w-sm mx-auto'>
                <div className='bg-white rounded-lg py-2 px-2'>
+                  <Link href='/admin/slides'>
+                     <div className='flex justify-end space-x-3 items-center'>
+                        <span className='text-base text-black'>اسلاید ها</span>
+                        <svg
+                           className='h-6 w-6 text-black'
+                           width='24'
+                           height='24'
+                           viewBox='0 0 24 24'
+                           strokeWidth='2'
+                           stroke='currentColor'
+                           fill='none'
+                           strokeLinecap='round'
+                           strokeLinejoin='round'
+                        >
+                           {' '}
+                           <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                           <line x1='15' y1='6' x2='15.01' y2='6' />{' '}
+                           <rect x='3' y='3' width='18' height='14' rx='3' />{' '}
+                           <path d='M3 13l4 -4a3 5 0 0 1 3 0l 4 4' />{' '}
+                           <path d='M13 12l2 -2a3 5 0 0 1 3 0l 3 3' />{' '}
+                           <line x1='8' y1='21' x2='8.01' y2='21' />{' '}
+                           <line x1='12' y1='21' x2='12.01' y2='21' />{' '}
+                           <line x1='16' y1='21' x2='16.01' y2='21' />
+                        </svg>
+                     </div>
+                  </Link>
+               </div>
+
+               <div className='bg-white rounded-lg py-2 px-2'>
                   <Link href='/admin/products'>
                      <div className='flex justify-end space-x-3 items-center'>
                         <span className='text-base text-black'>محصولات</span>

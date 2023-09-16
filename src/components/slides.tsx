@@ -29,9 +29,6 @@ const Slides = () => {
    return (
       <div className='slides rtl relative'>
          <div className='swiper-wrapper pb-10'>
-            {/* {comments.map((comment) => { */}
-            {/* return ( */}
-
             <div className='swiper-slide rounded-xl'>
                <Image
                   className='rounded-xl'

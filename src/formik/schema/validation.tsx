@@ -44,3 +44,8 @@ export const BrandValidation = yup.object().shape({
       .matches(rule.persian, { message: 'عنوان را به فارسی وارد کنید' }),
    slug: yup.string().min(3, 'حداقل ۳ کارکتر').required('اسلاگ را وارد کنید'),
 })
+
+export const SlideValidation = yup.object().shape({
+   alt: yup.string().min(3, 'حداقل ۳ کارکتر').required('عنوان جایگزین را وارد کنید'),
+   link: yup.string().required('لینک را وارد کنید'),
+})
