@@ -1,18 +1,18 @@
 import { NextResponse } from 'next/server'
 
 import dbConnect from '@/lib/dbConnect'
-import Brand from '@/models/brand'
+import Category from '@/models/category'
 
 export async function POST(req: Request) {
    try {
       const { name, slug } = await req.json()
 
       await dbConnect()
-      const checkNameIfExist = await Brand.findOne({
+      const checkNameIfExist = await Category.findOne({
          name: name
       })
 
-      const checkSlugIfExist = await Brand.findOne({
+      const checkSlugIfExist = await Category.findOne({
          slug: slug
       })
 
@@ -21,14 +21,14 @@ export async function POST(req: Request) {
             message: 'alreadyExist',
          })
 
-      const brand = await Brand.create({
+      const category = await Category.create({
          name: name,
          slug: slug
       })
 
-      return NextResponse.json(brand)
+      return NextResponse.json(category)
    } catch (error) {
-      console.error('Error creating brand:', error)
+      console.error('Error creating category:', error)
       return NextResponse.json({ status: 500, message: error })
    }
 }
@@ -39,7 +39,7 @@ export async function PATCH(req: Request) {
 
    try {
       await dbConnect()
-      const brand = await Brand.findOneAndUpdate(
+      const category = await Category.findOneAndUpdate(
          {
             _id: _id
          },
@@ -50,7 +50,7 @@ export async function PATCH(req: Request) {
       )
 
       return NextResponse.json({
-         brand,
+         category,
       })
    } catch (err) {
       return NextResponse.json({
@@ -65,13 +65,13 @@ export async function DELETE(req: Request) {
       const { _id } = await req.json()
 
       await dbConnect()
-      const brand = await Brand.findOneAndDelete(
+      const category = await Category.findOneAndDelete(
          { _id }
       )
 
-      return NextResponse.json(brand)
+      return NextResponse.json(category)
    } catch (error) {
-      console.error('Error deleting brand:', error)
+      console.error('Error deleting category:', error)
       return NextResponse.json({ status: 500, message: error })
    }
 }

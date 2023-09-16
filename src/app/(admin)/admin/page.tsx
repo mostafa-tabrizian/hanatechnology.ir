@@ -39,8 +39,34 @@ const AdminPanel = async () => {
                               strokeLinecap='round'
                               strokeLinejoin='round'
                               strokeWidth='2'
-                              d='M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z'
+                              d='M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4'
                            />
+                        </svg>
+                     </div>
+                  </Link>
+               </div>
+
+               <div className='bg-white rounded-lg py-2 px-2'>
+                  <Link href='/admin/categories'>
+                     <div className='flex justify-end space-x-3 items-center'>
+                        <span className='text-base text-black'>دسته بندی ها</span>
+                        <svg
+                           className='h-6 w-6'
+                           width='24'
+                           height='24'
+                           viewBox='0 0 24 24'
+                           strokeWidth='2'
+                           stroke='currentColor'
+                           fill='none'
+                           strokeLinecap='round'
+                           strokeLinejoin='round'
+                        >
+                           {' '}
+                           <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                           <rect x='4' y='4' width='6' height='6' rx='1' />{' '}
+                           <rect x='14' y='4' width='6' height='6' rx='1' />{' '}
+                           <rect x='4' y='14' width='6' height='6' rx='1' />{' '}
+                           <rect x='14' y='14' width='6' height='6' rx='1' />
                         </svg>
                      </div>
                   </Link>
@@ -51,36 +77,26 @@ const AdminPanel = async () => {
                      <div className='flex justify-end space-x-3 items-center'>
                         <span className='text-base text-black'>برند ها</span>
                         <svg
-                           className='h-6 w-6 text-black'
-                           fill='none'
+                           className='h-6 w-6'
+                           width='24'
+                           height='24'
                            viewBox='0 0 24 24'
+                           strokeWidth='2'
                            stroke='currentColor'
+                           fill='none'
+                           strokeLinecap='round'
+                           strokeLinejoin='round'
                         >
-                           <svg
-                              className='h-6 w-6 text-black'
-                              width='24'
-                              height='24'
-                              viewBox='0 0 24 24'
-                              strokeWidth='2'
-                              stroke='currentColor'
-                              fill='none'
-                              strokeLinecap='round'
-                              strokeLinejoin='round'
-                           >
-                              {' '}
-                              <path stroke='none' d='M0 0h24v24H0z' />{' '}
-                              <line x1='3' y1='21' x2='21' y2='21' /> <path d='M5 21v-14l8 -4v18' />{' '}
-                              <path d='M19 21v-10l-6 -4' /> <line x1='9' y1='9' x2='9' y2='9.01' />{' '}
-                              <line x1='9' y1='12' x2='9' y2='12.01' />{' '}
-                              <line x1='9' y1='15' x2='9' y2='15.01' />{' '}
-                              <line x1='9' y1='18' x2='9' y2='18.01' />
-                           </svg>
+                           {' '}
+                           <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                           <path d='M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4' />{' '}
+                           <circle cx='9' cy='9' r='2' />
                         </svg>
                      </div>
                   </Link>
                </div>
 
-               <div className='bg-white rounded-lg py-2 px-2'>
+               {/* <div className='bg-white rounded-lg py-2 px-2'>
                   <Link href='/admin/statistic'>
                      <div className='flex justify-end space-x-3 items-center'>
                         <span className='text-base text-black'>آمار</span>
@@ -101,7 +117,7 @@ const AdminPanel = async () => {
                         </svg>
                      </div>
                   </Link>
-               </div>
+               </div> */}
             </div>
          </>
       </div>
