@@ -16,7 +16,7 @@ export async function POST(req: Request) {
    const Key = `${uniqueId}-${imageName}`
 
    const params = {
-      Bucket: 'tabrizian',
+      Bucket: process.env.LIARA_BUCKET_NAME,
       Key: Key,
    }
 
@@ -26,11 +26,11 @@ export async function POST(req: Request) {
 }
 
 export async function DELETE(req: Request) {
-   const { imageKey } = await req.json()
+   const { key } = await req.json()
 
    const params = {
-      Bucket: 'tabrizian',
-      Key: imageKey,
+      Bucket: process.env.LIARA_BUCKET_NAME as string,
+      Key: key,
    }
 
    const resDelete = await s3.deleteObject(params).promise()

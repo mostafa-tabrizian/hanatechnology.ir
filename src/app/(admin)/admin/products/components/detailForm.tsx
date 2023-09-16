@@ -14,6 +14,7 @@ import TextField from '@mui/material/TextField'
 import CircularProgress from '@mui/material/CircularProgress'
 import Autocomplete from '@mui/material/Autocomplete'
 
+import ImageInput from './imageInput'
 import { ProductEditForm } from '@/formik/schema/validation'
 
 const DetailForm = ({
@@ -111,8 +112,25 @@ const DetailForm = ({
          onSubmit={handleSubmit}
       >
          {({ values, setFieldValue, isSubmitting, errors, touched }) => (
-            <Form className='flex justify-end gap-2 mt-6'>
-               <div className='space-y-5 w-full'>
+            <Form className='grid grid-cols-3 gap-5 mt-6 '>
+               <div className='col-span-1'>
+                  {addingNewProduct ? (
+                     ''
+                  ) : (
+                     <ImageInput
+                        params={JSON.parse(
+                           JSON.stringify({
+                              product: {
+                                 _id: product._id,
+                                 thumbnail: product.thumbnail,
+                                 images: product.images,
+                              },
+                           }),
+                        )}
+                     />
+                  )}
+               </div>
+               <div className='space-y-5 col-span-2'>
                   <div className='text-right space-y-1'>
                      <label htmlFor='barcode'>
                         <span className='text-slate-400'>کد محصول</span>

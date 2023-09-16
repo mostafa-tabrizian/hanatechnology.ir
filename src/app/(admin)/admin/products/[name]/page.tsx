@@ -6,8 +6,7 @@ import Product from '@/models/product'
 import Category from '@/models/category'
 import Brand from '@/models/brand'
 import Model from '@/models/model'
-import Images from '@/components/product/images'
-import DetailProduct from './detailForm'
+import DetailProduct from '../components/detailForm'
 
 async function getProduct(name: string) {
    await dbConnect()
@@ -40,7 +39,7 @@ export const metadata = {
 }
 
 const ProductPage = async ({ params }: { params: { name: string } }) => {
-   const addingNewProduct = (params.name == 'new')
+   const addingNewProduct = params.name == 'new'
    const product = await getProduct(params.name)
    const categories = await getCategories()
    const brands = await getBrands()
@@ -48,7 +47,7 @@ const ProductPage = async ({ params }: { params: { name: string } }) => {
 
    return (
       <div className='mx-6 my-16 relative'>
-         <div className='mx-6 md:mx-auto max-w-screen-md space-y-10 my-16'>
+         <div className='mx-6 md:mx-auto max-w-screen-xl space-y-10 my-16'>
             {product || addingNewProduct ? (
                <>
                   <Breadcrumbs aria-label='breadcrumb'>
@@ -61,10 +60,12 @@ const ProductPage = async ({ params }: { params: { name: string } }) => {
                      <Link className='text-gray-400' href='/admin/products'>
                         محصولات
                      </Link>
-                     <h5 className='font-semibold rtl'>{addingNewProduct ? 'افزودن محصول جدید' : product.name}</h5>
+                     <h5 className='font-semibold rtl'>
+                        {addingNewProduct ? 'افزودن محصول جدید' : product.name}
+                     </h5>
                   </Breadcrumbs>
 
-                  <div className='max-w-md mx-auto'>
+                  <div className='max-w-xl mx-auto'>
                      <Link href='/admin/products/new'>
                         <button className='bg-white z-10 border-2 border-blue-500 rounded-full p-3 fixed bottom-10 right-5'>
                            <svg
@@ -82,15 +83,6 @@ const ProductPage = async ({ params }: { params: { name: string } }) => {
                            </svg>
                         </button>
                      </Link>
-
-                     <Images
-                        params={{
-                           isAdmin: true,
-                           thumbnail: product.thumbnail,
-                           name: product.name,
-                           images: product.images,
-                        }}
-                     />
 
                      <DetailProduct
                         params={JSON.parse(

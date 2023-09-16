@@ -31,7 +31,7 @@ const ProductsTable = ({ products }: { products: IProduct[] }) => {
          renderCell: ({ value }) => (
             <Image
                className='rounded-xl'
-               src={`/product/${value}`}
+               src={value as string}
                alt={String(value)}
                height={50}
                width={50}

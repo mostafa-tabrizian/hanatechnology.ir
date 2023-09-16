@@ -9,7 +9,7 @@ const ProductCards = ({ product }: { product: IProduct }) => {
             <div className='flex justify-center'>
                <Image
                   className='object-contain aspect-square'
-                  src={`/product/${product.thumbnail}`}
+                  src={product.thumbnail}
                   alt={product.name}
                   width='170'
                   height='170'

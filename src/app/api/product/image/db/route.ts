@@ -1,21 +1,64 @@
 import { NextResponse } from 'next/server'
 
+import Product from '@/models/product'
+import dbConnect from '@/lib/dbConnect'
+
 interface BodyType {
+   type: string
    key: string
-   productId: string
-   imageName: string
+   _id: string
 }
 
 export async function POST(req: Request) {
-   const { key, productId, imageName }: BodyType = await req.json()
+   const { type, key, _id }: BodyType = await req.json()
 
-   // const res = await prisma.image.create({
-   //    data: {
-   //       productId: productId,
-   //       src: 'https://tabrizian.storage.iran.liara.space/' + key,
-   //       alt: imageName,
-   //    },
-   // })
+   await dbConnect()
 
-   // return NextResponse.json({ res })
+   let res
+
+   if (type == 'thumbnail') {
+      res = await Product.findOneAndUpdate({
+         _id: _id
+      }, {
+         thumbnail: `https://${process.env.LIARA_BUCKET_NAME}.${process.env.LIARA_ENDPOINT}/${key}`
+      }).exec();
+
+   } else if (type == 'images') {
+      res = await Product.findOne({
+         _id: _id
+      }).exec();
+
+      (res.images).push(`https://${process.env.LIARA_BUCKET_NAME}.${process.env.LIARA_ENDPOINT}/${key}`)
+      res.save()
+   }
+
+   return NextResponse.json({ res })
+}
+
+export async function DELETE(req: Request) {
+   const { type, key, _id }: BodyType = await req.json()
+
+   await dbConnect()
+
+   let res
+
+   if (type == 'thumbnail') {
+      res = await Product.findOneAndUpdate({
+         _id: _id
+      }, {
+         thumbnail: ''
+      }).exec();
+
+   } else if (type == 'images') {
+      res = await Product.findOne({
+         _id: _id
+      }).exec();
+
+      const filteredItems = (res.images).filter((item: string) => item !== key);
+
+      res.images = filteredItems
+      res.save()
+   }
+
+   return NextResponse.json({ res })
 }
