@@ -30,5 +30,17 @@ export const ProductEditForm = yup.object().shape({
    model: yup.object().required('مدل را وارد کنید'),
    price: yup.number().required('قیمت را وارد کنید'),
    discount: yup.number().required('تخفیف را وارد کنید'),
-   detail: yup.string().required('جزئیات را وارد کنید').matches(rule.object, { message: 'جزئیات شما آبجکت نمی‌باشد و اشتباه می‌باشد' })
+   detail: yup
+      .string()
+      .required('جزئیات را وارد کنید')
+      .matches(rule.object, { message: 'جزئیات شما آبجکت نمی‌باشد و اشتباه می‌باشد' }),
+})
+
+export const BrandValidation = yup.object().shape({
+   name: yup
+      .string()
+      .min(3, 'حداقل ۳ کارکتر')
+      .required('عنوان را وارد کنید')
+      .matches(rule.persian, { message: 'عنوان را به فارسی وارد کنید' }),
+   slug: yup.string().min(3, 'حداقل ۳ کارکتر').required('اسلاگ را وارد کنید'),
 })
