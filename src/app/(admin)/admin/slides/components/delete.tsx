@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 
+import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 import CircularProgress from '@mui/material/CircularProgress'
 
 const SlideDelete = ({ params: { _id, src } }: { params: { _id: string; src: string } }) => {
@@ -16,7 +17,7 @@ const SlideDelete = ({ params: { _id, src } }: { params: { _id: string; src: str
       setLoading(true)
 
       try {
-         const fileUploadResult = await removeFromBucket()
+         const fileUploadResult = await deleteFromS3Bucket(src, 'slides')
 
          if (!fileUploadResult) throw new Error('file upload to s3')
 
@@ -28,27 +29,6 @@ const SlideDelete = ({ params: { _id, src } }: { params: { _id: string; src: str
          console.error(error)
       } finally {
          setLoading(false)
-      }
-   }
-
-   const removeFromBucket = async () => {
-      try {
-         const imageSplit = src.split('/')
-         const imageKeyName = imageSplit[imageSplit.length - 1]
-         const res = await fetch('/api/product/image/s3', {
-            method: 'DELETE',
-            body: JSON.stringify({
-               folder: 'slides',
-               key: imageKeyName,
-            }),
-         })
-
-         if (!res.ok) throw new Error()
-
-         return res
-      } catch (err) {
-         toast.error('در حذف اسلاید خطایی رخ داد. لطفا مجدد تلاش کنید.')
-         console.error(err)
       }
    }
 

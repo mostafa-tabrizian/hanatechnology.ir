@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 
+import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 import CircularProgress from '@mui/material/CircularProgress'
 
 const ImageDelete = ({
@@ -28,7 +29,7 @@ const ImageDelete = ({
       setLoading(true)
 
       try {
-         const fileUploadResult = await removeFromBucket()
+         const fileUploadResult = await deleteFromS3Bucket(imageUrl, 'products')
 
          if (!fileUploadResult) throw new Error('file upload to s3')
 
@@ -40,27 +41,6 @@ const ImageDelete = ({
          console.error(error)
       } finally {
          setLoading(false)
-      }
-   }
-
-   const removeFromBucket = async () => {
-      try {
-         const imageSplit = imageUrl.split('/')
-         const imageKeyName = imageSplit[imageSplit.length - 1]
-         const res = await fetch('/api/product/image/s3', {
-            method: 'DELETE',
-            body: JSON.stringify({
-               folder: 'products',
-               key: imageKeyName,
-            }),
-         })
-
-         if (!res.ok) throw new Error()
-
-         return res
-      } catch (err) {
-         toast.error('در آپلود عکس خطایی رخ داد. لطفا مجدد تلاش کنید.')
-         console.error(err)
       }
    }
 

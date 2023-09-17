@@ -13,6 +13,7 @@ import Button from '@mui/material/Button'
 import { Switch } from '@mui/material'
 import filesSizeValidation from '@/lib/filesSizeValidation'
 import filesTypeValidation from '@/lib/filesTypeValidation'
+import imageUploadHandler from '@/lib/imageUploadHandler'
 
 const NewSlide = () => {
    const router = useRouter()
@@ -22,41 +23,6 @@ const NewSlide = () => {
    const slideImageToUploadMemo = useMemo(() => {
       return slideImageToUpload && Object.values(slideImageToUpload)
    }, [slideImageToUpload])
-
-   const createS3 = async (imageName: string) => {
-      try {
-         const res = await fetch('/api/product/image/s3', {
-            method: 'POST',
-            body: JSON.stringify({
-               folder: 'slides',
-               imageName,
-            }),
-         })
-
-         if (!res.ok) throw new Error()
-
-         return res
-      } catch (err) {
-         toast.error('در ایجاد لینک باکِت خطایی رخ داد. لطفا مجدد تلاش کنید.')
-         console.error(err)
-      }
-   }
-
-   const putInS3 = async (uploadUrl: string, image: File) => {
-      try {
-         const res = await fetch(uploadUrl, {
-            method: 'PUT',
-            body: image,
-         })
-
-         if (!res.ok) throw new Error()
-
-         return res
-      } catch (err) {
-         toast.error('در آپلود عکس خطایی رخ داد. لطفا مجدد تلاش کنید.')
-         console.error(err)
-      }
-   }
 
    const createDbData = async (
       values: { alt: string; link: string; publicStatus: boolean },
@@ -104,21 +70,16 @@ const NewSlide = () => {
 
          const image = slideImageToUploadMemo[0]
 
-         const imageName = image.name.replace(' ', '-')
+         const res = await imageUploadHandler(
+            image,
+            'slides',
+         )
 
-         const s3SignedUrl = await createS3(imageName)
+         if (res) {
+            await createDbData(values, res.key, res.imageName)
+            resetForm()
+         } else throw new Error()
 
-         if (!s3SignedUrl) throw new Error('s3 signed url')
-
-         const { key, uploadUrl } = await s3SignedUrl.json()
-
-         const fileUploadResult = await putInS3(uploadUrl, image)
-
-         if (!fileUploadResult) throw new Error('file upload to s3')
-
-         await createDbData(values, key, imageName)
-
-         resetForm()
       } catch (error) {
          toast.error(
             'در آپلود تصویر خطایی رخ داد. (اگر از VPN استفاده می‌کنید لطفا ابتدا آن را خاموش کنید)',

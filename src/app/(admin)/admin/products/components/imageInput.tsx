@@ -6,6 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import ImageDelete from './imageDelete'
 import filesSizeValidation from '@/lib/filesSizeValidation'
 import filesTypeValidation from '@/lib/filesTypeValidation'
+import imageUploadHandler from '@/lib/imageUploadHandler'
 
 const ImageInput = ({
    params: { product },
@@ -20,41 +21,6 @@ const ImageInput = ({
    const imageToUploadMemo = useMemo(() => {
       return imageToUpload && Object.values(imageToUpload)
    }, [imageToUpload])
-
-   const createS3 = async (imageName: string) => {
-      try {
-         const res = await fetch('/api/product/image/s3', {
-            method: 'POST',
-            body: JSON.stringify({
-               folder: 'products',
-               imageName,
-            }),
-         })
-
-         if (!res.ok) throw new Error()
-
-         return res
-      } catch (err) {
-         toast.error('در ایجاد لینک باکِت خطایی رخ داد. لطفا مجدد تلاش کنید.')
-         console.error(err)
-      }
-   }
-
-   const putInS3 = async (uploadUrl: string, image: File) => {
-      try {
-         const res = await fetch(uploadUrl, {
-            method: 'PUT',
-            body: image,
-         })
-
-         if (!res.ok) throw new Error()
-
-         return res
-      } catch (err) {
-         toast.error('در آپلود عکس خطایی رخ داد. لطفا مجدد تلاش کنید.')
-         console.error(err)
-      }
-   }
 
    const createDbData = async (type: string, key: string, imageName: string) => {
       const payload = {
@@ -92,19 +58,10 @@ const ImageInput = ({
 
       try {
          for (const image of imageToUploadMemo) {
-            const imageName = image.name.replace(' ', '-')
+            const res = await imageUploadHandler(image, 'products')
 
-            const s3SignedUrl = await createS3(imageName)
-
-            if (!s3SignedUrl) throw new Error('s3 signed url')
-
-            const { key, uploadUrl } = await s3SignedUrl.json()
-
-            const fileUploadResult = await putInS3(uploadUrl, image)
-
-            if (!fileUploadResult) throw new Error('file upload to s3')
-
-            await createDbData(type, key, imageName)
+            if (res) await createDbData(type, res.key, res.imageName)
+            else throw new Error()
          }
       } catch (error) {
          toast.error(
