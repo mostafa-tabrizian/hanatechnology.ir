@@ -111,7 +111,9 @@ const Contents = ({
          </div>
          <div className='py-5 grid grid-cols-2 gap-3'>
             {filteredProducts?.map((product) => {
-               return <ProductCards key={product._id} product={product} />
+               if (product.public) {
+                  return <ProductCards key={product._id} product={product} />
+               }
             })}
          </div>
       </div>

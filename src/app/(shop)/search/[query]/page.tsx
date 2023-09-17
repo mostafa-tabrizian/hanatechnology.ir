@@ -12,6 +12,8 @@ const getProducts = async ({ query }: { query: string }) => {
    const productBrands: string[] = []
 
    products.map((product) => {
+      if (!product.public) return
+      
       const brand = product.brand.toString()
       if (!productBrands.includes(brand)) {
          productBrands.push(brand)

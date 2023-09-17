@@ -28,11 +28,13 @@ const ProductSwiper = ({ products }: { products: IProduct[] }) => {
       <div className='productSwiper rtl relative overflow-hidden pl-6'>
          <div className='swiper-wrapper pb-4'>
             {products.map((product) => {
-               return (
-                  <div key={product._id} className='swiper-slide !h-auto ltr rounded-xl mx-2'>
-                     <ProductCards key={product._id} product={product} />
-                  </div>
-               )
+               if (product.public) {
+                  return (
+                     <div key={product._id} className='swiper-slide !h-auto ltr rounded-xl mx-2'>
+                        <ProductCards key={product._id} product={product} />
+                     </div>
+                  )
+               }
             })}
          </div>
       </div>
