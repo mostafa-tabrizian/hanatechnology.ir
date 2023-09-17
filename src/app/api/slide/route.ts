@@ -4,8 +4,8 @@ import Slide, { ISlide } from '@/models/slide'
 import dbConnect from '@/lib/dbConnect'
 
 interface BodyType {
+    values: { alt: string; link: string; publicStatus: boolean },
     key: string
-    _id: string
 }
 
 export async function POST(req: Request) {
@@ -14,7 +14,7 @@ export async function POST(req: Request) {
     await dbConnect()
 
     const newSlide = await Slide.create({
-        src: `https://${process.env.LIARA_BUCKET_NAME}.${process.env.LIARA_ENDPOINT}/slides/${key}`,
+        src: `https://${process.env.LIARA_BUCKET_NAME}.${process.env.LIARA_ENDPOINT}/hanatechnology/slides/${key}`,
         alt: values.alt,
         link: values.link,
         public: values.publicStatus
@@ -52,7 +52,7 @@ export async function PATCH(req: Request) {
 }
 
 export async function DELETE(req: Request) {
-    const { _id }: BodyType = await req.json()
+    const { _id }: { _id: string } = await req.json()
 
     await dbConnect()
     const res = await Slide.findOneAndDelete({ _id })

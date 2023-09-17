@@ -4,7 +4,7 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'hanatechnology.storage.iran.liara.space',
+                hostname: 'tabrizian.storage.iran.liara.space',
                 port: '',
             }
         ]

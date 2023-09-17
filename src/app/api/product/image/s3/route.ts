@@ -16,7 +16,7 @@ export async function POST(req: Request) {
    const Key = `${uniqueId}-${imageName}`
 
    const params = {
-      Bucket: `${process.env.LIARA_BUCKET_NAME}/${folder}`,
+      Bucket: `${process.env.LIARA_BUCKET_NAME}/hanatechnology/${folder}`,
       Key: Key,
    }
 
@@ -29,7 +29,7 @@ export async function DELETE(req: Request) {
    const { key, folder } = await req.json()
 
    const params = {
-      Bucket: `${process.env.LIARA_BUCKET_NAME}/${folder}`,
+      Bucket: `${process.env.LIARA_BUCKET_NAME}/hanatechnology/${folder}`,
       Key: key,
    }
 

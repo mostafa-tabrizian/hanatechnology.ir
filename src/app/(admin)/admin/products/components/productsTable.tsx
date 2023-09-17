@@ -167,6 +167,7 @@ const ProductsTable = ({ products }: { products: IProduct[] }) => {
       <div style={{ width: '100%' }} className='rtl'>
          <DataGrid
             rows={rows}
+            // @ts-ignore
             columns={columns}
             initialState={{
                pagination: {

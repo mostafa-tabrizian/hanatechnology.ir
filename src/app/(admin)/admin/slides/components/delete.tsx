@@ -34,7 +34,7 @@ const SlideDelete = ({ params: { _id, src } }: { params: { _id: string; src: str
 
    const removeFromDb = async () => {
       const payload = {
-         _id: _id,
+         _id,
       }
 
       try {
