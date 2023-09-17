@@ -27,14 +27,14 @@ const Images = ({ params: { name, thumbnail, images } }: ParamsType) => {
 
       galleryList.push({
          id: thumbnail,
-         src: `/product/${thumbnail}`,
+         src: thumbnail,
          alt: name,
       })
 
       images.map((image) => {
          galleryList.push({
             id: image,
-            src: `/product/${image}`,
+            src: image,
             alt: name,
          })
       })

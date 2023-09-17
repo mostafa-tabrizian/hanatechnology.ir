@@ -26,6 +26,7 @@ const ImageInput = ({
          const res = await fetch('/api/product/image/s3', {
             method: 'POST',
             body: JSON.stringify({
+               folder: 'products',
                imageName,
             }),
          })

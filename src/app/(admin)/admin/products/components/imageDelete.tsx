@@ -50,6 +50,7 @@ const ImageDelete = ({
          const res = await fetch('/api/product/image/s3', {
             method: 'DELETE',
             body: JSON.stringify({
+               folder: 'products',
                key: imageKeyName,
             }),
          })

@@ -10,7 +10,7 @@ const s3 = new S3({
 })
 
 export async function POST(req: Request) {
-   const { imageName, folder }: { imageName: string } = await req.json()
+   const { imageName, folder }: { imageName: string, folder: string } = await req.json()
 
    const uniqueId = Math.random().toString(36).substring(2, 7)
    const Key = `${uniqueId}-${imageName}`
