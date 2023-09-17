@@ -160,7 +160,7 @@ const Sidebar = () => {
                            <Collapse in={categories}>
                               <ul className='border-b border-white border-opacity-10 opacity-90 space-y-4 p-3'>
                                  <li className='flex items-center'>
-                                    <Link className=' flex items-center' href='#'>
+                                    <Link className=' flex items-center' href='/category/cctv'>
                                        <svg
                                           className='h-5 w-5'
                                           viewBox='0 0 24 24'
@@ -176,34 +176,6 @@ const Sidebar = () => {
                                        </svg>
                                        <p className='font-semibold px-2'>
                                           <span className='text-sm'>دوربین مداربسته</span>
-                                       </p>
-                                    </Link>
-                                 </li>
-
-                                 <li className='flex items-center'>
-                                    <Link className=' flex items-center' href='#'>
-                                       <svg
-                                          className='h-5 w-5'
-                                          width='24'
-                                          height='24'
-                                          viewBox='0 0 24 24'
-                                          strokeWidth='2'
-                                          stroke='currentColor'
-                                          fill='none'
-                                          strokeLinecap='round'
-                                          strokeLinejoin='round'
-                                       >
-                                          {' '}
-                                          <path stroke='none' d='M0 0h24v24H0z' />{' '}
-                                          <rect x='3' y='13' width='18' height='8' rx='2' />{' '}
-                                          <line x1='17' y1='17' x2='17' y2='17.01' />{' '}
-                                          <line x1='13' y1='17' x2='13' y2='17.01' />{' '}
-                                          <line x1='15' y1='13' x2='15' y2='11' />{' '}
-                                          <path d='M11.75 8.75a4 4 0 0 1 6.5 0' />{' '}
-                                          <path d='M8.5 6.5a8 8 0 0 1 13 0' />
-                                       </svg>
-                                       <p className='font-semibold px-2'>
-                                          <span className='text-sm'>مودم</span>
                                        </p>
                                     </Link>
                                  </li>
@@ -258,7 +230,7 @@ const Sidebar = () => {
                            <Collapse in={brands}>
                               <ul className='border-b border-white border-opacity-10 opacity-90 space-y-4 p-3'>
                                  <li className='flex items-center'>
-                                    <Link className=' flex items-center' href='#'>
+                                    <Link className=' flex items-center' href='/search/داهوا'>
                                        <svg
                                           className='h-5 w-5'
                                           width='24'
