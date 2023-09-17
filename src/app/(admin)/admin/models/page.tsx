@@ -12,6 +12,7 @@ import Product from '@/models/product'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 
 import dbConnect from '@/lib/dbConnect'
+import hyphen from '@/lib/hyphen'
 
 export const metadata = {
    title: '‌حانا تکنولوژی | پنل ادمین | مدل ها',
@@ -19,7 +20,19 @@ export const metadata = {
 
 const getModels = async () => {
    dbConnect()
-   return await Model.find().populate('category')
+   
+   const modelMatch = await Model.aggregate([
+      {
+         $lookup: {
+            from: 'categories',
+            localField: 'category',
+            foreignField: '_id',
+            as: 'category',
+         },
+      },
+   ])
+
+   return modelMatch
 }
 
 const getCategories = async () => {
@@ -88,13 +101,13 @@ const AdminCategories = async () => {
                                  params={JSON.parse(
                                     JSON.stringify({
                                        modelId: model._id,
-                                       currentCat: model.category,
+                                       currentCat: model.category[0],
                                        categories,
                                     }),
                                  )}
                               />
                               <NameAndSlug params={JSON.parse(JSON.stringify({ ...model }))} />
-                              <Link href={`/model/${model.slug}`}>
+                              <Link href={`/model/${hyphen(model.slug)}`}>
                                  <p>{productsLength}</p>
                               </Link>
                               <DeleteButton

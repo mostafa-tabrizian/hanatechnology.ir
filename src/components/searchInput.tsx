@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import hyphen from '@/lib/hyphen'
 
 const SearchInput = () => {
    const [searchQuery, setSearchQuery] = useState('')
@@ -11,7 +12,7 @@ const SearchInput = () => {
       e.preventDefault()
 
       if (searchQuery.trim()) {
-         router.push(`/search/${searchQuery}`)
+         router.push(`/search/${hyphen(searchQuery)}`)
       }
    }
 

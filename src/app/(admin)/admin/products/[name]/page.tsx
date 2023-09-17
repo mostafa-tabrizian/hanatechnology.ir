@@ -7,16 +7,43 @@ import Category from '@/models/category'
 import Brand from '@/models/brand'
 import Model from '@/models/model'
 import DetailProduct from '../components/detailForm'
+import dehyphen from '@/lib/dehyphen'
 
 async function getProduct(name: string) {
    await dbConnect()
-   return await Product.findOne({
-      name: decodeURI(name),
-   })
-      .populate('category')
-      .populate('brand')
-      .populate('model')
-      .exec()
+   
+   const productsMatch = await Product.aggregate([
+      { $match: { name: dehyphen(decodeURI(name)) } },
+      {
+         $lookup: {
+            from: 'categories',
+            localField: 'category',
+            foreignField: '_id',
+            as: 'category',
+         },
+      },
+      {
+         $lookup: {
+            from: 'brands',
+            localField: 'brand',
+            foreignField: '_id',
+            as: 'brand',
+         },
+      },
+      {
+         $lookup: {
+            from: 'models',
+            localField: 'model',
+            foreignField: '_id',
+            as: 'model',
+         },
+      },
+      {
+         $limit: 1,
+      },
+   ])
+
+   return productsMatch[0]
 }
 
 async function getCategories() {

@@ -30,7 +30,7 @@ const DetailForm = ({
 }) => {
    const [selectedCategoryId, selectCategoryId] = useState(
       // @ts-ignore
-      addingNewProduct ? null : product.category._id,
+      addingNewProduct ? null : product.category[0]._id,
    )
    const [categoryModels, setCategoryModels] = useState([])
 
@@ -94,11 +94,11 @@ const DetailForm = ({
             slug: addingNewProduct ? '' : product.slug,
             description: addingNewProduct ? '' : product.description,
             // @ts-ignore
-            category: addingNewProduct ? categories[0] : product.category,
+            category: addingNewProduct ? categories[0] : product.category[0],
             // @ts-ignore
-            brand: addingNewProduct ? brands[0] : product.brand,
+            brand: addingNewProduct ? brands[0] : product.brand[0],
             // @ts-ignore
-            model: addingNewProduct ? models[0] : product.model,
+            model: addingNewProduct ? models[0] : product.model[0],
             price: addingNewProduct ? 0 : product.price,
             discount: addingNewProduct ? 0 : product.discount,
             // @ts-ignore

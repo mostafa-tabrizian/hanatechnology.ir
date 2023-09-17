@@ -8,7 +8,9 @@ import Category from '@/models/category'
 import Product from '@/models/product'
 
 import Breadcrumbs from '@mui/material/Breadcrumbs'
+
 import dbConnect from '@/lib/dbConnect'
+import hyphen from '@/lib/hyphen'
 
 export const metadata = {
    title: '‌حانا تکنولوژی | پنل ادمین | دسته بندی ها',
@@ -75,7 +77,7 @@ const AdminCategories = async () => {
                               className='bg-white grid grid-cols-6 justify-between rounded-lg p-2 text-center items-center'
                            >
                               <NameAndSlug params={JSON.parse(JSON.stringify({ ...category }))} />
-                              <Link href={`/category/${category.slug}`}>
+                              <Link href={`/category/${hyphen(category.slug)}`}>
                                  <p>{productsLength}</p>
                               </Link>
                               <DeleteButton

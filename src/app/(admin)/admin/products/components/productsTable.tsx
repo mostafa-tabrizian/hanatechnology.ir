@@ -6,6 +6,8 @@ import Image from 'next/legacy/image'
 import { DataGrid } from '@mui/x-data-grid'
 import { IProduct } from '@/models/product'
 
+import hyphen from '@/lib/hyphen'
+
 interface IColumns {
    field: string
    headerName: JSX.Element
@@ -125,7 +127,7 @@ const ProductsTable = ({ products }: { products: IProduct[] }) => {
          width: 300,
          type: 'element',
          renderCell: ({ value }) => (
-            <Link href={`/admin/products/${value}`}>
+            <Link href={`/admin/products/${hyphen(value as string)}`}>
                <span>{value}</span>
             </Link>
          ),
@@ -144,7 +146,7 @@ const ProductsTable = ({ products }: { products: IProduct[] }) => {
          width: 100,
          renderCell: ({ value }) => <span>{value.toLocaleString('fa')}</span>,
       },
-      
+
       {
          field: 'createdAt',
          headerName: <span>تاریخ ایجاد</span>,

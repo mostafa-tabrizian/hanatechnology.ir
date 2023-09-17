@@ -4,17 +4,13 @@ import { toast } from 'react-toastify'
 import { Formik, Form } from 'formik'
 import { BrandValidation } from '@/formik/schema/validation'
 
-const NameAndSlug = ({
-   params,
-}: {
-   params: { _doc: { _id: string; name: string; slug: string } }
-}) => {
-   const name = params._doc.name.charAt(0).toUpperCase() + params._doc.name.slice(1)
-   const slug = params._doc.slug.charAt(0).toUpperCase() + params._doc.slug.slice(1)
+const NameAndSlug = ({ params }: { params: { _id: string; name: string; slug: string } }) => {
+   const name = params.name.charAt(0).toUpperCase() + params.name.slice(1)
+   const slug = params.slug.charAt(0).toUpperCase() + params.slug.slice(1)
 
    const handleSubmit = async ({ name, slug }: { name: string; slug: string }) => {
       const payload = {
-         _id: params._doc._id,
+         _id: params._id,
          name: name.trim().toLowerCase(),
          slug: slug.trim().toLowerCase(),
       }

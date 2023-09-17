@@ -3,6 +3,7 @@ import Product from '@/models/product'
 import Brand from '@/models/brand'
 
 import Contents from './components/contents'
+import dehyphen from '@/lib/dehyphen'
 
 const getProducts = async ({ query }: { query: string }) => {
    dbConnect()
@@ -26,12 +27,12 @@ const getProducts = async ({ query }: { query: string }) => {
 
 export const generateMetadata = async ({ params }: { params: { query: string } }) => {
    return {
-      title: decodeURI(params.query) + ' | حانا تکنولوژی',
+      title: dehyphen(decodeURI(params.query)) + ' | حانا تکنولوژی',
    }
 }
 
 const Search = async ({ params: { query } }: { params: { query: string } }) => {
-   query = decodeURI(query)
+   query = dehyphen(decodeURI(query))
    const { products, brands } = await getProducts({ query })
 
    return (

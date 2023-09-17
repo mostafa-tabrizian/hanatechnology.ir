@@ -4,12 +4,13 @@ import Product from '@/models/product'
 import Brand from '@/models/brand'
 
 import Contents from './components/contents'
+import dehyphen from '@/lib/dehyphen'
 
 const getProducts = async ({ slug }: { slug: string }) => {
    dbConnect()
 
    const categoryId = await Category.findOne({
-      slug: slug,
+      slug: dehyphen(slug),
    })
       .exec()
       .then((res) => res._id)
@@ -36,7 +37,7 @@ const getProducts = async ({ slug }: { slug: string }) => {
 
 export const generateMetadata = async ({ params }: { params: { slug: string } }) => {
    const categoryName = await Category.findOne({
-      slug: params.slug,
+      slug: dehyphen(params.slug),
    })
       .exec()
       .then((res) => res?.name)

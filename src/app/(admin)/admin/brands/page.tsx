@@ -9,6 +9,7 @@ import Product from '@/models/product'
 
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import dbConnect from '@/lib/dbConnect'
+import hyphen from '@/lib/hyphen'
 
 export const metadata = {
    title: '‌حانا تکنولوژی | پنل ادمین | برند ها',
@@ -75,7 +76,7 @@ const AdminBrands = async () => {
                               className='bg-white grid grid-cols-6 justify-between rounded-lg p-2 text-center items-center'
                            >
                               <NameAndSlug params={JSON.parse(JSON.stringify({ ...brand }))} />
-                              <Link href={`/brand/${brand.slug}`}>
+                              <Link href={`/brand/${hyphen(brand.slug)}`}>
                                  <p>{productsLength}</p>
                               </Link>
                               <DeleteButton

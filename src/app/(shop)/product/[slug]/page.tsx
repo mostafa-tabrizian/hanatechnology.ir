@@ -1,29 +1,50 @@
 import Link from 'next/link'
-
-import Images from '@/components/product/images'
-import dbConnect from '@/lib/dbConnect'
-import Product, { IProduct } from '@/models/product'
-import Category from '@/models/category'
-import Model from '@/models/model'
-import Brand from '@/models/brand'
-import Breadcrumbs from '@mui/material/Breadcrumbs'
-import ProductSuggestion from './components/productSuggestion'
 import Script from 'next/script'
+
+import ProductSuggestion from './components/productSuggestion'
+import Images from '@/components/product/images'
+import Product, { IProduct } from '@/models/product'
+import dbConnect from '@/lib/dbConnect'
+import hyphen from '@/lib/hyphen'
+import dehyphen from '@/lib/dehyphen'
+
+import Breadcrumbs from '@mui/material/Breadcrumbs'
 
 const getProduct = async (slug: string) => {
    dbConnect()
 
-   await Category.find({}) // ! remove
-   await Model.find({}) // ! remove
-   await Brand.find({}) // ! remove
+   const productsMatch = await Product.aggregate([
+      { $match: { slug: dehyphen(slug) } },
+      {
+         $lookup: {
+            from: 'categories',
+            localField: 'category',
+            foreignField: '_id',
+            as: 'category',
+         },
+      },
+      {
+         $lookup: {
+            from: 'brands',
+            localField: 'brand',
+            foreignField: '_id',
+            as: 'brand',
+         },
+      },
+      {
+         $lookup: {
+            from: 'models',
+            localField: 'model',
+            foreignField: '_id',
+            as: 'model',
+         },
+      },
+      {
+         $limit: 1,
+      },
+   ])
 
-   return await Product.findOne({
-      slug: decodeURI(slug),
-   })
-      .populate('category')
-      .populate('brand')
-      .populate('model')
-      .exec()
+   return productsMatch[0]
 }
 
 const getProductsByBrand = async (category: { _id: string }, brand: { _id: string }) => {
@@ -41,15 +62,18 @@ export const generateMetadata = async ({ params }: { params: { slug: string } })
    const product = await getProduct(params.slug)
 
    return {
-      title: (product?.name || 'محصولی یافت نشد!') + ' | حانا تکنولوژی',
+      title: (dehyphen(product.name) || 'محصولی یافت نشد!') + ' | حانا تکنولوژی',
    }
 }
 
 const ProductPage = async ({ params }: { params: { slug: string } }) => {
    const product: IProduct = await getProduct(params.slug)
+   const category = product.category[0]
+   const brand = product.brand[0]
+   const model = product.model[0]
 
    // @ts-ignore
-   const productsByBrand: IProduct[] = await getProductsByBrand(product.category, product.brand)
+   const productsByBrand: IProduct[] = await getProductsByBrand(category, brand)
 
    const imagesListForJsonLd = []
    imagesListForJsonLd.push(product.thumbnail)
@@ -65,15 +89,15 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
       mpn: product.barcode,
       sku: product.barcode,
       // @ts-ignore
-      category: `https://www.hanatechnology.ir/category/${product.category.slug}`, // ! hyphen
+      category: `https://www.hanatechnology.ir/category/${hyphen(category.slug)}`,
       brand: {
          '@type': 'Brand',
          // @ts-ignore
-         name: product.brand.name,
+         name: brand.name,
          // @ts-ignore
-         url: `https://www.hanatechnology.ir/brand/${product.category.slug}`,
+         url: `https://www.hanatechnology.ir/brand/${hyphen(category.slug)}`,
          // @ts-ignore
-         '@id': `https://www.hanatechnology.ir/brand/${product.category.slug}/#brand`,
+         '@id': `https://www.hanatechnology.ir/brand/${hyphen(category.slug)}/#brand`,
       },
       offers: {
          '@type': 'Offer',
@@ -101,17 +125,17 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
             '@type': 'ListItem',
             position: 2,
             // @ts-ignore
-            name: product.category.name,
+            name: category.name,
             // @ts-ignore
-            item: `https://www.hanatechnology.ir/category/${product.category.slug}/`,
+            item: `https://www.hanatechnology.ir/category/${hyphen(category.slug)}/`,
          },
          {
             '@type': 'ListItem',
             position: 3,
             // @ts-ignore
-            name: product.brand.name,
+            name: brand.name,
             // @ts-ignore
-            item: `https://www.hanatechnology.ir/brand/${product.brand.name}/`,
+            item: `https://www.hanatechnology.ir/brand/${hyphen(brand.name)}/`,
          },
          { '@type': 'ListItem', position: 4, name: product.name },
       ],
@@ -140,16 +164,16 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                            <span className='text-xs hover:text-blue-500'>خانه</span>
                         </Link>
                         {/* @ts-ignore */}
-                        <Link className='text-gray-400' href={`/category/${product.category.name}`}>
+                        <Link className='text-gray-400' href={`/category/${hyphen(category.name)}`}>
                            <span className='text-xs hover:text-blue-500'>
                               {/* @ts-ignore */}
-                              {product.category.name}
+                              {category.name}
                            </span>
                         </Link>
                         {/* @ts-ignore */}
-                        <Link className='text-gray-400' href={`/brand/${product.brand.name}`}>
+                        <Link className='text-gray-400' href={`/brand/${hyphen(brand.name)}`}>
                            {/* @ts-ignore */}
-                           <span className='text-xs hover:text-blue-500'>{product.brand.name}</span>
+                           <span className='text-xs hover:text-blue-500'>{brand.name}</span>
                         </Link>
                         <span className='text-xs font-semibold'>{product.name}</span>
                      </Breadcrumbs>
@@ -174,7 +198,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                                  <Link href='#'>
                                     <span className='text-blue-500 font-bold'>
                                        {/* @ts-ignore */}
-                                       {product.category.name}
+                                       {category.name}
                                     </span>
                                  </Link>
                               </div>
@@ -184,7 +208,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                                  <Link href='#'>
                                     <span className='text-blue-500 font-bold'>
                                        {/* @ts-ignore */}
-                                       {product.model.name}
+                                       {model.name}
                                     </span>
                                  </Link>
                               </div>
@@ -194,7 +218,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                                  <Link href='#'>
                                     <span className='text-blue-500 font-bold'>
                                        {/* @ts-ignore */}
-                                       {product.brand.name}
+                                       {brand.name}
                                     </span>
                                  </Link>
                               </div>
@@ -263,7 +287,9 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                                  )}
                               </>
                            ) : (
-                              <span className='text-rose-900 yekan1 text-xl mx-auto'>!محصول موجود نمی‌باشد</span>
+                              <span className='text-rose-900 yekan1 text-xl mx-auto'>
+                                 !محصول موجود نمی‌باشد
+                              </span>
                            )}
                         </div>
 
@@ -277,7 +303,6 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
 
                      <Images
                         params={{
-                           isAdmin: false,
                            thumbnail: product.thumbnail,
                            name: product.name,
                            images: product.images,
