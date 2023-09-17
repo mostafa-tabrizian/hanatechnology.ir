@@ -1,14 +1,20 @@
-const filesTypeValidation = (files: File[]): { valid: boolean, name: string } => {
-    let invalidFile
+
+import { toast } from 'react-toastify'
+
+const filesTypeValidation = (files: File[]) => {
+    let invalidFile: undefined | { name: string, valid: boolean }
 
     files.map((file) => {
         if (!['image/jpeg', 'image/webp'].includes(file.type)) {
-            invalidFile = { 'valid': false, name: file.name }
+            invalidFile = { valid: false, name: file.name }
         }
     })
 
-    if (invalidFile) return invalidFile
-    else return { 'valid': true, name: '' }
+    if (invalidFile) {
+        toast.warning(`تایپ فایل ${invalidFile.name} می‌بایست jpeg یا webp باشد`)
+        return false
+    }
+    else return true
 
 }
 

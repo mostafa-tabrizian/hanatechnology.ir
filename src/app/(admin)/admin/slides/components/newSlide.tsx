@@ -97,15 +97,10 @@ const NewSlide = () => {
       const filesList: File[] = Object.values(files)
 
       const typeCheckRes = filesTypeValidation(filesList)
-      if (!typeCheckRes.valid)
-         return toast.warning(`تایپ فایل ${typeCheckRes.name} می‌بایست jpeg یا webp باشد`)
+      if (!typeCheckRes) return
 
       const sizeCheckRes = filesSizeValidation(filesList)
-      if (!sizeCheckRes.valid) {
-         return toast.warning(
-            `سایز فایل ${sizeCheckRes.name} برابر با ${sizeCheckRes.fileSize} کیلوبایت می‌باشد. حداکثر هر فایل می‌بایست 100 کیلوبایت باشد`,
-         )
-      }
+      if (!sizeCheckRes) return
 
       setSlideImageToUpload(files)
    }

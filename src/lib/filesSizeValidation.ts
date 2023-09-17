@@ -1,20 +1,27 @@
-const fileSizeCalculator = (fileSize: number) => (fileSize / 1024 / 1024) * 1000  // ex: 400 KB
+import { toast } from 'react-toastify'
 
-const filesSizeValidation = (files: File[]): { valid: boolean, fileSize: number, name: string } => {
+const sizeCalculator = (size: number) => (size / 1024 / 1024) * 1000  // ex: 400 KB
 
-    let invalidFile
+const filesSizeValidation = (files: File[]) => {
+
+    let invalidFile: undefined | { name: string, size: number, valid: boolean }
 
     files.map((file) => {
-        const size = fileSizeCalculator(file.size)
+        const size = sizeCalculator(file.size)
 
         if (size > 100) {
-            const fileSize = Math.round(fileSizeCalculator(file.size))
-            invalidFile = { 'valid': false, fileSize, name: file.name }
+            const size = Math.round(sizeCalculator(file.size))
+            invalidFile = { valid: false, size, name: file.name }
         }
     })
 
-    if (invalidFile) return invalidFile
-    else return { 'valid': true, fileSize: 0, name: '' }
+    if (invalidFile) {
+        toast.warning(
+            `سایز فایل ${invalidFile.name} برابر با ${invalidFile.size} کیلوبایت می‌باشد. حداکثر هر فایل می‌بایست 100 کیلوبایت باشد`,
+        )
+        return false
+    }
+    else return true
 
 }
 
