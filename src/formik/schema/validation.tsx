@@ -6,7 +6,8 @@ export const ProductSchemaValidation = yup.object().shape({
       .string()
       .min(3, 'عنوان حداقل باید ۳ کارکتر باشد')
       .required('عنوان محصول را وارد کنید')
-      .matches(rule.persian, { message: 'لطفا عنوان را به فارسی وارد کنید' }),
+      .matches(rule.persian, { message: 'لطفا عنوان را به فارسی وارد کنید' })
+      .matches(/^[^-]*$/, { message: 'نباید علامت - در اسلاگ محصول باشد' }),
 
    description: yup
       .string()
@@ -19,8 +20,16 @@ export const ProductSchemaValidation = yup.object().shape({
 
 export const ProductEditForm = yup.object().shape({
    barcode: yup.string().required('کد محصول را وارد کنید'),
-   name: yup.string().min(3, 'عنوان حداقل باید ۳ کارکتر باشد').required('عنوان محصول را وارد کنید'),
-   slug: yup.string().min(3, 'اسلاگ حداقل باید ۳ کارکتر باشد').required('اسلاگ محصول را وارد کنید'),
+   name: yup
+      .string()
+      .min(3, 'عنوان حداقل باید ۳ کارکتر باشد')
+      .required('عنوان محصول را وارد کنید')
+      .matches(/^[^-]*$/, { message: 'نباید علامت - در اسلاگ محصول باشد' }),
+   slug: yup
+      .string()
+      .min(3, 'اسلاگ حداقل باید ۳ کارکتر باشد')
+      .required('اسلاگ محصول را وارد کنید')
+      .matches(/^[^-]*$/, { message: 'نباید علامت - در اسلاگ محصول باشد' }),
    description: yup
       .string()
       .min(30, 'توضیحات حداقل باید ۳۰ کارکتر باشد')
@@ -41,8 +50,13 @@ export const BrandValidation = yup.object().shape({
       .string()
       .min(3, 'حداقل ۳ کارکتر')
       .required('عنوان را وارد کنید')
-      .matches(rule.persian, { message: 'عنوان را به فارسی وارد کنید' }),
-   slug: yup.string().min(3, 'حداقل ۳ کارکتر').required('اسلاگ را وارد کنید'),
+      .matches(rule.persian, { message: 'عنوان را به فارسی وارد کنید' })
+      .matches(/^[^-]*$/, { message: 'نباید علامت - در اسلاگ محصول باشد' }),
+   slug: yup
+      .string()
+      .min(3, 'حداقل ۳ کارکتر')
+      .required('اسلاگ را وارد کنید')
+      .matches(/^[^-]*$/, { message: 'نباید علامت - در اسلاگ محصول باشد' }),
 })
 
 export const SlideValidation = yup.object().shape({
