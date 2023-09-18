@@ -95,9 +95,9 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
          // @ts-ignore
          name: brand.name,
          // @ts-ignore
-         url: `https://www.hanatechnology.ir/brand/${hyphen(category.slug)}`,
+         url: `https://www.hanatechnology.ir/search/${hyphen(category.slug)}`,
          // @ts-ignore
-         '@id': `https://www.hanatechnology.ir/brand/${hyphen(category.slug)}/#brand`,
+         '@id': `https://www.hanatechnology.ir/search/${hyphen(category.slug)}/#brand`,
       },
       offers: {
          '@type': 'Offer',
@@ -135,7 +135,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
             // @ts-ignore
             name: brand.name,
             // @ts-ignore
-            item: `https://www.hanatechnology.ir/brand/${hyphen(brand.name)}/`,
+            item: `https://www.hanatechnology.ir/search/${hyphen(brand.name)}/`,
          },
          { '@type': 'ListItem', position: 4, name: product.name },
       ],
@@ -171,7 +171,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                            </span>
                         </Link>
                         {/* @ts-ignore */}
-                        <Link className='text-gray-400' href={`/brand/${hyphen(brand.name)}`}>
+                        <Link className='text-gray-400' href={`/search/${hyphen(brand.name)}`}>
                            {/* @ts-ignore */}
                            <span className='text-xs hover:text-blue-500'>{brand.name}</span>
                         </Link>

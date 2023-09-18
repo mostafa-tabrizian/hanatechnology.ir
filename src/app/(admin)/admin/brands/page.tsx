@@ -76,7 +76,7 @@ const AdminBrands = async () => {
                               className='bg-white grid grid-cols-6 justify-between rounded-lg p-2 text-center items-center'
                            >
                               <NameAndSlug params={JSON.parse(JSON.stringify({ ...brand }))} />
-                              <Link href={`/brand/${hyphen(brand.slug)}`}>
+                              <Link href={`/search/${hyphen(brand.slug)}`}>
                                  <p>{productsLength}</p>
                               </Link>
                               <DeleteButton
