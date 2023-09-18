@@ -34,7 +34,7 @@ export async function POST(request: Request) {
     const product = await Product.create({
         barcode,
         name,
-        slug,
+        slug: slug.trim().toLowerCase(),
         description,
         category,
         brand,

@@ -30,7 +30,7 @@ export async function PATCH(req: Request) {
         await dbConnect()
         const slide: ISlide | null = await Slide.findOne(
             {
-                _id: _id
+                _id
             }
         )
 

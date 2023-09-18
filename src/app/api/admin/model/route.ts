@@ -9,11 +9,11 @@ export async function POST(req: Request) {
 
       await dbConnect()
       const checkNameIfExist = await Model.findOne({
-         name: name
+         name: { $regex: new RegExp('^' + name + '$', 'i') }
       })
 
       const checkSlugIfExist = await Model.findOne({
-         slug: slug
+         slug: { $regex: new RegExp('^' + slug + '$', 'i') }
       })
 
       if (checkNameIfExist || checkSlugIfExist)

@@ -15,7 +15,7 @@ const ModelNewInput = () => {
       { resetForm },
    ) => {
       const payload = {
-         name: name.trim().toLowerCase(),
+         name: name.trim(),
          slug: slug.trim().toLowerCase(),
       }
 

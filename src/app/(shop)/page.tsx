@@ -121,7 +121,7 @@ async function Home() {
                <Link href='/search/cable'>
                   <Image
                      className='rounded-xl'
-                     src={'/search/cable.webp'}
+                     src={'/category/cable.webp'}
                      alt='slide1'
                      width={460}
                      height={260}
@@ -131,7 +131,7 @@ async function Home() {
                <Link href='/search/fiberoptic'>
                   <Image
                      className='rounded-xl'
-                     src={'/search/fiberoptic.webp'}
+                     src={'/category/fiberoptic.webp'}
                      alt='slide1'
                      width={460}
                      height={260}
@@ -141,7 +141,7 @@ async function Home() {
                <Link href='/search/router'>
                   <Image
                      className='rounded-xl'
-                     src={'/search/router.webp'}
+                     src={'/category/router.webp'}
                      alt='slide1'
                      width={460}
                      height={260}
@@ -151,7 +151,7 @@ async function Home() {
                <Link href='/search/switch'>
                   <Image
                      className='rounded-xl'
-                     src={'/search/switch.webp'}
+                     src={'/category/switch.webp'}
                      alt='slide1'
                      width={460}
                      height={260}

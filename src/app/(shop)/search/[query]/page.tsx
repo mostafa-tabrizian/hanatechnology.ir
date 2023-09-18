@@ -12,20 +12,22 @@ const getProducts = async ({ query }: { query: string }) => {
 
    query = dehyphen(query)
 
+   const queryRegex = { $regex: new RegExp('^' + query + '$', 'i') }
+
    const categoryId: string | null = await Category.findOne({
-      $or: [{ slug: query }, { name: query }],
+      $or: [{ slug: queryRegex }, { name: queryRegex }],
    })
       .exec()
       .then((res) => res?._id)
 
    const modelId: string | null = await Model.findOne({
-      $or: [{ slug: query }, { name: query }],
+      $or: [{ slug: queryRegex }, { name: queryRegex }],
    })
       .exec()
       .then((res) => res?._id)
 
    const brandId: string | null = await Brand.findOne({
-      $or: [{ slug: query }, { name: query }],
+      $or: [{ slug: queryRegex }, { name: queryRegex }],
    })
       .exec()
       .then((res) => res?._id)

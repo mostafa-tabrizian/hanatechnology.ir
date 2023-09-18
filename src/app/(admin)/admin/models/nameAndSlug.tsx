@@ -11,7 +11,7 @@ const NameAndSlug = ({ params }: { params: { _id: string; name: string; slug: st
    const handleSubmit = async ({ name, slug }: { name: string; slug: string }) => {
       const payload = {
          _id: params._id,
-         name: name.trim().toLowerCase(),
+         name: name.trim(),
          slug: slug.trim().toLowerCase(),
       }
 

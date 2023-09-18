@@ -10,7 +10,7 @@ export async function GET() {
 
    await dbConnect()
    const user = await User.findOne({
-      username: session._doc.username
+      username: session?._doc.username
    }, 'name').exec()
       .then((res: IUser) => res)
 
