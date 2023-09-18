@@ -29,7 +29,7 @@ const Footer = () => {
                         <li className='block'>
                            <a
                               rel='noreferrer'
-                              href='https://www.instagram.com/sahebmohamadi.ir/'
+                              href='https://www.instagram.com/HanaTech2023/'
                               target='_blank'
                            >
                               <button type='button'>
@@ -53,7 +53,7 @@ const Footer = () => {
                         <li className='block'>
                            <a
                               rel='noreferrer'
-                              href='https://t.me/fronthooks_support'
+                              href='https://t.me/HanaTech2023'
                               target='_blank'
                            >
                               <button type='button'>
@@ -75,7 +75,7 @@ const Footer = () => {
                            </a>
                         </li>
                         <li className='block'>
-                           <a href='tel:+989128521769' className='flex items-center'>
+                           <a href='tel:+989128530920' className='flex items-center'>
                               <svg
                                  className='w-6 h-6 hover:text-blue-600 transition'
                                  viewBox='0 0 24 24'
@@ -93,10 +93,23 @@ const Footer = () => {
                      </ul>
                   </div>
                   <h4 className='text-slate-500 font-bold yekan1 text-sm mb-6 text-center'>
-                     حفاظت، امنیت،
-                     نظارت، ارتباطات
+                     حفاظت، امنیت، نظارت، ارتباطات
                   </h4>
-                  <div id='about-us'>
+                  <div id='about-us' className='space-y-5'>
+                     <p className='text-slate-500 text-sm leading-7 text-justify yekan1'>
+                        <strong>آدرس: </strong> قم بلوار امام رضا مجتمع تجاری مسکونی فردوس طبقه اول پلاک ۲۲۹
+                     </p>
+
+                     <iframe
+                        className='w-full border-3 border-blue-300 rounded-lg'
+                        src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.0863620420655!2d50.849071699999996!3d34.627257799999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f93bbdb1b3fd48b%3A0x14fde53739892525!2z2YXYrNiq2YXYuSDYqtis2KfYsduMINmB2LHYr9mI2LM!5e0!3m2!1sen!2s!4v1695068764877!5m2!1sen!2s'
+                        width='300'
+                        height='350'
+                        allowFullScreen={false}
+                        loading='lazy'
+                        referrerPolicy='no-referrer-when-downgrade'
+                     ></iframe>
+
                      <p className='text-slate-500 text-sm leading-7 text-justify yekan1'>
                         ما در حانا به حفاظت از شما و محیط‌هایتان متعهدیم. با ارائه ابزارهای پیشرفته
                         دوربین مداربسته، سیستم‌های اعلام حریق، دزدگیرهای امنیتی و تجهیزات شبکه، ما
@@ -109,7 +122,7 @@ const Footer = () => {
                         <a
                            rel='noreferrer'
                            className='text-blue-600 text-sm'
-                           href='#'
+                           href='https://www.instagram.com/HanaTech2023'
                            target='_blank'
                         >
                            اینستاگرام
@@ -118,16 +131,16 @@ const Footer = () => {
                         <a
                            rel='noreferrer'
                            className='text-blue-600 text-sm'
-                           href='#'
+                           href='https://t.me/HanaTech2023'
                            target='_blank'
                         >
                            تلگرام
                         </a>{' '}
-                        یا{' '}
+                        و{' '}
                         <a
                            rel='noreferrer'
                            className='text-blue-600 text-sm'
-                           href='tel:+989128521769'
+                           href='tel:+989128530920'
                            target='_blank'
                         >
                            تماس تلفنی{' '}
@@ -176,26 +189,10 @@ const Footer = () => {
                   </ul>
                </nav>
             </div>
-            <div className='col-span-5 md:col-span-1 rtl'>
+            {/* <div className='col-span-5 md:col-span-1 rtl'>
                <h4 className='text-xl yekanBlack mb-4 text-blue-600'>دسترسی سریع</h4>
                <nav>
                   <ul className='text-sm'>
-                     <li className='list-disc py-2 list-inside'>
-                        <a
-                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500'
-                           href='#'
-                        >
-                           درباره ما
-                        </a>
-                     </li>
-                     <li className='list-disc py-2 list-inside'>
-                        <a
-                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500'
-                           href='#'
-                        >
-                           ارتباط با ما
-                        </a>
-                     </li>
                      <li className='list-disc py-2 list-inside'>
                         <a
                            className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500'
@@ -206,7 +203,7 @@ const Footer = () => {
                      </li>
                   </ul>
                </nav>
-            </div>
+            </div> */}
             <div className='col-span-5'>
                <p className='text-center text-slate-400 text-xs'>
                   © تمامی حقوق برای حانا تکنولوژی محفوظ است

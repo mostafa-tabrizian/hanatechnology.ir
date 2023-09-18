@@ -304,7 +304,7 @@ const Sidebar = () => {
                                     <a
                                        rel='noreferrer'
                                        className=' flex items-center'
-                                       href='#'
+                                       href='https://www.instagram.com/HanaTech2023'
                                        target='_blank'
                                     >
                                        <span className='bg-gradient-to-br from-blue-500 via-rose-500 to-yellow-500 rounded-md'>
@@ -339,7 +339,7 @@ const Sidebar = () => {
                                     <a
                                        rel='noreferrer'
                                        className=' flex items-center'
-                                       href='#'
+                                       href='https://t.me/HanaTech2023'
                                        target='_blank'
                                     >
                                        <span className='bg-blue-500 rounded-md'>
@@ -372,7 +372,7 @@ const Sidebar = () => {
                                     <a
                                        rel='noreferrer'
                                        className=' flex items-center'
-                                       href='tel:+989128521769'
+                                       href='tel:+989128530920'
                                        target='_blank'
                                     >
                                        <span className='bg-green-400 rounded-md p-[0.17rem]'>

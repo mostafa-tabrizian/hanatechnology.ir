@@ -54,9 +54,9 @@ const corporationJsonLd = {
    logo: '',
    email: '',
    sameAs: [
-      'https://www.instagram.com/hanatech2023',
+      'https://www.instagram.com/HanaTech2023',
       'https://t.me/HanaTech2023',
-      'https://eitaa.com/hanatech2023',
+      'https://eitaa.com/HanaTech2023',
    ],
    contactPoint: [
       {

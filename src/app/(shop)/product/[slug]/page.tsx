@@ -164,14 +164,14 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                            <span className='text-xs hover:text-blue-500'>خانه</span>
                         </Link>
                         {/* @ts-ignore */}
-                        <Link className='text-gray-400' href={`/search/${hyphen(category.name)}`}>
+                        <Link className='text-gray-400' href={`/search/${hyphen(category.slug)}`}>
                            <span className='text-xs hover:text-blue-500'>
                               {/* @ts-ignore */}
                               {category.name}
                            </span>
                         </Link>
                         {/* @ts-ignore */}
-                        <Link className='text-gray-400' href={`/search/${hyphen(brand.name)}`}>
+                        <Link className='text-gray-400' href={`/search/${hyphen(brand.slug)}`}>
                            {/* @ts-ignore */}
                            <span className='text-xs hover:text-blue-500'>{brand.name}</span>
                         </Link>
@@ -195,7 +195,8 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                            <div className='flex gap-5'>
                               <div>
                                  <span>دسته: </span>
-                                 <Link href='#'>
+                                 {/* @ts-ignore */}
+                                 <Link href={`/search/${hyphen(category.slug)}`}>
                                     <span className='text-blue-500 font-bold'>
                                        {/* @ts-ignore */}
                                        {category.name}
@@ -205,7 +206,8 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
 
                               <div>
                                  <span>مدل: </span>
-                                 <Link href='#'>
+                                 {/* @ts-ignore */}
+                                 <Link href={`/search/${hyphen(model.slug)}`}>
                                     <span className='text-blue-500 font-bold'>
                                        {/* @ts-ignore */}
                                        {model.name}
@@ -215,7 +217,8 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
 
                               <div>
                                  <span>برند: </span>
-                                 <Link href='#'>
+                                 {/* @ts-ignore */}
+                                 <Link href={`/search/${hyphen(brand.slug)}`}>
                                     <span className='text-blue-500 font-bold'>
                                        {/* @ts-ignore */}
                                        {brand.name}

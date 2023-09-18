@@ -125,7 +125,7 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
                   <span className='text-sm block'>عبارت دیگری را امتحان کنید</span>
                   <div className='w-3/4 mx-auto aspect-square relative'>
                      <Image
-                        src='/noSearchResult.png'
+                        src='/noSearchResult.jpg'
                         alt='no search result'
                         layout='fill'
                         objectFit='contain'
