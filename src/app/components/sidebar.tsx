@@ -307,9 +307,10 @@ const Sidebar = () => {
                                        href='https://www.instagram.com/HanaTech2023'
                                        target='_blank'
                                     >
-                                       <span className='bg-gradient-to-br from-blue-500 via-rose-500 to-yellow-500 rounded-md'>
+                                       {/* <span className='bg-gradient-to-br from-blue-500 via-rose-500 to-yellow-500 rounded-md'> */}
+                                       <span>
                                           <svg
-                                             className='h-5 w-5 text-white'
+                                             className='h-5 w-5 text-slate-700'
                                              viewBox='0 0 24 24'
                                              fill='none'
                                              stroke='currentColor'
@@ -342,24 +343,22 @@ const Sidebar = () => {
                                        href='https://t.me/HanaTech2023'
                                        target='_blank'
                                     >
-                                       <span className='bg-blue-500 rounded-md'>
+                                       {/* <span className='bg-blue-500 rounded-md'> */}
+                                       <span>
                                           <svg
-                                             stroke='currentColor'
-                                             fill='currentColor'
-                                             strokeWidth='0'
+                                             className='h-5 w-5 text-slate-700'
+                                             width='24'
+                                             height='24'
                                              viewBox='0 0 24 24'
-                                             className='h-5 w-5 text-white'
-                                             height='1em'
-                                             width='1em'
-                                             xmlns='http://www.w3.org/2000/svg'
+                                             strokeWidth='2'
+                                             stroke='currentColor'
+                                             fill='none'
+                                             strokeLinecap='round'
+                                             strokeLinejoin='round'
                                           >
-                                             <g>
-                                                <path fill='none' d='M0 0h24v24H0z'></path>
-                                                <path
-                                                   fillRule='nonzero'
-                                                   d='M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0 2C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-3.11-8.83l-2.498-.779c-.54-.165-.543-.537.121-.804l9.733-3.76c.565-.23.885.061.702.79l-1.657 7.82c-.116.557-.451.69-.916.433l-2.551-1.888-1.189 1.148c-.122.118-.221.219-.409.244-.187.026-.341-.03-.454-.34l-.87-2.871-.012.008z'
-                                                ></path>
-                                             </g>
+                                             {' '}
+                                             <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                                             <path d='M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4' />
                                           </svg>
                                        </span>
                                        <p className='font-semibold px-2'>
@@ -375,9 +374,10 @@ const Sidebar = () => {
                                        href='tel:+989128530920'
                                        target='_blank'
                                     >
-                                       <span className='bg-green-400 rounded-md p-[0.17rem]'>
+                                       {/* <span className='bg-green-400 rounded-md p-[0.17rem]'> */}
+                                       <span>
                                           <svg
-                                             className='h-4 w-4 text-white'
+                                             className='h-5 w-5 text-slate-700'
                                              viewBox='0 0 24 24'
                                              fill='none'
                                              stroke='currentColor'
