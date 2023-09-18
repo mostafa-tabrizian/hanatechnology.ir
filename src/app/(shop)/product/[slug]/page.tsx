@@ -89,15 +89,15 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
       mpn: product.barcode,
       sku: product.barcode,
       // @ts-ignore
-      category: `https://www.hanatechnology.ir/search/${hyphen(category.slug)}`,
+      category: `https://hanatechnology.ir/search/${hyphen(category.slug)}`,
       brand: {
          '@type': 'Brand',
          // @ts-ignore
          name: brand.name,
          // @ts-ignore
-         url: `https://www.hanatechnology.ir/search/${hyphen(category.slug)}`,
+         url: `https://hanatechnology.ir/search/${hyphen(category.slug)}`,
          // @ts-ignore
-         '@id': `https://www.hanatechnology.ir/search/${hyphen(category.slug)}/#brand`,
+         '@id': `https://hanatechnology.ir/search/${hyphen(category.slug)}/#brand`,
       },
       offers: {
          '@type': 'Offer',
@@ -118,7 +118,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
             name: 'فروشگاه اینترنتی حانا تکنولوژی',
             item: {
                '@type': 'Corporation',
-               '@id': 'https://www.hanatechnology.ir/#corporation',
+               '@id': 'https://hanatechnology.ir/#corporation',
             },
          },
          {
@@ -127,7 +127,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
             // @ts-ignore
             name: category.name,
             // @ts-ignore
-            item: `https://www.hanatechnology.ir/search/${hyphen(category.slug)}/`,
+            item: `https://hanatechnology.ir/search/${hyphen(category.slug)}/`,
          },
          {
             '@type': 'ListItem',
@@ -135,7 +135,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
             // @ts-ignore
             name: brand.name,
             // @ts-ignore
-            item: `https://www.hanatechnology.ir/search/${hyphen(brand.name)}/`,
+            item: `https://hanatechnology.ir/search/${hyphen(brand.name)}/`,
          },
          { '@type': 'ListItem', position: 4, name: product.name },
       ],

@@ -46,11 +46,11 @@ const jsonLd = {
 const corporationJsonLd = {
    '@context': 'https://schema.org',
    '@type': 'Corporation',
-   id: 'https://www.hanatechnology.ir/#corporation',
+   id: 'https://hanatechnology.ir/#corporation',
    name: 'حانا تکنولوژی',
    alternateName: ['حانا', 'Hana'],
    legalName: 'حانا تکنولوژی',
-   url: 'https://www.hanatechnology.ir',
+   url: 'https://hanatechnology.ir',
    logo: '',
    email: '',
    sameAs: [

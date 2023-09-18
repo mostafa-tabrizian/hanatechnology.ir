@@ -1,3 +1,3 @@
-const hyphen = (value: string) => value.replaceAll('-', ' ')
+const dehyphen = (value: string) => value.replaceAll('-', ' ')
 
-export default hyphen
+export default dehyphen
