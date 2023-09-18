@@ -1,3 +1,5 @@
+import Image from 'next/legacy/image'
+
 import dbConnect from '@/lib/dbConnect'
 import Category from '@/models/category'
 import Product, { IProduct } from '@/models/product'
@@ -57,6 +59,8 @@ const getProducts = async ({ query }: { query: string }) => {
       [],
    )
 
+   if (!uniqueMergedProducts.length) return { uniqueMergedProducts: [], brands: [], models: [] }
+
    const productBrands: string[] = []
 
    uniqueMergedProducts.map((product) => {
@@ -105,15 +109,31 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
          <h1 className='text-center font-bold'>{query}</h1>
 
          <div className='mb-20 text-center space-y-6'>
-            <Contents
-               params={JSON.parse(
-                  JSON.stringify({
-                     dbProducts: uniqueMergedProducts,
-                     brands: brands,
-                     models: models,
-                  }),
-               )}
-            />
+            {uniqueMergedProducts.length ? (
+               <Contents
+                  params={JSON.parse(
+                     JSON.stringify({
+                        dbProducts: uniqueMergedProducts,
+                        brands: brands,
+                        models: models,
+                     }),
+                  )}
+               />
+            ) : (
+               <div>
+                  <span className='font-semibold text-xl'>!هیچ محصولی یافت نشد</span>
+                  <span className='text-sm block'>عبارت دیگری را امتحان کنید</span>
+                  <div className='w-3/4 mx-auto aspect-square relative'>
+                     <Image
+                        src='/noSearchResult.png'
+                        alt='no search result'
+                        layout='fill'
+                        objectFit='contain'
+                        loading='lazy'
+                     />
+                  </div>
+               </div>
+            )}
          </div>
       </div>
    )
