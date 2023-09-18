@@ -52,7 +52,14 @@ const Images = ({ params: { name, thumbnail, images } }: ParamsType) => {
             }}
          >
             {thumbnail ? (
-               <Image src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${thumbnail}`} alt={thumbnail} width={400} height={400} objectFit='cover' />
+               <Image
+                  src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${thumbnail}`}
+                  alt={thumbnail}
+                  width={400}
+                  height={400}
+                  objectFit='cover'
+                  priority
+               />
             ) : (
                <h2 className='mt-6'>&quot;!برای این محصول تصویری وجود ندارد&quot;</h2>
             )}
@@ -69,11 +76,14 @@ const Images = ({ params: { name, thumbnail, images } }: ParamsType) => {
                      }}
                   >
                      <Image
+                        className='opacity-0 transition-opacity duration-300'
                         src={data.src}
                         alt={data.alt}
                         width={70}
                         height={70}
                         objectFit='cover'
+                        loading='lazy'
+                        onLoad={(e) => (e.target as HTMLImageElement).classList.remove('opacity-0')}
                      />
                   </div>
                )

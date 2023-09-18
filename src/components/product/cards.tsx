@@ -11,13 +11,14 @@ const ProductCards = ({ product }: { product: IProduct }) => {
          <div className='p-2 flex flex-col justify-between shadow-slate-200 bg-white shadow-lg h-full space-y-5 rounded-xl'>
             <div className='flex justify-center'>
                <Image
-                  className='object-contain aspect-square'
+                  className='object-contain aspect-square opacity-0 transition-opacity duration-300'
                   src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${product.thumbnail}`}
                   alt={product.name}
                   width='170'
                   height='170'
                   objectFit='contain'
                   loading='lazy'
+                  onLoad={(e) => (e.target as HTMLImageElement).classList.remove('opacity-0')}
                />
             </div>
             <div className='mx-1 md:mx-3 space-y-2 relative text-right'>
