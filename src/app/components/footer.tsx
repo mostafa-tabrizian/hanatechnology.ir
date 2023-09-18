@@ -20,7 +20,7 @@ const Footer = () => {
                      />
                   </Link>
 
-                  <h4 className='text-blue-600 mb-5 yekanBlack text-center text-2xl'>گروه مهندسی حانا</h4>
+                  <h1 className='text-blue-600 mb-5 text-center text-2xl'>گروه مهندسی حانا</h1>
 
                   <div className='flex justify-around mb-5 items-center'>
                      <ul className='flex gap-3 items-center'>
@@ -171,7 +171,7 @@ const Footer = () => {
                </div>
             </div>
             <div className='col-span-5 md:col-span-1 rtl'>
-               <h4 className='text-xl yekanBlack mb-4 text-blue-600 '>دسته بندی های محصولات</h4>
+               <h4 className='text-xl yekanExtraBold mb-4 text-blue-600 '>دسته بندی های محصولات</h4>
                <nav>
                   <ul className='text-sm'>
                      <li className='list-disc py-2 list-inside'>
@@ -210,7 +210,7 @@ const Footer = () => {
                </nav>
             </div>
             {/* <div className='col-span-5 md:col-span-1 rtl'>
-               <h4 className='text-xl yekanBlack mb-4 text-blue-600'>دسترسی سریع</h4>
+               <h4 className='text-xl yekanExtraBold mb-4 text-blue-600'>دسترسی سریع</h4>
                <nav>
                   <ul className='text-sm'>
                      <li className='list-disc py-2 list-inside'>

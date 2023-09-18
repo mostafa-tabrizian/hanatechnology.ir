@@ -76,7 +76,8 @@ const corporationJsonLd = {
    ],
    address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Qom Province, Qom, Imam Reza Boulevard, Ferdows Residential Commercial Complex, Unit 229, First Floor',
+      streetAddress:
+         'Qom Province, Qom, Imam Reza Boulevard, Ferdows Residential Commercial Complex, Unit 229, First Floor',
       addressLocality: 'Qom, Iran',
       postalCode: '000000',
       areaServed: {

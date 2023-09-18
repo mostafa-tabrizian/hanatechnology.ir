@@ -229,7 +229,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                         </div>
 
                         <div className='bg-white shadow shadow-slate-200 space-y-5 rounded-lg px-3 py-5 rtl'>
-                           <span className='yekanBlack text-xl'>جزئیات</span>
+                           <span className='yekanExtraBold text-xl'>جزئیات</span>
                            <ul className='space-y-2'>
                               {product.detail
                                  ? Object.entries(product.detail).map((data) => {
@@ -297,7 +297,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                         </div>
 
                         <div className='text-right space-y-5 bg-white shadow shadow-slate-200 rounded-lg px-3 py-5 rtl'>
-                           <span className='yekanBlack text-xl'>توضیحات</span>
+                           <span className='yekanExtraBold text-xl'>توضیحات</span>
                            <p className='whitespace-break-spaces text-justify leading-8 text-slate-500'>
                               {product.description}
                            </p>
