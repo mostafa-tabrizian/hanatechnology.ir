@@ -54,31 +54,41 @@ const corporationJsonLd = {
    logo: '',
    email: '',
    sameAs: [
-      // 'https://www.google.com/search?kgmid=/g/11byzd0v3c',
-      // 'https://www.instagram.com/digikalacom',
+      'https://www.instagram.com/hanatech2023',
+      'https://t.me/HanaTech2023',
+      'https://eitaa.com/hanatech2023',
    ],
-   contactPoint: {
-      '@type': 'ContactPoint',
-      // telephone: '+982161930000',
-      contactType: 'customer service',
-      areaServed: 'IR',
-      availableLanguage: 'Persian',
-   },
+   contactPoint: [
+      {
+         '@type': 'ContactPoint',
+         telephone: '+989128530920',
+         contactType: 'customer service',
+         areaServed: 'IR',
+         availableLanguage: 'Persian',
+      },
+      {
+         '@type': 'ContactPoint',
+         telephone: '+989109960802',
+         contactType: 'customer service',
+         areaServed: 'IR',
+         availableLanguage: 'Persian',
+      },
+   ],
    address: {
       '@type': 'PostalAddress',
-      // streetAddress: 'Tehran Province, Tehran, District 3, Gandhi St',
+      streetAddress: 'Qom Province, Qom, Imam Reza Boulevard, Ferdows Residential Commercial Complex, Unit 229, First Floor',
       addressLocality: 'Qom, Iran',
-      // postalCode: '1517863332',
-      // areaServed: {
-      //    '@context': 'https://schema.org',
-      //    '@type': 'Place',
-      //    geo: {
-      //       '@type': 'GeoCoordinates',
-      //       latitude: '35.7549533',
-      //       longitude: '51.4123011',
-      //    },
-      //    hasMap: 'https://goo.gl/maps/wG2Y9g5Vsvv9unoF7',
-      // },
+      postalCode: '000000',
+      areaServed: {
+         '@context': 'https://schema.org',
+         '@type': 'Place',
+         geo: {
+            '@type': 'GeoCoordinates',
+            latitude: '34.6271489',
+            longitude: '50.8490246',
+         },
+         hasMap: 'https://maps.app.goo.gl/RuiGssypE4p2WPrY9',
+      },
       addressCountry: {
          '@type': 'Country',
          name: 'Iran',
@@ -88,7 +98,6 @@ const corporationJsonLd = {
       {
          '@context': 'https://schema.org',
          '@type': 'Person',
-         image: 'https://media-exp1.licdn.com/dms/image/C4D03AQFXd0mgGCxtMQ/profile-displayphoto-shrink_400_400/0/1563267993816?e=1643241600&v=beta&t=vGQO4U8MWkvJIhwiNu3S4e3uHVyEwBIsLA1McV__F3s',
          jobTitle: 'Chief executive officer',
          name: 'Mohammad Saadati',
          sameAs: [],
