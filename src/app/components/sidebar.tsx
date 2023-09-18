@@ -160,7 +160,7 @@ const Sidebar = () => {
                            <Collapse in={categories}>
                               <ul className='border-b border-white border-opacity-10 opacity-90 space-y-4 p-3'>
                                  <li className='flex items-center'>
-                                    <Link className=' flex items-center' href='/category/cctv'>
+                                    <Link className=' flex items-center' href='/search/cctv'>
                                        <svg
                                           className='h-5 w-5'
                                           viewBox='0 0 24 24'

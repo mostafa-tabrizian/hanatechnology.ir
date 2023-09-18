@@ -118,40 +118,40 @@ async function Home() {
             <Slides />
 
             <div className='grid grid-cols-2 gap-x-3'>
-               <Link href='/category/cable'>
+               <Link href='/search/cable'>
                   <Image
                      className='rounded-xl'
-                     src={'/category/cable.webp'}
+                     src={'/search/cable.webp'}
                      alt='slide1'
                      width={460}
                      height={260}
                      objectFit='contain'
                   />
                </Link>
-               <Link href='/category/fiberoptic'>
+               <Link href='/search/fiberoptic'>
                   <Image
                      className='rounded-xl'
-                     src={'/category/fiberoptic.webp'}
+                     src={'/search/fiberoptic.webp'}
                      alt='slide1'
                      width={460}
                      height={260}
                      objectFit='contain'
                   />
                </Link>
-               <Link href='/category/router'>
+               <Link href='/search/router'>
                   <Image
                      className='rounded-xl'
-                     src={'/category/router.webp'}
+                     src={'/search/router.webp'}
                      alt='slide1'
                      width={460}
                      height={260}
                      objectFit='contain'
                   />
                </Link>
-               <Link href='/category/switch'>
+               <Link href='/search/switch'>
                   <Image
                      className='rounded-xl'
-                     src={'/category/switch.webp'}
+                     src={'/search/switch.webp'}
                      alt='slide1'
                      width={460}
                      height={260}

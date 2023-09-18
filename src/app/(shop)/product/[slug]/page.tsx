@@ -89,7 +89,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
       mpn: product.barcode,
       sku: product.barcode,
       // @ts-ignore
-      category: `https://www.hanatechnology.ir/category/${hyphen(category.slug)}`,
+      category: `https://www.hanatechnology.ir/search/${hyphen(category.slug)}`,
       brand: {
          '@type': 'Brand',
          // @ts-ignore
@@ -127,7 +127,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
             // @ts-ignore
             name: category.name,
             // @ts-ignore
-            item: `https://www.hanatechnology.ir/category/${hyphen(category.slug)}/`,
+            item: `https://www.hanatechnology.ir/search/${hyphen(category.slug)}/`,
          },
          {
             '@type': 'ListItem',
@@ -164,7 +164,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                            <span className='text-xs hover:text-blue-500'>خانه</span>
                         </Link>
                         {/* @ts-ignore */}
-                        <Link className='text-gray-400' href={`/category/${hyphen(category.name)}`}>
+                        <Link className='text-gray-400' href={`/search/${hyphen(category.name)}`}>
                            <span className='text-xs hover:text-blue-500'>
                               {/* @ts-ignore */}
                               {category.name}
