@@ -1,12 +1,15 @@
 import { useState, useMemo } from 'react'
 import Image from 'next/legacy/image'
-import Button from '@mui/material/Button'
 import { toast } from 'react-toastify'
+
+import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
+
 import ImageDelete from './imageDelete'
 import filesSizeValidation from '@/lib/filesSizeValidation'
 import filesTypeValidation from '@/lib/filesTypeValidation'
 import imageUploadHandler from '@/lib/imageUploadHandler'
+import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 
 const ImageInput = ({
    params: { product },
@@ -40,9 +43,18 @@ const ImageInput = ({
          setImageToUpload(null)
          toast.success(`تصویر ${imageName} با موفقیت آپلود شد.`)
       } catch (err) {
-         // ! delete the object from s3
-         toast.error(`در آپلود تصویر ${imageName} خطایی رخ داد!`)
+         toast.error(`در آپلود تصویر ${imageName} به دیتابیس خطایی رخ داد!`)
          console.error(err)
+
+         await deleteLeftOvers(key)
+      }
+   }
+
+   const deleteLeftOvers = async (key: string) => {
+      try {
+         await deleteFromS3Bucket(key, 'products')
+      } catch (err) {
+         console.error('deleteLeftOvers', err)
       }
    }
 
@@ -64,10 +76,7 @@ const ImageInput = ({
             else throw new Error()
          }
       } catch (error) {
-         toast.error(
-            'در آپلود تصویر خطایی رخ داد. (اگر از VPN استفاده می‌کنید لطفا ابتدا آن را خاموش کنید)',
-         )
-         console.error(error)
+         return
       } finally {
          setLoading(false)
       }
@@ -209,8 +218,10 @@ const ImageInput = ({
                                  quality={100}
                                  objectFit='contain'
                                  loading='lazy'
-                  onLoad={(e) => (e.target as HTMLImageElement).classList.remove('opacity-0')}
-                  />
+                                 onLoad={(e) =>
+                                    (e.target as HTMLImageElement).classList.remove('opacity-0')
+                                 }
+                              />
                               <ImageDelete type={'images'} product={product._id} image={image} />
                            </div>
                         )

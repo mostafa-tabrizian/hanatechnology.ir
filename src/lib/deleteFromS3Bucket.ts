@@ -14,7 +14,7 @@ const deleteFromS3Bucket = async (image: string, folder: string) => {
 
       return res
    } catch (err) {
-      toast.error('در آپلود عکس خطایی رخ داد. لطفا مجدد تلاش کنید.')
+      toast.error('در حذف عکس خطایی رخ داد. لطفا مجدد تلاش کنید.')
       console.error(err)
    }
 }

@@ -1,8 +1,18 @@
 import { toast } from 'react-toastify'
 import createS3Presign from './createS3Presign'
 import putInS3Bucket from './PutInS3Bucket'
+import deleteFromS3Bucket from './deleteFromS3Bucket'
 
 const imageUploadHandler = async (image: File, folder: string) => {
+
+    const deleteLeftOvers = async (key: string) => {
+        try {
+            await deleteFromS3Bucket(key, folder)
+        } catch (err) {
+            console.error('deleteLeftOvers', err)
+        }
+    }
+
     try {
         const imageName = image.name.replace(' ', '-')
 
@@ -14,7 +24,10 @@ const imageUploadHandler = async (image: File, folder: string) => {
 
         const fileUploadResult = await putInS3Bucket(uploadUrl, image)
 
-        if (!fileUploadResult) throw new Error('file upload to s3')
+        if (!fileUploadResult) {
+            await deleteLeftOvers(key)
+            throw new Error('file upload to s3')
+        }
 
         return { key, imageName }
     } catch (err) {
@@ -22,6 +35,7 @@ const imageUploadHandler = async (image: File, folder: string) => {
             'در آپلود تصویر خطایی رخ داد. (اگر از VPN استفاده می‌کنید لطفا ابتدا آن را خاموش کنید)',
         )
         console.error(err)
+
         return false
     }
 }

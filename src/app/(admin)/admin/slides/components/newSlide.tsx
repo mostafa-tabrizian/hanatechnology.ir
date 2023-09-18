@@ -14,6 +14,7 @@ import { Switch } from '@mui/material'
 import filesSizeValidation from '@/lib/filesSizeValidation'
 import filesTypeValidation from '@/lib/filesTypeValidation'
 import imageUploadHandler from '@/lib/imageUploadHandler'
+import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 
 const NewSlide = () => {
    const router = useRouter()
@@ -23,6 +24,14 @@ const NewSlide = () => {
    const slideImageToUploadMemo = useMemo(() => {
       return slideImageToUpload && Object.values(slideImageToUpload)
    }, [slideImageToUpload])
+
+   const deleteLeftOvers = async (key: string) => {
+      try {
+         await deleteFromS3Bucket(key, 'slides')
+      } catch (err) {
+         console.error('deleteLeftOvers', err)
+      }
+   }
 
    const createDbData = async (
       values: { alt: string; link: string; publicStatus: boolean },
@@ -46,9 +55,10 @@ const NewSlide = () => {
          router.refresh()
          toast.success(`تصویر ${imageName} با موفقیت آپلود شد.`)
       } catch (err) {
-         // ! delete the object from s3
          toast.error(`در آپلود تصویر ${imageName} خطایی رخ داد!`)
          console.error(err)
+         
+         await deleteLeftOvers(key)
       }
    }
 
@@ -70,16 +80,12 @@ const NewSlide = () => {
 
          const image = slideImageToUploadMemo[0]
 
-         const res = await imageUploadHandler(
-            image,
-            'slides',
-         )
+         const res = await imageUploadHandler(image, 'slides')
 
          if (res) {
             await createDbData(values, res.key, res.imageName)
             resetForm()
          } else throw new Error()
-
       } catch (error) {
          toast.error(
             'در آپلود تصویر خطایی رخ داد. (اگر از VPN استفاده می‌کنید لطفا ابتدا آن را خاموش کنید)',
