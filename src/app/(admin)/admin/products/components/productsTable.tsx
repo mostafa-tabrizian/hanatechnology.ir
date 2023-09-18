@@ -33,7 +33,7 @@ const ProductsTable = ({ products }: { products: IProduct[] }) => {
          renderCell: ({ value }) => (
             <Image
                className='rounded-xl'
-               src={value as string}
+               src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${value as string}`}
                alt={String(value)}
                height={50}
                width={50}

@@ -20,7 +20,7 @@ export async function POST(req: Request) {
       res = await Product.findOneAndUpdate({
          _id: _id
       }, {
-         thumbnail: `https://${process.env.LIARA_BUCKET_NAME}.${process.env.LIARA_ENDPOINT}/hanatechnology/products/${key}`
+         thumbnail: key
       }).exec();
 
    } else if (type == 'images') {
@@ -28,7 +28,7 @@ export async function POST(req: Request) {
          _id: _id
       }).exec();
 
-      (res.images).push(`https://${process.env.LIARA_BUCKET_NAME}.${process.env.LIARA_ENDPOINT}/hanatechnology/products/${key}`)
+      (res.images).push(key)
       res.save()
    }
 

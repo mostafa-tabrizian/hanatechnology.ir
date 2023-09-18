@@ -10,18 +10,18 @@ import Dialog from '@mui/material/Dialog'
 
 const ImageDelete = ({
    type,
-   imageUrl,
+   image,
    product,
 }: {
    type: string
-   imageUrl: string
+   image: string
    product: string
 }) => {
    const [loading, setLoading] = useState(false)
    const [confirmation, setConfirmation] = useState(false)
 
    const handleDelete = async () => {
-      if (!imageUrl) {
+      if (!image) {
          return toast.warning('در حذف تصویر خطایی رخ داده است!')
       }
 
@@ -32,7 +32,7 @@ const ImageDelete = ({
       setLoading(true)
 
       try {
-         const fileUploadResult = await deleteFromS3Bucket(imageUrl, 'products')
+         const fileUploadResult = await deleteFromS3Bucket(image, 'products')
 
          if (!fileUploadResult) throw new Error('file upload to s3')
 
@@ -50,7 +50,7 @@ const ImageDelete = ({
    const removeFromDb = async () => {
       const payload = {
          type,
-         key: imageUrl,
+         key: image,
          _id: product,
       }
 

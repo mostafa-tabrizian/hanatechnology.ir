@@ -124,7 +124,7 @@ const ImageInput = ({
                   <div className='relative'>
                      <Image
                         className='object-contain rounded-xl'
-                        src={product.thumbnail}
+                        src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${product.thumbnail}`}
                         alt={product.thumbnail}
                         width='250'
                         height='250'
@@ -136,7 +136,7 @@ const ImageInput = ({
                      <ImageDelete
                         type={'thumbnail'}
                         product={product._id}
-                        imageUrl={product.thumbnail}
+                        image={product.thumbnail}
                      />
                   </div>
                </div>
@@ -201,7 +201,7 @@ const ImageInput = ({
                            <div key={image} className='relative'>
                               <Image
                                  className='object-contain rounded-xl'
-                                 src={image}
+                                 src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${image}`}
                                  alt={image}
                                  width='250'
                                  height='250'
@@ -209,7 +209,7 @@ const ImageInput = ({
                                  objectFit='contain'
                                  loading='lazy'
                               />
-                              <ImageDelete type={'images'} product={product._id} imageUrl={image} />
+                              <ImageDelete type={'images'} product={product._id} image={image} />
                            </div>
                         )
                      })}

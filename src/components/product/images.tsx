@@ -27,14 +27,14 @@ const Images = ({ params: { name, thumbnail, images } }: ParamsType) => {
 
       galleryList.push({
          id: thumbnail,
-         src: thumbnail,
+         src: `https://tabrizian.storage.iran.liara.space/hanatechnology/products/${thumbnail}`,
          alt: name,
       })
 
       images.map((image) => {
          galleryList.push({
             id: image,
-            src: image,
+            src: `https://tabrizian.storage.iran.liara.space/hanatechnology/products/${image}`,
             alt: name,
          })
       })
@@ -52,7 +52,7 @@ const Images = ({ params: { name, thumbnail, images } }: ParamsType) => {
             }}
          >
             {thumbnail ? (
-               <Image src={thumbnail} alt={thumbnail} width={400} height={400} objectFit='cover' />
+               <Image src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${thumbnail}`} alt={thumbnail} width={400} height={400} objectFit='cover' />
             ) : (
                <h2 className='mt-6'>&quot;!برای این محصول تصویری وجود ندارد&quot;</h2>
             )}

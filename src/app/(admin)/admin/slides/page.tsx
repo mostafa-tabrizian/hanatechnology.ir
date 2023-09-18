@@ -51,7 +51,7 @@ const AdminSlides = async () => {
                         />
                         <Image
                            className='rounded-xl aspect-video'
-                           src={slide.src}
+                           src={`https://tabrizian.storage.iran.liara.space/hanatechnology/slides/${slide.src}`}
                            alt={slide.alt}
                            width={690}
                            height={388.125}
