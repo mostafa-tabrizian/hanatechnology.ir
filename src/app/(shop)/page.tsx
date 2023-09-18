@@ -3,6 +3,7 @@ import Image from 'next/legacy/image'
 
 import dbConnect from '@/lib/dbConnect'
 import Product from '@/models/product'
+import Slide from '@/models/slide'
 
 import Slides from '@/components/slides'
 import ProductSwiper from '../../components/product/swiper'
@@ -22,6 +23,11 @@ const getCategories = async () => {
       cctv,
       modem,
    }
+}
+
+const getSlides = async () => {
+   dbConnect()
+   return await Slide.find()
 }
 
 export const metadata = {
@@ -100,6 +106,7 @@ const corporationJsonLd = {
 
 async function Home() {
    const categories = await getCategories()
+   const slides = await getSlides()
 
    return (
       <>
@@ -113,9 +120,9 @@ async function Home() {
             type='application/ld+json'
             dangerouslySetInnerHTML={{ __html: JSON.stringify(corporationJsonLd) }}
          />
-         
+
          <div className='px-3 md:px-0 md:mx-auto max-w-screen-md space-y-8 my-6'>
-            <Slides />
+            <Slides slides={JSON.parse(JSON.stringify(slides))} />
 
             <div className='grid grid-cols-2 gap-x-3'>
                <Link href='/search/cable'>

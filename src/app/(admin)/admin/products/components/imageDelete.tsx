@@ -64,7 +64,6 @@ const ImageDelete = ({
 
          toast.success('تصویر با موفقیت حذف شد.')
       } catch (err) {
-         // ! delete the object from s3
          toast.error('در حذف تصویر خطایی رخ داد!')
          console.error(err)
       }

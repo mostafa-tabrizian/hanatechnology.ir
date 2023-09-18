@@ -2,12 +2,15 @@
 
 import { useEffect } from 'react'
 import Image from 'next/legacy/image'
+import Link from 'next/link'
 
 // @ts-ignore
 import Swiper from 'swiper/bundle'
 import 'swiper/css/bundle'
 
-const Slides = () => {
+import { ISlide } from '@/models/slide'
+
+const Slides = ({ slides }: { slides: ISlide[] }) => {
    useEffect(() => {
       new Swiper('.slides', {
          loop: true,
@@ -29,56 +32,25 @@ const Slides = () => {
    return (
       <div className='slides rtl relative'>
          <div className='swiper-wrapper pb-10'>
-            <div className='swiper-slide rounded-xl'>
-               <Image
-                  className='rounded-xl'
-                  src={'/slide/1.jpg'}
-                  alt='slide1'
-                  width={690}
-                  height={388}
-                  objectFit='contain'
-                  priority
-               />
-            </div>
+            {slides.map((slide) => {
+               if (!slide.public) return
 
-            <div className='swiper-slide rounded-xl'>
-               <Image
-                  className='rounded-xl'
-                  src={'/slide/2.jpg'}
-                  alt='slide2'
-                  width={690}
-                  height={388}
-                  objectFit='contain'
-                  priority
-               />
-            </div>
-
-            <div className='swiper-slide rounded-xl'>
-               <Image
-                  className='rounded-xl'
-                  src={'/slide/3.jpg'}
-                  alt='slide3'
-                  width={690}
-                  height={388}
-                  objectFit='contain'
-                  priority
-               />
-            </div>
-
-            <div className='swiper-slide rounded-xl'>
-               <Image
-                  className='rounded-xl'
-                  src={'/slide/4.jpg'}
-                  alt='slide4'
-                  width={690}
-                  height={388}
-                  objectFit='contain'
-                  priority
-               />
-            </div>
-
-            {/* ) */}
-            {/* })} */}
+               return (
+                  <div key={slide._id} className='swiper-slide rounded-xl'>
+                     <Link href={slide.link}>
+                     <Image
+                        className='rounded-xl'
+                        src={`https://tabrizian.storage.iran.liara.space/hanatechnology/slides/${slide.src}`}
+                        alt={slide.alt}
+                        width={690}
+                        height={388}
+                        objectFit='contain'
+                        priority
+                     />
+                     </Link>
+                  </div>
+               )
+            })}
          </div>
          <div className='swiper-pagination'></div>
       </div>

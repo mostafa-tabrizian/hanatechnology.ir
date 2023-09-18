@@ -50,7 +50,6 @@ const SlideDelete = ({ params: { _id, src } }: { params: { _id: string; src: str
 
          toast.success('اسلاید با موفقیت حذف شد.')
       } catch (err) {
-         // ! delete the object from s3
          toast.error('در حذف اسلاید خطایی رخ داد!')
          console.error(err)
       }
