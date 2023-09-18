@@ -51,7 +51,7 @@ const corporationJsonLd = {
    alternateName: ['حانا', 'Hana'],
    legalName: 'حانا تکنولوژی',
    url: 'https://hanatechnology.ir',
-   logo: '',
+   logo: 'https://hanatechnology.ir/_next/image?url=%2Flogo%2Flogo.jpg&w=96&q=100',
    email: '',
    sameAs: [
       'https://www.instagram.com/HanaTech2023',
