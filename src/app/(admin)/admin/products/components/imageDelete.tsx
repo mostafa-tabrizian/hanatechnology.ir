@@ -21,6 +21,8 @@ const ImageDelete = ({
    const [confirmation, setConfirmation] = useState(false)
 
    const handleDelete = async () => {
+      setConfirmation(false)
+
       if (!image) {
          return toast.warning('در حذف تصویر خطایی رخ داده است!')
       }
