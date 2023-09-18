@@ -55,7 +55,7 @@ const ImageDelete = ({
       }
 
       try {
-         const res = await fetch('/api/product/image/db', {
+         const res = await fetch('/api/admin/product/image/db', {
             method: 'DELETE',
             body: JSON.stringify(payload),
          })

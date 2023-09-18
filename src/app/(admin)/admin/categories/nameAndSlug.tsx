@@ -20,7 +20,7 @@ const NameAndSlug = ({
       }
 
       try {
-         const res = await fetch('/api/category', {
+         const res = await fetch('/api/admin/category', {
             method: 'PATCH',
             body: JSON.stringify(payload),
          })

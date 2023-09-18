@@ -25,7 +25,7 @@ const PublicStatus = ({
       }
 
       try {
-         const res = await fetch('/api/slide', {
+         const res = await fetch('/api/admin/slide', {
             method: 'PATCH',
             body: JSON.stringify(payload),
          })

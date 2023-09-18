@@ -20,7 +20,7 @@ const DeleteButton = ({
       const payload = { _id }
 
       try {
-         const res = await fetch('/api/brand', {
+         const res = await fetch('/api/admin/brand', {
             method: 'DELETE',
             body: JSON.stringify(payload),
          })

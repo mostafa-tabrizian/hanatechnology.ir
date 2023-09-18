@@ -35,7 +35,7 @@ const NewSlide = () => {
       }
 
       try {
-         const res = await fetch('/api/slide', {
+         const res = await fetch('/api/admin/slide', {
             method: 'POST',
             body: JSON.stringify(payload),
          })

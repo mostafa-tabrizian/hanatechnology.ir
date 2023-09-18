@@ -16,7 +16,7 @@ const NameAndSlug = ({ params }: { params: { _id: string; name: string; slug: st
       }
 
       try {
-         const res = await fetch('/api/model', {
+         const res = await fetch('/api/admin/model', {
             method: 'PATCH',
             body: JSON.stringify(payload),
          })

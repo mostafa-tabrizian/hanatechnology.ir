@@ -20,7 +20,7 @@ const CategoryNewInput = () => {
       }
 
       try {
-         const res = await fetch('/api/category', {
+         const res = await fetch('/api/admin/category', {
             method: 'POST',
             body: JSON.stringify(payload),
          })

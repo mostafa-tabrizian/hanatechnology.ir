@@ -22,7 +22,7 @@ const Category = ({
       }
 
       try {
-         const res = await fetch('/api/model', {
+         const res = await fetch('/api/admin/model', {
             method: 'PUT',
             body: JSON.stringify(payload),
          })

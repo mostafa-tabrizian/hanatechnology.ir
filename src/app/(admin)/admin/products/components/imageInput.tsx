@@ -30,7 +30,7 @@ const ImageInput = ({
       }
 
       try {
-         const res = await fetch('/api/product/image/db', {
+         const res = await fetch('/api/admin/product/image/db', {
             method: 'POST',
             body: JSON.stringify(payload),
          })

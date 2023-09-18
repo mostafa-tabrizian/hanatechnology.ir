@@ -4,7 +4,7 @@ const deleteFromS3Bucket = async (imageUrl: string, folder: string) => {
    try {
       const imageSplit = imageUrl.split('/')
       const imageKeyName = imageSplit[imageSplit.length - 1]
-      const res = await fetch('/api/product/image/s3', {
+      const res = await fetch('/api/admin/product/image/s3', {
          method: 'DELETE',
          body: JSON.stringify({
             folder,

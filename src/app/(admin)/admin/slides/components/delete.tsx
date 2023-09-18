@@ -41,7 +41,7 @@ const SlideDelete = ({ params: { _id, src } }: { params: { _id: string; src: str
       }
 
       try {
-         const res = await fetch('/api/slide', {
+         const res = await fetch('/api/admin/slide', {
             method: 'DELETE',
             body: JSON.stringify(payload),
          })

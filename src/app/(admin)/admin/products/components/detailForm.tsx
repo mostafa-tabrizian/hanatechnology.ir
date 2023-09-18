@@ -58,7 +58,7 @@ const DetailForm = ({
             ...values,
          }
 
-         const res = await fetch('/api/product', {
+         const res = await fetch('/api/admin/product', {
             method: addingNewProduct ? 'POST' : 'PATCH',
             body: JSON.stringify(payload),
          })

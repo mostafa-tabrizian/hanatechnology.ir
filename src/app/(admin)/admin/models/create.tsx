@@ -20,7 +20,7 @@ const ModelNewInput = () => {
       }
 
       try {
-         const res = await fetch('/api/model', {
+         const res = await fetch('/api/admin/model', {
             method: 'POST',
             body: JSON.stringify(payload),
          })
