@@ -21,7 +21,15 @@ const NameAndSlug = ({ params }: { params: { _id: string; name: string; slug: st
             body: JSON.stringify(payload),
          })
 
+         const resData = await res.json()
+
          if (!res.ok) throw new Error()
+         else if (resData.message == 'notUnique')
+            return toast.warning('این برند از قبل ثبت شده است')
+         else if (resData.status == 500) {
+            console.error(resData.message)
+            return toast.error('در ثبت اطلاعات خطایی رخ داد')
+         }
 
          toast.success('نام دسته بندی با موفقیت تغییر کرد')
       } catch (err) {

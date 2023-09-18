@@ -28,8 +28,12 @@ const CategoryNewInput = () => {
          const resData = await res.json()
 
          if (!res.ok) throw new Error()
-         else if (resData.message == 'alreadyExist')
+         else if (resData.message == 'notUnique')
             return toast.warning('این دسته بندی از قبل ثبت شده است')
+         else if (resData.status == 500) {
+            console.error(resData.message)
+            return toast.error('در ثبت اطلاعات خطایی رخ داد')
+         }
 
          toast.success('دسته بندی با موفقیت ثبت گردید')
          resetForm()

@@ -28,8 +28,12 @@ const ModelNewInput = () => {
          const resData = await res.json()
 
          if (!res.ok) throw new Error()
-         else if (resData.message == 'alreadyExist')
-            return toast.warning('این مدل از قبل ثبت شده است')
+         else if (resData.message == 'notUnique')
+            return toast.warning('این برند از قبل ثبت شده است')
+         else if (resData.status == 500) {
+            console.error(resData.message)
+            return toast.error('در ثبت اطلاعات خطایی رخ داد')
+         }
 
          toast.success('مدل با موفقیت ثبت گردید')
          resetForm()

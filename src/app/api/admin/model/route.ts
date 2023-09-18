@@ -8,28 +8,20 @@ export async function POST(req: Request) {
       const { name, slug } = await req.json()
 
       await dbConnect()
-      const checkNameIfExist = await Model.findOne({
-         name: { $regex: new RegExp('^' + name + '$', 'i') }
-      })
-
-      const checkSlugIfExist = await Model.findOne({
-         slug: { $regex: new RegExp('^' + slug + '$', 'i') }
-      })
-
-      if (checkNameIfExist || checkSlugIfExist)
-         return NextResponse.json({
-            message: 'alreadyExist',
-         })
 
       const model = await Model.create({
-         name: name,
-         slug: slug
+         name,
+         slug
       })
 
       return NextResponse.json(model)
    } catch (error) {
-      console.error('Error creating model:', error)
-      return NextResponse.json({ status: 500, message: error })
+      // @ts-ignore
+      if (error.code == 11000) {  // not unique
+         return NextResponse.json({ message: 'notUnique' })
+      } else {
+         return NextResponse.json({ status: 500, message: error })
+      }
    }
 }
 
@@ -40,23 +32,23 @@ export async function PATCH(req: Request) {
    try {
       await dbConnect()
       const model = await Model.findOneAndUpdate(
+         { _id },
          {
-            _id: _id
-         },
-         {
-            name: name,
-            slug: slug,
+            name,
+            slug
          },
       )
 
       return NextResponse.json({
          model,
       })
-   } catch (err) {
-      return NextResponse.json({
-         statue: 500,
-         message: err,
-      })
+   } catch (error) {
+      // @ts-ignore
+      if (error.code == 11000) {  // not unique
+         return NextResponse.json({ message: 'notUnique' })
+      } else {
+         return NextResponse.json({ status: 500, message: error })
+      }
    }
 }
 
@@ -71,7 +63,7 @@ export async function PUT(req: Request) {
             _id: modelId
          },
          {
-            category: category
+            category
          },
       )
 

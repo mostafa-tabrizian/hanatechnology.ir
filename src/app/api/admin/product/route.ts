@@ -30,22 +30,31 @@ export async function POST(request: Request) {
         publicStatus: boolean
     } = await request.json()
 
-    await dbConnect()
-    const product = await Product.create({
-        barcode,
-        name,
-        slug: slug.trim().toLowerCase(),
-        description,
-        category,
-        brand,
-        model,
-        price,
-        discount,
-        detail: JSON.parse(detail),
-        publicStatus
-    })
+    try {
+        await dbConnect()
+        const product = await Product.create({
+            barcode,
+            name,
+            slug: slug.trim().toLowerCase(),
+            description,
+            category,
+            brand,
+            model,
+            price,
+            discount,
+            detail: JSON.parse(detail),
+            publicStatus
+        })
 
-    return NextResponse.json(product)
+        return NextResponse.json(product)
+    } catch (error) {
+        // @ts-ignore
+        if (error.code == 11000) {  // not unique
+            return NextResponse.json({ message: 'notUnique' })
+        } else {
+            return NextResponse.json({ status: 500, message: error })
+        }
+    }
 }
 
 export async function PATCH(request: Request) {
@@ -77,22 +86,31 @@ export async function PATCH(request: Request) {
         publicStatus: boolean
     } = await request.json()
 
-    await dbConnect()
-    const product = await Product.findOneAndUpdate({
-        _id: _id,
-    }, {
-        barcode,
-        name,
-        slug,
-        description,
-        category,
-        brand,
-        model,
-        price,
-        discount,
-        detail: JSON.parse(detail),
-        publicStatus
-    })
+    try {
+        await dbConnect()
+        const product = await Product.findOneAndUpdate({
+            _id: _id,
+        }, {
+            barcode,
+            name,
+            slug,
+            description,
+            category,
+            brand,
+            model,
+            price,
+            discount,
+            detail: JSON.parse(detail),
+            publicStatus
+        })
 
-    return NextResponse.json(product)
+        return NextResponse.json(product)
+    } catch (error) {
+        // @ts-ignore
+        if (error.code == 11000) {  // not unique
+            return NextResponse.json({ message: 'notUnique' })
+        } else {
+            return NextResponse.json({ status: 500, message: error })
+        }
+    }
 }

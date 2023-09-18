@@ -9,8 +9,14 @@ export interface ICategory {
 }
 
 const CategorySchema = new mongoose.Schema({
-   slug: String,
-   name: String
+   slug: {
+      type: String,
+      unique: true
+   },
+   name: {
+      type: String,
+      unique: true
+   },
 })
 
 CategorySchema.set('timestamps', true)

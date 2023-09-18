@@ -63,7 +63,15 @@ const DetailForm = ({
             body: JSON.stringify(payload),
          })
 
+         const resData = await res.json()
+
          if (!res.ok) throw new Error()
+         else if (resData.message == 'notUnique')
+            return toast.warning('بارکد یا اسلاگ از قبل ثبت شده است')
+         else if (resData.status == 500) {
+            console.error(resData.message)
+            return toast.error('در ثبت اطلاعات خطایی رخ داد')
+         }
 
          toast.success('اطلاعات محصول با موفقیت ثبت گردید.')
          resetForm()

@@ -8,18 +8,6 @@ export async function POST(req: Request) {
       const { name, slug } = await req.json()
 
       await dbConnect()
-      const checkNameIfExist = await Brand.findOne({
-         name: { $regex: new RegExp('^' + name + '$', 'i') }
-      })
-
-      const checkSlugIfExist = await Brand.findOne({
-         slug: { $regex: new RegExp('^' + slug + '$', 'i') }
-      })
-
-      if (checkNameIfExist || checkSlugIfExist)
-         return NextResponse.json({
-            message: 'alreadyExist',
-         })
 
       const brand = await Brand.create({
          name: name,
@@ -27,9 +15,13 @@ export async function POST(req: Request) {
       })
 
       return NextResponse.json(brand)
-   } catch (error) {
-      console.error('Error creating brand:', error)
-      return NextResponse.json({ status: 500, message: error })
+   } catch (error: unknown) {
+      // @ts-ignore
+      if (error.code == 11000) {  // not unique
+         return NextResponse.json({ message: 'notUnique' })
+      } else {
+         return NextResponse.json({ status: 500, message: error })
+      }
    }
 }
 
@@ -40,23 +32,18 @@ export async function PATCH(req: Request) {
    try {
       await dbConnect()
       const brand = await Brand.findOneAndUpdate(
-         {
-            _id: _id
-         },
-         {
-            name: name,
-            slug: slug,
-         },
+         { _id },
+         { name, slug },
       )
 
-      return NextResponse.json({
-         brand,
-      })
-   } catch (err) {
-      return NextResponse.json({
-         statue: 500,
-         message: err,
-      })
+      return NextResponse.json({ brand })
+   } catch (error) {
+      // @ts-ignore
+      if (error.code == 11000) {  // not unique
+         return NextResponse.json({ message: 'notUnique' })
+      } else {
+         return NextResponse.json({ status: 500, message: error })
+      }
    }
 }
 

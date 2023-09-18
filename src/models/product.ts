@@ -25,9 +25,15 @@ const ProductSchema = new mongoose.Schema({
       type: Boolean,
       default: true
    },
-   barcode: String,
+   barcode: {
+      type: String,
+      unique: true
+   },
    name: String,
-   slug: String,
+   slug: {
+      type: String,
+      unique: true
+   },
    category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Category',

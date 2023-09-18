@@ -9,8 +9,14 @@ export interface IBrand {
 }
 
 const BrandSchema = new mongoose.Schema({
-   slug: String,
-   name: String
+   slug: {
+      type: String,
+      unique: true
+   },
+   name: {
+      type: String,
+      unique: true
+   },
 })
 
 BrandSchema.set('timestamps', true)
