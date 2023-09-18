@@ -68,11 +68,26 @@ const getProducts = async ({ query }: { query: string }) => {
       }
    })
 
+   const productModels: string[] = []
+
+   uniqueMergedProducts.map((product) => {
+      if (!product.public) return
+
+      const model = product.model.toString()
+      if (!productModels.includes(model)) {
+         productModels.push(model)
+      }
+   })
+
    const brands = await Brand.find({
       _id: { $in: productBrands },
    }).exec()
 
-   return { uniqueMergedProducts, brands }
+   const models = await Model.find({
+      _id: { $in: productModels },
+   }).exec()
+
+   return { uniqueMergedProducts, brands, models }
 }
 
 export const generateMetadata = async ({ params }: { params: { query: string } }) => {
@@ -83,7 +98,7 @@ export const generateMetadata = async ({ params }: { params: { query: string } }
 
 const Search = async ({ params: { query } }: { params: { query: string } }) => {
    query = dehyphen(decodeURI(query))
-   const { uniqueMergedProducts, brands } = await getProducts({ query })
+   const { uniqueMergedProducts, brands, models } = await getProducts({ query })
 
    return (
       <div className='px-3 md:px-0 md:mx-auto max-w-screen-md space-y-8 my-6'>
@@ -95,6 +110,7 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
                   JSON.stringify({
                      dbProducts: uniqueMergedProducts,
                      brands: brands,
+                     models: models,
                   }),
                )}
             />

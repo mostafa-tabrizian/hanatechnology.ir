@@ -10,29 +10,34 @@ import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Slider from '@mui/material/Slider'
 import { IBrand } from '@/models/brand'
+import { IModel } from '@/models/model'
 
 const FilterComponent = ({
-   params: { filters, setFilters, brands },
+   params: { filters, setFilters, brands, models },
 }: {
    params: {
       filters: {
          type: null | string
          priceRange: number[]
          brand: null | string
+         model: null | string
       }
       setFilters: Dispatch<
          SetStateAction<{
             type: null | string
             priceRange: number[]
             brand: null | string
+            model: null | string
          }>
       >
       brands: IBrand[]
+      models: IModel[]
    }
 }) => {
    const [filterToolsDrawer, setFilterToolsDrawer] = useState(false)
    const [typeCollapse, setTypeCollapse] = useState(false)
    const [brandCollapse, setBrandCollapse] = useState(false)
+   const [modelCollapse, setModelCollapse] = useState(false)
 
    const toggleDrawer = () => (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
@@ -46,6 +51,7 @@ const FilterComponent = ({
       setFilterToolsDrawer(false)
       setTypeCollapse(false)
       setBrandCollapse(false)
+      setModelCollapse(false)
    }
 
    return (
@@ -80,7 +86,7 @@ const FilterComponent = ({
                   <span className='font-bold text-base'>فیلتر محصولات</span>
                </div>
 
-               <div className='bg-white text-right py-2 my-6 px-5 rounded-xl'>
+               <div className='bg-white text-right py-2 my-3 px-5 rounded-xl'>
                   <span>
                      بازه قیمتی از{' '}
                      <span className='mx-2'>
@@ -113,50 +119,45 @@ const FilterComponent = ({
                   </div>
                </div>
 
-               <div className='bg-white py-2 my-6 px-5 rounded-xl'>
+               <div className='bg-white py-2 my-3 px-5 rounded-xl'>
                   <button
                      className='flex justify-between w-full'
                      onClick={() => setTypeCollapse((prev) => !prev)}
                   >
-                     <div>
-                        <svg
-                           stroke='currentColor'
-                           fill='none'
-                           strokeWidth='0'
-                           viewBox='0 0 24 24'
-                           height='1em'
-                           width='1em'
-                           xmlns='http://www.w3.org/2000/svg'
-                        >
-                           <path
-                              strokeLinecap='round'
-                              strokeLinejoin='round'
-                              strokeWidth='2'
-                              d='M19 9l-7 7-7-7'
-                           ></path>
-                        </svg>
-                     </div>
+                     <svg
+                        stroke='currentColor'
+                        fill='none'
+                        strokeWidth='0'
+                        viewBox='0 0 24 24'
+                        height='1em'
+                        width='1em'
+                        xmlns='http://www.w3.org/2000/svg'
+                     >
+                        <path
+                           strokeLinecap='round'
+                           strokeLinejoin='round'
+                           strokeWidth='2'
+                           d='M19 9l-7 7-7-7'
+                        ></path>
+                     </svg>
                      <div className='flex gap-x-2'>
                         <span className='font-bold text-base'>نوع محصولات</span>
                         <svg
-                           xmlns='http://www.w3.org/2000/svg'
-                           viewBox='0 0 20 20'
+                           className='h-5 w-5 text-slate-700'
+                           width='24'
+                           height='24'
+                           viewBox='0 0 24 24'
+                           strokeWidth='2'
+                           stroke='currentColor'
                            fill='none'
-                           className='w-5 h-5 text-secondary-700'
+                           strokeLinecap='round'
+                           strokeLinejoin='round'
                         >
-                           <path
-                              fill='currentColor'
-                              d='M18.333 5v2.017c0 1.316-.833 2.15-2.15 2.15h-2.85V3.342c0-.925.759-1.675 1.684-1.675a3.35 3.35 0 0 1 2.341.975c.6.608.975 1.441.975 2.358Z'
-                           ></path>
-                           <path
-                              fill='currentColor'
-                              d='M1.667 5.833V17.5A.83.83 0 0 0 3 18.167L4.425 17.1a.84.84 0 0 1 1.1.083l1.383 1.392a.84.84 0 0 0 1.184 0l1.4-1.4a.826.826 0 0 1 1.083-.075L12 18.167a.835.835 0 0 0 1.333-.667V3.333c0-.916.75-1.666 1.667-1.666H5C2.5 1.667 1.667 3.158 1.667 5v.833Z'
-                              opacity='0.4'
-                           ></path>
-                           <path
-                              fill='currentColor'
-                              d='M10 8.125H5a.63.63 0 0 1-.625-.625A.63.63 0 0 1 5 6.875h5a.63.63 0 0 1 .625.625.63.63 0 0 1-.625.625Zm-.625 3.333h-3.75A.63.63 0 0 1 5 10.833a.63.63 0 0 1 .625-.625h3.75a.63.63 0 0 1 .625.625.63.63 0 0 1-.625.625Z'
-                           ></path>
+                           {' '}
+                           <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                           <rect x='4' y='4' width='6' height='5' rx='2' />{' '}
+                           <rect x='4' y='13' width='6' height='7' rx='2' />{' '}
+                           <rect x='14' y='4' width='6' height='16' rx='2' />
                         </svg>
                      </div>
                   </button>
@@ -185,46 +186,44 @@ const FilterComponent = ({
                      </RadioGroup>
                   </Collapse>
                </div>
-               <div className='bg-white py-2 my-6 px-5 rounded-xl'>
+               <div className='bg-white py-2 my-3 px-5 rounded-xl'>
                   <button
                      className='flex justify-between w-full'
                      onClick={() => setBrandCollapse((prev) => !prev)}
                   >
-                     <div>
-                        <svg
-                           stroke='currentColor'
-                           fill='none'
-                           strokeWidth='0'
-                           viewBox='0 0 24 24'
-                           height='1em'
-                           width='1em'
-                           xmlns='http://www.w3.org/2000/svg'
-                        >
-                           <path
-                              strokeLinecap='round'
-                              strokeLinejoin='round'
-                              strokeWidth='2'
-                              d='M19 9l-7 7-7-7'
-                           ></path>
-                        </svg>
-                     </div>
+                     <svg
+                        stroke='currentColor'
+                        fill='none'
+                        strokeWidth='0'
+                        viewBox='0 0 24 24'
+                        height='1em'
+                        width='1em'
+                        xmlns='http://www.w3.org/2000/svg'
+                     >
+                        <path
+                           strokeLinecap='round'
+                           strokeLinejoin='round'
+                           strokeWidth='2'
+                           d='M19 9l-7 7-7-7'
+                        ></path>
+                     </svg>
                      <div className='flex gap-x-2'>
                         <span className='font-bold text-base'>برند محصولات</span>
                         <svg
-                           xmlns='http://www.w3.org/2000/svg'
-                           viewBox='0 0 48 48'
+                           className='h-5 w-5 text-slate-700'
+                           width='24'
+                           height='24'
+                           viewBox='0 0 24 24'
+                           strokeWidth='2'
+                           stroke='currentColor'
                            fill='none'
-                           className='w-5 h-5 text-secondary-700'
+                           strokeLinecap='round'
+                           strokeLinejoin='round'
                         >
-                           <path
-                              fill='currentColor'
-                              d='M32.151 4h6.772C41.727 4 44 6.292 44 9.12v6.829c0 2.828-2.273 5.12-5.077 5.12h-6.772c-2.805 0-5.077-2.292-5.077-5.12v-6.83C27.074 6.293 29.346 4 32.151 4Z'
-                              opacity='0.4'
-                           ></path>
-                           <path
-                              fill='currentColor'
-                              d='M15.849 26.931c2.805 0 5.077 2.292 5.077 5.12v6.83c0 2.825-2.272 5.119-5.077 5.119H9.077C6.273 44 4 41.706 4 38.88v-6.829c0-2.828 2.273-5.12 5.077-5.12h6.772Zm23.074 0c2.804 0 5.077 2.292 5.077 5.12v6.83C44 41.705 41.727 44 38.923 44h-6.772c-2.805 0-5.077-2.294-5.077-5.12v-6.829c0-2.828 2.272-5.12 5.077-5.12h6.772ZM15.849 4c2.805 0 5.077 2.292 5.077 5.12v6.829c0 2.828-2.272 5.12-5.077 5.12H9.077C6.273 21.069 4 18.777 4 15.949v-6.83C4 6.293 6.273 4 9.077 4h6.772Z'
-                           ></path>
+                           {' '}
+                           <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                           <path d='M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4' />{' '}
+                           <circle cx='9' cy='9' r='2' />
                         </svg>
                      </div>
                   </button>
@@ -256,6 +255,80 @@ const FilterComponent = ({
                      </RadioGroup>
                   </Collapse>
                </div>
+
+               <div className='bg-white py-2 my-3 px-5 rounded-xl'>
+                  <button
+                     className='flex justify-between w-full'
+                     onClick={() => setModelCollapse((prev) => !prev)}
+                  >
+                     <div>
+                        <svg
+                           stroke='currentColor'
+                           fill='none'
+                           strokeWidth='0'
+                           viewBox='0 0 24 24'
+                           height='1em'
+                           width='1em'
+                           xmlns='http://www.w3.org/2000/svg'
+                        >
+                           <path
+                              strokeLinecap='round'
+                              strokeLinejoin='round'
+                              strokeWidth='2'
+                              d='M19 9l-7 7-7-7'
+                           ></path>
+                        </svg>
+                     </div>
+                     <div className='flex gap-x-2'>
+                        <span className='font-bold text-base'>مدل محصولات</span>
+                        <svg
+                           className='h-5 w-5 text-slate-700'
+                           width='24'
+                           height='24'
+                           viewBox='0 0 24 24'
+                           strokeWidth='2'
+                           stroke='currentColor'
+                           fill='none'
+                           strokeLinecap='round'
+                           strokeLinejoin='round'
+                        >
+                           {' '}
+                           <path stroke='none' d='M0 0h24v24H0z' /> <circle cx='12' cy='18' r='2' />{' '}
+                           <circle cx='7' cy='6' r='2' /> <circle cx='17' cy='6' r='2' />{' '}
+                           <path d='M7 8v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2 -2v-2' />{' '}
+                           <line x1='12' y1='12' x2='12' y2='16' />
+                        </svg>
+                     </div>
+                  </button>
+                  <Collapse in={modelCollapse}>
+                     <hr />
+                     <RadioGroup
+                        aria-labelledby='demo-controlled-radio-buttons-group'
+                        name='controlled-radio-buttons-group'
+                        value={filters.model}
+                        className='rtl'
+                        onClick={(e) => {
+                           const newValue = (e.target as HTMLInputElement).value
+                           const prevValue = filters.model
+
+                           setFilters({
+                              ...filters,
+                              model: newValue == prevValue ? null : newValue,
+                           })
+                        }}
+                     >
+                        {models.map((model) => (
+                           <FormControlLabel
+                              key={model._id}
+                              value={model._id}
+                              control={<Radio />}
+                              label={`${model.name} | ${model.slug}`}
+                           />
+                        ))}
+                     </RadioGroup>
+                  </Collapse>
+               </div>
+
                <Button
                   onClick={toggleDrawer()}
                   variant='contained'

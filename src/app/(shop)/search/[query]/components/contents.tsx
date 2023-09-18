@@ -8,13 +8,15 @@ import ProductCards from '@/components/product/cards'
 import FilterComponent from './filter'
 import SortComponent from './sort'
 import { IBrand } from '@/models/brand'
+import { IModel } from '@/models/model'
 
 const Contents = ({
-   params: { dbProducts, brands },
+   params: { dbProducts, brands, models },
 }: {
    params: {
       dbProducts: IProduct[]
       brands: IBrand[]
+      models: IModel[]
    }
 }) => {
    const [initProducts, setInitProducts] = useState<IProduct[]>(dbProducts)
@@ -24,10 +26,12 @@ const Contents = ({
       type: null | string
       priceRange: number[]
       brand: null | string
+      model: null | string
    }>({
       type: null,
       priceRange: [0, 100],
       brand: null,
+      model: null,
    })
 
    const [sortValue, setSortValue] = useState<string>('latest')
@@ -99,6 +103,7 @@ const Contents = ({
                      filters,
                      setFilters,
                      brands,
+                     models
                   }}
                />
                <SortComponent
