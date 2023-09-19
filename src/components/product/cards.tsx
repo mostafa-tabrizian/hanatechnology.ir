@@ -8,7 +8,7 @@ import hyphen from '@/lib/hyphen'
 const ProductCards = ({ product }: { product: IProduct }) => {
    return (
       <Link key={product._id} href={'/product/' + hyphen(product.slug)}>
-         <div className='p-2 flex flex-col justify-between shadow-slate-200 bg-white shadow-lg h-full space-y-5 rounded-xl'>
+         <div className='p-2 flex flex-col justify-between shadow-slate-200 bg-white shadow-lg h-fit space-y-5 rounded-xl'>
             <div className='flex justify-center'>
                <Image
                   className='object-contain aspect-square opacity-0 transition-opacity duration-300'

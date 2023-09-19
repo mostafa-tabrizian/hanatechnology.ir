@@ -4,10 +4,9 @@ import Image from 'next/legacy/image'
 const Footer = () => {
    return (
       <footer className='py-3 md:py-8 text-slate-600 rtl mt-10 border-t-2 border-t-gray-200 bg-gray-200 px-4 rounded-t-3xl'>
-         <div className='grid gap-10 md:gap-14 grid-cols-5 grid-row-2 container md:max-w-screen-xl mx-auto'>
-            <div className='col-span-5 md:col-span-2 flex flex-col justify-start'>
+         <div className='grid gap-10 max-w-screen-lg grid-cols-5 grid-row-2 container mx-auto'>
+            <div className='col-span-5 flex flex-col justify-start'>
                <div>
-
                   <Link href='/' className='flex justify-center'>
                      <Image
                         className='object-contain'
@@ -106,7 +105,7 @@ const Footer = () => {
                      حفاظت، امنیت، نظارت، ارتباطات
                   </h4>
                   <div id='about-us' className='space-y-5'>
-                     <p className='text-slate-500 text-sm leading-7 text-justify yekan1'>
+                     <p className='text-slate-500 text-sm leading-7 md:text-center text-justify yekan1'>
                         <strong>آدرس: </strong> قم بلوار امام رضا مجتمع تجاری مسکونی فردوس طبقه اول
                         پلاک ۲۲۹
                      </p>
@@ -132,7 +131,7 @@ const Footer = () => {
                         از طریق{' '}
                         <a
                            rel='noreferrer'
-                           className='text-blue-600 text-sm'
+                           className='text-blue-600 text-sm yekan1'
                            href='https://eitaa.com/HanaTech2023'
                            target='_blank'
                         >
@@ -141,7 +140,7 @@ const Footer = () => {
                         ،{' '}
                         <a
                            rel='noreferrer'
-                           className='text-blue-600 text-sm'
+                           className='text-blue-600 text-sm yekan1'
                            href='https://www.instagram.com/HanaTech2023'
                            target='_blank'
                         >
@@ -150,7 +149,7 @@ const Footer = () => {
                         ،{' '}
                         <a
                            rel='noreferrer'
-                           className='text-blue-600 text-sm'
+                           className='text-blue-600 text-sm yekan1'
                            href='https://t.me/HanaTech2023'
                            target='_blank'
                         >
@@ -159,7 +158,7 @@ const Footer = () => {
                         و{' '}
                         <a
                            rel='noreferrer'
-                           className='text-blue-600 text-sm'
+                           className='text-blue-600 text-sm yekan1'
                            href='tel:+989128530920'
                            target='_blank'
                         >
@@ -170,41 +169,41 @@ const Footer = () => {
                   </div>
                </div>
             </div>
-            <div className='col-span-5 md:col-span-1 rtl'>
+            <div className='col-span-5 rtl'>
                <h4 className='text-xl yekanExtraBold mb-4 text-blue-600 '>دسته بندی های محصولات</h4>
                <nav>
                   <ul className='text-sm'>
                      <li className='list-disc py-2 list-inside'>
-                        <a
-                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500'
+                        <Link
+                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500 yekan1'
                            href='#'
                         >
                            دوربین مداربسته
-                        </a>
+                        </Link>
                      </li>
                      <li className='list-disc py-2 list-inside'>
-                        <a
-                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500'
+                        <Link
+                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500 yekan1'
                            href='#'
                         >
                            دزدگیر
-                        </a>
+                        </Link>
                      </li>
                      <li className='list-disc py-2 list-inside'>
-                        <a
-                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500'
+                        <Link
+                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500 yekan1'
                            href='#'
                         >
                            اعلام حریق
-                        </a>
+                        </Link>
                      </li>
                      <li className='list-disc py-2 list-inside'>
-                        <a
-                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500'
+                        <Link
+                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500 yekan1'
                            href='#'
                         >
                            تجهیزات شبکه
-                        </a>
+                        </Link>
                      </li>
                   </ul>
                </nav>

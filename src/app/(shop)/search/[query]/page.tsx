@@ -105,7 +105,7 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
    const { uniqueMergedProducts, brands, models } = await getProducts({ query })
 
    return (
-      <div className='px-3 md:px-0 md:mx-auto max-w-screen-md space-y-8 my-6'>
+      <div className='px-3 md:px-0 md:max-w-screen-2xl md:mx-auto space-y-8 my-6'>
          <h1 className='text-center font-bold'>{query}</h1>
 
          <div className='mb-20 text-center space-y-6'>
@@ -123,7 +123,7 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
                <div>
                   <span className='font-semibold text-xl'>!هیچ محصولی یافت نشد</span>
                   <span className='text-sm block'>عبارت دیگری را امتحان کنید</span>
-                  <div className='w-3/4 mx-auto aspect-square relative'>
+                  <div className='w-[20rem] mx-auto aspect-square relative'>
                      <Image
                         src='/noSearchResult.jpg'
                         alt='no search result'

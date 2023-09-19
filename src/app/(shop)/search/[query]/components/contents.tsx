@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react'
 import { IProduct } from '@/models/product'
 import stringtoDate from '@/lib/stringToDate'
 import ProductCards from '@/components/product/cards'
-import FilterComponent from './filter'
-import SortComponent from './sort'
+import FilterComponent, { FilterOptions } from './filter'
+import SortComponent, { SortOptions } from './sort'
 import { IBrand } from '@/models/brand'
 import { IModel } from '@/models/model'
 
@@ -97,13 +97,13 @@ const Contents = ({
    return (
       <div>
          <div>
-            <div className='flex gap-x-4 text-gray-400 md:hidden mb-8'>
+            <div className='flex md:hidden gap-x-4 text-gray-400 mb-8'>
                <FilterComponent
                   params={{
                      filters,
                      setFilters,
                      brands,
-                     models
+                     models,
                   }}
                />
                <SortComponent
@@ -114,12 +114,33 @@ const Contents = ({
                />
             </div>
          </div>
-         <div className='py-5 grid grid-cols-2 gap-3'>
-            {filteredProducts?.map((product) => {
-               if (product.public) {
-                  return <ProductCards key={product._id} product={product} />
-               }
-            })}
+         <div className='md:grid md:grid-cols-4 md:gap-3'>
+
+            <div className='py-5 grid grid-cols-2 md:col-span-3 md:grid-cols-3 gap-3'>
+               {filteredProducts?.map((product) => {
+                  if (product.public) {
+                     return <ProductCards key={product._id} product={product} />
+                  }
+               })}
+            </div>
+
+            <div className='col-span-1 hidden md:block'>
+               <SortOptions
+                  params={{
+                     sortValue,
+                     setSortValue,
+                  }}
+               />
+               <FilterOptions
+                  params={{
+                     filters,
+                     setFilters,
+                     brands,
+                     models,
+                  }}
+               />
+            </div>
+
          </div>
       </div>
    )
