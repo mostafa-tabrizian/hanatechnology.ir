@@ -7,12 +7,12 @@ import LinksForDesktop from './headerLinksforDesktop'
 const Header = () => {
    return (
       <header className='bg-white py-3 px-3 rounded-b-xl'>
-         <div className='flex md:grid md:grid-cols-8 p-1 justify-between items-center'>
+         <div className='flex md:grid md:grid-cols-7 p-1 justify-between items-center'>
             <div className='md:col-span-3 md:w-3/4 hidden md:block'>
                <SearchInput />
             </div>
 
-            <Link href='/' className='flex md:justify-center md:col-span-2 gap-3'>
+            <Link href='/' className='flex md:justify-center md:col-span-1 gap-3'>
                <Image
                   className='object-contain'
                   src='/logo/logo.jpg'

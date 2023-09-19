@@ -5,11 +5,14 @@ import 'react-toastify/dist/ReactToastify.min.css'
 
 import { SessionProvider } from 'next-auth/react'
 import { ToastContainer } from 'react-toastify'
+import Analytics from './analytics'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+
    return (
       <html lang='fa'>
          <body>
+            <Analytics />
             <SessionProvider>
                <ToastContainer
                   position='top-center'
