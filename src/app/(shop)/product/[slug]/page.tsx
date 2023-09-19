@@ -180,7 +180,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                   </div>
 
                   <div className='md:grid flex flex-col-reverse grid-cols-2 md:gap-12'>
-                     <div className='mt-10 space-y-6'>
+                     <div className='mt-10 md:mt-0 space-y-6'>
                         <div className='bg-white shadow shadow-slate-200 rounded-lg px-3 py-5 rtl'>
                            <h1 className='text-right'>{product.name}</h1>
                            <h2 className='text-right text-xs yekan1 text-gray-400'>
