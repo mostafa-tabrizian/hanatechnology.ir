@@ -97,6 +97,11 @@ const getProducts = async ({ query }: { query: string }) => {
 export const generateMetadata = async ({ params }: { params: { query: string } }) => {
    return {
       title: dehyphen(decodeURI(params.query)) + ' | حانا تکنولوژی',
+      description:
+         'ما در حانا به حفاظت از شما و محیط‌هایتان متعهدیم. با ارائه ابزارهای پیشرفته دوربین مداربسته، سیستم‌های اعلام حریق، دزدگیرهای امنیتی و تجهیزات شبکه، ما به شما امکان می‌دهیم تا نظارت، امنیت، و ارتباطات خود را به سطح جدیدی برسانید. ما در تلاشیم تا با ارائه راه‌حل‌هایی نوآورانه و اطمینان‌بخش، زندگی و کسب و کار شما را تقویت کنیم. به ما بپیوندید و با ما در جهت ساختن یک آینده امن‌تر و بهتر همکاری کنید. ',
+      alternates: {
+         canonical: `https://hanatechnology.ir/search/${params.query}`,
+      },
    }
 }
 

@@ -110,7 +110,7 @@ const Footer = () => {
                         پلاک ۲۲۹
                      </p>
 
-                     <iframe
+                     {/* <iframe
                         className='w-full border-3 border-blue-300 rounded-lg'
                         src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.0863620420655!2d50.849071699999996!3d34.627257799999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f93bbdb1b3fd48b%3A0x14fde53739892525!2z2YXYrNiq2YXYuSDYqtis2KfYsduMINmB2LHYr9mI2LM!5e0!3m2!1sen!2s!4v1695068764877!5m2!1sen!2s'
                         width='300'
@@ -118,7 +118,7 @@ const Footer = () => {
                         allowFullScreen={false}
                         loading='lazy'
                         referrerPolicy='no-referrer-when-downgrade'
-                     ></iframe>
+                     ></iframe> */}
 
                      <p className='text-slate-500 text-sm leading-7 text-justify'>
                         ما در حانا به حفاظت از شما و محیط‌هایتان متعهدیم. با ارائه ابزارهای پیشرفته
@@ -168,45 +168,6 @@ const Footer = () => {
                      </p>
                   </div>
                </div>
-            </div>
-            <div className='col-span-5 rtl'>
-               <h4 className='text-xl yekanExtraBold mb-4 text-blue-600 '>دسته بندی های محصولات</h4>
-               <nav>
-                  <ul className='text-sm'>
-                     <li className='list-disc py-2 list-inside'>
-                        <Link
-                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500'
-                           href='#'
-                        >
-                           دوربین مداربسته
-                        </Link>
-                     </li>
-                     <li className='list-disc py-2 list-inside'>
-                        <Link
-                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500'
-                           href='#'
-                        >
-                           دزدگیر
-                        </Link>
-                     </li>
-                     <li className='list-disc py-2 list-inside'>
-                        <Link
-                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500'
-                           href='#'
-                        >
-                           اعلام حریق
-                        </Link>
-                     </li>
-                     <li className='list-disc py-2 list-inside'>
-                        <Link
-                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500'
-                           href='#'
-                        >
-                           تجهیزات شبکه
-                        </Link>
-                     </li>
-                  </ul>
-               </nav>
             </div>
             {/* <div className='col-span-5 md:col-span-1 rtl'>
                <h4 className='text-xl yekanExtraBold mb-4 text-blue-600'>دسترسی سریع</h4>
