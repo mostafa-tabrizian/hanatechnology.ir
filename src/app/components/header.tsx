@@ -2,12 +2,17 @@ import Link from 'next/link'
 import Sidebar from './sidebar'
 import SearchInput from '@/components/searchInput'
 import Image from 'next/legacy/image'
+import LinksForDesktop from './headerLinksforDesktop'
 
 const Header = () => {
    return (
       <header className='bg-white py-3 px-3 rounded-b-xl'>
-         <div className='flex p-1 justify-between items-center'>
-            <Link href='/' className='flex gap-3'>
+         <div className='flex md:grid md:grid-cols-8 p-1 justify-between items-center'>
+            <div className='md:col-span-3 md:w-3/4 hidden md:block'>
+               <SearchInput />
+            </div>
+
+            <Link href='/' className='flex md:justify-center md:col-span-2 gap-3'>
                <Image
                   className='object-contain'
                   src='/logo/logo.jpg'
@@ -18,9 +23,15 @@ const Header = () => {
                   objectFit='contain'
                />
             </Link>
+
             <Sidebar />
+
+            <LinksForDesktop />
          </div>
-         <SearchInput />
+
+         <div className='md:hidden'>
+            <SearchInput />
+         </div>
 
          <a
             href='tel:+989128530920'

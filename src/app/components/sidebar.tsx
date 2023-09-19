@@ -17,7 +17,7 @@ const Sidebar = () => {
    useEffect(() => setSidebar(false), [pathname])
 
    return (
-      <div>
+      <div className='md:hidden'>
          <button onClick={() => setSidebar(true)}>
             <svg
                stroke='currentColor'
