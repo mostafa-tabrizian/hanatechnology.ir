@@ -36,7 +36,7 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
                if (!slide.public) return
 
                return (
-                  <div key={slide._id} className='swiper-slide rounded-xl'>
+                  <div key={slide._id} className='swiper-slide !flex justify-center rounded-xl'>
                      <Link href={slide.link}>
                      <Image
                         className='rounded-xl'

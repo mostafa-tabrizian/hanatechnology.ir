@@ -21,20 +21,20 @@ const ProductCards = ({ product }: { product: IProduct }) => {
                   onLoad={(e) => (e.target as HTMLImageElement).classList.remove('opacity-0')}
                />
             </div>
-            <div className='mx-1 md:mx-3 space-y-2 relative text-right'>
-               <h2 className='text-xs yekan1 md:text-lg'>{product.name}</h2>
+            <div className='mx-1 space-y-2 relative text-right'>
+               <h2 className='text-xs yekan1 md:text-sm'>{product.name}</h2>
 
                {product.inStock ? (
                   <div className='space-y-2'>
                      {product.discount ? (
                         <div className='flex justify-between items-center'>
                            <div>
-                              <span className='text-gray-400 line-through yekan1 text-sm ml-2 md:text-xl'>
+                              <span className='text-gray-400 line-through yekan1 text-sm ml-2 md:text-lg'>
                                  {product.price.toLocaleString('per')}
                               </span>
                            </div>
                            <div className='bg-rose-500 shadow-md shadow-rose-300 px-3 rounded-full'>
-                              <span className='text-white text-sm md:text-xl'>
+                              <span className='text-white text-sm md:text-lg'>
                                  {Math.round(
                                     (product.discount / product.price) * 100,
                                  ).toLocaleString('per')}
@@ -62,14 +62,14 @@ const ProductCards = ({ product }: { product: IProduct }) => {
                                  data-name='Layer 1'
                               ></path>
                            </svg>
-                           <span className='text-slate-800 yekan1 text-base ml-2 md:text-xl'>
+                           <span className='text-slate-800 yekan1 text-base ml-2 md:text-lg'>
                               {(product.price - product.discount).toLocaleString('per')}
                            </span>
                         </div>
                      </div>
                   </div>
                ) : (
-                  <span className='text-rose-900 yekan1 flex text-sm'>ناموجود</span>
+                  <span className='text-rose-900 yekan1 flex text-sm md:text-base py-5'>ناموجود</span>
                )}
             </div>
          </div>

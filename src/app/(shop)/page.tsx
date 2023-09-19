@@ -131,10 +131,10 @@ async function Home() {
             dangerouslySetInnerHTML={{ __html: JSON.stringify(corporationJsonLd) }}
          />
 
-         <div className='px-3 md:px-0 md:mx-auto max-w-screen-md space-y-8 my-6'>
+         <div className='px-3 md:px-0 md:mx-auto space-y-8 my-6'>
             <Slides slides={JSON.parse(JSON.stringify(slides))} />
 
-            <div className='grid grid-cols-2 gap-x-3'>
+            <div className='grid grid-cols-2 md:grid-cols-4 gap-x-3'>
                <Link href='/search/cable'>
                   <Image
                      className='rounded-xl'
@@ -179,7 +179,7 @@ async function Home() {
 
             <div className='text-center'>
                <h3>دسته‌بندی محصولات</h3>
-               <div className='grid grid-cols-3 gap-y-6 mt-3'>
+               <div className='grid grid-cols-3 md:grid-cols-6 gap-y-6 mt-3'>
                   <Link href='#'>
                      <Image
                         className='rounded-xl'
@@ -249,7 +249,7 @@ async function Home() {
                </div>
             </div>
 
-            <div>
+            <div className='md:flex md:justify-around'>
                <Link href='#'>
                   <Image
                      className='rounded-xl'
