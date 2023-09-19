@@ -353,9 +353,11 @@ const DetailForm = ({
                      />
                   </div>
 
-                  {
-                     !addingNewProduct && <span className='text-rose-400 flex justify-end !my-0 text-[.65rem] text-right'>.محصولات قابل حذف نمی‌باشند. تنها میتوان آنها را مخفی کرد</span>
-                  }
+                  {!addingNewProduct && (
+                     <span className='text-rose-400 flex justify-end !my-0 text-[.65rem] text-right'>
+                        .محصولات قابل حذف نمی‌باشند. تنها میتوان آنها را مخفی کرد
+                     </span>
+                  )}
 
                   <div className='flex items-center gap-5 rtl'>
                      <span className='text-slate-400'>محصول موجود است</span>

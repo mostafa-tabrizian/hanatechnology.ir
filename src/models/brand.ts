@@ -11,11 +11,11 @@ export interface IBrand {
 const BrandSchema = new mongoose.Schema({
    slug: {
       type: String,
-      unique: true
+      unique: true,
    },
    name: {
       type: String,
-      unique: true
+      unique: true,
    },
 })
 

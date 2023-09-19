@@ -14,7 +14,7 @@ const SlideSchema = new mongoose.Schema({
    src: String,
    alt: String,
    link: String,
-   public: Boolean
+   public: Boolean,
 })
 
 SlideSchema.set('timestamps', true)

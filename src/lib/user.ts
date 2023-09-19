@@ -12,12 +12,11 @@ const UserDetail = async () => {
 
    await dbConnect()
    const user = await User.findOne({
-      username: session._doc.username
+      username: session._doc.username,
    }).exec()
 
    user.lastVisit = nowDate()
    user.save()
-
 
    // eslint-disable-next-line @typescript-eslint/no-unused-vars
    const { password: _, ...filteredUser } = user._doc

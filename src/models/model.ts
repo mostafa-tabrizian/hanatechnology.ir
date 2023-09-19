@@ -15,8 +15,8 @@ const ModelSchema = new mongoose.Schema({
    category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Category',
-      required: true
-   }
+      required: true,
+   },
 })
 
 ModelSchema.set('timestamps', true)

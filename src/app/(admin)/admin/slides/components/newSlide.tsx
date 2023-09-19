@@ -57,7 +57,7 @@ const NewSlide = () => {
       } catch (err) {
          toast.error(`در آپلود تصویر ${imageName} خطایی رخ داد!`)
          console.error(err)
-         
+
          await deleteLeftOvers(key)
       }
    }

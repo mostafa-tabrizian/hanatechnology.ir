@@ -20,7 +20,7 @@ export const metadata = {
 
 const getModels = async () => {
    dbConnect()
-   
+
    const modelMatch = await Model.aggregate([
       {
          $lookup: {
@@ -107,7 +107,7 @@ const AdminCategories = async () => {
                                  )}
                               />
                               <NameAndSlug params={JSON.parse(JSON.stringify({ ...model }))} />
-                              <Link href={`/search/${hyphen(model.slug)}`}  target='_blank'>
+                              <Link href={`/search/${hyphen(model.slug)}`} target='_blank'>
                                  <p>{productsLength}</p>
                               </Link>
                               <DeleteButton

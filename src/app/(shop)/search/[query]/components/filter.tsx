@@ -133,13 +133,10 @@ export const FilterOptions = ({
          <div className='bg-white rtl text-right py-2 my-3 px-3 rounded-xl'>
             <span>
                بازه قیمتی
-               
                <br />
-
                <span className=''>
                   {(filters.priceRange[1] * 200_000).toLocaleString('fa')} تومان
-               </span>
-               {' '}
+               </span>{' '}
                تا
                <span className='mr-2'>
                   {(filters.priceRange[0] * 200_000).toLocaleString('fa')} تومان

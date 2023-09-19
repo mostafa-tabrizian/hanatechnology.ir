@@ -11,13 +11,14 @@ export async function POST(req: Request) {
 
       const model = await Model.create({
          name,
-         slug
+         slug,
       })
 
       return NextResponse.json(model)
    } catch (error) {
       // @ts-ignore
-      if (error.code == 11000) {  // not unique
+      if (error.code == 11000) {
+         // not unique
          return NextResponse.json({ message: 'notUnique' })
       } else {
          return NextResponse.json({ status: 500, message: error })
@@ -28,14 +29,13 @@ export async function POST(req: Request) {
 export async function PATCH(req: Request) {
    const { _id, name, slug } = await req.json()
 
-
    try {
       await dbConnect()
       const model = await Model.findOneAndUpdate(
          { _id },
          {
             name,
-            slug
+            slug,
          },
       )
 
@@ -44,7 +44,8 @@ export async function PATCH(req: Request) {
       })
    } catch (error) {
       // @ts-ignore
-      if (error.code == 11000) {  // not unique
+      if (error.code == 11000) {
+         // not unique
          return NextResponse.json({ message: 'notUnique' })
       } else {
          return NextResponse.json({ status: 500, message: error })
@@ -55,15 +56,14 @@ export async function PATCH(req: Request) {
 export async function PUT(req: Request) {
    const { modelId, category } = await req.json()
 
-
    try {
       await dbConnect()
       const modelUpdated = await Model.findOneAndUpdate(
          {
-            _id: modelId
+            _id: modelId,
          },
          {
-            category
+            category,
          },
       )
 
@@ -83,9 +83,7 @@ export async function DELETE(req: Request) {
       const { _id } = await req.json()
 
       await dbConnect()
-      const model = await Model.findOneAndDelete(
-         { _id }
-      )
+      const model = await Model.findOneAndDelete({ _id })
 
       return NextResponse.json(model)
    } catch (error) {

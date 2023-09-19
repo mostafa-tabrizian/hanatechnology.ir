@@ -115,7 +115,6 @@ const Contents = ({
             </div>
          </div>
          <div className='md:grid md:grid-cols-4 md:gap-3'>
-
             <div className='py-5 grid grid-cols-2 md:col-span-3 md:grid-cols-3 gap-3'>
                {filteredProducts?.map((product) => {
                   if (product.public) {
@@ -140,7 +139,6 @@ const Contents = ({
                   }}
                />
             </div>
-
          </div>
       </div>
    )

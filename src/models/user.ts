@@ -12,7 +12,7 @@ export interface IUser {
 const UserSchema = new mongoose.Schema({
    name: String,
    password: String,
-   lastVisit: Date
+   lastVisit: Date,
 })
 
 UserSchema.set('timestamps', true)

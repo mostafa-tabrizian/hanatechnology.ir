@@ -4,58 +4,56 @@ import Slide, { ISlide } from '@/models/slide'
 import dbConnect from '@/lib/dbConnect'
 
 interface BodyType {
-    values: { alt: string; link: string; publicStatus: boolean },
-    key: string
+   values: { alt: string; link: string; publicStatus: boolean }
+   key: string
 }
 
 export async function POST(req: Request) {
-    const { values, key }: BodyType = await req.json()
+   const { values, key }: BodyType = await req.json()
 
-    await dbConnect()
+   await dbConnect()
 
-    const newSlide = await Slide.create({
-        src: key,
-        alt: values.alt,
-        link: values.link,
-        public: values.publicStatus
-    });
+   const newSlide = await Slide.create({
+      src: key,
+      alt: values.alt,
+      link: values.link,
+      public: values.publicStatus,
+   })
 
-    return NextResponse.json({ newSlide })
+   return NextResponse.json({ newSlide })
 }
 
 export async function PATCH(req: Request) {
-    const { _id } = await req.json()
+   const { _id } = await req.json()
 
-    try {
-        await dbConnect()
-        const slide: ISlide | null = await Slide.findOne(
-            {
-                _id
-            }
-        )
+   try {
+      await dbConnect()
+      const slide: ISlide | null = await Slide.findOne({
+         _id,
+      })
 
-        if (slide) {
-            slide.public = !slide.public
-            // @ts-ignore
-            slide.save()
-        } else throw new Error()
+      if (slide) {
+         slide.public = !slide.public
+         // @ts-ignore
+         slide.save()
+      } else throw new Error()
 
-        return NextResponse.json({
-            slide,
-        })
-    } catch (err) {
-        return NextResponse.json({
-            statue: 500,
-            message: err,
-        })
-    }
+      return NextResponse.json({
+         slide,
+      })
+   } catch (err) {
+      return NextResponse.json({
+         statue: 500,
+         message: err,
+      })
+   }
 }
 
 export async function DELETE(req: Request) {
-    const { _id }: { _id: string } = await req.json()
+   const { _id }: { _id: string } = await req.json()
 
-    await dbConnect()
-    const res = await Slide.findOneAndDelete({ _id })
+   await dbConnect()
+   const res = await Slide.findOneAndDelete({ _id })
 
-    return NextResponse.json({ res })
+   return NextResponse.json({ res })
 }

@@ -53,7 +53,7 @@ const SortComponent = ({
                ></path>
             </svg>
          </button>
-         
+
          <Drawer anchor='bottom' open={sortToolsDrawer} onClose={toggleDrawer()}>
             <div className='p-6 bg-slate-100'>
                <div className='text-center'>

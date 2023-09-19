@@ -23,31 +23,31 @@ export interface IProduct {
 const ProductSchema = new mongoose.Schema({
    public: {
       type: Boolean,
-      default: true
+      default: true,
    },
    barcode: {
       type: String,
-      unique: true
+      unique: true,
    },
    name: String,
    slug: {
       type: String,
-      unique: true
+      unique: true,
    },
    category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Category',
-      required: true
+      required: true,
    },
    model: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Model',
-      required: true
+      required: true,
    },
    brand: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Brand',
-      required: true
+      required: true,
    },
    price: Number,
    discount: Number,
@@ -57,12 +57,12 @@ const ProductSchema = new mongoose.Schema({
    description: String,
    inStock: {
       type: Boolean,
-      default: true
+      default: true,
    },
 })
 
 ProductSchema.set('timestamps', true)
 
-ProductSchema.index({ name: 'text', slug: 'text', description: 'text' });
+ProductSchema.index({ name: 'text', slug: 'text', description: 'text' })
 
 export default mongoose.models.Product || mongoose.model('Product', ProductSchema)

@@ -35,7 +35,7 @@ const authOptions: NextAuthOptions = {
 
             await dbConnect()
             const user = await User.findOne({
-               username: username
+               username: username,
             })
 
             if (!user) return null
@@ -71,7 +71,7 @@ const authOptions: NextAuthOptions = {
 
          return token
       },
-   }
+   },
 }
 
 export default authOptions

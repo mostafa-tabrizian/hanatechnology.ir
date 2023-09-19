@@ -10,13 +10,14 @@ export async function POST(req: Request) {
 
       const category = await Category.create({
          name,
-         slug
+         slug,
       })
 
       return NextResponse.json(category)
    } catch (error) {
       // @ts-ignore
-      if (error.code == 11000) {  // not unique
+      if (error.code == 11000) {
+         // not unique
          return NextResponse.json({ message: 'notUnique' })
       } else {
          return NextResponse.json({ status: 500, message: error })
@@ -26,7 +27,6 @@ export async function POST(req: Request) {
 
 export async function PATCH(req: Request) {
    const { _id, name, slug } = await req.json()
-
 
    try {
       await dbConnect()
@@ -56,9 +56,7 @@ export async function DELETE(req: Request) {
       const { _id } = await req.json()
 
       await dbConnect()
-      const category = await Category.findOneAndDelete(
-         { _id }
-      )
+      const category = await Category.findOneAndDelete({ _id })
 
       return NextResponse.json(category)
    } catch (error) {

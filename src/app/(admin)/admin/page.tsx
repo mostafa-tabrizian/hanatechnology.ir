@@ -25,7 +25,6 @@ const AdminPanel = async () => {
             </div>
 
             <div className='px-4 py-10 space-y-4 from-gray-50 to-gray-100 bg-gradient-to-b rounded-lg max-w-sm mx-auto'>
-
                <div className='bg-white rounded-lg py-2 px-2'>
                   <Link href='/admin/products'>
                      <div className='flex justify-end space-x-3 items-center'>
@@ -101,7 +100,7 @@ const AdminPanel = async () => {
                      </div>
                   </Link>
                </div>
-               
+
                <div className='bg-white rounded-lg py-2 px-2'>
                   <Link href='/admin/brands'>
                      <div className='flex justify-end space-x-3 items-center'>

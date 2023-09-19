@@ -11,7 +11,7 @@ import dehyphen from '@/lib/dehyphen'
 
 async function getProduct(name: string) {
    await dbConnect()
-   
+
    const productsMatch = await Product.aggregate([
       { $match: { name: dehyphen(decodeURI(name)) } },
       {

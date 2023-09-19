@@ -17,18 +17,20 @@ export async function POST(req: Request) {
    let res
 
    if (type == 'thumbnail') {
-      res = await Product.findOneAndUpdate({
-         _id: _id
-      }, {
-         thumbnail: key
-      }).exec();
-
+      res = await Product.findOneAndUpdate(
+         {
+            _id: _id,
+         },
+         {
+            thumbnail: key,
+         },
+      ).exec()
    } else if (type == 'images') {
       res = await Product.findOne({
-         _id: _id
-      }).exec();
+         _id: _id,
+      }).exec()
 
-      (res.images).push(key)
+      res.images.push(key)
       res.save()
    }
 
@@ -43,18 +45,20 @@ export async function DELETE(req: Request) {
    let res
 
    if (type == 'thumbnail') {
-      res = await Product.findOneAndUpdate({
-         _id: _id
-      }, {
-         thumbnail: ''
-      }).exec();
-
+      res = await Product.findOneAndUpdate(
+         {
+            _id: _id,
+         },
+         {
+            thumbnail: '',
+         },
+      ).exec()
    } else if (type == 'images') {
       res = await Product.findOne({
-         _id: _id
-      }).exec();
+         _id: _id,
+      }).exec()
 
-      const filteredItems = (res.images).filter((item: string) => item !== key);
+      const filteredItems = res.images.filter((item: string) => item !== key)
 
       res.images = filteredItems
       res.save()

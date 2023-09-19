@@ -11,11 +11,11 @@ export interface ICategory {
 const CategorySchema = new mongoose.Schema({
    slug: {
       type: String,
-      unique: true
+      unique: true,
    },
    name: {
       type: String,
-      unique: true
+      unique: true,
    },
 })
 

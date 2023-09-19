@@ -14,7 +14,7 @@ const SlideDelete = ({ params: { _id, src } }: { params: { _id: string; src: str
 
    const handleDelete = async () => {
       setConfirmation(false)
-      
+
       if (!_id) {
          return toast.warning('در حذف اسلاید خطایی رخ داده است!')
       }

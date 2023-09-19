@@ -11,13 +11,14 @@ export async function POST(req: Request) {
 
       const brand = await Brand.create({
          name: name,
-         slug: slug
+         slug: slug,
       })
 
       return NextResponse.json(brand)
    } catch (error: unknown) {
       // @ts-ignore
-      if (error.code == 11000) {  // not unique
+      if (error.code == 11000) {
+         // not unique
          return NextResponse.json({ message: 'notUnique' })
       } else {
          return NextResponse.json({ status: 500, message: error })
@@ -28,18 +29,15 @@ export async function POST(req: Request) {
 export async function PATCH(req: Request) {
    const { _id, name, slug } = await req.json()
 
-
    try {
       await dbConnect()
-      const brand = await Brand.findOneAndUpdate(
-         { _id },
-         { name, slug },
-      )
+      const brand = await Brand.findOneAndUpdate({ _id }, { name, slug })
 
       return NextResponse.json({ brand })
    } catch (error) {
       // @ts-ignore
-      if (error.code == 11000) {  // not unique
+      if (error.code == 11000) {
+         // not unique
          return NextResponse.json({ message: 'notUnique' })
       } else {
          return NextResponse.json({ status: 500, message: error })
@@ -52,9 +50,7 @@ export async function DELETE(req: Request) {
       const { _id } = await req.json()
 
       await dbConnect()
-      const brand = await Brand.findOneAndDelete(
-         { _id }
-      )
+      const brand = await Brand.findOneAndDelete({ _id })
 
       return NextResponse.json(brand)
    } catch (error) {
