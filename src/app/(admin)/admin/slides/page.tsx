@@ -50,16 +50,13 @@ const AdminSlides = async () => {
                            )}
                         />
                         <Image
-                           className='rounded-xl aspect-video opacity-0 transition-opacity duration-300'
+                           className='rounded-xl aspect-video'
                            src={`https://tabrizian.storage.iran.liara.space/hanatechnology/slides/${slide.src}`}
                            alt={slide.alt}
                            width={690}
                            height={388.125}
                            objectFit='contain'
                            loading='lazy'
-                           onLoad={(e) =>
-                              (e.target as HTMLImageElement).classList.remove('opacity-0')
-                           }
                         />
                      </div>
                   )

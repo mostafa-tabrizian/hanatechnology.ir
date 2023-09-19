@@ -14,7 +14,7 @@ export async function POST(req: Request) {
     await dbConnect()
 
     const newSlide = await Slide.create({
-        src: `https://${process.env.LIARA_BUCKET_NAME}.${process.env.LIARA_ENDPOINT}/hanatechnology/slides/${key}`,
+        src: key,
         alt: values.alt,
         link: values.link,
         public: values.publicStatus

@@ -132,7 +132,7 @@ const ImageInput = ({
 
                   <div className='relative'>
                      <Image
-                        className='object-contain rounded-xl opacity-0 transition-opacity duration-300'
+                        className='object-contain rounded-xl'
                         src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${product.thumbnail}`}
                         alt={product.thumbnail}
                         width='250'
@@ -140,7 +140,6 @@ const ImageInput = ({
                         quality={100}
                         objectFit='contain'
                         loading='lazy'
-                        onLoad={(e) => (e.target as HTMLImageElement).classList.remove('opacity-0')}
                      />
 
                      <ImageDelete
@@ -210,7 +209,7 @@ const ImageInput = ({
                         return (
                            <div key={image} className='relative'>
                               <Image
-                                 className='object-contain rounded-xl opacity-0 transition-opacity duration-300'
+                                 className='object-contain rounded-xl'
                                  src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${image}`}
                                  alt={image}
                                  width='250'
@@ -218,9 +217,6 @@ const ImageInput = ({
                                  quality={100}
                                  objectFit='contain'
                                  loading='lazy'
-                                 onLoad={(e) =>
-                                    (e.target as HTMLImageElement).classList.remove('opacity-0')
-                                 }
                               />
                               <ImageDelete type={'images'} product={product._id} image={image} />
                            </div>

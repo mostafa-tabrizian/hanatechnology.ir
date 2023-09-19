@@ -29,7 +29,7 @@ const ProductCards = ({ product }: { product: IProduct }) => {
                      {product.discount ? (
                         <div className='flex justify-between items-center'>
                            <div>
-                              <span className='text-gray-400 line-through yekan1 text-sm ml-2 md:text-lg'>
+                              <span className='text-gray-400 line-through text-sm ml-2 md:text-lg'>
                                  {product.price.toLocaleString('per')}
                               </span>
                            </div>
@@ -62,14 +62,14 @@ const ProductCards = ({ product }: { product: IProduct }) => {
                                  data-name='Layer 1'
                               ></path>
                            </svg>
-                           <span className='text-slate-800 yekan1 text-base ml-2 md:text-lg'>
+                           <span className='text-slate-800 text-base ml-2 md:text-lg'>
                               {(product.price - product.discount).toLocaleString('per')}
                            </span>
                         </div>
                      </div>
                   </div>
                ) : (
-                  <span className='text-rose-900 yekan1 flex text-sm md:text-base py-5'>ناموجود</span>
+                  <span className='text-rose-900  flex text-sm md:text-base py-5'>ناموجود</span>
                )}
             </div>
          </div>

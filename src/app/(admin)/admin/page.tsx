@@ -25,6 +25,28 @@ const AdminPanel = async () => {
             </div>
 
             <div className='px-4 py-10 space-y-4 from-gray-50 to-gray-100 bg-gradient-to-b rounded-lg max-w-sm mx-auto'>
+
+               <div className='bg-white rounded-lg py-2 px-2'>
+                  <Link href='/admin/products'>
+                     <div className='flex justify-end space-x-3 items-center'>
+                        <span className='text-base text-black'>محصولات</span>
+                        <svg
+                           className='h-6 w-6 text-black'
+                           fill='none'
+                           viewBox='0 0 24 24'
+                           stroke='currentColor'
+                        >
+                           <path
+                              strokeLinecap='round'
+                              strokeLinejoin='round'
+                              strokeWidth='2'
+                              d='M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4'
+                           />
+                        </svg>
+                     </div>
+                  </Link>
+               </div>
+
                <div className='bg-white rounded-lg py-2 px-2'>
                   <Link href='/admin/slides'>
                      <div className='flex justify-end space-x-3 items-center'>
@@ -55,51 +77,6 @@ const AdminPanel = async () => {
                </div>
 
                <div className='bg-white rounded-lg py-2 px-2'>
-                  <Link href='/admin/products'>
-                     <div className='flex justify-end space-x-3 items-center'>
-                        <span className='text-base text-black'>محصولات</span>
-                        <svg
-                           className='h-6 w-6 text-black'
-                           fill='none'
-                           viewBox='0 0 24 24'
-                           stroke='currentColor'
-                        >
-                           <path
-                              strokeLinecap='round'
-                              strokeLinejoin='round'
-                              strokeWidth='2'
-                              d='M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4'
-                           />
-                        </svg>
-                     </div>
-                  </Link>
-               </div>
-
-               <div className='bg-white rounded-lg py-2 px-2'>
-                  <Link href='/admin/brands'>
-                     <div className='flex justify-end space-x-3 items-center'>
-                        <span className='text-base text-black'>برند ها</span>
-                        <svg
-                           className='h-6 w-6'
-                           width='24'
-                           height='24'
-                           viewBox='0 0 24 24'
-                           strokeWidth='2'
-                           stroke='currentColor'
-                           fill='none'
-                           strokeLinecap='round'
-                           strokeLinejoin='round'
-                        >
-                           {' '}
-                           <path stroke='none' d='M0 0h24v24H0z' />{' '}
-                           <path d='M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4' />{' '}
-                           <circle cx='9' cy='9' r='2' />
-                        </svg>
-                     </div>
-                  </Link>
-               </div>
-
-               <div className='bg-white rounded-lg py-2 px-2'>
                   <Link href='/admin/categories'>
                      <div className='flex justify-end space-x-3 items-center'>
                         <span className='text-base text-black'>دسته بندی ها</span>
@@ -120,6 +97,30 @@ const AdminPanel = async () => {
                            <rect x='14' y='4' width='6' height='6' rx='1' />{' '}
                            <rect x='4' y='14' width='6' height='6' rx='1' />{' '}
                            <rect x='14' y='14' width='6' height='6' rx='1' />
+                        </svg>
+                     </div>
+                  </Link>
+               </div>
+               
+               <div className='bg-white rounded-lg py-2 px-2'>
+                  <Link href='/admin/brands'>
+                     <div className='flex justify-end space-x-3 items-center'>
+                        <span className='text-base text-black'>برند ها</span>
+                        <svg
+                           className='h-6 w-6'
+                           width='24'
+                           height='24'
+                           viewBox='0 0 24 24'
+                           strokeWidth='2'
+                           stroke='currentColor'
+                           fill='none'
+                           strokeLinecap='round'
+                           strokeLinejoin='round'
+                        >
+                           {' '}
+                           <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                           <path d='M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4' />{' '}
+                           <circle cx='9' cy='9' r='2' />
                         </svg>
                      </div>
                   </Link>

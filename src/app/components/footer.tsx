@@ -105,7 +105,7 @@ const Footer = () => {
                      حفاظت، امنیت، نظارت، ارتباطات
                   </h4>
                   <div id='about-us' className='space-y-5'>
-                     <p className='text-slate-500 text-sm leading-7 md:text-center text-justify yekan1'>
+                     <p className='text-slate-500 text-sm leading-7 md:text-center text-justify'>
                         <strong>آدرس: </strong> قم بلوار امام رضا مجتمع تجاری مسکونی فردوس طبقه اول
                         پلاک ۲۲۹
                      </p>
@@ -120,7 +120,7 @@ const Footer = () => {
                         referrerPolicy='no-referrer-when-downgrade'
                      ></iframe>
 
-                     <p className='text-slate-500 text-sm leading-7 text-justify yekan1'>
+                     <p className='text-slate-500 text-sm leading-7 text-justify'>
                         ما در حانا به حفاظت از شما و محیط‌هایتان متعهدیم. با ارائه ابزارهای پیشرفته
                         دوربین مداربسته، سیستم‌های اعلام حریق، دزدگیرهای امنیتی و تجهیزات شبکه، ما
                         به شما امکان می‌دهیم تا نظارت، امنیت، و ارتباطات خود را به سطح جدیدی
@@ -131,7 +131,7 @@ const Footer = () => {
                         از طریق{' '}
                         <a
                            rel='noreferrer'
-                           className='text-blue-600 text-sm yekan1'
+                           className='text-blue-600 text-sm'
                            href='https://eitaa.com/HanaTech2023'
                            target='_blank'
                         >
@@ -140,7 +140,7 @@ const Footer = () => {
                         ،{' '}
                         <a
                            rel='noreferrer'
-                           className='text-blue-600 text-sm yekan1'
+                           className='text-blue-600 text-sm'
                            href='https://www.instagram.com/HanaTech2023'
                            target='_blank'
                         >
@@ -149,7 +149,7 @@ const Footer = () => {
                         ،{' '}
                         <a
                            rel='noreferrer'
-                           className='text-blue-600 text-sm yekan1'
+                           className='text-blue-600 text-sm'
                            href='https://t.me/HanaTech2023'
                            target='_blank'
                         >
@@ -158,7 +158,7 @@ const Footer = () => {
                         و{' '}
                         <a
                            rel='noreferrer'
-                           className='text-blue-600 text-sm yekan1'
+                           className='text-blue-600 text-sm'
                            href='tel:+989128530920'
                            target='_blank'
                         >
@@ -175,7 +175,7 @@ const Footer = () => {
                   <ul className='text-sm'>
                      <li className='list-disc py-2 list-inside'>
                         <Link
-                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500 yekan1'
+                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500'
                            href='#'
                         >
                            دوربین مداربسته
@@ -183,7 +183,7 @@ const Footer = () => {
                      </li>
                      <li className='list-disc py-2 list-inside'>
                         <Link
-                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500 yekan1'
+                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500'
                            href='#'
                         >
                            دزدگیر
@@ -191,7 +191,7 @@ const Footer = () => {
                      </li>
                      <li className='list-disc py-2 list-inside'>
                         <Link
-                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500 yekan1'
+                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500'
                            href='#'
                         >
                            اعلام حریق
@@ -199,7 +199,7 @@ const Footer = () => {
                      </li>
                      <li className='list-disc py-2 list-inside'>
                         <Link
-                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500 yekan1'
+                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500'
                            href='#'
                         >
                            تجهیزات شبکه

@@ -263,7 +263,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                                              data-name='Layer 1'
                                           ></path>
                                        </svg>
-                                       <span className='text-slate-800 yekan1 text-2xl ml-2 md:text-xl'>
+                                       <span className='text-slate-800 text-2xl ml-2 md:text-xl'>
                                           {(product.price - product.discount).toLocaleString('per')}
                                        </span>
                                     </div>
@@ -272,7 +272,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                                  {product.discount ? (
                                     <div className='flex gap-5 items-center'>
                                        <div>
-                                          <span className='text-gray-400 line-through yekan1 text-lg ml-2 md:text-xl'>
+                                          <span className='text-gray-400 line-through text-lg ml-2 md:text-xl'>
                                              {product.price.toLocaleString('per')}
                                           </span>
                                        </div>
@@ -290,7 +290,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                                  )}
                               </>
                            ) : (
-                              <span className='text-rose-900 yekan1 text-xl mx-auto'>
+                              <span className='text-rose-900 text-xl mx-auto'>
                                  !محصول موجود نمی‌باشد
                               </span>
                            )}
