@@ -21,6 +21,7 @@ const Header = () => {
                   height={80}
                   quality={100}
                   objectFit='contain'
+                  loading='lazy'
                />
             </Link>
 
