@@ -64,7 +64,7 @@ const getProducts = async ({ query }: { query: string }) => {
    const productBrands: string[] = []
 
    uniqueMergedProducts.map((product) => {
-      if (!product.public) return
+      if (!product.active) return
 
       const brand = product.brand.toString()
       if (!productBrands.includes(brand)) {
@@ -75,7 +75,7 @@ const getProducts = async ({ query }: { query: string }) => {
    const productModels: string[] = []
 
    uniqueMergedProducts.map((product) => {
-      if (!product.public) return
+      if (!product.active) return
 
       const model = product.model.toString()
       if (!productModels.includes(model)) {

@@ -46,7 +46,7 @@ const DetailForm = ({
          price: number
          discount: number
          detail: object
-         publicStatus: boolean
+         active: boolean
          inStock: boolean
       },
       // @ts-ignore
@@ -113,7 +113,7 @@ const DetailForm = ({
             detail: addingNewProduct
                ? JSON.stringify({ عنوان: 'ارزش', عنوان۲: 'ارزش۲' })
                : JSON.stringify(product.detail),
-            publicStatus: addingNewProduct ? true : product.public,
+            active: addingNewProduct ? true : product.active,
             inStock: addingNewProduct ? true : product.inStock,
          }}
          validationSchema={ProductEditForm}
@@ -354,10 +354,10 @@ const DetailForm = ({
                      <span className='text-slate-400'>محصول نمایش داده شود</span>
 
                      <Switch
-                        checked={values.publicStatus}
-                        name='publicStatus'
+                        checked={values.active}
+                        name='active'
                         color='success'
-                        onChange={() => setFieldValue('publicStatus', !values.publicStatus)}
+                        onChange={() => setFieldValue('active', !values.active)}
                      />
                   </div>
 

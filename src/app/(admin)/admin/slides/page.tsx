@@ -7,7 +7,7 @@ import Slide from '@/models/slide'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import NewSlide from './components/newSlide'
 import Delete from './components/delete'
-import PublicStatus from './components/publicStatus'
+import PublicStatus from './components/active'
 
 const getSlides = async () => {
    dbConnect()
@@ -46,7 +46,7 @@ const AdminSlides = async () => {
                         />
                         <PublicStatus
                            params={JSON.parse(
-                              JSON.stringify({ _id: slide._id, publicStatus: slide.public }),
+                              JSON.stringify({ _id: slide._id, active: slide.active }),
                            )}
                         />
                         <Image

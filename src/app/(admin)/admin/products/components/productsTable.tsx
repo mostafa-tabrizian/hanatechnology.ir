@@ -44,8 +44,8 @@ const ProductsTable = ({ products }: { products: IProduct[] }) => {
          ),
       },
       {
-         field: 'public',
-         headerName: <span>عمومی</span>,
+         field: 'active',
+         headerName: <span>فعال</span>,
          width: 75,
          type: 'element',
          renderCell: ({ value }) =>

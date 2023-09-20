@@ -5,7 +5,7 @@ export interface ISlide {
    src: string
    alt: string
    link: string
-   public: boolean
+   active: boolean
    createdAt: Date
    updatedAt: Date
 }
@@ -14,7 +14,7 @@ const SlideSchema = new mongoose.Schema({
    src: String,
    alt: String,
    link: String,
-   public: Boolean,
+   active: Boolean,
 })
 
 SlideSchema.set('timestamps', true)

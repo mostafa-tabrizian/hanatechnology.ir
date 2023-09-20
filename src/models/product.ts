@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 export interface IProduct {
-   public: boolean
+   active: boolean
    _id: string
    barcode: string
    name: string
@@ -21,7 +21,7 @@ export interface IProduct {
 }
 
 const ProductSchema = new mongoose.Schema({
-   public: {
+   active: {
       type: Boolean,
       default: true,
    },

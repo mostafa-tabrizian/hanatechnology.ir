@@ -34,7 +34,7 @@ const NewSlide = () => {
    }
 
    const createDbData = async (
-      values: { alt: string; link: string; publicStatus: boolean },
+      values: { alt: string; link: string; active: boolean },
       key: string,
       imageName: string,
    ) => {
@@ -66,7 +66,7 @@ const NewSlide = () => {
       values: {
          alt: string
          link: string
-         publicStatus: boolean
+         active: boolean
       },
       // @ts-ignore
       { resetForm },
@@ -117,7 +117,7 @@ const NewSlide = () => {
             initialValues={{
                alt: '',
                link: '#',
-               publicStatus: false,
+               active: false,
             }}
             validationSchema={SlideValidation}
             onSubmit={handleSubmit}
@@ -188,12 +188,12 @@ const NewSlide = () => {
                      </div>
 
                      <div>
-                        <span className='text-slate-400 block text-center'>عمومی</span>
+                        <span className='text-slate-400 block text-center'>فعال</span>
                         <Switch
-                           checked={values.publicStatus}
-                           name='publicStatus'
+                           checked={values.active}
+                           name='active'
                            color='success'
-                           onChange={() => setFieldValue('publicStatus', !values.publicStatus)}
+                           onChange={() => setFieldValue('active', !values.active)}
                         />
                      </div>
 

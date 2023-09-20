@@ -6,12 +6,12 @@ import { toast } from 'react-toastify'
 import CircularProgress from '@mui/material/CircularProgress'
 
 const PublicStatus = ({
-   params: { _id, publicStatus },
+   params: { _id, active },
 }: {
-   params: { _id: string; publicStatus: boolean }
+   params: { _id: string; active: boolean }
 }) => {
    const [loading, setLoading] = useState(false)
-   const [status, setStatus] = useState(publicStatus)
+   const [status, setStatus] = useState(active)
 
    const handleClick = async () => {
       if (!_id) {
@@ -33,9 +33,9 @@ const PublicStatus = ({
          if (!res.ok) throw new Error()
 
          setStatus((prev) => !prev)
-         toast.success('عمومیت اسلاید با موفقیت تغییر یافت.')
+         toast.success('وضعیت اسلاید با موفقیت تغییر یافت.')
       } catch (err) {
-         toast.error('در تغییر عمومیت اسلاید خطایی رخ داد!')
+         toast.error('در تغییر وضعیت اسلاید خطایی رخ داد!')
          console.error(err)
       } finally {
          setLoading(false)

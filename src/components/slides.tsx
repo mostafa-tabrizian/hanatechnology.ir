@@ -33,7 +33,7 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
       <div className='slides rtl relative'>
          <div className='swiper-wrapper pb-10'>
             {slides.map((slide) => {
-               if (!slide.public) return
+               if (!slide.active) return
 
                return (
                   <div key={slide._id} className='swiper-slide !flex justify-center rounded-xl'>

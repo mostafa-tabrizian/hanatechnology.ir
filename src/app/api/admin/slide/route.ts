@@ -4,7 +4,7 @@ import Slide, { ISlide } from '@/models/slide'
 import dbConnect from '@/lib/dbConnect'
 
 interface BodyType {
-   values: { alt: string; link: string; publicStatus: boolean }
+   values: { alt: string; link: string; active: boolean }
    key: string
 }
 
@@ -17,7 +17,7 @@ export async function POST(req: Request) {
       src: key,
       alt: values.alt,
       link: values.link,
-      public: values.publicStatus,
+      active: values.active,
    })
 
    return NextResponse.json({ newSlide })
@@ -33,7 +33,7 @@ export async function PATCH(req: Request) {
       })
 
       if (slide) {
-         slide.public = !slide.public
+         slide.active = !slide.active
          // @ts-ignore
          slide.save()
       } else throw new Error()

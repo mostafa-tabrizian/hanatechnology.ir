@@ -161,7 +161,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
          />
 
          <div className='mx-6 md:mx-auto max-w-screen-lg my-6'>
-            {product?.public ? (
+            {product?.active ? (
                <div>
                   <div className='bg-white flex-nowrap shadow shadow-slate-200 rounded-lg px-3 py-1 my-2 rtl'>
                      <Breadcrumbs aria-label='breadcrumb'>
