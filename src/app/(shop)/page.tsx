@@ -35,7 +35,7 @@ export const metadata = {
    description:
       'ما در حانا با ارائه ابزارهای پیشرفته دوربین مداربسته، سیستم‌های اعلام حریق، دزدگیرهای امنیتی و تجهیزات شبکه، به شما امکان می‌دهیم تا نظارت، امنیت، و ارتباطات خود را به سطح جدیدی برسانید',
    alternates: {
-      canonical: `https://hanatechnology.ir`,
+      canonical: 'https://hanatechnology.ir',
    },
 }
 

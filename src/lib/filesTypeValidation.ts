@@ -4,13 +4,13 @@ const filesTypeValidation = (files: File[]) => {
    let invalidFile: undefined | { name: string; valid: boolean }
 
    files.map((file) => {
-      if (!['image/jpeg', 'image/webp'].includes(file.type)) {
+      if (!['image/jpeg', 'image/webp', 'image/avif'].includes(file.type)) {
          invalidFile = { valid: false, name: file.name }
       }
    })
 
    if (invalidFile) {
-      toast.warning(`تایپ فایل ${invalidFile.name} می‌بایست jpeg یا webp باشد`)
+      toast.warning(`تایپ فایل ${invalidFile.name} می‌بایست jpeg یا webp ,avif باشد`)
       return false
    } else return true
 }

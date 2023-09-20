@@ -207,6 +207,14 @@ const DetailForm = ({
                         value={values.description}
                         className='mr-3 rtl w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
                      />
+                     <span className='text-slate-500 text-xs'>تعداد حروف توضیحات: {values.description.split(' ').length.toLocaleString('fa')}</span>
+                  </div>
+
+                  <div className=' border border-green-600/50 p-2 rounded-lg text-right'>
+                     <span className='text-xs text-green-600/70'>
+                        ترجیحا تعداد کلمات محصول می‌بایست ما بین ۵۰ تا ۳۰۰ کلمه باشد. کیفیت متن دارای جزئیات و
+                        تعداد کلمات بیشتر، در عملکرد فروشگاه در گوگل تاثیر بسیار مثبتی میگذارد
+                     </span>
                   </div>
 
                   {errors.description && touched.description ? (

@@ -322,9 +322,9 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                </div>
             ) : (
                <div className='space-y-10 m-10'>
-                  <h1 style={{ fontSize: '1.5rem' }} className='text-center'>
+                  <span style={{ fontSize: '1.5rem' }} className='text-center yekanExtraBold'>
                      این محصول در حال حاضر در دسترس نمی‌باشد
-                  </h1>
+                  </span>
                   <div className='flex'>
                      <svg width='646' height='244' viewBox='0 0 646 244' fill='none'>
                         <path

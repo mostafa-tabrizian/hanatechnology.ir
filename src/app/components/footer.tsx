@@ -6,7 +6,7 @@ const Footer = () => {
       <footer className='py-3 md:py-8 text-slate-600 rtl mt-10 border-t-2 border-t-gray-200 bg-gray-200 px-4 rounded-t-3xl'>
          <div className='grid gap-10 max-w-screen-lg grid-cols-5 grid-row-2 container mx-auto'>
             <div className='col-span-5 flex flex-col justify-start'>
-               <div>
+               <div className='text-center'>
                   <Link href='/' className='flex justify-center'>
                      <Image
                         className='object-contain'
@@ -19,7 +19,12 @@ const Footer = () => {
                      />
                   </Link>
 
-                  <h1 className='text-blue-600 mb-5 text-center text-2xl'>گروه مهندسی حانا</h1>
+<div className='mb-5'>
+
+                  <span className='text-blue-600 yekanExtraBold text-2xl'>
+                     گروه مهندسی حانا
+                  </span>
+</div>
 
                   <div className='flex justify-around mb-5 items-center'>
                      <ul className='flex gap-3 items-center'>
