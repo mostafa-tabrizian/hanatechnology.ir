@@ -24,12 +24,12 @@ export default async function sitemap() {
    }))
 
    const categories = categoriesData.map(({ slug, updatedAt }) => ({
-      url: `${URL}/search/${hyphen(slug)}`,
+      url: `${URL}/search/${hyphen(slug)}?type=category`,
       lastModified: updatedAt,
    }))
 
    const brands = brandsData.map(({ slug, updatedAt }) => ({
-      url: `${URL}/search/${hyphen(slug)}`,
+      url: `${URL}/search/${hyphen(slug)}?type=brand`,
       lastModified: updatedAt,
    }))
    const routes = [''].map((route) => ({

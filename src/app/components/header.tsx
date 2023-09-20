@@ -35,6 +35,7 @@ const Header = () => {
          </div>
 
          <a
+            id='phone_call'
             href='tel:+989128530920'
             className='bg-green-400 md:hidden p-2 rounded-xl fixed bottom-5 shadow-lg shadow-green-300 left-5 z-10'
             title='تماس تلفنی با پشتیبانی'

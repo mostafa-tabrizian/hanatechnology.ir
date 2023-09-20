@@ -8,6 +8,7 @@ import Brand from '@/models/brand'
 
 import Contents from './components/contents'
 import dehyphen from '@/lib/dehyphen'
+import GTMViewItemList from './components/GTMViewItemList'
 
 const getProducts = async ({ query }: { query: string }) => {
    dbConnect()
@@ -110,37 +111,48 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
    const { uniqueMergedProducts, brands, models } = await getProducts({ query })
 
    return (
-      <div className='px-3 md:px-0 md:max-w-screen-2xl md:mx-auto space-y-8 my-6'>
-         <h1 className='text-center font-bold'>{query}</h1>
-
-         <div className='mb-20 text-center space-y-6'>
-            {uniqueMergedProducts.length ? (
-               <Contents
-                  params={JSON.parse(
-                     JSON.stringify({
-                        dbProducts: uniqueMergedProducts,
-                        brands: brands,
-                        models: models,
-                     }),
-                  )}
-               />
-            ) : (
-               <div>
-                  <span className='font-semibold text-xl'>!هیچ محصولی یافت نشد</span>
-                  <span className='text-sm block'>عبارت دیگری را امتحان کنید</span>
-                  <div className='w-[20rem] mx-auto aspect-square relative'>
-                     <Image
-                        src='/noSearchResult.jpg'
-                        alt='no search result'
-                        layout='fill'
-                        objectFit='contain'
-                        loading='lazy'
-                     />
-                  </div>
-               </div>
+      <>
+         <GTMViewItemList
+            params={JSON.parse(
+               JSON.stringify({
+                  query,
+                  productList: uniqueMergedProducts,
+               }),
             )}
+         />
+
+         <div className='px-3 md:px-0 md:max-w-screen-2xl md:mx-auto space-y-8 my-6'>
+            <h1 className='text-center font-bold'>{query}</h1>
+
+            <div className='mb-20 text-center space-y-6'>
+               {uniqueMergedProducts.length ? (
+                  <Contents
+                     params={JSON.parse(
+                        JSON.stringify({
+                           dbProducts: uniqueMergedProducts,
+                           brands: brands,
+                           models: models,
+                        }),
+                     )}
+                  />
+               ) : (
+                  <div>
+                     <span className='font-semibold text-xl'>!هیچ محصولی یافت نشد</span>
+                     <span className='text-sm block'>عبارت دیگری را امتحان کنید</span>
+                     <div className='w-[20rem] mx-auto aspect-square relative'>
+                        <Image
+                           src='/noSearchResult.jpg'
+                           alt='no search result'
+                           layout='fill'
+                           objectFit='contain'
+                           loading='lazy'
+                        />
+                     </div>
+                  </div>
+               )}
+            </div>
          </div>
-      </div>
+      </>
    )
 }
 

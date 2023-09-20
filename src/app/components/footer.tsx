@@ -19,17 +19,15 @@ const Footer = () => {
                      />
                   </Link>
 
-<div className='mb-5'>
-
-                  <span className='text-blue-600 yekanExtraBold text-2xl'>
-                     گروه مهندسی حانا
-                  </span>
-</div>
+                  <div className='mb-5'>
+                     <span className='text-blue-600 yekanExtraBold text-2xl'>گروه مهندسی حانا</span>
+                  </div>
 
                   <div className='flex justify-around mb-5 items-center'>
                      <ul className='flex gap-3 items-center'>
                         <li className='block'>
                            <a
+                              id='eitaa'
                               rel='noreferrer'
                               href='https://eitaa.com/HanaTech2023'
                               target='_blank'
@@ -49,6 +47,7 @@ const Footer = () => {
                         </li>
                         <li className='block'>
                            <a
+                              id='instagram'
                               rel='noreferrer'
                               href='https://www.instagram.com/HanaTech2023/'
                               target='_blank'
@@ -70,7 +69,12 @@ const Footer = () => {
                            </a>
                         </li>
                         <li className='block'>
-                           <a rel='noreferrer' href='https://t.me/HanaTech2023' target='_blank'>
+                           <a
+                              id='telegram'
+                              rel='noreferrer'
+                              href='https://t.me/HanaTech2023'
+                              target='_blank'
+                           >
                               <svg
                                  className='w-6 h-6 hover:text-blue-600 transition'
                                  width='24'
@@ -89,7 +93,11 @@ const Footer = () => {
                            </a>
                         </li>
                         <li className='block'>
-                           <a href='tel:+989128530920' className='flex items-center'>
+                           <a
+                              id='phone_call'
+                              href='tel:+989128530920'
+                              className='flex items-center'
+                           >
                               <svg
                                  className='w-6 h-6 hover:text-blue-600 transition'
                                  viewBox='0 0 24 24'
@@ -135,6 +143,7 @@ const Footer = () => {
                         <br />
                         از طریق{' '}
                         <a
+                           id='eitaa'
                            rel='noreferrer'
                            className='text-blue-600 text-sm'
                            href='https://eitaa.com/HanaTech2023'
@@ -144,6 +153,7 @@ const Footer = () => {
                         </a>
                         ،{' '}
                         <a
+                           id='instagram'
                            rel='noreferrer'
                            className='text-blue-600 text-sm'
                            href='https://www.instagram.com/HanaTech2023'
@@ -153,6 +163,7 @@ const Footer = () => {
                         </a>
                         ،{' '}
                         <a
+                           id='telegram'
                            rel='noreferrer'
                            className='text-blue-600 text-sm'
                            href='https://t.me/HanaTech2023'
@@ -162,10 +173,10 @@ const Footer = () => {
                         </a>{' '}
                         و{' '}
                         <a
+                           id='phone_call'
                            rel='noreferrer'
                            className='text-blue-600 text-sm'
                            href='tel:+989128530920'
-                           target='_blank'
                         >
                            تماس تلفنی{' '}
                         </a>

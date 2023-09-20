@@ -37,7 +37,7 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
 
                return (
                   <div key={slide._id} className='swiper-slide !flex justify-center rounded-xl'>
-                     <Link href={slide.link}>
+                     <Link id='slide' href={slide.link}>
                         <Image
                            className='rounded-xl'
                            src={`https://tabrizian.storage.iran.liara.space/hanatechnology/slides/${slide.src}`}

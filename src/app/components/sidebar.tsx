@@ -153,7 +153,11 @@ const Sidebar = () => {
                            <Collapse in={categories}>
                               <ul className='border-b border-white border-opacity-10 opacity-90 space-y-4 p-3'>
                                  <li className='flex items-center'>
-                                    <Link className=' flex items-center' href='/search/cctv'>
+                                    <Link
+                                       id='category'
+                                       className=' flex items-center'
+                                       href='/search/cctv?type=category'
+                                    >
                                        <svg
                                           className='h-5 w-5'
                                           viewBox='0 0 24 24'
@@ -223,7 +227,11 @@ const Sidebar = () => {
                            <Collapse in={brands}>
                               <ul className='border-b border-white border-opacity-10 opacity-90 space-y-4 p-3'>
                                  <li className='flex items-center'>
-                                    <Link className=' flex items-center' href='/search/داهوا'>
+                                    <Link
+                                       id='brand'
+                                       className=' flex items-center'
+                                       href='/search/داهوا?type=brand'
+                                    >
                                        <svg
                                           className='h-5 w-5'
                                           width='24'
@@ -295,6 +303,7 @@ const Sidebar = () => {
                               <ul className='border-b border-white border-opacity-10 opacity-90 space-y-4 p-3'>
                                  <li className='flex items-center rounded-lg opacity-90 mb-4 pr-2'>
                                     <a
+                                       id='eitaa'
                                        rel='noreferrer'
                                        className=' flex items-center'
                                        href='https://eitaa.com/HanaTech2023'
@@ -321,6 +330,7 @@ const Sidebar = () => {
                                  </li>
                                  <li className='flex items-center rounded-lg opacity-90 mb-4 pr-2'>
                                     <a
+                                       id='instagram'
                                        rel='noreferrer'
                                        className=' flex items-center'
                                        href='https://www.instagram.com/HanaTech2023'
@@ -357,6 +367,7 @@ const Sidebar = () => {
                                  </li>
                                  <li className='flex items-center rounded-lg opacity-90 mb-4 pr-2'>
                                     <a
+                                       id='telegram'
                                        rel='noreferrer'
                                        className=' flex items-center'
                                        href='https://t.me/HanaTech2023'
@@ -388,10 +399,10 @@ const Sidebar = () => {
 
                                  <li className='flex items-center rounded-lg opacity-90 mb-4 pr-2'>
                                     <a
+                                       id='phone_call'
                                        rel='noreferrer'
                                        className=' flex items-center'
                                        href='tel:+989128530920'
-                                       target='_blank'
                                     >
                                        {/* <span className='bg-green-400 rounded-md p-[0.17rem]'> */}
                                        <span>
@@ -420,7 +431,7 @@ const Sidebar = () => {
 
                      <li className='block'>
                         <div className='text-gray-700 bg-gradient-to-l from-white to-transparent shadow-inner rounded-lg pr-1'>
-                           <a href='#about-us' onClick={() => setSidebar(false)}>
+                           <a id='about_us' href='#about-us' onClick={() => setSidebar(false)}>
                               <div className='relative menu-item flex items-center text-blue-600'>
                                  <span className='py-2 md:py-1 flex items-center gap-x-2 md:hover:text-blue-600 cursor-pointer font-bold'>
                                     <svg

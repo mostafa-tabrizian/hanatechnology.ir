@@ -9,6 +9,7 @@ import hyphen from '@/lib/hyphen'
 import dehyphen from '@/lib/dehyphen'
 
 import Breadcrumbs from '@mui/material/Breadcrumbs'
+import GTMViewItem from './components/GTMViewItem'
 
 const getProduct = async (slug: string) => {
    dbConnect()
@@ -94,15 +95,15 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
       mpn: product.barcode,
       sku: product.barcode,
       // @ts-ignore
-      category: `https://hanatechnology.ir/search/${hyphen(category.slug)}`,
+      category: `https://hanatechnology.ir/search/${hyphen(category.slug)}?type=category`,
       brand: {
          '@type': 'Brand',
          // @ts-ignore
          name: brand.name,
          // @ts-ignore
-         url: `https://hanatechnology.ir/search/${hyphen(category.slug)}`,
+         url: `https://hanatechnology.ir/search/${hyphen(category.slug)}?type=category`,
          // @ts-ignore
-         '@id': `https://hanatechnology.ir/search/${hyphen(category.slug)}/#brand`,
+         '@id': `https://hanatechnology.ir/search/${hyphen(category.slug)}#brand?type=category`,
       },
       offers: {
          '@type': 'Offer',
@@ -132,7 +133,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
             // @ts-ignore
             name: category.name,
             // @ts-ignore
-            item: `https://hanatechnology.ir/search/${hyphen(category.slug)}/`,
+            item: `https://hanatechnology.ir/search/${hyphen(category.slug)}?type=category`,
          },
          {
             '@type': 'ListItem',
@@ -140,7 +141,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
             // @ts-ignore
             name: brand.name,
             // @ts-ignore
-            item: `https://hanatechnology.ir/search/${hyphen(brand.name)}/`,
+            item: `https://hanatechnology.ir/search/${hyphen(brand.name)}?type=brand`,
          },
          { '@type': 'ListItem', position: 4, name: product.name },
       ],
@@ -160,6 +161,18 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
             dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
          />
 
+         <GTMViewItem
+            params={JSON.parse(
+               JSON.stringify({
+                  product,
+                  // @ts-ignore
+                  category: category.name,
+                  // @ts-ignore
+                  brand: brand.name,
+               }),
+            )}
+         />
+
          <div className='mx-6 md:mx-auto max-w-screen-lg my-6'>
             {product?.active ? (
                <div>
@@ -169,14 +182,14 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                            <span className='text-xs hover:text-blue-500'>خانه</span>
                         </Link>
                         {/* @ts-ignore */}
-                        <Link className='text-gray-400' href={`/search/${hyphen(category.slug)}`}>
+                        <Link className='text-gray-400' href={`/search/${hyphen(category.slug)}?type=category`}>
                            <span className='text-xs hover:text-blue-500'>
                               {/* @ts-ignore */}
                               {category.name}
                            </span>
                         </Link>
                         {/* @ts-ignore */}
-                        <Link className='text-gray-400' href={`/search/${hyphen(brand.slug)}`}>
+                        <Link className='text-gray-400' href={`/search/${hyphen(brand.slug)}?type=brand`}>
                            {/* @ts-ignore */}
                            <span className='text-xs hover:text-blue-500'>{brand.name}</span>
                         </Link>
@@ -199,9 +212,9 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                            </div>
                            <div className='flex gap-5'>
                               <div>
-                                 <span>دسته: </span>
+                                 <span>دسته بندی: </span>
                                  {/* @ts-ignore */}
-                                 <Link href={`/search/${hyphen(category.slug)}`}>
+                                 <Link id='category' href={`/search/${hyphen(category.slug)}?type=category`}>
                                     <span className='text-blue-500 font-bold'>
                                        {/* @ts-ignore */}
                                        {category.name}
@@ -212,7 +225,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                               <div>
                                  <span>مدل: </span>
                                  {/* @ts-ignore */}
-                                 <Link href={`/search/${hyphen(model.slug)}`}>
+                                 <Link id='model' href={`/search/${hyphen(model.slug)}?type=model`}>
                                     <span className='text-blue-500 font-bold'>
                                        {/* @ts-ignore */}
                                        {model.name}
@@ -223,7 +236,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                               <div>
                                  <span>برند: </span>
                                  {/* @ts-ignore */}
-                                 <Link href={`/search/${hyphen(brand.slug)}`}>
+                                 <Link id='brand' href={`/search/${hyphen(brand.slug)}?type=brand`}>
                                     <span className='text-blue-500 font-bold'>
                                        {/* @ts-ignore */}
                                        {brand.name}

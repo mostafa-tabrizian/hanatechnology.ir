@@ -93,7 +93,7 @@ const HeaderLinksforDesktop = () => {
                >
                   <ul className='rtl space-y-4 p-3'>
                      <li className='flex items-center'>
-                        <Link className='flex items-center' href='/search/cctv'>
+                        <Link id='category' className='flex items-center' href='/search/cctv?type=category'>
                            <svg
                               className='h-5 w-5'
                               viewBox='0 0 24 24'
@@ -171,7 +171,7 @@ const HeaderLinksforDesktop = () => {
                >
                   <ul className='rtl space-y-4 p-3'>
                      <li className='flex items-center'>
-                        <Link className='flex items-center' href='/search/داهوا'>
+                        <Link id='brand' className='flex items-center' href='/search/داهوا?type=brand'>
                            <svg
                               className='h-5 w-5'
                               width='24'
@@ -248,6 +248,7 @@ const HeaderLinksforDesktop = () => {
                   <ul className='rtl space-y-4 p-3'>
                      <li>
                         <a
+                           id='eitaa'
                            rel='noreferrer'
                            className='flex items-center'
                            href='https://eitaa.com/HanaTech2023'
@@ -274,6 +275,7 @@ const HeaderLinksforDesktop = () => {
                      </li>
                      <li>
                         <a
+                           id='instagram'
                            rel='noreferrer'
                            className='flex items-center'
                            href='https://www.instagram.com/HanaTech2023'
@@ -303,6 +305,7 @@ const HeaderLinksforDesktop = () => {
                      </li>
                      <li>
                         <a
+                           id='telegram'
                            rel='noreferrer'
                            className='flex items-center'
                            href='https://t.me/HanaTech2023'
@@ -334,10 +337,10 @@ const HeaderLinksforDesktop = () => {
 
                      <li>
                         <a
+         id='phone_call'
                            rel='noreferrer'
                            className='flex items-center'
                            href='tel:+989128530920'
-                           target='_blank'
                         >
                            {/* <span className='bg-green-400 rounded-md p-[0.17rem]'> */}
                            <span>
@@ -366,7 +369,7 @@ const HeaderLinksforDesktop = () => {
 
          <li className='block'>
             <div className='text-gray-700'>
-               <a href='#about-us'>
+               <a id='about_us' href='#about-us'>
                   <div className='relative flex items-center'>
                      <span className='py-2 md:py-1 flex items-center gap-x-2 hover:text-blue-600 cursor-pointer font-bold'>
                         <svg

@@ -12,7 +12,7 @@ const SearchInput = () => {
       e.preventDefault()
 
       if (searchQuery.trim()) {
-         router.push(`/search/${hyphen(searchQuery)}`)
+         router.push(`/search/${hyphen(searchQuery)}?type=search`)
       }
    }
 

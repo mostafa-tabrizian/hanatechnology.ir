@@ -139,7 +139,7 @@ async function Home() {
             <Slides slides={JSON.parse(JSON.stringify(slides))} />
 
             <div className='grid grid-cols-2 md:grid-cols-4 gap-x-3'>
-               <Link href='/search/cable'>
+               <Link id='category' href='/search/cable?type=category'>
                   <Image
                      className='rounded-xl'
                      src={'/category/cable.webp'}
@@ -149,7 +149,7 @@ async function Home() {
                      objectFit='contain'
                   />
                </Link>
-               <Link href='/search/fiberoptic'>
+               <Link id='category' href='/search/fiberoptic?type=category'>
                   <Image
                      className='rounded-xl'
                      src={'/category/fiberoptic.webp'}
@@ -159,7 +159,7 @@ async function Home() {
                      objectFit='contain'
                   />
                </Link>
-               <Link href='/search/router'>
+               <Link id='category' href='/search/router?type=category'>
                   <Image
                      className='rounded-xl'
                      src={'/category/router.webp'}
@@ -169,7 +169,7 @@ async function Home() {
                      objectFit='contain'
                   />
                </Link>
-               <Link href='/search/switch'>
+               <Link id='category' href='/search/switch?type=category'>
                   <Image
                      className='rounded-xl'
                      src={'/category/switch.webp'}
