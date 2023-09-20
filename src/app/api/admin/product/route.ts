@@ -16,6 +16,7 @@ export async function POST(request: Request) {
       discount,
       detail,
       publicStatus,
+      inStock
    }: {
       barcode: string
       name: string
@@ -28,6 +29,7 @@ export async function POST(request: Request) {
       discount: number
       detail: string
       publicStatus: boolean
+      inStock: boolean
    } = await request.json()
 
    try {
@@ -43,7 +45,8 @@ export async function POST(request: Request) {
          price,
          discount,
          detail: JSON.parse(detail),
-         publicStatus,
+         public: publicStatus,
+         inStock
       })
 
       return NextResponse.json(product)
@@ -72,6 +75,7 @@ export async function PATCH(request: Request) {
       discount,
       detail,
       publicStatus,
+      inStock
    }: {
       _id: string
       barcode: string
@@ -85,6 +89,7 @@ export async function PATCH(request: Request) {
       discount: number
       detail: string
       publicStatus: boolean
+      inStock: boolean
    } = await request.json()
 
    try {
@@ -104,7 +109,8 @@ export async function PATCH(request: Request) {
             price,
             discount,
             detail: JSON.parse(detail),
-            publicStatus,
+            public: publicStatus,
+            inStock
          },
       )
 

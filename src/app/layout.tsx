@@ -10,6 +10,7 @@ import Analytics from './analytics'
 export default function RootLayout({ children }: { children: React.ReactNode }) {
    return (
       <html lang='fa'>
+         <meta name="color-scheme" content="light only" />
          <body>
             <Analytics />
             <SessionProvider>
