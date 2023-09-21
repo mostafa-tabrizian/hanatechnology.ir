@@ -188,7 +188,7 @@ const DetailForm = ({
                         name='slug'
                         onChange={(e) => addingNewProduct && setFieldValue('slug', e.target.value)}
                         value={values.slug}
-                        className='mr-3 rtl w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
+                        className='mr-3 w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
                         type='text'
                         readOnly={addingNewProduct ? false : true}
                      />

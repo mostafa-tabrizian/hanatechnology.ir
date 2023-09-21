@@ -12,7 +12,7 @@ export const ProductEditForm = yup.object().shape({
       .string()
       .min(3, 'اسلاگ حداقل باید ۳ کارکتر باشد')
       .required('اسلاگ محصول را وارد کنید')
-      .matches(/^[^-]*$/, { message: 'نباید علامت - در اسلاگ محصول باشد' }),
+      .matches(rule.englishCharNumSpaceWithoutSpecial, { message: 'اسلاگ می‌بایست تنها و بدون حروف خاص انگلیسی باشد' }),
    description: yup
       .string()
       .min(30, 'توضیحات حداقل باید ۳۰ کارکتر باشد')
@@ -28,18 +28,17 @@ export const ProductEditForm = yup.object().shape({
       .matches(rule.object, { message: 'جزئیات شما آبجکت نمی‌باشد و اشتباه می‌باشد' }),
 })
 
-export const BrandValidation = yup.object().shape({
+export const NameSlugValidation = yup.object().shape({
    name: yup
       .string()
       .min(3, 'حداقل ۳ کارکتر')
       .required('عنوان را وارد کنید')
-      .matches(rule.persian, { message: 'عنوان را به فارسی وارد کنید' })
       .matches(/^[^-]*$/, { message: 'نباید علامت - در نام محصول باشد' }),
    slug: yup
       .string()
       .min(3, 'حداقل ۳ کارکتر')
       .required('اسلاگ را وارد کنید')
-      .matches(/^[^-]*$/, { message: 'نباید علامت - در اسلاگ محصول باشد' }),
+      .matches(rule.englishCharNumSpaceWithoutSpecial, { message: 'اسلاگ می‌بایست تنها و بدون حروف خاص انگلیسی باشد' }),
 })
 
 export const SlideValidation = yup.object().shape({

@@ -4,7 +4,7 @@ import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import { Formik, Form } from 'formik'
 import CircularProgress from '@mui/material/CircularProgress'
-import { BrandValidation } from '@/formik/schema/validation'
+import { NameSlugValidation } from '@/formik/schema/validation'
 
 const BrandNewInput = () => {
    const router = useRouter()
@@ -50,7 +50,7 @@ const BrandNewInput = () => {
             name: '',
             slug: '',
          }}
-         validationSchema={BrandValidation}
+         validationSchema={NameSlugValidation}
          onSubmit={handleSubmit}
       >
          {({ values, setFieldValue, isSubmitting, errors, touched }) => (

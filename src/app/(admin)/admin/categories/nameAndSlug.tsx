@@ -2,7 +2,7 @@
 
 import { toast } from 'react-toastify'
 import { Formik, Form } from 'formik'
-import { BrandValidation } from '@/formik/schema/validation'
+import { NameSlugValidation } from '@/formik/schema/validation'
 
 const NameAndSlug = ({
    params,
@@ -47,7 +47,7 @@ const NameAndSlug = ({
             name,
             slug,
          }}
-         validationSchema={BrandValidation}
+         validationSchema={NameSlugValidation}
          onSubmit={handleSubmit}
       >
          {({ values, setFieldValue, isSubmitting, errors, touched, submitForm }) => (

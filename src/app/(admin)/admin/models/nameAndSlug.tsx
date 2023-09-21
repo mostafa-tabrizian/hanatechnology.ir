@@ -2,7 +2,7 @@
 
 import { toast } from 'react-toastify'
 import { Formik, Form } from 'formik'
-import { BrandValidation } from '@/formik/schema/validation'
+import { NameSlugValidation } from '@/formik/schema/validation'
 
 const NameAndSlug = ({ params }: { params: { _id: string; name: string; slug: string } }) => {
    const name = params.name.charAt(0).toUpperCase() + params.name.slice(1)
@@ -43,7 +43,7 @@ const NameAndSlug = ({ params }: { params: { _id: string; name: string; slug: st
             name,
             slug,
          }}
-         validationSchema={BrandValidation}
+         validationSchema={NameSlugValidation}
          onSubmit={handleSubmit}
       >
          {({ values, setFieldValue, isSubmitting, errors, touched, submitForm }) => (
