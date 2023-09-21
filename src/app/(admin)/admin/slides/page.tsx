@@ -7,7 +7,7 @@ import Slide from '@/models/slide'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import NewSlide from './components/newSlide'
 import Delete from './components/delete'
-import PublicStatus from './components/active'
+import ActiveStatus from './components/activeStatus'
 
 const getSlides = async () => {
    dbConnect()
@@ -44,20 +44,25 @@ const AdminSlides = async () => {
                         <Delete
                            params={JSON.parse(JSON.stringify({ _id: slide._id, src: slide.src }))}
                         />
-                        <PublicStatus
+                        <ActiveStatus
                            params={JSON.parse(
                               JSON.stringify({ _id: slide._id, active: slide.active }),
                            )}
                         />
-                        <Image
-                           className='rounded-xl aspect-video'
-                           src={`https://tabrizian.storage.iran.liara.space/hanatechnology/slides/${slide.src}`}
-                           alt={slide.alt}
-                           width={690}
-                           height={388.125}
-                           objectFit='contain'
-                           loading='lazy'
-                        />
+                        <Link
+                           target='_blank'
+                           href={`https://tabrizian.storage.iran.liara.space/hanatechnology/slides/${slide.src}`}
+                        >
+                           <Image
+                              className='rounded-xl aspect-video'
+                              src={`https://tabrizian.storage.iran.liara.space/hanatechnology/slides/${slide.src}`}
+                              alt={slide.alt}
+                              width={690}
+                              height={388.125}
+                              objectFit='contain'
+                              loading='lazy'
+                           />
+                        </Link>
                      </div>
                   )
                })

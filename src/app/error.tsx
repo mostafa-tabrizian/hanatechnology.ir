@@ -4,14 +4,14 @@ import { useEffect } from 'react'
 
 export default function Error({ error, reset }: { error: Error; reset: () => void }) {
    useEffect(() => {
-      console.error(error)
+      console.error('error:', error)
+      console.error('message:', error.message)
    }, [error])
 
    return (
-      <div className='space-y-5'>
+      <div className='text-center space-y-5 py-2 px-6 rounded-lg shadow-lg mx-auto my-6 w-fit shadow-blue-700/50'>
          <h2>! خطایی رخ داد</h2>
-         <p>{error.message}</p>
-         <button onClick={() => reset()}>تلاش مجدد</button>
+         <button className='underline' onClick={() => reset()}>تلاش مجدد</button>
       </div>
    )
 }

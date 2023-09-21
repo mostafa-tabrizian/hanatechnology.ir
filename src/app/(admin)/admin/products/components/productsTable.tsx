@@ -6,8 +6,6 @@ import Image from 'next/legacy/image'
 import { DataGrid } from '@mui/x-data-grid'
 import { IProduct } from '@/models/product'
 
-import hyphen from '@/lib/hyphen'
-
 interface IColumns {
    field: string
    headerName: JSX.Element
@@ -31,16 +29,23 @@ const ProductsTable = ({ products }: { products: IProduct[] }) => {
          width: 80,
          type: 'element',
          renderCell: ({ value }) => (
-            <Image
-               className='rounded-xl'
-               src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${
+            <Link
+               target='_blank'
+               href={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${
                   value as string
                }`}
-               alt={String(value)}
-               height={50}
-               width={50}
-               objectFit='cover'
-            />
+            >
+               <Image
+                  className='rounded-xl'
+                  src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${
+                     value as string
+                  }`}
+                  alt={String(value)}
+                  height={50}
+                  width={50}
+                  objectFit='cover'
+               />
+            </Link>
          ),
       },
       {

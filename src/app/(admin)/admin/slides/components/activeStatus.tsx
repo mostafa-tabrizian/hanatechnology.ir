@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 
 import CircularProgress from '@mui/material/CircularProgress'
 
-const PublicStatus = ({
+const ActiveStatus = ({
    params: { _id, active },
 }: {
    params: { _id: string; active: boolean }
@@ -85,4 +85,4 @@ const PublicStatus = ({
    )
 }
 
-export default PublicStatus
+export default ActiveStatus

@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import Image from 'next/legacy/image'
 import { toast } from 'react-toastify'
+import Link from 'next/link'
 
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -132,14 +133,19 @@ const ImageInput = ({
 
                   <div className='relative'>
                      <div className='flex justify-center mx-auto w-full relative aspect-square'>
-                        <Image
-                           className='rounded-lg p-1'
-                           src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${product.thumbnail}`}
-                           alt={product._id}
-                           layout='fill'
-                           sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-                           loading='lazy'
-                        />
+                        <Link
+                           target='_blank'
+                           href={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${product.thumbnail}`}
+                        >
+                           <Image
+                              className='rounded-lg p-1'
+                              src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${product.thumbnail}`}
+                              alt={product._id}
+                              layout='fill'
+                              sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                              loading='lazy'
+                           />
+                        </Link>
                      </div>
 
                      <ImageDelete
@@ -209,14 +215,19 @@ const ImageInput = ({
                         return (
                            <div key={image} className='relative'>
                               <div className='flex justify-center mx-auto my-3 w-full relative aspect-square'>
-                                 <Image
-                                    className='rounded-lg p-1'
-                                    src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${image}`}
-                                    alt={image}
-                                    layout='fill'
-                                    sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-                                    loading='lazy'
-                                 />
+                                 <Link
+                                    target='_blank'
+                                    href={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${image}`}
+                                 >
+                                    <Image
+                                       className='rounded-lg p-1'
+                                       src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${image}`}
+                                       alt={image}
+                                       layout='fill'
+                                       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                                       loading='lazy'
+                                    />
+                                 </Link>
                               </div>
                               <ImageDelete type={'images'} product={product._id} image={image} />
                            </div>
