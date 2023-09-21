@@ -64,9 +64,7 @@ export async function POST(request: Request) {
 export async function PATCH(request: Request) {
    const {
       _id,
-      barcode,
       name,
-      slug,
       description,
       category,
       brand,
@@ -78,9 +76,7 @@ export async function PATCH(request: Request) {
       inStock
    }: {
       _id: string
-      barcode: string
       name: string
-      slug: string
       description: string
       category: object
       brand: object
@@ -99,9 +95,7 @@ export async function PATCH(request: Request) {
             _id: _id,
          },
          {
-            barcode,
             name,
-            slug,
             description,
             category,
             brand,

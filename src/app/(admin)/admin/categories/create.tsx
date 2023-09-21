@@ -54,36 +54,38 @@ const CategoryNewInput = () => {
          onSubmit={handleSubmit}
       >
          {({ values, setFieldValue, isSubmitting, errors, touched }) => (
-            <Form className='flex justify-center rtl items-center space-x-3 space-x-reverse w-full'>
+            <Form className='flex justify-center rtl items-start space-x-3 space-x-reverse w-full'>
                <div>
-                  <div className='text-right space-y-1'>
+                  <div className='text-right mr-3 space-y-1'>
                      <input
                         placeholder='نام'
                         name='name'
                         onChange={(e) => setFieldValue('name', e.target.value)}
                         value={values.name}
-                        className='mr-3 rtl w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
+                        className='rtl w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
                         type='text'
                      />
-                  </div>
 
-                  {errors.name && touched.name ? (
-                     <p className='text-sm text-red-500 text-right'>{errors.name}</p>
-                  ) : (
-                     ''
-                  )}
-               </div>
-               <div>
-                  <div className='text-right space-y-1'>
-                     <input
-                        placeholder='اسلاگ'
-                        name='slug'
-                        onChange={(e) => setFieldValue('slug', e.target.value)}
-                        value={values.slug}
-                        className='mr-3 rtl w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
-                        type='text'
-                     />
+                     {errors.name && touched.name ? (
+                        <p className='text-sm text-red-500 text-right'>{errors.name}</p>
+                     ) : (
+                        ''
+                     )}
                   </div>
+               </div>
+               <div className='text-right mr-3 space-y-1'>
+                  <input
+                     placeholder='اسلاگ'
+                     name='slug'
+                     onChange={(e) => setFieldValue('slug', e.target.value)}
+                     value={values.slug}
+                     className='rtl w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
+                     type='text'
+                  />
+
+                  <p className='text-[.6rem] text-yellow-500 text-right'>
+                     اسلاگ غیر قابل تغییر خواهد بود
+                  </p>
 
                   {errors.slug && touched.slug ? (
                      <p className='text-sm text-red-500 text-right'>{errors.slug}</p>

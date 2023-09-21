@@ -12,11 +12,10 @@ const NameAndSlug = ({
    const name = params._doc.name.charAt(0).toUpperCase() + params._doc.name.slice(1)
    const slug = params._doc.slug.charAt(0).toUpperCase() + params._doc.slug.slice(1)
 
-   const handleSubmit = async ({ name, slug }: { name: string; slug: string }) => {
+   const handleSubmit = async ({ name }: { name: string }) => {
       const payload = {
          _id: params._doc._id,
          name: name.trim(),
-         slug: slug.trim().toLowerCase(),
       }
 
       try {
@@ -35,7 +34,7 @@ const NameAndSlug = ({
             return toast.error('در ثبت اطلاعات خطایی رخ داد')
          }
 
-         toast.success('نام برند با موفقیت تغییر کرد')
+         toast.success('نام برند با موفقیت تغییر گردید')
       } catch (err) {
          toast.error('در تغییر نام برند خطایی رخ داد')
          console.error(err)
@@ -45,14 +44,14 @@ const NameAndSlug = ({
    return (
       <Formik
          initialValues={{
-            name: name,
-            slug: slug,
+            name,
+            slug,
          }}
          validationSchema={BrandValidation}
          onSubmit={handleSubmit}
       >
          {({ values, setFieldValue, isSubmitting, errors, touched, submitForm }) => (
-            <Form className='grid grid-cols-4 col-span-4 rtl items-center w-full'>
+            <Form className='grid grid-cols-4 col-span-4 rtl items-start w-full'>
                <div className='col-span-2'>
                   <div className='text-right space-y-1 ml-2'>
                      <input
@@ -78,24 +77,12 @@ const NameAndSlug = ({
                <div className='col-span-2'>
                   <div className='text-right space-y-1'>
                      <input
-                        disabled={isSubmitting}
-                        placeholder='اسلاگ'
                         name='slug'
-                        onChange={(e) => setFieldValue('slug', e.target.value)}
-                        value={values.slug}
+                        value={slug}
                         className='w-full text-sm bg-transparent'
-                        type='text'
-                        onKeyDown={(e) => {
-                           if (e.key == 'Enter') submitForm()
-                        }}
+                        readOnly
                      />
                   </div>
-
-                  {errors.slug && touched.slug ? (
-                     <p className='text-sm text-red-500 text-right'>{errors.slug}</p>
-                  ) : (
-                     ''
-                  )}
                </div>
             </Form>
          )}

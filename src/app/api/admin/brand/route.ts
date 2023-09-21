@@ -27,11 +27,11 @@ export async function POST(req: Request) {
 }
 
 export async function PATCH(req: Request) {
-   const { _id, name, slug } = await req.json()
+   const { _id, name } = await req.json()
 
    try {
       await dbConnect()
-      const brand = await Brand.findOneAndUpdate({ _id }, { name, slug })
+      const brand = await Brand.findOneAndUpdate({ _id }, { name })
 
       return NextResponse.json({ brand })
    } catch (error) {

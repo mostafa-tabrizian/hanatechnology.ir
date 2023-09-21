@@ -26,16 +26,13 @@ export async function POST(req: Request) {
 }
 
 export async function PATCH(req: Request) {
-   const { _id, name, slug } = await req.json()
+   const { _id, name } = await req.json()
 
    try {
       await dbConnect()
       const category = await Category.findOneAndUpdate(
          { _id },
-         {
-            name,
-            slug,
-         },
+         { name },
       )
 
       return NextResponse.json({

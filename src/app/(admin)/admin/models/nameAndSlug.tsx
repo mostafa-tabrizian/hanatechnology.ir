@@ -8,11 +8,10 @@ const NameAndSlug = ({ params }: { params: { _id: string; name: string; slug: st
    const name = params.name.charAt(0).toUpperCase() + params.name.slice(1)
    const slug = params.slug.charAt(0).toUpperCase() + params.slug.slice(1)
 
-   const handleSubmit = async ({ name, slug }: { name: string; slug: string }) => {
+   const handleSubmit = async ({ name }: { name: string }) => {
       const payload = {
          _id: params._id,
          name: name.trim(),
-         slug: slug.trim().toLowerCase(),
       }
 
       try {
@@ -31,7 +30,7 @@ const NameAndSlug = ({ params }: { params: { _id: string; name: string; slug: st
             return toast.error('در ثبت اطلاعات خطایی رخ داد')
          }
 
-         toast.success('نام دسته بندی با موفقیت تغییر کرد')
+         toast.success('نام دسته بندی با موفقیت تغییر یافت')
       } catch (err) {
          toast.error('در تغییر نام دسته بندی خطایی رخ داد')
          console.error(err)
@@ -41,14 +40,14 @@ const NameAndSlug = ({ params }: { params: { _id: string; name: string; slug: st
    return (
       <Formik
          initialValues={{
-            name: name,
-            slug: slug,
+            name,
+            slug,
          }}
          validationSchema={BrandValidation}
          onSubmit={handleSubmit}
       >
          {({ values, setFieldValue, isSubmitting, errors, touched, submitForm }) => (
-            <Form className='grid grid-cols-4 col-span-4 rtl items-center w-full'>
+            <Form className='grid grid-cols-4 col-span-4 rtl items-start w-full'>
                <div className='col-span-2'>
                   <div className='text-right space-y-1 ml-2'>
                      <input
@@ -73,25 +72,8 @@ const NameAndSlug = ({ params }: { params: { _id: string; name: string; slug: st
                </div>
                <div className='col-span-2'>
                   <div className='text-right space-y-1'>
-                     <input
-                        disabled={isSubmitting}
-                        placeholder='اسلاگ'
-                        name='slug'
-                        onChange={(e) => setFieldValue('slug', e.target.value)}
-                        value={values.slug}
-                        className='w-full text-sm bg-transparent'
-                        type='text'
-                        onKeyDown={(e) => {
-                           if (e.key == 'Enter') submitForm()
-                        }}
-                     />
+                     <input name='slug' value={slug} className='w-full text-sm bg-transparent' />
                   </div>
-
-                  {errors.slug && touched.slug ? (
-                     <p className='text-sm text-red-500 text-right'>{errors.slug}</p>
-                  ) : (
-                     ''
-                  )}
                </div>
             </Form>
          )}
