@@ -95,9 +95,7 @@ const NewSlide = () => {
    }
 
    // @ts-ignore
-   const handleSlideImageSelect = (e) => {
-      const files = e?.target?.files
-
+   const handleSlideImageSelect = (files) => {
       if (!files) return
 
       const filesList: File[] = Object.values(files)
@@ -110,6 +108,9 @@ const NewSlide = () => {
 
       setSlideImageToUpload(files)
    }
+
+   // @ts-ignore
+   const dragOverHandler = (event) => event.preventDefault()
 
    return (
       <div>
@@ -136,17 +137,25 @@ const NewSlide = () => {
                            objectFit='contain'
                         />
                      ) : (
-                        <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
-                           <span>انتخاب تصویر اسلاید</span>
-                           <input
-                              hidden
-                              accept='image/*'
-                              type='file'
-                              name='slideImages'
-                              onChange={handleSlideImageSelect}
-                              disabled={isSubmitting}
-                           />
-                        </Button>
+                        <div
+                           onDrop={(e) => {
+                              e.preventDefault()
+                              handleSlideImageSelect(e.dataTransfer.files)
+                           }}
+                           onDragOver={dragOverHandler}
+                        >
+                           <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
+                              <span>انتخاب تصویر اسلاید</span>
+                              <input
+                                 hidden
+                                 accept='image/*'
+                                 type='file'
+                                 name='slideImages'
+                                 onChange={(e) => handleSlideImageSelect(e.target.files)}
+                                 disabled={isSubmitting}
+                              />
+                           </Button>
+                        </div>
                      )}
                   </div>
 

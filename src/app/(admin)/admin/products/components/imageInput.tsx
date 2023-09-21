@@ -84,9 +84,7 @@ const ImageInput = ({
    }
 
    // @ts-ignore
-   const onChange = (e) => {
-      const files = e?.target?.files
-
+   const onImagesSelected = (files) => {
       if (!files) return
 
       const filesList: File[] = Object.values(files)
@@ -98,6 +96,33 @@ const ImageInput = ({
       if (!sizeCheckRes) return
 
       setImageToUpload(files)
+   }
+
+   // @ts-ignore
+   const dragOverHandler = (event) => event.preventDefault()
+
+   // @ts-ignore
+   const dropHandlerThumbnail = (event) => {
+      event.preventDefault()
+      const files = event.dataTransfer.files
+
+      if (!files) return toast.warning('در دریافت فایل ها خطایی رخ داد')
+      else if (files.length !== 1)
+         return toast.warning(
+            'تعداد تصاویر انتخاب شده بیشتر از یک عدد می‌باشد. تامبنیل می‌بایست یک عدد باشد',
+         )
+
+      onImagesSelected(files)
+   }
+
+   // @ts-ignore
+   const dropHandlerImages = (event) => {
+      event.preventDefault()
+      const files = event.dataTransfer.files
+
+      if (!files) return toast.warning('در دریافت فایل ها خطایی رخ داد')
+
+      onImagesSelected(files)
    }
 
    return (
@@ -156,50 +181,52 @@ const ImageInput = ({
                   </div>
                </div>
             ) : (
-               <div>
-                  <div className='flex items-center justify-end space-x-3'>
-                     {loading ? (
-                        <div className='bg-slate-100 border-2 border-slate-200 rounded-lg p-1.5'>
-                           <CircularProgress color='success' size={20} />
-                        </div>
-                     ) : (
-                        <button
-                           disabled={loading}
-                           onClick={() => onSubmit('thumbnail')}
-                           className='bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
-                        >
-                           <svg
-                              className='h-5 w-5'
-                              width='24'
-                              height='24'
-                              viewBox='0 0 24 24'
-                              strokeWidth='2'
-                              stroke='currentColor'
-                              fill='none'
-                              strokeLinecap='round'
-                              strokeLinejoin='round'
-                           >
-                              {' '}
-                              <path stroke='none' d='M0 0h24v24H0z' />{' '}
-                              <path d='M7 18a4.6 4.4 0 0 1 0 -9h0a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1' />{' '}
-                              <polyline points='9 15 12 12 15 15' />{' '}
-                              <line x1='12' y1='12' x2='12' y2='21' />
-                           </svg>
-                        </button>
-                     )}
-                     <div className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'>
-                        <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
-                           <span>انتخاب تامبنیل</span>
-                           <input
-                              hidden
-                              accept='image/*'
-                              type='file'
-                              name='imageToUpload'
-                              onChange={onChange}
-                              disabled={loading}
-                           />
-                        </Button>
+               <div className='flex items-center justify-end space-x-3'>
+                  {loading ? (
+                     <div className='bg-slate-100 border-2 border-slate-200 rounded-lg p-1.5'>
+                        <CircularProgress color='success' size={20} />
                      </div>
+                  ) : (
+                     <button
+                        disabled={loading}
+                        onClick={() => onSubmit('thumbnail')}
+                        className='bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
+                     >
+                        <svg
+                           className='h-5 w-5'
+                           width='24'
+                           height='24'
+                           viewBox='0 0 24 24'
+                           strokeWidth='2'
+                           stroke='currentColor'
+                           fill='none'
+                           strokeLinecap='round'
+                           strokeLinejoin='round'
+                        >
+                           {' '}
+                           <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                           <path d='M7 18a4.6 4.4 0 0 1 0 -9h0a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1' />{' '}
+                           <polyline points='9 15 12 12 15 15' />{' '}
+                           <line x1='12' y1='12' x2='12' y2='21' />
+                        </svg>
+                     </button>
+                  )}
+                  <div
+                     onDrop={dropHandlerThumbnail}
+                     onDragOver={dragOverHandler}
+                     className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'
+                  >
+                     <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
+                        <span>انتخاب تامبنیل</span>
+                        <input
+                           hidden
+                           accept='image/*'
+                           type='file'
+                           name='imageToUpload'
+                           onChange={(e) => onImagesSelected(e?.target?.files)}
+                           disabled={loading}
+                        />
+                     </Button>
                   </div>
                </div>
             )}
@@ -239,70 +266,72 @@ const ImageInput = ({
                ''
             )}
 
-            <div>
-               <div className='flex items-center justify-end space-x-3'>
-                  {loading ? (
-                     <div className='bg-slate-100 border-2 border-slate-200 rounded-lg p-1.5'>
-                        <CircularProgress color='success' size={20} />
-                     </div>
-                  ) : (
-                     <button
-                        disabled={loading}
-                        onClick={() => onSubmit('images')}
-                        className='bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
-                     >
-                        <svg
-                           className='h-5 w-5'
-                           width='24'
-                           height='24'
-                           viewBox='0 0 24 24'
-                           strokeWidth='2'
-                           stroke='currentColor'
-                           fill='none'
-                           strokeLinecap='round'
-                           strokeLinejoin='round'
-                        >
-                           {' '}
-                           <path stroke='none' d='M0 0h24v24H0z' />{' '}
-                           <path d='M7 18a4.6 4.4 0 0 1 0 -9h0a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1' />{' '}
-                           <polyline points='9 15 12 12 15 15' />{' '}
-                           <line x1='12' y1='12' x2='12' y2='21' />
-                        </svg>
-                     </button>
-                  )}
-                  <div className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'>
-                     <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
-                        <span>انتخاب تصاویر</span>
-                        <input
-                           hidden
-                           accept='image/*'
-                           type='file'
-                           name='productImages'
-                           onChange={onChange}
-                           multiple
-                           disabled={loading}
-                        />
-                     </Button>
+            <div className='flex items-center justify-end space-x-3'>
+               {loading ? (
+                  <div className='bg-slate-100 border-2 border-slate-200 rounded-lg p-1.5'>
+                     <CircularProgress color='success' size={20} />
                   </div>
+               ) : (
+                  <button
+                     disabled={loading}
+                     onClick={() => onSubmit('images')}
+                     className='bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
+                  >
+                     <svg
+                        className='h-5 w-5'
+                        width='24'
+                        height='24'
+                        viewBox='0 0 24 24'
+                        strokeWidth='2'
+                        stroke='currentColor'
+                        fill='none'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                     >
+                        {' '}
+                        <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                        <path d='M7 18a4.6 4.4 0 0 1 0 -9h0a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1' />{' '}
+                        <polyline points='9 15 12 12 15 15' />{' '}
+                        <line x1='12' y1='12' x2='12' y2='21' />
+                     </svg>
+                  </button>
+               )}
+               <div
+                  onDrop={dropHandlerImages}
+                  onDragOver={dragOverHandler}
+                  className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'
+               >
+                  <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
+                     <span>انتخاب تصاویر</span>
+                     <input
+                        hidden
+                        accept='image/*'
+                        type='file'
+                        name='productImages'
+                        onChange={(e) => onImagesSelected(e?.target?.files)}
+                        multiple
+                        disabled={loading}
+                     />
+                  </Button>
                </div>
+            </div>
 
-               <div className=' border border-green-600/50 p-2 mt-2 rounded-lg text-right'>
-                  <span className='text-xs text-green-600/70'>
-                     تصویر کم حجم تر برابر با <br /> امکان ذخیره سازی تصاویر بیشتر
-                  </span>
-               </div>
+            <div className=' border border-green-600/50 p-2 mt-2 rounded-lg text-right'>
+               <span className='text-xs text-green-600/70'>
+                  تصویر کم حجم تر برابر با <br /> امکان ذخیره سازی تصاویر بیشتر
+               </span>
+            </div>
 
-               <div className=' border border-green-600/50 p-2 mt-2 rounded-lg text-right'>
-                  <span className='text-xs text-green-600/70'>
-                     حجم ایده آل تا ۱۵۰ کیلوبایت می‌باشد
-                  </span>
-               </div>
+            <div className=' border border-green-600/50 p-2 mt-2 rounded-lg text-right'>
+               <span className='text-xs text-green-600/70'>
+                  حجم ایده آل تا ۱۵۰ کیلوبایت می‌باشد
+               </span>
+            </div>
 
-               <div className=' border border-green-600/50 p-2 mt-2 rounded-lg text-right'>
-                  <span className='text-xs text-green-600/70'>
-                     حجم عکس تاثیر قابل توجهی بر کاربر نمی‌گذارد
-                  </span>
-               </div>
+            <div className=' border border-green-600/50 p-2 mt-2 rounded-lg text-right'>
+               <span className='text-xs text-green-600/70'>
+                  حجم عکس تاثیر قابل توجهی بر کاربر نمی‌گذارد
+               </span>
             </div>
          </div>
       </div>

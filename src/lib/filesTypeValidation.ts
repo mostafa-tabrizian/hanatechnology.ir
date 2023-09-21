@@ -10,7 +10,7 @@ const filesTypeValidation = (files: File[]) => {
    })
 
    if (invalidFile) {
-      toast.warning(`تایپ فایل ${invalidFile.name} می‌بایست jpeg یا webp ,avif باشد`)
+      toast.warning(`تایپ فایل ${invalidFile.name} می‌بایست jpeg webp یا avif باشد`)
       return false
    } else return true
 }
