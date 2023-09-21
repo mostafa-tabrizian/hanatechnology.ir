@@ -63,6 +63,15 @@ const AdminSlides = async () => {
                               loading='lazy'
                            />
                         </Link>
+
+                        <div className='flex flex-col absolute bottom-4 right-2 bg-white/40 p-1 rounded'>
+                           <span className='text-right'>
+                              <strong>{slide.alt}</strong> :عنوان
+                           </span>
+                           <span className='text-right'>
+                              <strong>{slide.link}</strong> :لینک
+                           </span>
+                        </div>
                      </div>
                   )
                })
