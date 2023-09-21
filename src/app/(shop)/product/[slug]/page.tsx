@@ -48,15 +48,25 @@ const getProduct = async (slug: string) => {
    return productsMatch[0]
 }
 
-const getProductsByBrand = async (category: { _id: string }, brand: { _id: string }) => {
+const getProductsByBrand = async (
+   slug: string,
+   category: { _id: string },
+   brand: { _id: string },
+) => {
    dbConnect()
 
-   return await Product.find({
+   const productsByBrand = await Product.find({
       category: category._id,
       brand: brand._id,
    })
-      .limit(7)
+      .limit(10)
       .exec()
+
+   const productsWithoutCurrentOne = productsByBrand.filter(
+      (product) => product.slug !== dehyphen(slug) && product.active == true,
+   )
+
+   return productsWithoutCurrentOne
 }
 
 export const generateMetadata = async ({ params }: { params: { slug: string } }) => {
@@ -73,13 +83,14 @@ export const generateMetadata = async ({ params }: { params: { slug: string } })
 }
 
 const ProductPage = async ({ params }: { params: { slug: string } }) => {
-   const product: IProduct = await getProduct(params.slug)
+   const slug = params.slug
+   const product: IProduct = await getProduct(slug)
    const category = product.category[0]
    const brand = product.brand[0]
    const model = product.model[0]
 
    // @ts-ignore
-   const productsByBrand: IProduct[] = await getProductsByBrand(category, brand)
+   const productsByBrand: IProduct[] = await getProductsByBrand(slug, category, brand)
 
    const imagesListForJsonLd = []
    imagesListForJsonLd.push(product.thumbnail)
@@ -181,15 +192,21 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                         <Link className='text-gray-400' href='/'>
                            <span className='text-xs hover:text-blue-500'>خانه</span>
                         </Link>
-                        {/* @ts-ignore */}
-                        <Link className='text-gray-400' href={`/search/${hyphen(category.slug)}?type=category`}>
+                        <Link
+                           className='text-gray-400'
+                           // @ts-ignore
+                           href={`/search/${hyphen(category.slug)}?type=category`}
+                        >
                            <span className='text-xs hover:text-blue-500'>
                               {/* @ts-ignore */}
                               {category.name}
                            </span>
                         </Link>
-                        {/* @ts-ignore */}
-                        <Link className='text-gray-400' href={`/search/${hyphen(brand.slug)}?type=brand`}>
+                        <Link
+                           className='text-gray-400'
+                           // @ts-ignore
+                           href={`/search/${hyphen(brand.slug)}?type=brand`}
+                        >
                            {/* @ts-ignore */}
                            <span className='text-xs hover:text-blue-500'>{brand.name}</span>
                         </Link>
@@ -213,8 +230,11 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                            <div className='flex gap-5'>
                               <div>
                                  <span>دسته بندی: </span>
-                                 {/* @ts-ignore */}
-                                 <Link id='category' href={`/search/${hyphen(category.slug)}?type=category`}>
+                                 <Link
+                                    id='category'
+                                    // @ts-ignore
+                                    href={`/search/${hyphen(category.slug)}?type=category`}
+                                 >
                                     <span className='text-blue-500 font-bold'>
                                        {/* @ts-ignore */}
                                        {category.name}
