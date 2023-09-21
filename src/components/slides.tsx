@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import Link from 'next/link'
 
 // @ts-ignore
@@ -30,21 +30,20 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
    }, [])
 
    return (
-      <div className='slides rtl relative'>
+      <div className='slides mx-auto w-full md:w-4/6 rtl relative'>
          <div className='swiper-wrapper pb-10'>
             {slides.map((slide) => {
                if (!slide.active) return
 
                return (
-                  <div key={slide._id} className='swiper-slide !flex justify-center rounded-xl'>
+                  <div key={slide._id} className='swiper-slide aspect-video relative justify-center rounded-xl'>
                      <Link id='slide' href={slide.link}>
                         <Image
                            className='rounded-xl'
                            src={`https://tabrizian.storage.iran.liara.space/hanatechnology/slides/${slide.src}`}
                            alt={slide.alt}
-                           width={690}
-                           height={388}
-                           objectFit='contain'
+                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                           layout='fill'
                            priority
                         />
                      </Link>

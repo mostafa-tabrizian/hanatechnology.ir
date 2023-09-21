@@ -131,16 +131,16 @@ const ImageInput = ({
                   <span className='text-slate-400'>تامبنیل محصول</span>
 
                   <div className='relative'>
-                     <Image
-                        className='object-contain rounded-xl'
-                        src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${product.thumbnail}`}
-                        alt={product.thumbnail}
-                        width='250'
-                        height='250'
-                        quality={100}
-                        objectFit='contain'
-                        loading='lazy'
-                     />
+                     <div className='flex justify-center mx-auto w-full relative aspect-square'>
+                        <Image
+                           className='rounded-lg p-1'
+                           src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${product.thumbnail}`}
+                           alt={product._id}
+                           layout='fill'
+                           sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                           loading='lazy'
+                        />
+                     </div>
 
                      <ImageDelete
                         type={'thumbnail'}
@@ -208,16 +208,16 @@ const ImageInput = ({
                      {product.images.map((image) => {
                         return (
                            <div key={image} className='relative'>
-                              <Image
-                                 className='object-contain rounded-xl'
-                                 src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${image}`}
-                                 alt={image}
-                                 width='250'
-                                 height='250'
-                                 quality={100}
-                                 objectFit='contain'
-                                 loading='lazy'
-                              />
+                              <div className='flex justify-center mx-auto my-3 w-full relative aspect-square'>
+                                 <Image
+                                    className='rounded-lg p-1'
+                                    src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${image}`}
+                                    alt={image}
+                                    layout='fill'
+                                    sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                                    loading='lazy'
+                                 />
+                              </div>
                               <ImageDelete type={'images'} product={product._id} image={image} />
                            </div>
                         )
@@ -228,49 +228,69 @@ const ImageInput = ({
                ''
             )}
 
-            <div className='flex items-center justify-end space-x-3'>
-               {loading ? (
-                  <div className='bg-slate-100 border-2 border-slate-200 rounded-lg p-1.5'>
-                     <CircularProgress color='success' size={20} />
-                  </div>
-               ) : (
-                  <button
-                     disabled={loading}
-                     onClick={() => onSubmit('images')}
-                     className='bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
-                  >
-                     <svg
-                        className='h-5 w-5'
-                        width='24'
-                        height='24'
-                        viewBox='0 0 24 24'
-                        strokeWidth='2'
-                        stroke='currentColor'
-                        fill='none'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                     >
-                        {' '}
-                        <path stroke='none' d='M0 0h24v24H0z' />{' '}
-                        <path d='M7 18a4.6 4.4 0 0 1 0 -9h0a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1' />{' '}
-                        <polyline points='9 15 12 12 15 15' />{' '}
-                        <line x1='12' y1='12' x2='12' y2='21' />
-                     </svg>
-                  </button>
-               )}
-               <div className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'>
-                  <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
-                     <span>انتخاب تصاویر</span>
-                     <input
-                        hidden
-                        accept='image/*'
-                        type='file'
-                        name='productImages'
-                        onChange={onChange}
-                        multiple
+            <div>
+               <div className='flex items-center justify-end space-x-3'>
+                  {loading ? (
+                     <div className='bg-slate-100 border-2 border-slate-200 rounded-lg p-1.5'>
+                        <CircularProgress color='success' size={20} />
+                     </div>
+                  ) : (
+                     <button
                         disabled={loading}
-                     />
-                  </Button>
+                        onClick={() => onSubmit('images')}
+                        className='bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
+                     >
+                        <svg
+                           className='h-5 w-5'
+                           width='24'
+                           height='24'
+                           viewBox='0 0 24 24'
+                           strokeWidth='2'
+                           stroke='currentColor'
+                           fill='none'
+                           strokeLinecap='round'
+                           strokeLinejoin='round'
+                        >
+                           {' '}
+                           <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                           <path d='M7 18a4.6 4.4 0 0 1 0 -9h0a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1' />{' '}
+                           <polyline points='9 15 12 12 15 15' />{' '}
+                           <line x1='12' y1='12' x2='12' y2='21' />
+                        </svg>
+                     </button>
+                  )}
+                  <div className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'>
+                     <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
+                        <span>انتخاب تصاویر</span>
+                        <input
+                           hidden
+                           accept='image/*'
+                           type='file'
+                           name='productImages'
+                           onChange={onChange}
+                           multiple
+                           disabled={loading}
+                        />
+                     </Button>
+                  </div>
+               </div>
+
+               <div className=' border border-green-600/50 p-2 mt-2 rounded-lg text-right'>
+                  <span className='text-xs text-green-600/70'>
+                     تصویر کم حجم تر برابر با <br /> امکان ذخیره سازی تصاویر بیشتر
+                  </span>
+               </div>
+
+               <div className=' border border-green-600/50 p-2 mt-2 rounded-lg text-right'>
+                  <span className='text-xs text-green-600/70'>
+                     حجم ایده آل تا ۱۵۰ کیلوبایت می‌باشد
+                  </span>
+               </div>
+
+               <div className=' border border-green-600/50 p-2 mt-2 rounded-lg text-right'>
+                  <span className='text-xs text-green-600/70'>
+                     حجم عکس تاثیر قابل توجهی بر کاربر نمی‌گذارد
+                  </span>
                </div>
             </div>
          </div>

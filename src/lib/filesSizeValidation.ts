@@ -8,7 +8,7 @@ const filesSizeValidation = (files: File[]) => {
    files.map((file) => {
       const size = sizeCalculator(file.size)
 
-      if (size > 100) {
+      if (size > 1000) {
          const size = Math.round(sizeCalculator(file.size))
          invalidFile = { valid: false, size, name: file.name }
       }
@@ -16,7 +16,7 @@ const filesSizeValidation = (files: File[]) => {
 
    if (invalidFile) {
       toast.warning(
-         `سایز فایل ${invalidFile.name} برابر با ${invalidFile.size} کیلوبایت می‌باشد. حداکثر هر فایل می‌بایست 100 کیلوبایت باشد`,
+         `سایز فایل ${invalidFile.name} برابر با ${invalidFile.size} کیلوبایت می‌باشد. حداکثر هر فایل می‌بایست 1000 کیلوبایت معادل 1 مگابایت باشد`,
       )
       return false
    } else return true

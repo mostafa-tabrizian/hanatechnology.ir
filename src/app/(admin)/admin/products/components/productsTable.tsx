@@ -129,7 +129,7 @@ const ProductsTable = ({ products }: { products: IProduct[] }) => {
          width: 300,
          type: 'element',
          renderCell: ({ value }) => (
-            <Link href={`/admin/products/${hyphen(value as string)}`}>
+            <Link href={`/admin/products/${(value as string).replaceAll(' ', '-')}`}>
                <span>{value}</span>
             </Link>
          ),

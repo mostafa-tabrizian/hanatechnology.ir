@@ -8,15 +8,14 @@ import hyphen from '@/lib/hyphen'
 const ProductCards = ({ product }: { product: IProduct }) => {
    return (
       <Link id={product.slug} key={product._id} href={'/product/' + hyphen(product.slug)}>
-         <div className='p-2 flex flex-col justify-between shadow-slate-200 bg-white shadow-lg h-fit space-y-5 rounded-xl'>
-            <div className='flex justify-center'>
+         <div className='p-1 flex flex-col justify-between shadow-slate-200 bg-white h-full shadow-lg space-y-5 rounded-xl'>
+            <div className='flex justify-center mx-auto w-full relative aspect-square'>
                <Image
-                  className='object-contain aspect-square opacity-0 transition-opacity duration-300'
+                  className='opacity-0 transition-opacity duration-300 rounded-lg p-1'
                   src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${product.thumbnail}`}
                   alt={product.name}
-                  width='170'
-                  height='170'
-                  objectFit='contain'
+                  layout='fill'
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   loading='lazy'
                   onLoad={(e) => (e.target as HTMLImageElement).classList.remove('opacity-0')}
                />
