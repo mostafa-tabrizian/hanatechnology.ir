@@ -6,8 +6,11 @@ import { useState, useEffect } from 'react'
 import Collapse from '@mui/material/Collapse'
 import { usePathname } from 'next/navigation'
 import Image from 'next/legacy/image'
+import { ICategory } from '@/models/category'
+import { IBrand } from '@/models/brand'
+import hyphen from '@/lib/hyphen'
 
-const Sidebar = () => {
+const Sidebar = ({ categoriesList, brandsList }: { categoriesList: ICategory[], brandsList: IBrand[] }) => {
    const [sidebar, setSidebar] = useState(false)
    const [categories, setCategories] = useState(false)
    const [brands, setBrands] = useState(false)
@@ -152,30 +155,21 @@ const Sidebar = () => {
 
                            <Collapse in={categories}>
                               <ul className='border-b border-white border-opacity-10 opacity-90 space-y-4 p-3'>
-                                 <li className='flex items-center'>
-                                    <Link
-                                       id='category'
-                                       className=' flex items-center'
-                                       href='/search/cctv?type=category'
-                                    >
-                                       <svg
-                                          className='h-5 w-5'
-                                          viewBox='0 0 24 24'
-                                          fill='none'
-                                          stroke='currentColor'
-                                          strokeWidth='2'
-                                          strokeLinecap='round'
-                                          strokeLinejoin='round'
-                                       >
-                                          {' '}
-                                          <polygon points='23 7 16 12 23 17 23 7' />{' '}
-                                          <rect x='1' y='5' width='15' height='14' rx='2' ry='2' />
-                                       </svg>
-                                       <p className='font-semibold px-2'>
-                                          <span className='text-sm'>دوربین مداربسته</span>
-                                       </p>
-                                    </Link>
-                                 </li>
+                                 {categoriesList.map((category) => {
+                                    return (
+                                       <li key={category._id} className='flex items-center'>
+                                          <Link
+                                             id='category'
+                                             className=' flex items-center'
+                                             href={`/search/${hyphen(category.name)}?type=category`}
+                                          >
+                                             <p className='font-semibold px-2 text-sm'>
+                                                {category.name}
+                                             </p>
+                                          </Link>
+                                       </li>
+                                    )
+                                 })}
                               </ul>
                            </Collapse>
                         </div>
@@ -226,32 +220,21 @@ const Sidebar = () => {
 
                            <Collapse in={brands}>
                               <ul className='border-b border-white border-opacity-10 opacity-90 space-y-4 p-3'>
-                                 <li className='flex items-center'>
-                                    <Link
-                                       id='brand'
-                                       className=' flex items-center'
-                                       href='/search/داهوا?type=brand'
-                                    >
-                                       <svg
-                                          className='h-5 w-5'
-                                          width='24'
-                                          height='24'
-                                          viewBox='0 0 24 24'
-                                          strokeWidth='2'
-                                          stroke='currentColor'
-                                          fill='none'
-                                          strokeLinecap='round'
-                                          strokeLinejoin='round'
-                                       >
-                                          {' '}
-                                          <path stroke='none' d='M0 0h24v24H0z' />{' '}
-                                          <circle cx='12' cy='12' r='4' />
-                                       </svg>
-                                       <p className='font-semibold px-2'>
-                                          <span className='text-sm'>داهوا</span>
-                                       </p>
-                                    </Link>
-                                 </li>
+                                 {brandsList.map((brand) => {
+                                    return (
+                                       <li key={brand._id} className='flex items-center'>
+                                          <Link
+                                             id='brand'
+                                             className=' flex items-center'
+                                             href={`/search/${hyphen(brand.name)}?type=brand`}
+                                          >
+                                             <p className='font-semibold px-2 text-sm'>
+                                                {brand.name}
+                                             </p>
+                                          </Link>
+                                       </li>
+                                    )
+                                 })}
                               </ul>
                            </Collapse>
                         </div>

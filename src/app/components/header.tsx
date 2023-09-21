@@ -3,8 +3,14 @@ import Sidebar from './sidebar'
 import SearchInput from '@/components/searchInput'
 import Image from 'next/legacy/image'
 import LinksForDesktop from './headerLinksforDesktop'
+import { ICategory } from '@/models/category'
+import { IBrand } from '@/models/brand'
 
-const Header = () => {
+const Header = ({
+   params: { categories, brands },
+}: {
+   params: { categories: ICategory[]; brands: IBrand[] }
+}) => {
    return (
       <header className='bg-white py-3 px-3 rounded-b-xl'>
          <div className='flex md:grid md:grid-cols-7 p-1 justify-between items-center'>
@@ -25,9 +31,9 @@ const Header = () => {
                />
             </Link>
 
-            <Sidebar />
+            <Sidebar categoriesList={categories} brandsList={brands} />
 
-            <LinksForDesktop />
+            <LinksForDesktop categoriesList={categories} brandsList={brands} />
          </div>
 
          <div className='md:hidden'>

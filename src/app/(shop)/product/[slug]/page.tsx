@@ -334,6 +334,26 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                            )}
                         </div>
 
+                        <div className='text-right flex items-center justify-between bg-white border border-green-700/10 shadow-green-700/30 shadow-lg rounded-lg px-3 py-5'>
+                           <div className='flex flex-col space-y-2 mx-5'>
+                              <a
+                                 id='phone_call'
+                                 rel='noreferrer'
+                                 className='text-green-600 text-base font-semibold tracking-widest'
+                                 href='tel:+989128530920'
+                              >09128530920</a>
+                              <a
+                                 id='phone_call'
+                                 rel='noreferrer'
+                                 className='text-green-600 text-base font-semibold tracking-widest'
+                                 href='tel:+989109960802'
+                              >09109960802</a>
+                           </div>
+                           <p className='whitespace-break-spaces text-justify leading-8 text-green-600 font-semibold'>
+                              برای خرید با ما تماس بگیرید
+                           </p>
+                        </div>
+
                         <div className='text-right space-y-5 bg-white shadow shadow-slate-200 rounded-lg px-3 py-5 rtl'>
                            <span className='yekanExtraBold text-xl'>توضیحات</span>
                            <p className='whitespace-break-spaces text-justify leading-8 text-slate-500'>

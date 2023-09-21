@@ -141,11 +141,11 @@ const Footer = () => {
                         و کسب و کار شما را تقویت کنیم. به ما بپیوندید و با ما در جهت ساختن یک آینده
                         امن‌تر و بهتر همکاری کنید. <br />
                         <br />
-                        از طریق{' '}
+                        در {' '}
                         <a
                            id='eitaa'
                            rel='noreferrer'
-                           className='text-blue-600 text-sm'
+                           className='text-blue-600 text-sm font-semibold'
                            href='https://eitaa.com/HanaTech2023'
                            target='_blank'
                         >
@@ -155,7 +155,7 @@ const Footer = () => {
                         <a
                            id='instagram'
                            rel='noreferrer'
-                           className='text-blue-600 text-sm'
+                           className='text-blue-600 text-sm font-semibold'
                            href='https://www.instagram.com/HanaTech2023'
                            target='_blank'
                         >
@@ -165,20 +165,29 @@ const Footer = () => {
                         <a
                            id='telegram'
                            rel='noreferrer'
-                           className='text-blue-600 text-sm'
+                           className='text-blue-600 text-sm font-semibold'
                            href='https://t.me/HanaTech2023'
                            target='_blank'
                         >
                            تلگرام
                         </a>{' '}
+                        و یا از طریق شماره های{' '}
+                        <a
+                           id='phone_call'
+                           rel='noreferrer'
+                           className='text-blue-600 text-sm font-semibold tracking-widest'
+                           href='tel:+989128530920'
+                        >
+                           09128530920{' '}
+                        </a>
                         و{' '}
                         <a
                            id='phone_call'
                            rel='noreferrer'
-                           className='text-blue-600 text-sm'
-                           href='tel:+989128530920'
+                           className='text-blue-600 text-sm font-semibold tracking-widest'
+                           href='tel:+989109960802'
                         >
-                           تماس تلفنی{' '}
+                           09109960802{' '}
                         </a>
                         با ما در ارتباط باشید
                      </p>
