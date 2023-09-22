@@ -106,15 +106,15 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
       mpn: product.barcode,
       sku: product.barcode,
       // @ts-ignore
-      category: `https://hanatechnology.ir/search/${hyphen(category.slug)}?type=category`,
+      category: `https://hanatechnology.ir/search/${hyphen(category.slug)}?type=category&name=${category.name}`,
       brand: {
          '@type': 'Brand',
          // @ts-ignore
          name: brand.name,
          // @ts-ignore
-         url: `https://hanatechnology.ir/search/${hyphen(category.slug)}?type=category`,
+         url: `https://hanatechnology.ir/search/${hyphen(category.slug)}?type=category&name=${category.name}`,
          // @ts-ignore
-         '@id': `https://hanatechnology.ir/search/${hyphen(category.slug)}#brand?type=category`,
+         '@id': `https://hanatechnology.ir/search/${hyphen(category.slug)}#brand?type=category&name=${category.name}`,
       },
       offers: {
          '@type': 'Offer',
@@ -144,7 +144,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
             // @ts-ignore
             name: category.name,
             // @ts-ignore
-            item: `https://hanatechnology.ir/search/${hyphen(category.slug)}?type=category`,
+            item: `https://hanatechnology.ir/search/${hyphen(category.slug)}?type=category&name=${category.name}`,
          },
          {
             '@type': 'ListItem',
@@ -152,7 +152,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
             // @ts-ignore
             name: brand.name,
             // @ts-ignore
-            item: `https://hanatechnology.ir/search/${hyphen(brand.name)}?type=brand`,
+            item: `https://hanatechnology.ir/search/${hyphen(brand.slug)}?type=brand&name=${brand.name}`,
          },
          { '@type': 'ListItem', position: 4, name: product.name },
       ],
@@ -195,7 +195,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                         <Link
                            className='text-gray-400'
                            // @ts-ignore
-                           href={`/search/${hyphen(category.slug)}?type=category`}
+                           href={`/search/${hyphen(category.slug)}?type=category&name=${category.name}`}
                         >
                            <span className='text-xs hover:text-blue-500'>
                               {/* @ts-ignore */}
@@ -205,7 +205,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                         <Link
                            className='text-gray-400'
                            // @ts-ignore
-                           href={`/search/${hyphen(brand.slug)}?type=brand`}
+                           href={`/search/${hyphen(brand.slug)}?type=brand&name=${brand.name}`}
                         >
                            {/* @ts-ignore */}
                            <span className='text-xs hover:text-blue-500'>{brand.name}</span>
@@ -233,7 +233,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                                  <Link
                                     id='category'
                                     // @ts-ignore
-                                    href={`/search/${hyphen(category.slug)}?type=category`}
+                                    href={`/search/${hyphen(category.slug)}?type=category&name=${category.name}`}
                                  >
                                     <span className='text-blue-500 font-bold'>
                                        {/* @ts-ignore */}
@@ -245,7 +245,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                               <div>
                                  <span>مدل: </span>
                                  {/* @ts-ignore */}
-                                 <Link id='model' href={`/search/${hyphen(model.slug)}?type=model`}>
+                                 <Link id='model' href={`/search/${hyphen(model.slug)}?type=model&name=${model.name}`}>
                                     <span className='text-blue-500 font-bold'>
                                        {/* @ts-ignore */}
                                        {model.name}
@@ -256,7 +256,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                               <div>
                                  <span>برند: </span>
                                  {/* @ts-ignore */}
-                                 <Link id='brand' href={`/search/${hyphen(brand.slug)}?type=brand`}>
+                                 <Link id='brand' href={`/search/${hyphen(brand.slug)}?type=brand&name=${brand.name}`}>
                                     <span className='text-blue-500 font-bold'>
                                        {/* @ts-ignore */}
                                        {brand.name}

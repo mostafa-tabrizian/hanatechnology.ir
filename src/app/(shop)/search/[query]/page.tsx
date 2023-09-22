@@ -9,6 +9,7 @@ import Brand from '@/models/brand'
 import Contents from './components/contents'
 import dehyphen from '@/lib/dehyphen'
 import GTMViewItemList from './components/GTMViewItemList'
+import SearchTitle from './components/title'
 
 const getProducts = async ({ query }: { query: string }) => {
    dbConnect()
@@ -122,7 +123,7 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
          />
 
          <div className='px-3 md:px-0 md:max-w-screen-2xl md:mx-auto space-y-8 my-6'>
-            <h1 className='text-center font-bold'>{query}</h1>
+            <SearchTitle />
 
             <div className='mb-20 text-center space-y-6'>
                {uniqueMergedProducts.length ? (

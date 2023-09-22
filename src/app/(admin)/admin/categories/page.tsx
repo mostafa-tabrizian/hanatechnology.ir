@@ -77,7 +77,7 @@ const AdminCategories = async () => {
                               className='bg-white grid grid-cols-6 justify-between rounded-lg p-2 text-center items-center'
                            >
                               <NameAndSlug params={JSON.parse(JSON.stringify({ ...category }))} />
-                              <Link href={`/search/${hyphen(category.slug)}?type=category`} target='_blank'>
+                              <Link href={`/search/${hyphen(category.slug)}?type=category&name=${category.name}`} target='_blank'>
                                  <p>{productsLength}</p>
                               </Link>
                               <DeleteButton

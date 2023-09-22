@@ -107,7 +107,7 @@ const AdminCategories = async () => {
                                  )}
                               />
                               <NameAndSlug params={JSON.parse(JSON.stringify({ ...model }))} />
-                              <Link href={`/search/${hyphen(model.slug)}?type=model`} target='_blank'>
+                              <Link href={`/search/${hyphen(model.slug)}?type=model&name=${model.name}`} target='_blank'>
                                  <p>{productsLength}</p>
                               </Link>
                               <DeleteButton

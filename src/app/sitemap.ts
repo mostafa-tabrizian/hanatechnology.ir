@@ -23,13 +23,13 @@ export default async function sitemap() {
       lastModified: updatedAt,
    }))
 
-   const categories = categoriesData.map(({ slug, updatedAt }) => ({
-      url: `${URL}/search/${hyphen(slug)}?type=category`,
+   const categories = categoriesData.map(({ name, slug, updatedAt }) => ({
+      url:  `${URL}/search/${hyphen(slug)}?type=category&amp;name=${name}`,
       lastModified: updatedAt,
    }))
 
-   const brands = brandsData.map(({ slug, updatedAt }) => ({
-      url: `${URL}/search/${hyphen(slug)}?type=brand`,
+   const brands = brandsData.map(({ name, slug, updatedAt }) => ({
+      url: `${URL}/search/${hyphen(slug)}?type=brand&amp;name=${name}`,
       lastModified: updatedAt,
    }))
    const routes = [''].map((route) => ({

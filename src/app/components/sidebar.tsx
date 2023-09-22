@@ -161,7 +161,7 @@ const Sidebar = ({ categoriesList, brandsList }: { categoriesList: ICategory[], 
                                           <Link
                                              id='category'
                                              className=' flex items-center'
-                                             href={`/search/${hyphen(category.name)}?type=category`}
+                                             href={`/search/${hyphen(category.slug)}?type=category&name=${category.name}`}
                                           >
                                              <p className='font-semibold px-2 text-sm'>
                                                 {category.name}
@@ -226,7 +226,7 @@ const Sidebar = ({ categoriesList, brandsList }: { categoriesList: ICategory[], 
                                           <Link
                                              id='brand'
                                              className=' flex items-center'
-                                             href={`/search/${hyphen(brand.name)}?type=brand`}
+                                             href={`/search/${hyphen(brand.slug)}?type=brand&name=${brand.name}`}
                                           >
                                              <p className='font-semibold px-2 text-sm'>
                                                 {brand.name}
