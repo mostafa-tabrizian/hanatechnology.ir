@@ -157,11 +157,11 @@ const ImageInput = ({
                   <span className='text-slate-400'>تامبنیل محصول</span>
 
                   <div className='relative'>
-                     <div className='flex justify-center mx-auto w-full relative aspect-square'>
-                        <Link
-                           target='_blank'
-                           href={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${product.thumbnail}`}
-                        >
+                     <Link
+                        target='_blank'
+                        href={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${product.thumbnail}`}
+                     >
+                        <div className='flex justify-center mx-auto w-full relative aspect-square'>
                            <Image
                               className='rounded-lg p-1'
                               src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${product.thumbnail}`}
@@ -170,8 +170,8 @@ const ImageInput = ({
                               sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                               loading='lazy'
                            />
-                        </Link>
-                     </div>
+                        </div>
+                     </Link>
 
                      <ImageDelete
                         type={'thumbnail'}
@@ -241,11 +241,11 @@ const ImageInput = ({
                      {product.images.map((image) => {
                         return (
                            <div key={image} className='relative'>
-                              <div className='flex justify-center mx-auto my-3 w-full relative aspect-square'>
-                                 <Link
-                                    target='_blank'
-                                    href={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${image}`}
-                                 >
+                              <Link
+                                 target='_blank'
+                                 href={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${image}`}
+                              >
+                                 <div className='flex justify-center mx-auto my-3 w-full relative aspect-square'>
                                     <Image
                                        className='rounded-lg p-1'
                                        src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${image}`}
@@ -254,8 +254,8 @@ const ImageInput = ({
                                        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                                        loading='lazy'
                                     />
-                                 </Link>
-                              </div>
+                                 </div>
+                              </Link>
                               <ImageDelete type={'images'} product={product._id} image={image} />
                            </div>
                         )

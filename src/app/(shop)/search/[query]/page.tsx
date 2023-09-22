@@ -1,22 +1,25 @@
 import Image from 'next/legacy/image'
 
-import dbConnect from '@/lib/dbConnect'
 import Category from '@/models/category'
 import Product, { IProduct } from '@/models/product'
 import Model from '@/models/model'
 import Brand from '@/models/brand'
 
-import Contents from './components/contents'
+import dbConnect from '@/lib/dbConnect'
 import dehyphen from '@/lib/dehyphen'
-import GTMViewItemList from './components/GTMViewItemList'
+
+import Contents from './components/contents'
 import SearchTitle from './components/title'
 
-const getProducts = async ({ query }: { query: string }) => {
-   dbConnect()
+import GTMViewItemList from './GTM/GTMViewItemList'
+import GTMSearch from './GTM/GTMSearch'
 
+const getProducts = async ({ query }: { query: string }) => {
    query = dehyphen(query)
 
    const queryRegex = { $regex: new RegExp('^' + query + '$', 'i') }
+
+   dbConnect()
 
    const categoryId: string | null = await Category.findOne({
       $or: [{ slug: queryRegex }, { name: queryRegex }],
@@ -121,6 +124,8 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
                }),
             )}
          />
+
+         <GTMSearch query={query} />
 
          <div className='px-3 md:px-0 md:max-w-screen-2xl md:mx-auto space-y-8 my-6'>
             <SearchTitle />
