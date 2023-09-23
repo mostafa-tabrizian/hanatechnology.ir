@@ -30,7 +30,7 @@ const ProductCards = ({ product }: { product: IProduct }) => {
                      marginLeft: 'auto',
                      marginRight: 'auto',
                   },
-                  autoClose: 1500,
+                  autoClose: 750,
                },
             )
          }

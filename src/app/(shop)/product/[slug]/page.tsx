@@ -93,8 +93,8 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
    const productsByBrand: IProduct[] = await getProductsByBrand(slug, category, brand)
 
    const imagesListForJsonLd = []
-   imagesListForJsonLd.push(product.thumbnail)
-   product.images.map((image) => imagesListForJsonLd.push(image))
+   imagesListForJsonLd.push(`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${product.thumbnail}`)
+   product.images.map((image) => imagesListForJsonLd.push(`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${image}`))
 
    const productJsonLd = {
       '@type': 'Product',
