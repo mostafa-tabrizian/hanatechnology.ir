@@ -279,7 +279,7 @@ async function Home() {
 
             <div className='bg-white shadow shadow-slate-200 rounded-lg p-5 pb-2'>
                <div className='flex justify-between items-center'>
-                  <Link href='#'>
+                  <Link href='/search/cctv?type=category&name=دوربین مداربسته'>
                      <span>...بیشتر</span>
                   </Link>
                   <h2>دوربین مداربسته</h2>
@@ -290,7 +290,7 @@ async function Home() {
 
             <div className='bg-white shadow shadow-slate-200 rounded-lg p-3'>
                <div className='flex justify-between items-center'>
-                  <Link href='#'>
+                  <Link href='/search/modem-router?type=category&name=مودم روتر'>
                      <span>...بیشتر</span>
                   </Link>
                   <h2>مودم</h2>
