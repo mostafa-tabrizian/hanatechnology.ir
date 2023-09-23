@@ -53,8 +53,10 @@ const Images = ({ params: { name, thumbnail, images } }: ImageProps) => {
          <div
             className='text-center bg-white rounded-2xl shadow-lg shadow-slate-200 '
             onClick={() => {
-               setLightboxOpen(true)
-               setCurrentIndex(0)
+               if (galleryList.length) {
+                  setLightboxOpen(true)
+                  setCurrentIndex(0)
+               }
             }}
          >
             {thumbnail ? (
@@ -78,8 +80,10 @@ const Images = ({ params: { name, thumbnail, images } }: ImageProps) => {
                      key={idx}
                      className='bg-white rounded-lg px-3 shadow-md'
                      onClick={() => {
-                        setLightboxOpen(true)
-                        setCurrentIndex(idx)
+                        if (galleryList.length) {
+                           setLightboxOpen(true)
+                           setCurrentIndex(idx)
+                        }
                      }}
                   >
                      <Image
@@ -102,28 +106,17 @@ const Images = ({ params: { name, thumbnail, images } }: ImageProps) => {
             lightboxIdentifier='lightbox1'
             framework='next'
             images={galleryList}
-            showThumbnails={false}
+            showThumbnails={true}
             open={lightboxOpen}
-            className='hidden'
             startingSlideIndex={currentImageIndex}
             modalClose='clickOutside'
             onClose={() => {
                setLightboxOpen(false)
             }}
-         >
-            {(images as unknown as { src: string; alt: string }[]).map((image) => (
-               <Image
-                  key={image.src}
-                  src={image.src}
-                  alt={image.alt}
-                  height={500}
-                  width={500}
-                  data-lightboxjs='lightbox1'
-                  quality={80}
-                  className='rounded-lg'
-               />
-            ))}
-         </SlideshowLightbox>
+            iconColor={'white'}
+            showSlideshowIcon={false}
+            showThumbnailIcon={false}
+         />
       </div>
    )
 }
