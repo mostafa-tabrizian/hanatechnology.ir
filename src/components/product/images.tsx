@@ -1,10 +1,12 @@
 'use client'
 
-import Image from 'next/legacy/image'
-import Lightbox from 'react-spring-lightbox'
 import { useState, useEffect } from 'react'
+import Image from 'next/legacy/image'
 
-type ParamsType = {
+import { SlideshowLightbox } from 'lightbox.js-react'
+import 'lightbox.js-react/dist/index.css'
+
+type ImageProps = {
    params: {
       name: string
       thumbnail: string
@@ -12,28 +14,32 @@ type ParamsType = {
    }
 }
 
-const Images = ({ params: { name, thumbnail, images } }: ParamsType) => {
+type TGallery = {
+   src: string
+   alt: string
+}[]
+
+const Images = ({ params: { name, thumbnail, images } }: ImageProps) => {
    const [lightboxOpen, setLightboxOpen] = useState(false)
-   const [galleryList, setGalleryList] = useState<{ id: string; src: string; alt: string }[]>([])
+   const [galleryList, setGalleryList] = useState<TGallery>([])
    const [currentImageIndex, setCurrentIndex] = useState(0)
 
-   const gotoPrevious = () => currentImageIndex > 0 && setCurrentIndex(currentImageIndex - 1)
-
-   const gotoNext = () =>
-      currentImageIndex + 1 < images.length + 1 && setCurrentIndex(currentImageIndex + 1)
+   useEffect(() => {
+      return () => {
+         setGalleryList([])
+      }
+   }, [])
 
    useEffect(() => {
-      const galleryList: { id: string; src: string; alt: string }[] = []
+      const galleryList: TGallery = [
+         {
+            src: `https://tabrizian.storage.iran.liara.space/hanatechnology/products/${thumbnail}`,
+            alt: name,
+         },
+      ]
 
-      galleryList.push({
-         id: thumbnail,
-         src: `https://tabrizian.storage.iran.liara.space/hanatechnology/products/${thumbnail}`,
-         alt: name,
-      })
-
-      images.map((image) => {
+      images.forEach((image) => {
          galleryList.push({
-            id: image,
             src: `https://tabrizian.storage.iran.liara.space/hanatechnology/products/${image}`,
             alt: name,
          })
@@ -61,18 +67,19 @@ const Images = ({ params: { name, thumbnail, images } }: ParamsType) => {
                   priority
                />
             ) : (
-               <h2 className='mt-6'>&quot;!برای این محصول تصویری وجود ندارد&quot;</h2>
+               <h2 className='mt-6'>!برای این محصول تصویری وجود ندارد</h2>
             )}
          </div>
+
          <div className='flex space-x-3 justify-center'>
-            {galleryList.map((data, index) => {
+            {galleryList.map((data, idx) => {
                return (
                   <div
-                     key={index}
+                     key={idx}
                      className='bg-white rounded-lg px-3 shadow-md'
                      onClick={() => {
                         setLightboxOpen(true)
-                        setCurrentIndex(index)
+                        setCurrentIndex(idx)
                      }}
                   >
                      <Image
@@ -90,16 +97,33 @@ const Images = ({ params: { name, thumbnail, images } }: ParamsType) => {
             })}
          </div>
 
-         <Lightbox
-            isOpen={lightboxOpen}
-            onPrev={gotoPrevious}
-            onNext={gotoNext}
+         <SlideshowLightbox
+            theme='lightbox'
+            lightboxIdentifier='lightbox1'
+            framework='next'
             images={galleryList}
-            currentIndex={currentImageIndex}
-            // renderHeader={deleteButton}
-            style={{ backdropFilter: 'blur(10px) brightness(.5)' }}
-            onClose={() => setLightboxOpen(false)}
-         />
+            showThumbnails={false}
+            open={lightboxOpen}
+            className='hidden'
+            startingSlideIndex={currentImageIndex}
+            modalClose='clickOutside'
+            onClose={() => {
+               setLightboxOpen(false)
+            }}
+         >
+            {(images as unknown as { src: string; alt: string }[]).map((image) => (
+               <Image
+                  key={image.src}
+                  src={image.src}
+                  alt={image.alt}
+                  height={500}
+                  width={500}
+                  data-lightboxjs='lightbox1'
+                  quality={80}
+                  className='rounded-lg'
+               />
+            ))}
+         </SlideshowLightbox>
       </div>
    )
 }

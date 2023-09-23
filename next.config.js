@@ -15,8 +15,8 @@ const nextConfig = {
                },
                {
                   key: 'Strict-Transport-Security',
-                  value: 'max-age=3571000; includeSubDomains; preload'
-               }
+                  value: 'max-age=3571000; includeSubDomains; preload',
+               },
             ],
          },
       ]
@@ -30,7 +30,7 @@ const nextConfig = {
             port: '',
          },
       ],
-   },
+   }
 }
 
 module.exports = nextConfig

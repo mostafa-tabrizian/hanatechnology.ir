@@ -277,7 +277,7 @@ async function Home() {
                </Link>
             </div>
 
-            <div className='bg-white shadow shadow-slate-200 rounded-lg p-5'>
+            <div className='bg-white shadow shadow-slate-200 rounded-lg p-5 pb-2'>
                <div className='flex justify-between items-center'>
                   <Link href='#'>
                      <span>...بیشتر</span>

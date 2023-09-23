@@ -30,10 +30,10 @@ const NameAndSlug = ({ params }: { params: { _id: string; name: string; slug: st
             return toast.error('در ثبت اطلاعات خطایی رخ داد')
          }
 
-         toast.success('نام دسته بندی با موفقیت تغییر یافت')
+         return toast.success('نام دسته بندی با موفقیت تغییر یافت')
       } catch (err) {
          toast.error('در تغییر نام دسته بندی خطایی رخ داد')
-         console.error(err)
+         return console.error(err)
       }
    }
 

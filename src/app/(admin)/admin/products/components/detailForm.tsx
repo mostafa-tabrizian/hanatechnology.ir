@@ -74,12 +74,18 @@ const DetailForm = ({
          }
 
          toast.success('اطلاعات محصول با موفقیت ثبت گردید.')
-         resetForm()
+         return resetForm()
       } catch (err) {
          toast.error('در ثبت اطلاعات خطایی رخ داد. لطفا مجدد تلاش کنید.')
-         console.error(err)
+         return console.error(err)
       }
    }
+
+   useEffect(() => {
+      return () => {
+         setCategoryModels([])
+      }
+   }, [])
 
    useEffect(() => {
       const matchedCategoryModels: IModel[] = []
@@ -240,7 +246,7 @@ const DetailForm = ({
                         option === value || option._id === value._id
                      }
                      getOptionLabel={(option: ICategory) => option.name}
-                     onChange={(e, value) => {
+                     onChange={(_e, value) => {
                         if (value) {
                            selectCategoryId(value._id)
                            setFieldValue('category', value)
@@ -266,7 +272,7 @@ const DetailForm = ({
                         option === value || option._id === value._id
                      }
                      getOptionLabel={(option: IBrand) => option.name}
-                     onChange={(e, value) => value && setFieldValue('brand', value)}
+                     onChange={(_e, value) => value && setFieldValue('brand', value)}
                      renderInput={(params) => <TextField {...params} label='برند' />}
                      sx={{ width: '100%' }}
                   />
@@ -287,7 +293,7 @@ const DetailForm = ({
                         option === value || option._id === value._id
                      }
                      getOptionLabel={(option: IModel) => option.name}
-                     onChange={(e, value) => value && setFieldValue('model', value)}
+                     onChange={(_e, value) => value && setFieldValue('model', value)}
                      renderInput={(params) => <TextField {...params} label='مدل' />}
                      sx={{ width: '100%' }}
                   />

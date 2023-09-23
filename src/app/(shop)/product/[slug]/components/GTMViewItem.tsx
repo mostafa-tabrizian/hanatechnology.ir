@@ -13,7 +13,7 @@ const GTMViewProduct = ({
    useEffect(() => {
       // @ts-ignore
       window.dataLayer = window.dataLayer || []
-      
+
       // @ts-ignore
       window.dataLayer.push({
          event: 'view_item',
@@ -25,16 +25,17 @@ const GTMViewProduct = ({
                   item_id: product.barcode,
                   item_name: product.name,
                   discount: product.discount,
-                  // @ts-ignore
                   item_brand: brand,
-                  // @ts-ignore
                   item_category: category,
                   price: product.price,
-                  quantity: product.inStock ? 1 : 0
+                  quantity: product.inStock ? 1 : 0,
                },
             ],
          },
       })
+
+      return () => {}
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [])
 
    return <span></span>

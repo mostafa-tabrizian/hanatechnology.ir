@@ -10,13 +10,29 @@ import { ICategory } from '@/models/category'
 import { IBrand } from '@/models/brand'
 import hyphen from '@/lib/hyphen'
 
-const Sidebar = ({ categoriesList, brandsList }: { categoriesList: ICategory[], brandsList: IBrand[] }) => {
+const Sidebar = ({
+   categoriesList,
+   brandsList,
+}: {
+   categoriesList: ICategory[]
+   brandsList: IBrand[]
+}) => {
    const [sidebar, setSidebar] = useState(false)
    const [categories, setCategories] = useState(false)
    const [brands, setBrands] = useState(false)
    const [contactUsOptions, setContactUsOptions] = useState(false)
 
    const pathname = usePathname()
+
+   useEffect(() => {
+      return () => {
+         setSidebar(false)
+         setCategories(false)
+         setBrands(false)
+         setContactUsOptions(false)
+      }
+   }, [])
+
    useEffect(() => setSidebar(false), [pathname])
 
    return (
@@ -161,7 +177,9 @@ const Sidebar = ({ categoriesList, brandsList }: { categoriesList: ICategory[], 
                                           <Link
                                              id='category'
                                              className=' flex items-center'
-                                             href={`/search/${hyphen(category.slug)}?type=category&name=${category.name}`}
+                                             href={`/search/${hyphen(
+                                                category.slug,
+                                             )}?type=category&name=${category.name}`}
                                           >
                                              <p className='font-semibold px-2 text-sm'>
                                                 {category.name}
@@ -226,7 +244,9 @@ const Sidebar = ({ categoriesList, brandsList }: { categoriesList: ICategory[], 
                                           <Link
                                              id='brand'
                                              className=' flex items-center'
-                                             href={`/search/${hyphen(brand.slug)}?type=brand&name=${brand.name}`}
+                                             href={`/search/${hyphen(brand.slug)}?type=brand&name=${
+                                                brand.name
+                                             }`}
                                           >
                                              <p className='font-semibold px-2 text-sm'>
                                                 {brand.name}

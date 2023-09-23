@@ -37,10 +37,10 @@ const ModelNewInput = () => {
 
          toast.success('مدل با موفقیت ثبت گردید')
          resetForm()
-         router.refresh()
+         return router.refresh()
       } catch (err) {
          toast.warning('در ثبت مدل خطایی رخ داد')
-         console.error(err)
+         return console.error(err)
       }
    }
 

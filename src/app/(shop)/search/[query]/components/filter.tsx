@@ -148,7 +148,7 @@ export const FilterOptions = ({
                   sx={{ direction: 'rtl' }}
                   getAriaLabel={() => 'بازه قیمتی'}
                   value={filters.priceRange}
-                  onChange={(e, newValue) =>
+                  onChange={(_e, newValue) =>
                      setFilters({
                         ...filters,
                         priceRange: newValue as number[],

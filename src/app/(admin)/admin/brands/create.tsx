@@ -37,10 +37,10 @@ const BrandNewInput = () => {
 
          toast.success('برند با موفقیت ثبت گردید')
          resetForm()
-         router.refresh()
+         return router.refresh()
       } catch (err) {
          toast.warning('در ثبت برند خطایی رخ داد')
-         console.error(err)
+         return console.error(err)
       }
    }
 

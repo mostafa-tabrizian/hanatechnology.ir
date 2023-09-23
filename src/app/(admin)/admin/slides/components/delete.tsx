@@ -26,12 +26,12 @@ const SlideDelete = ({ params: { _id, src } }: { params: { _id: string; src: str
 
          if (!fileUploadResult) throw new Error('file upload to s3')
 
-         await removeFromDb()
+         return await removeFromDb()
       } catch (error) {
          toast.error(
             'در حذف اسلاید خطایی رخ داد. (اگر از VPN استفاده می‌کنید لطفا ابتدا آن را خاموش کنید)',
          )
-         console.error(error)
+         return console.error(error)
       } finally {
          setLoading(false)
       }

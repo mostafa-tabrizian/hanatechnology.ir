@@ -12,7 +12,7 @@ const putInS3Bucket = async (uploadUrl: string, image: File) => {
       return res
    } catch (err) {
       toast.error('در آپلود عکس خطایی رخ داد. لطفا مجدد تلاش کنید.')
-      console.error(err)
+      return console.error(err)
    }
 }
 

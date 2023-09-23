@@ -37,62 +37,75 @@ const Contents = ({
    const [sortValue, setSortValue] = useState<string>('latest')
 
    useEffect(() => {
+      return () => {
+         setInitProducts([])
+         setFilteredProducts([])
+      }
+   }, [])
+
+   useEffect(() => {
       dbProducts?.sort((a, b) => stringtoDate(b.createdAt) - stringtoDate(a.createdAt))
       setInitProducts(dbProducts)
       setFilteredProducts(dbProducts)
    }, [dbProducts])
 
-   useEffect(() => handleSort(filteredProducts), [sortValue])
-   useEffect(() => handleFilter(), [filters])
+   useEffect(() => {
+      const handleSort = (products: IProduct[]) => {
+         let newSort
 
-   const handleFilter = () => {
-      let products = initProducts
+         switch (sortValue) {
+            case 'latest':
+               newSort = [...products].sort(
+                  (a, b) => stringtoDate(b.createdAt) - stringtoDate(a.createdAt),
+               )
+               break
+            case 'oldest':
+               newSort = [...products].sort(
+                  (a, b) => stringtoDate(a.createdAt) - stringtoDate(b.createdAt),
+               )
+               break
 
-      if (filters.type) {
-         switch (filters.type) {
-            case 'discounted':
-               products = products.filter((product) => product.discount !== 0)
+            case 'expensive':
+               newSort = [...products].sort((a, b) => b.price - a.price)
+               break
+            case 'cheap':
+               newSort = [...products].sort((a, b) => a.price - b.price)
+               break
+            default:
+               break
          }
+
+         if (newSort) setFilteredProducts(newSort)
       }
 
-      if (filters.priceRange[0] !== 0 || filters.priceRange[1] !== 100) {
-         products = products.filter(
-            (product) =>
-               filters.priceRange[0] * 200_000 <= product.price &&
-               product.price <= filters.priceRange[1] * 200_000,
-         )
+      const handleFilter = () => {
+         let products = initProducts
+
+         if (filters.type) {
+            switch (filters.type) {
+               case 'discounted':
+                  products = products.filter((product) => product.discount !== 0)
+            }
+         }
+
+         if (filters.priceRange[0] !== 0 || filters.priceRange[1] !== 100) {
+            products = products.filter(
+               (product) =>
+                  filters.priceRange[0] * 200_000 <= product.price &&
+                  product.price <= filters.priceRange[1] * 200_000,
+            )
+         }
+
+         if (filters.brand) {
+            products = products.filter((product) => product.brand == filters.brand)
+         }
+
+         setFilteredProducts(products)
+         handleSort(products)
       }
 
-      if (filters.brand) {
-         products = products.filter((product) => product.brand == filters.brand)
-      }
-
-      setFilteredProducts(products)
-      if (products) handleSort(products)
-   }
-
-   const handleSort = (products: IProduct[]) => {
-      let newSort
-      switch (sortValue) {
-         case 'latest':
-            newSort = products
-               .slice()
-               .sort((a, b) => stringtoDate(b.createdAt) - stringtoDate(a.createdAt))
-            break
-         case 'oldest':
-            newSort = products
-               .slice()
-               .sort((a, b) => stringtoDate(a.createdAt) - stringtoDate(b.createdAt))
-            break
-         case 'expensive':
-            newSort = products.slice().sort((a, b) => b.price - a.price)
-            break
-         case 'cheap':
-            newSort = products.slice().sort((a, b) => a.price - b.price)
-            break
-      }
-      if (newSort) setFilteredProducts(newSort)
-   }
+      handleFilter()
+   }, [filters, initProducts, sortValue])
 
    return (
       <div>
@@ -120,6 +133,7 @@ const Contents = ({
                   if (product.active) {
                      return <ProductCards key={product._id} product={product} />
                   }
+                  return
                })}
             </div>
 

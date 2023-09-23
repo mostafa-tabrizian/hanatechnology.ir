@@ -16,7 +16,13 @@ const GTMViewProduct = ({
          item_name: product.name,
          discount: product.discount,
          price: product.price,
-         quantity: product.inStock ? 1 : 0
+         quantity: product.inStock ? 1 : 0,
+      }
+   })
+
+   useEffect(() => {
+      () => {
+         return {}
       }
    })
 
@@ -32,7 +38,9 @@ const GTMViewProduct = ({
             items: suitableList,
          },
       })
-   }, [])
+
+      return () => {}
+   }, [query, suitableList])
 
    return <span></span>
 }

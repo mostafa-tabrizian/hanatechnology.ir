@@ -34,10 +34,10 @@ const NameAndSlug = ({
             return toast.error('در ثبت اطلاعات خطایی رخ داد')
          }
 
-         toast.success('نام برند با موفقیت تغییر گردید')
+         return toast.success('نام برند با موفقیت تغییر گردید')
       } catch (err) {
          toast.error('در تغییر نام برند خطایی رخ داد')
-         console.error(err)
+         return console.error(err)
       }
    }
 

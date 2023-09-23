@@ -2,41 +2,38 @@
 
 import ProductCards from '@/components/product/cards'
 import { IProduct } from '@/models/product'
-import { useEffect } from 'react'
-// @ts-ignore
-import Swiper from 'swiper/bundle'
-import 'swiper/css/bundle'
+
+import { useKeenSlider } from 'keen-slider/react'
+import 'keen-slider/keen-slider.min.css'
 
 const ProductSwiper = ({ products }: { products: IProduct[] }) => {
-   useEffect(() => {
-      new Swiper('.productSwiper', {
-         slidesPerView: 2.2,
-         breakpoints: {
-            640: {
-               slidesPerView: 4,
+   const [ref] = useKeenSlider<HTMLDivElement>({
+      rtl: true,
+      slides: {
+         perView: 2.2,
+      },
+      breakpoints: {
+         '(min-width: 640px)': {
+            slides: {
+               perView: 4.2,
+               spacing: 5,
             },
          },
-         spaceBetween: 5,
-         freeMode: {
-            enabled: true,
-            sticky: true,
-         },
-      })
-   }, [])
+      },
+   })
 
    return (
-      <div className='productSwiper rtl relative overflow-hidden pl-6'>
-         <div className='swiper-wrapper pb-4'>
-            {products.map((product) => {
-               if (product.active) {
-                  return (
-                     <div key={product._id} className='swiper-slide !h-auto ltr rounded-xl mx-2'>
-                        <ProductCards key={product._id} product={product} />
-                     </div>
-                  )
-               }
-            })}
-         </div>
+      <div ref={ref} className='keen-slider'>
+         {products.map((product, idx) => {
+            if (product.active) {
+               return (
+                  <div key={idx} className='keen-slider__slide py-3 px-2 !h-auto ltr rounded-xl'>
+                     <ProductCards key={product._id} product={product} />
+                  </div>
+               )
+            }
+            return
+         })}
       </div>
    )
 }

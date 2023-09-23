@@ -16,6 +16,8 @@ const GTMSearch = ({ query }: { query: string }) => {
          event: 'search',
          search_term: query,
       })
+
+      return () => {}
    }, [query])
 
    return <span></span>

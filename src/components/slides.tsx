@@ -1,57 +1,88 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/legacy/image'
 import Link from 'next/link'
 
-// @ts-ignore
-import Swiper from 'swiper/bundle'
-import 'swiper/css/bundle'
+import { useKeenSlider } from 'keen-slider/react'
+import 'keen-slider/keen-slider.min.css'
 
 import { ISlide } from '@/models/slide'
 
 const Slides = ({ slides }: { slides: ISlide[] }) => {
+   const [opacities, setOpacities] = useState<number[]>([])
+
+   const [currentSlide, setCurrentSlide] = useState(0)
+   const [loaded, setLoaded] = useState(false)
+
    useEffect(() => {
-      new Swiper('.slides', {
-         loop: true,
-         effect: 'fade',
-         autoplay: {
-            delay: 5000,
-         },
-         fadeEffect: {
-            crossFade: true,
-         },
-         pagination: {
-            el: '.swiper-pagination',
-            type: 'bullets',
-            dynamicBullets: true,
-         },
-      })
+      return () => {
+         setOpacities([])
+         setCurrentSlide(0)
+      }
    }, [])
 
+   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
+      initial: 0,
+      slides: slides.length - 1,
+      loop: true,
+      rtl: true,
+      detailsChanged(s) {
+         const newOpacities = s.track.details.slides.map((slide) => slide.portion)
+         setOpacities(newOpacities)
+      },
+      slideChanged(slider) {
+         setCurrentSlide(slider.track.details.rel)
+      },
+      created() {
+         setLoaded(true)
+      },
+   })
+
    return (
-      <div className='slides mx-auto w-full md:w-4/6 rtl relative'>
-         <div className='swiper-wrapper pb-10'>
-            {slides.map((slide) => {
+      <div className='space-y-3'>
+         <div ref={sliderRef} className='h-full aspect-video relative'>
+            {slides.map((slide, idx) => {
                if (!slide.active) return
 
                return (
-                  <Link id='slide' key={slide._id} href={slide.link} className='swiper-slide'>
-                     <div className='relative aspect-video justify-center rounded-xl'>
+                  // relative justify-center rounded-xl
+                  <div key={idx} className='absolute top-0 w-full'>
+                     <Link
+                        id='slide'
+                        key={slide._id}
+                        href={slide.link}
+                        style={{ opacity: opacities[idx] }}
+                     >
                         <Image
-                           className='rounded-xl'
+                           className='rounded-xl object-fit'
                            src={`https://tabrizian.storage.iran.liara.space/hanatechnology/slides/${slide.src}`}
                            alt={slide.alt}
                            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-                           layout='fill'
+                           width={600}
+                           height={337}
                            priority
                         />
-                     </div>
-                  </Link>
+                     </Link>
+                  </div>
                )
             })}
          </div>
-         <div className='swiper-pagination'></div>
+         {loaded && instanceRef.current && (
+            <div className='dots'>
+               {[...Array(instanceRef.current.track.details.slides.length).keys()].map((idx) => {
+                  return (
+                     <button
+                        key={idx}
+                        onClick={() => {
+                           instanceRef.current?.moveToIdx(idx)
+                        }}
+                        className={'dot' + (currentSlide === idx ? ' active' : '')}
+                     ></button>
+                  )
+               })}
+            </div>
+         )}
       </div>
    )
 }

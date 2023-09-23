@@ -46,7 +46,7 @@ const Category = ({
             value={selectedCategory}
             isOptionEqualToValue={(option, value) => option === value || option._id === value._id}
             getOptionLabel={(option) => option.name}
-            onChange={(e, value) => {
+            onChange={(_e, value) => {
                if (value) {
                   selectCategory(value)
                   handleCategoryChange(value._id)

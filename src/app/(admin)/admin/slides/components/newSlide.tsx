@@ -84,13 +84,13 @@ const NewSlide = () => {
 
          if (res) {
             await createDbData(values, res.key, res.imageName)
-            resetForm()
+            return resetForm()
          } else throw new Error()
       } catch (error) {
          toast.error(
             'در آپلود تصویر خطایی رخ داد. (اگر از VPN استفاده می‌کنید لطفا ابتدا آن را خاموش کنید)',
          )
-         console.error(error)
+         return console.error(error)
       }
    }
 

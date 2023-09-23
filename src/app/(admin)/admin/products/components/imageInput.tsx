@@ -76,6 +76,7 @@ const ImageInput = ({
             if (res) await createDbData(type, res.key, res.imageName)
             else throw new Error()
          }
+         return
       } catch (error) {
          return
       } finally {

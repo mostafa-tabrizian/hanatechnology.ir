@@ -37,10 +37,10 @@ const CategoryNewInput = () => {
 
          toast.success('دسته بندی با موفقیت ثبت گردید')
          resetForm()
-         router.refresh()
+         return router.refresh()
       } catch (err) {
          toast.warning('در ثبت دسته بندی خطایی رخ داد')
-         console.error(err)
+         return console.error(err)
       }
    }
 

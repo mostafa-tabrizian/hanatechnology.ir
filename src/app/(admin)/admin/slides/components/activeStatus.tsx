@@ -33,10 +33,10 @@ const ActiveStatus = ({
          if (!res.ok) throw new Error()
 
          setStatus((prev) => !prev)
-         toast.success('وضعیت اسلاید با موفقیت تغییر یافت.')
+         return toast.success('وضعیت اسلاید با موفقیت تغییر یافت.')
       } catch (err) {
          toast.error('در تغییر وضعیت اسلاید خطایی رخ داد!')
-         console.error(err)
+         return console.error(err)
       } finally {
          setLoading(false)
       }
