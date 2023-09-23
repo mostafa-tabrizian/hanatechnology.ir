@@ -349,7 +349,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                                  href='tel:+989109960802'
                               >09109960802</a>
                            </div>
-                           <p className='whitespace-break-spaces text-justify leading-8 text-green-600 font-semibold'>
+                           <p className='text-right rtl text-green-600 font-semibold'>
                               برای خرید با ما تماس بگیرید
                            </p>
                         </div>
