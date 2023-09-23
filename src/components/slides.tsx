@@ -77,6 +77,7 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
                {[...Array(instanceRef.current.track.details.slides.length).keys()].map((idx) => {
                   return (
                      <button
+                     aria-label="slides dots"
                         key={idx}
                         onClick={() => {
                            instanceRef.current?.moveToIdx(idx)
