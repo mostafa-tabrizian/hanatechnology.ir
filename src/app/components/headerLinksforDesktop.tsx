@@ -107,7 +107,9 @@ const HeaderLinksforDesktop = ({
                               <Link
                                  id='category'
                                  className='flex items-center'
-                                 href={`/search/${hyphen(category.slug)}?type=category&name=${category.name}`}
+                                 href={`/search/${hyphen(category.slug)}?type=category&name=${
+                                    category.name
+                                 }`}
                               >
                                  <p className='font-semibold px-2 text-sm'>{category.name}</p>
                               </Link>
@@ -178,7 +180,9 @@ const HeaderLinksforDesktop = ({
                               <Link
                                  id='brand'
                                  className='flex items-center'
-                                 href={`/search/${hyphen(brand.slug)}?type=brand&name=${brand.name}`}
+                                 href={`/search/${hyphen(brand.slug)}?type=brand&name=${
+                                    brand.name
+                                 }`}
                               >
                                  <p className='font-semibold px-2 text-sm'>{brand.name}</p>
                               </Link>

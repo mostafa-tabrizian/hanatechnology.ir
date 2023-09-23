@@ -1,6 +1,9 @@
 'use client'
 
-import '@/app/globals.scss'
+import '@/app/styles/globals.scss'
+import '@/app/styles/mui.scss'
+import '@/app/styles/lightbox.scss'
+
 import 'react-toastify/dist/ReactToastify.min.css'
 
 import { SessionProvider } from 'next-auth/react'

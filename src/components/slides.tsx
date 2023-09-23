@@ -40,14 +40,18 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
    })
 
    return (
-      <div className='space-y-3'>
+      <div className='mx-auto w-full md:w-4/6 rtl relative space-y-3'>
          <div ref={sliderRef} className='h-full aspect-video relative'>
             {slides.map((slide, idx) => {
                if (!slide.active) return
 
                return (
                   // relative justify-center rounded-xl
-                  <div key={idx} className='absolute top-0 w-full'>
+                  <div
+                     key={idx}
+                     className='absolute top-0 w-full'
+                     style={{ zIndex: opacities[idx] * 10 | 0 }}
+                  >
                      <Link
                         id='slide'
                         key={slide._id}

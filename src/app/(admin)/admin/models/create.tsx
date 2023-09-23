@@ -11,9 +11,10 @@ const ModelNewInput = () => {
 
    const handleSubmit = async (
       { name, slug }: { name: string; slug: string },
-      // @ts-ignore
-      { resetForm },
+      { resetForm }: { resetForm: () => void },
    ) => {
+      toast.info('در حال ثبت مدل جدید...')
+
       const payload = {
          name: name.trim(),
          slug: slug.trim().toLowerCase(),
@@ -32,7 +33,7 @@ const ModelNewInput = () => {
             return toast.warning('این برند از قبل ثبت شده است')
          else if (resData.status == 500) {
             console.error(resData.message)
-            return toast.error('در ثبت اطلاعات خطایی رخ داد')
+            return toast.error('خطا در برقراری ارتباط')
          }
 
          toast.success('مدل با موفقیت ثبت گردید')
@@ -83,7 +84,7 @@ const ModelNewInput = () => {
                         className='mr-3 rtl w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
                         type='text'
                      />
-                  
+
                      <p className='text-[.6rem] text-yellow-500 text-right'>
                         اسلاگ غیر قابل تغییر خواهد بود
                      </p>

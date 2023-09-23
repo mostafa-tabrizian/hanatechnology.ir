@@ -60,6 +60,8 @@ const ImageInput = ({
    }
 
    const onSubmit = async (type: string) => {
+      toast.info('در حال آپلود و ثبت اطلاعات تصویر...')
+
       if (!imageToUpload || !imageToUploadMemo) {
          return toast.warning('هیچ تصویری برای آپلود انتخاب نشده است!')
       }

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import hyphen from '@/lib/hyphen'
+import { toast } from 'react-toastify'
 
 const SearchInput = () => {
    const [searchQuery, setSearchQuery] = useState('')
@@ -10,6 +11,8 @@ const SearchInput = () => {
 
    const handleFormSubmit = (e: React.FormEvent) => {
       e.preventDefault()
+
+      toast.info('در حال جستجو...')
 
       if (searchQuery.trim()) {
          router.push(`/search/${hyphen(searchQuery)}?type=search`)

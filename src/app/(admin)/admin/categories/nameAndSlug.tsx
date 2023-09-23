@@ -13,6 +13,8 @@ const NameAndSlug = ({
    const slug = params._doc.slug.charAt(0).toUpperCase() + params._doc.slug.slice(1)
 
    const handleSubmit = async ({ name }: { name: string }) => {
+      toast.info('در حال ثبت تغییرات...')
+
       const payload = {
          _id: params._doc._id,
          name: name.trim(),
@@ -31,7 +33,7 @@ const NameAndSlug = ({
             return toast.warning('این دسته بندی از قبل ثبت شده است')
          else if (resData.status == 500) {
             console.error(resData.message)
-            return toast.error('در ثبت اطلاعات خطایی رخ داد')
+            return toast.error('خطا در برقراری ارتباط')
          }
 
          return toast.success('نام دسته بندی با موفقیت تغییر یافت')

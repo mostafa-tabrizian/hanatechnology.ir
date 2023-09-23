@@ -3,31 +3,24 @@
 import Link from 'next/link'
 import Image from 'next/legacy/image'
 
-import { DataGrid } from '@mui/x-data-grid'
+import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import { IProduct } from '@/models/product'
 
-interface IColumns {
-   field: string
-   headerName: JSX.Element
-   width: number
-   type: string
-   renderCell: ({ value }: { value: string | number }) => JSX.Element
-}
-
 const ProductsTable = ({ products }: { products: IProduct[] }) => {
-   const columns: IColumns[] = [
+   const columns: GridColDef[] = [
       {
          field: 'id',
-         headerName: <span>ردیف</span>,
+         headerName: 'ردیف',
          width: 30,
-         type: 'number',
-         renderCell: ({ value }) => <span>{value.toLocaleString('fa')}</span>,
+         valueGetter: ({ value }) => {
+            if (!value) value
+            return value.toLocaleString('fa')
+         },
       },
       {
          field: 'thumbnail',
-         headerName: <span>تصویر</span>,
+         headerName: 'تصویر',
          width: 80,
-         type: 'element',
          renderCell: ({ value }) => (
             <Link
                target='_blank'
@@ -35,24 +28,27 @@ const ProductsTable = ({ products }: { products: IProduct[] }) => {
                   value as string
                }`}
             >
-               <Image
-                  className='rounded-xl'
-                  src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${
-                     value as string
-                  }`}
-                  alt={String(value)}
-                  height={50}
-                  width={50}
-                  objectFit='cover'
-               />
+               {value ? (
+                  <Image
+                     className='rounded-xl'
+                     src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${
+                        value as string
+                     }`}
+                     alt={String(value)}
+                     height={50}
+                     width={50}
+                     objectFit='cover'
+                  />
+               ) : (
+                  ''
+               )}
             </Link>
          ),
       },
       {
          field: 'active',
-         headerName: <span>فعال</span>,
+         headerName: 'فعال',
          width: 75,
-         type: 'element',
          renderCell: ({ value }) =>
             value ? (
                <svg
@@ -90,9 +86,8 @@ const ProductsTable = ({ products }: { products: IProduct[] }) => {
       },
       {
          field: 'inStock',
-         headerName: <span>موجود</span>,
+         headerName: 'موجود',
          width: 75,
-         type: 'element',
          renderCell: ({ value }) =>
             value ? (
                <svg
@@ -130,9 +125,8 @@ const ProductsTable = ({ products }: { products: IProduct[] }) => {
       },
       {
          field: 'name',
-         headerName: <span>عنوان</span>,
+         headerName: 'عنوان',
          width: 300,
-         type: 'element',
          renderCell: ({ value }) => (
             <Link href={`/admin/products/${(value as string).replaceAll(' ', '-')}`}>
                <span>{value}</span>
@@ -141,25 +135,27 @@ const ProductsTable = ({ products }: { products: IProduct[] }) => {
       },
       {
          field: 'price',
-         headerName: <span>قیمت</span>,
-         type: 'element',
+         headerName: 'قیمت',
          width: 100,
-         renderCell: ({ value }) => <span>{value.toLocaleString('fa')}</span>,
+         valueGetter: ({ value }) => {
+            if (!value) value
+            return value.toLocaleString('fa')
+         },
       },
       {
          field: 'discount',
-         headerName: <span>تخفیف</span>,
-         type: 'element',
+         headerName: 'تخفیف',
          width: 100,
-         renderCell: ({ value }) => <span>{value.toLocaleString('fa')}</span>,
+         valueGetter: ({ value }) => {
+            if (!value) value
+            return value.toLocaleString('fa')
+         },
       },
 
       {
          field: 'createdAt',
-         headerName: <span>تاریخ ایجاد</span>,
-         type: 'element',
+         headerName: 'تاریخ ایجاد',
          width: 200,
-         renderCell: ({ value }) => <span>{value}</span>,
       },
    ]
 
@@ -174,7 +170,6 @@ const ProductsTable = ({ products }: { products: IProduct[] }) => {
       <div style={{ width: '100%' }} className='rtl'>
          <DataGrid
             rows={rows}
-            // @ts-ignore
             columns={columns}
             initialState={{
                pagination: {

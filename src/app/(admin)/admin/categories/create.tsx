@@ -11,9 +11,10 @@ const CategoryNewInput = () => {
 
    const handleSubmit = async (
       { name, slug }: { name: string; slug: string },
-      // @ts-ignore
-      { resetForm },
+      { resetForm }: { resetForm: () => void },
    ) => {
+      toast.info('در حال ثبت دسته بندی جدید...')
+
       const payload = {
          name: name.trim(),
          slug: slug.trim().toLowerCase(),
@@ -32,7 +33,7 @@ const CategoryNewInput = () => {
             return toast.warning('این دسته بندی از قبل ثبت شده است')
          else if (resData.status == 500) {
             console.error(resData.message)
-            return toast.error('در ثبت اطلاعات خطایی رخ داد')
+            return toast.error('خطا در برقراری ارتباط')
          }
 
          toast.success('دسته بندی با موفقیت ثبت گردید')

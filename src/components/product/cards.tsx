@@ -1,5 +1,8 @@
 import Image from 'next/legacy/image'
+import { toast } from 'react-toastify'
 import Link from 'next/link'
+
+import CircularProgress from '@mui/material/CircularProgress'
 
 import { IProduct } from '@/models/product'
 
@@ -7,7 +10,31 @@ import hyphen from '@/lib/hyphen'
 
 const ProductCards = ({ product }: { product: IProduct }) => {
    return (
-      <Link id={product.slug} key={product._id} href={'/product/' + hyphen(product.slug)}>
+      <Link
+         id={product.slug}
+         key={product._id}
+         href={'/product/' + hyphen(product.slug)}
+         onClick={() =>
+            toast(
+               <div className='mx-auto flex justify-center'>
+                  <CircularProgress size={25} />
+               </div>,
+               {
+                  hideProgressBar: true,
+                  closeButton: false,
+                  style: {
+                     display: 'flex',
+                     justifyContent: 'center',
+                     textAlign: 'center',
+                     width: '3.5rem',
+                     marginLeft: 'auto',
+                     marginRight: 'auto',
+                  },
+                  autoClose: 1500,
+               },
+            )
+         }
+      >
          <div className='p-1 flex flex-col justify-between shadow-slate-200 bg-white h-full shadow-lg space-y-5 rounded-xl'>
             <div className='flex justify-center mx-auto w-full relative aspect-square'>
                <Image
@@ -15,7 +42,7 @@ const ProductCards = ({ product }: { product: IProduct }) => {
                   src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${product.thumbnail}`}
                   alt={product.name}
                   layout='fill'
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                   loading='lazy'
                   onLoad={(e) => (e.target as HTMLImageElement).classList.remove('opacity-0')}
                />

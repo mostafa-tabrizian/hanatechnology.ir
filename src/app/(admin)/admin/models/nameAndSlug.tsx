@@ -9,6 +9,8 @@ const NameAndSlug = ({ params }: { params: { _id: string; name: string; slug: st
    const slug = params.slug.charAt(0).toUpperCase() + params.slug.slice(1)
 
    const handleSubmit = async ({ name }: { name: string }) => {
+      toast.info('در حال ثبت تغییرات...')
+
       const payload = {
          _id: params._id,
          name: name.trim(),
@@ -27,7 +29,7 @@ const NameAndSlug = ({ params }: { params: { _id: string; name: string; slug: st
             return toast.warning('این برند از قبل ثبت شده است')
          else if (resData.status == 500) {
             console.error(resData.message)
-            return toast.error('در ثبت اطلاعات خطایی رخ داد')
+            return toast.error('خطا در برقراری ارتباط')
          }
 
          return toast.success('نام دسته بندی با موفقیت تغییر یافت')

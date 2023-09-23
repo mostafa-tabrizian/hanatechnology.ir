@@ -49,10 +49,11 @@ const DetailForm = ({
          active: boolean
          inStock: boolean
       },
-      // @ts-ignore
-      { resetForm },
+      { resetForm }: { resetForm: () => void },
    ) => {
       try {
+         toast.info('در حال ثبت اطلاعات محصول...')
+
          const payload = {
             _id: addingNewProduct ? null : product._id,
             ...values,
@@ -70,13 +71,13 @@ const DetailForm = ({
             return toast.warning('بارکد یا اسلاگ از قبل ثبت شده است')
          else if (resData.status == 500) {
             console.error(resData.message)
-            return toast.error('در ثبت اطلاعات خطایی رخ داد')
+            return toast.error('خطا در برقراری ارتباط')
          }
 
          toast.success('اطلاعات محصول با موفقیت ثبت گردید.')
          return resetForm()
       } catch (err) {
-         toast.error('در ثبت اطلاعات خطایی رخ داد. لطفا مجدد تلاش کنید.')
+         toast.error('خطا در برقراری ارتباط. لطفا مجدد تلاش کنید.')
          return console.error(err)
       }
    }

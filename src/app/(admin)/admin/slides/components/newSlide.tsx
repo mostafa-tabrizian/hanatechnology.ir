@@ -68,9 +68,10 @@ const NewSlide = () => {
          link: string
          active: boolean
       },
-      // @ts-ignore
-      { resetForm },
+      { resetForm }: { resetForm: () => void },
    ) => {
+      toast.info('در حال آپلود و ثبت اطلاعات تصویر...')
+
       if (!slideImageToUpload || !slideImageToUploadMemo) {
          return toast.warning('هیچ تصویری برای آپلود انتخاب نشده است!')
       }
