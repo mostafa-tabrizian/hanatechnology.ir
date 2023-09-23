@@ -2,7 +2,7 @@ import { toast } from 'react-toastify'
 
 const deleteFromS3Bucket = async (image: string, folder: string) => {
    try {
-      const res = await fetch('/api/admin/product/image/s3', {
+      const res = await fetch('/api/--admin--/product/image/s3', {
          method: 'DELETE',
          body: JSON.stringify({
             folder,

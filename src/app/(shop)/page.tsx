@@ -104,7 +104,7 @@ const corporationJsonLd = {
          '@context': 'https://schema.org',
          '@type': 'Person',
          jobTitle: 'Chief executive officer',
-         name: 'Mohammad Saadati',
+         name: 'Mohammad --admin--i',
          sameAs: [],
       },
       {
@@ -112,7 +112,7 @@ const corporationJsonLd = {
          '@type': 'Person',
          image: '',
          jobTitle: 'Chairman',
-         name: 'Mohammad Saadati',
+         name: 'Mohammad --admin--i',
          sameAs: [],
       },
    ],
