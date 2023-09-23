@@ -51,7 +51,7 @@ const Images = ({ params: { name, thumbnail, images } }: ImageProps) => {
    return (
       <div className='space-y-3'>
          <div
-            className='text-center bg-white rounded-2xl shadow-lg shadow-slate-200 '
+            className='text-center bg-white rounded-xl shadow-lg shadow-slate-200 '
             onClick={() => {
                if (galleryList.length) {
                   setLightboxOpen(true)
@@ -69,7 +69,9 @@ const Images = ({ params: { name, thumbnail, images } }: ImageProps) => {
                   priority
                />
             ) : (
-               <h2 className='mt-6'>!برای این محصول تصویری وجود ندارد</h2>
+               <span className='flex items-center justify-center text-xl py-1 font-medium text-rose-900'>
+                  !تصویری یافت نشد
+               </span>
             )}
          </div>
 
@@ -100,23 +102,26 @@ const Images = ({ params: { name, thumbnail, images } }: ImageProps) => {
                )
             })}
          </div>
-
-         <SlideshowLightbox
-            theme='lightbox'
-            lightboxIdentifier='lightbox1'
-            framework='next'
-            images={galleryList}
-            showThumbnails={true}
-            open={lightboxOpen}
-            startingSlideIndex={currentImageIndex}
-            modalClose='clickOutside'
-            onClose={() => {
-               setLightboxOpen(false)
-            }}
-            iconColor={'white'}
-            showSlideshowIcon={false}
-            showThumbnailIcon={false}
-         />
+         {galleryList.length ? (
+            <SlideshowLightbox
+               theme='lightbox'
+               lightboxIdentifier='lightbox1'
+               framework='next'
+               images={galleryList}
+               showThumbnails={true}
+               open={lightboxOpen}
+               startingSlideIndex={currentImageIndex}
+               modalClose='clickOutside'
+               onClose={() => {
+                  setLightboxOpen(false)
+               }}
+               iconColor={'white'}
+               showSlideshowIcon={false}
+               showThumbnailIcon={false}
+            />
+         ) : (
+            ''
+         )}
       </div>
    )
 }
