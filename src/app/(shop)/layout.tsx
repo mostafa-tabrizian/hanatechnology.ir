@@ -10,15 +10,15 @@ const getCategoriesAndBrands = async () => {
    const categories = await Category.find()
    const brands = await Brand.find()
 
-   return {categories, brands}
+   return { categories, brands }
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-   const {categories, brands} = await getCategoriesAndBrands()
+   const { categories, brands } = await getCategoriesAndBrands()
 
    return (
       <>
-         <Header params={JSON.parse(JSON.stringify({categories, brands}))} />
+         <Header params={JSON.parse(JSON.stringify({ categories, brands }))} />
 
          <main className='mb-24 max-w-screen-lg overflow-x-hidden mx-auto'>{children}</main>
 

@@ -17,7 +17,6 @@ export async function POST(req: Request) {
    } catch (error) {
       // @ts-ignore
       if (error.code == 11000) {
-         // not unique
          return NextResponse.json({ message: 'notUnique' })
       } else {
          return NextResponse.json({ status: 500, message: error })
@@ -30,10 +29,7 @@ export async function PATCH(req: Request) {
 
    try {
       await dbConnect()
-      const category = await Category.findOneAndUpdate(
-         { _id },
-         { name },
-      )
+      const category = await Category.findOneAndUpdate({ _id }, { name })
 
       return NextResponse.json({
          category,

@@ -18,7 +18,6 @@ export async function POST(req: Request) {
    } catch (error) {
       // @ts-ignore
       if (error.code == 11000) {
-         // not unique
          return NextResponse.json({ message: 'notUnique' })
       } else {
          return NextResponse.json({ status: 500, message: error })
@@ -31,10 +30,7 @@ export async function PATCH(req: Request) {
 
    try {
       await dbConnect()
-      const model = await Model.findOneAndUpdate(
-         { _id },
-         { name },
-      )
+      const model = await Model.findOneAndUpdate({ _id }, { name })
 
       return NextResponse.json({
          model,
@@ -42,7 +38,6 @@ export async function PATCH(req: Request) {
    } catch (error) {
       // @ts-ignore
       if (error.code == 11000) {
-         // not unique
          return NextResponse.json({ message: 'notUnique' })
       } else {
          return NextResponse.json({ status: 500, message: error })

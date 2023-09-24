@@ -19,7 +19,7 @@ import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 const NewSlide = () => {
    const router = useRouter()
 
-   const [slideImageToUpload, setSlideImageToUpload] = useState<File[] | null>(null)
+   const [slideImageToUpload, setSlideImageToUpload] = useState<FileList | null>(null)
 
    const slideImageToUploadMemo = useMemo(() => {
       return slideImageToUpload && Object.values(slideImageToUpload)
@@ -95,8 +95,7 @@ const NewSlide = () => {
       }
    }
 
-   // @ts-ignore
-   const handleSlideImageSelect = (files) => {
+   const handleSlideImageSelect = (files: FileList | null) => {
       if (!files) return
 
       const filesList: File[] = Object.values(files)
@@ -110,8 +109,7 @@ const NewSlide = () => {
       setSlideImageToUpload(files)
    }
 
-   // @ts-ignore
-   const dragOverHandler = (event) => event.preventDefault()
+   const dragOverHandler = (event: React.DragEvent<HTMLDivElement>) => event.preventDefault()
 
    return (
       <div>

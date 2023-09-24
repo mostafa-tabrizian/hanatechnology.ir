@@ -37,8 +37,7 @@ const ProductCards = ({ product }: { product: IProduct }) => {
       >
          <div className='p-1 flex flex-col justify-between shadow-slate-200 bg-white h-full shadow-lg space-y-5 rounded-xl'>
             <div className='flex justify-center mx-auto w-full relative aspect-square'>
-               {
-                  product.thumbnail ?
+               {product.thumbnail ? (
                   <Image
                      className='opacity-0 transition-opacity duration-300 rounded-lg p-1'
                      src={`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${product.thumbnail}`}
@@ -47,9 +46,12 @@ const ProductCards = ({ product }: { product: IProduct }) => {
                      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                      loading='lazy'
                      onLoad={(e) => (e.target as HTMLImageElement).classList.remove('opacity-0')}
-                  /> :
-                  <span className='flex items-center justify-center text-rose-900'>!تصویری یافت نشد</span>
-               }
+                  />
+               ) : (
+                  <span className='flex items-center justify-center text-rose-900'>
+                     !تصویری یافت نشد
+                  </span>
+               )}
             </div>
             <div className='mx-1 space-y-2 relative text-right'>
                <h2 className='text-xs yekan1 md:text-sm'>{product.name}</h2>

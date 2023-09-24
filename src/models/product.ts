@@ -28,13 +28,13 @@ const ProductSchema = new mongoose.Schema({
    barcode: {
       type: String,
       unique: true,
-      required: true
+      required: true,
    },
    name: String,
    slug: {
       type: String,
       unique: true,
-      required: true
+      required: true,
    },
    category: {
       type: mongoose.Schema.Types.ObjectId,

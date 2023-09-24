@@ -19,7 +19,7 @@ const ImageInput = ({
       product: { _id: string; thumbnail: string; images: string[] }
    }
 }) => {
-   const [imageToUpload, setImageToUpload] = useState<File[] | null>(null)
+   const [imageToUpload, setImageToUpload] = useState<FileList | null>(null)
    const [loading, setLoading] = useState(false)
 
    const imageToUploadMemo = useMemo(() => {
@@ -34,7 +34,7 @@ const ImageInput = ({
       }
 
       try {
-         const res = await fetch('/api/--admin--/product/image/db', {
+         const res = await fetch('/api/-admin-/product/image/db', {
             method: 'POST',
             body: JSON.stringify(payload),
          })
@@ -86,8 +86,7 @@ const ImageInput = ({
       }
    }
 
-   // @ts-ignore
-   const onImagesSelected = (files) => {
+   const onImagesSelected = (files: FileList | null) => {
       if (!files) return
 
       const filesList: File[] = Object.values(files)
@@ -101,11 +100,9 @@ const ImageInput = ({
       setImageToUpload(files)
    }
 
-   // @ts-ignore
-   const dragOverHandler = (event) => event.preventDefault()
+   const dragOverHandler = (event: React.DragEvent<HTMLDivElement>) => event.preventDefault()
 
-   // @ts-ignore
-   const dropHandlerThumbnail = (event) => {
+   const dropHandlerThumbnail = (event: React.DragEvent<HTMLDivElement>) => {
       event.preventDefault()
       const files = event.dataTransfer.files
 
@@ -118,8 +115,7 @@ const ImageInput = ({
       onImagesSelected(files)
    }
 
-   // @ts-ignore
-   const dropHandlerImages = (event) => {
+   const dropHandlerImages = (event: React.DragEvent<HTMLDivElement>) => {
       event.preventDefault()
       const files = event.dataTransfer.files
 

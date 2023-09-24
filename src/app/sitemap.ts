@@ -24,7 +24,7 @@ export default async function sitemap() {
    }))
 
    const categories = categoriesData.map(({ name, slug, updatedAt }) => ({
-      url:  `${URL}/search/${hyphen(slug)}?type=category&amp;name=${name}`,
+      url: `${URL}/search/${hyphen(slug)}?type=category&amp;name=${name}`,
       lastModified: updatedAt,
    }))
 

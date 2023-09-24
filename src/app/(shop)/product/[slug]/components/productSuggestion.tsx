@@ -9,9 +9,7 @@ const ProductSuggestion = ({ products }: { products: IProduct[] }) => {
          {products.length ? (
             <ProductSwiper products={JSON.parse(JSON.stringify(products))} />
          ) : (
-            <span className='block mt-1 text-center yekan1'>
-               هیچ محصول مشابهی موجود نمی‌باشد
-            </span>
+            <span className='block mt-1 text-center yekan1'>هیچ محصول مشابهی موجود نمی‌باشد</span>
          )}
       </div>
    )

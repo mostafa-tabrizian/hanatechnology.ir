@@ -37,7 +37,7 @@ const Sidebar = ({
 
    return (
       <div className='md:hidden'>
-         <button onClick={() => setSidebar(true)} aria-label="open sidebar">
+         <button onClick={() => setSidebar(true)} aria-label='open sidebar'>
             <svg
                stroke='currentColor'
                fill='none'
@@ -60,7 +60,7 @@ const Sidebar = ({
             <div className='w-[16rem] h-full bg-slate-100'>
                <div className='p-5'>
                   <div className='flex gap-20 items-center justify-between'>
-                     <button onClick={() => setSidebar(false)} aria-label="close sidebar">
+                     <button onClick={() => setSidebar(false)} aria-label='close sidebar'>
                         <svg
                            stroke='currentColor'
                            fill='none'
@@ -124,7 +124,7 @@ const Sidebar = ({
                      <li className='block'>
                         <div className='text-gray-700 bg-gradient-to-l from-white to-transparent shadow-inner rounded-lg pr-1'>
                            <button
-                           aria-label="categories"
+                              aria-label='categories'
                               onClick={() => setCategories((prev) => !prev)}
                               className='w-full'
                            >
@@ -196,7 +196,11 @@ const Sidebar = ({
 
                      <li className='block'>
                         <div className='text-gray-700 bg-gradient-to-l from-white to-transparent shadow-inner rounded-lg pr-1'>
-                           <button aria-label="brands" onClick={() => setBrands((prev) => !prev)} className='w-full'>
+                           <button
+                              aria-label='brands'
+                              onClick={() => setBrands((prev) => !prev)}
+                              className='w-full'
+                           >
                               <span className='py-1 flex items-center gap-x-2 cursor-pointer font-bold '>
                                  <svg
                                     className='h-5 w-5'
@@ -264,7 +268,7 @@ const Sidebar = ({
                      <li className='block '>
                         <div className='text-gray-700 bg-gradient-to-l from-white to-transparent shadow-inner rounded-lg pr-1'>
                            <button
-                           aria-label="contact us"
+                              aria-label='contact us'
                               onClick={() => setContactUsOptions((prev) => !prev)}
                               className='w-full'
                            >

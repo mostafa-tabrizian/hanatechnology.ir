@@ -12,7 +12,9 @@ export const ProductEditForm = yup.object().shape({
       .string()
       .min(3, 'اسلاگ حداقل باید ۳ کارکتر باشد')
       .required('اسلاگ محصول را وارد کنید')
-      .matches(rule.englishCharNumSpaceWithoutSpecial, { message: 'اسلاگ می‌بایست انگلیسی و بدون حروف خاص باشد' }),
+      .matches(rule.englishCharNumSpaceWithoutSpecial, {
+         message: 'اسلاگ می‌بایست انگلیسی و بدون حروف خاص باشد',
+      }),
    description: yup
       .string()
       .min(30, 'توضیحات حداقل باید ۳۰ کارکتر باشد')
@@ -38,7 +40,9 @@ export const NameSlugValidation = yup.object().shape({
       .string()
       .min(3, 'حداقل ۳ کارکتر')
       .required('اسلاگ را وارد کنید')
-      .matches(rule.englishCharNumSpaceWithoutSpecial, { message: 'اسلاگ می‌بایست انگلیسی و بدون حروف خاص باشد' }),
+      .matches(rule.englishCharNumSpaceWithoutSpecial, {
+         message: 'اسلاگ می‌بایست انگلیسی و بدون حروف خاص باشد',
+      }),
 })
 
 export const SlideValidation = yup.object().shape({

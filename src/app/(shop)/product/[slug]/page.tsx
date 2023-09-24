@@ -85,16 +85,21 @@ export const generateMetadata = async ({ params }: { params: { slug: string } })
 const ProductPage = async ({ params }: { params: { slug: string } }) => {
    const slug = params.slug
    const product: IProduct = await getProduct(slug)
-   const category = product.category[0]
-   const brand = product.brand[0]
-   const model = product.model[0]
+   const category = product.category[0] as unknown as { _id: string; name: string; slug: string }
+   const brand = product.brand[0] as unknown as { _id: string; name: string; slug: string }
+   const model = product.model[0] as unknown as { _id: string; name: string; slug: string }
 
-   // @ts-ignore
    const productsByBrand: IProduct[] = await getProductsByBrand(slug, category, brand)
 
    const imagesListForJsonLd = []
-   imagesListForJsonLd.push(`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${product.thumbnail}`)
-   product.images.map((image) => imagesListForJsonLd.push(`https://tabrizian.storage.iran.liara.space/hanatechnology/products/${image}`))
+   imagesListForJsonLd.push(
+      `https://tabrizian.storage.iran.liara.space/hanatechnology/products/${product.thumbnail}`,
+   )
+   product.images.map((image) =>
+      imagesListForJsonLd.push(
+         `https://tabrizian.storage.iran.liara.space/hanatechnology/products/${image}`,
+      ),
+   )
 
    const productJsonLd = {
       '@type': 'Product',
@@ -105,16 +110,19 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
       description: product.description,
       mpn: product.barcode,
       sku: product.barcode,
-      // @ts-ignore
-      category: `https://hanatechnology.ir/search/${hyphen(category.slug)}?type=category&name=${category.name}`,
+      category: `https://hanatechnology.ir/search/${hyphen(category.slug)}?type=category&name=${
+         category.name
+      }`,
       brand: {
          '@type': 'Brand',
-         // @ts-ignore
+
          name: brand.name,
-         // @ts-ignore
-         url: `https://hanatechnology.ir/search/${hyphen(category.slug)}?type=category&name=${category.name}`,
-         // @ts-ignore
-         '@id': `https://hanatechnology.ir/search/${hyphen(category.slug)}#brand?type=category&name=${category.name}`,
+         url: `https://hanatechnology.ir/search/${hyphen(category.slug)}?type=category&name=${
+            category.name
+         }`,
+         '@id': `https://hanatechnology.ir/search/${hyphen(
+            category.slug,
+         )}#brand?type=category&name=${category.name}`,
       },
       offers: {
          '@type': 'Offer',
@@ -141,18 +149,22 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
          {
             '@type': 'ListItem',
             position: 2,
-            // @ts-ignore
+
             name: category.name,
-            // @ts-ignore
-            item: `https://hanatechnology.ir/search/${hyphen(category.slug)}?type=category&name=${category.name}`,
+
+            item: `https://hanatechnology.ir/search/${hyphen(category.slug)}?type=category&name=${
+               category.name
+            }`,
          },
          {
             '@type': 'ListItem',
             position: 3,
-            // @ts-ignore
+
             name: brand.name,
-            // @ts-ignore
-            item: `https://hanatechnology.ir/search/${hyphen(brand.slug)}?type=brand&name=${brand.name}`,
+
+            item: `https://hanatechnology.ir/search/${hyphen(brand.slug)}?type=brand&name=${
+               brand.name
+            }`,
          },
          { '@type': 'ListItem', position: 4, name: product.name },
       ],
@@ -176,9 +188,9 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
             params={JSON.parse(
                JSON.stringify({
                   product,
-                  // @ts-ignore
+
                   category: category.name,
-                  // @ts-ignore
+
                   brand: brand.name,
                }),
             )}
@@ -194,20 +206,16 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                         </Link>
                         <Link
                            className='text-gray-400'
-                           // @ts-ignore
-                           href={`/search/${hyphen(category.slug)}?type=category&name=${category.name}`}
+                           href={`/search/${hyphen(category.slug)}?type=category&name=${
+                              category.name
+                           }`}
                         >
-                           <span className='text-xs hover:text-blue-500'>
-                              {/* @ts-ignore */}
-                              {category.name}
-                           </span>
+                           <span className='text-xs hover:text-blue-500'>{category.name}</span>
                         </Link>
                         <Link
                            className='text-gray-400'
-                           // @ts-ignore
                            href={`/search/${hyphen(brand.slug)}?type=brand&name=${brand.name}`}
                         >
-                           {/* @ts-ignore */}
                            <span className='text-xs hover:text-blue-500'>{brand.name}</span>
                         </Link>
                         <span className='text-xs font-semibold'>{product.name}</span>
@@ -232,35 +240,35 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                                  <span>دسته بندی: </span>
                                  <Link
                                     id='category'
-                                    // @ts-ignore
-                                    href={`/search/${hyphen(category.slug)}?type=category&name=${category.name}`}
+                                    href={`/search/${hyphen(category.slug)}?type=category&name=${
+                                       category.name
+                                    }`}
                                  >
-                                    <span className='text-blue-500 font-bold'>
-                                       {/* @ts-ignore */}
-                                       {category.name}
-                                    </span>
+                                    <span className='text-blue-500 font-bold'>{category.name}</span>
                                  </Link>
                               </div>
 
                               <div>
                                  <span>مدل: </span>
-                                 {/* @ts-ignore */}
-                                 <Link id='model' href={`/search/${hyphen(model.slug)}?type=model&name=${model.name}`}>
-                                    <span className='text-blue-500 font-bold'>
-                                       {/* @ts-ignore */}
-                                       {model.name}
-                                    </span>
+                                 <Link
+                                    id='model'
+                                    href={`/search/${hyphen(model.slug)}?type=model&name=${
+                                       model.name
+                                    }`}
+                                 >
+                                    <span className='text-blue-500 font-bold'>{model.name}</span>
                                  </Link>
                               </div>
 
                               <div>
                                  <span>برند: </span>
-                                 {/* @ts-ignore */}
-                                 <Link id='brand' href={`/search/${hyphen(brand.slug)}?type=brand&name=${brand.name}`}>
-                                    <span className='text-blue-500 font-bold'>
-                                       {/* @ts-ignore */}
-                                       {brand.name}
-                                    </span>
+                                 <Link
+                                    id='brand'
+                                    href={`/search/${hyphen(brand.slug)}?type=brand&name=${
+                                       brand.name
+                                    }`}
+                                 >
+                                    <span className='text-blue-500 font-bold'>{brand.name}</span>
                                  </Link>
                               </div>
                            </div>
@@ -337,19 +345,23 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                         <div className='text-right flex items-center justify-between bg-white border border-green-700/10 shadow-green-700/30 shadow-lg rounded-lg px-3 py-5'>
                            <div className='flex flex-col space-y-2 mx-5'>
                               <a
-                              aria-label='شماره تماس'
+                                 aria-label='شماره تماس'
                                  id='phone_call'
                                  rel='noreferrer'
                                  className='text-green-600 text-base font-semibold tracking-widest'
                                  href='tel:+989128530920'
-                              >09128530920</a>
+                              >
+                                 09128530920
+                              </a>
                               <a
-                              aria-label='شماره تماس'
+                                 aria-label='شماره تماس'
                                  id='phone_call'
                                  rel='noreferrer'
                                  className='text-green-600 text-base font-semibold tracking-widest'
                                  href='tel:+989109960802'
-                              >09109960802</a>
+                              >
+                                 09109960802
+                              </a>
                            </div>
                            <p className='text-right rtl text-green-600 font-semibold'>
                               برای خرید با ما تماس بگیرید

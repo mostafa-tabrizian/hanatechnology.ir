@@ -18,7 +18,11 @@ const Header = ({
                <SearchInput />
             </div>
 
-            <Link aria-label='صفحه اصلی' href='/' className='flex md:justify-center md:col-span-1 gap-3'>
+            <Link
+               aria-label='صفحه اصلی'
+               href='/'
+               className='flex md:justify-center md:col-span-1 gap-3'
+            >
                <Image
                   className='object-contain'
                   src='/logo/logo.jpg'
@@ -41,7 +45,7 @@ const Header = ({
          </div>
 
          <a
-         aria-label='تماس تلفنی'
+            aria-label='تماس تلفنی'
             id='phone_call'
             href='tel:+989128530920'
             className='bg-green-400 md:hidden p-2 rounded-xl fixed bottom-5 shadow-lg shadow-green-300 left-5 z-10'

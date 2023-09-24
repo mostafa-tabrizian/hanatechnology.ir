@@ -16,7 +16,7 @@ export async function POST(request: Request) {
       discount,
       detail,
       active,
-      inStock
+      inStock,
    }: {
       barcode: string
       name: string
@@ -46,14 +46,13 @@ export async function POST(request: Request) {
          discount,
          detail: JSON.parse(detail),
          active: active,
-         inStock
+         inStock,
       })
 
       return NextResponse.json(product)
    } catch (error) {
       // @ts-ignore
       if (error.code == 11000) {
-         // not unique
          return NextResponse.json({ message: 'notUnique' })
       } else {
          return NextResponse.json({ status: 500, message: error })
@@ -73,7 +72,7 @@ export async function PATCH(request: Request) {
       discount,
       detail,
       active,
-      inStock
+      inStock,
    }: {
       _id: string
       name: string
@@ -104,7 +103,7 @@ export async function PATCH(request: Request) {
             discount,
             detail: JSON.parse(detail),
             active: active,
-            inStock
+            inStock,
          },
       )
 
@@ -112,7 +111,6 @@ export async function PATCH(request: Request) {
    } catch (error) {
       // @ts-ignore
       if (error.code == 11000) {
-         // not unique
          return NextResponse.json({ message: 'notUnique' })
       } else {
          return NextResponse.json({ status: 500, message: error })

@@ -50,10 +50,10 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
                   <div
                      key={idx}
                      className='absolute top-0 w-full'
-                     style={{ zIndex: opacities[idx] * 10 | 0 }}
+                     style={{ zIndex: (opacities[idx] * 10) | 0 }}
                   >
                      <Link
-                     aria-label='لینک به اسلاید'
+                        aria-label='لینک به اسلاید'
                         id='slide'
                         key={slide._id}
                         href={slide.link}
@@ -78,7 +78,7 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
                {[...Array(instanceRef.current.track.details.slides.length).keys()].map((idx) => {
                   return (
                      <button
-                     aria-label="slides dots"
+                        aria-label='slides dots'
                         key={idx}
                         onClick={() => {
                            instanceRef.current?.moveToIdx(idx)
