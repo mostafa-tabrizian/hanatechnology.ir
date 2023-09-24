@@ -139,7 +139,7 @@ async function Home() {
             <Slides slides={JSON.parse(JSON.stringify(slides))} />
 
             <div className='grid grid-cols-2 md:grid-cols-4 gap-x-3'>
-               <Link id='category' href='#'>
+               <Link aria-label='دسته بندی کابل' id='category' href='#'>
                   <Image
                      className='rounded-xl'
                      src={'/category/cable.webp'}
@@ -149,7 +149,7 @@ async function Home() {
                      objectFit='contain'
                   />
                </Link>
-               <Link id='category' href='#'>
+               <Link aria-label='دسته بندی فیبر نوری' id='category' href='#'>
                   <Image
                      className='rounded-xl'
                      src={'/category/fiberoptic.webp'}
@@ -159,7 +159,7 @@ async function Home() {
                      objectFit='contain'
                   />
                </Link>
-               <Link id='category' href='#'>
+               <Link aria-label='دسته بندی روتر' id='category' href='#'>
                   <Image
                      className='rounded-xl'
                      src={'/category/router.webp'}
@@ -169,7 +169,7 @@ async function Home() {
                      objectFit='contain'
                   />
                </Link>
-               <Link id='category' href='#'>
+               <Link aria-label='دسته بندی سویتج' id='category' href='#'>
                   <Image
                      className='rounded-xl'
                      src={'/category/switch.webp'}
@@ -184,7 +184,7 @@ async function Home() {
             <div className='text-center'>
                <h3>دسته‌بندی محصولات</h3>
                <div className='grid grid-cols-3 md:grid-cols-6 gap-y-6 mt-3'>
-                  <Link href='#'>
+                  <Link aria-label='دسته بندی' href='#'>
                      <Image
                         className='rounded-xl'
                         src={'/model/etesalat.webp'}
@@ -195,7 +195,7 @@ async function Home() {
                      />
                      <span className='font-bold'>اتصالات شبکه</span>
                   </Link>
-                  <Link href='#'>
+                  <Link aria-label='دسته بندی' href='#'>
                      <Image
                         className='rounded-xl'
                         src={'/model/fiberoptic-cable.webp'}
@@ -206,7 +206,7 @@ async function Home() {
                      />
                      <span className='font-bold'>کابل فیبرنوری</span>
                   </Link>
-                  <Link href='#'>
+                  <Link aria-label='دسته بندی' href='#'>
                      <Image
                         className='rounded-xl'
                         src={'/model/network-cable.webp'}
@@ -217,7 +217,7 @@ async function Home() {
                      />
                      <span className='font-bold'>کابل شبکه</span>
                   </Link>
-                  <Link href='#'>
+                  <Link aria-label='دسته بندی' href='#'>
                      <Image
                         className='rounded-xl'
                         src={'/model/network-switch.webp'}
@@ -228,7 +228,7 @@ async function Home() {
                      />
                      <span className='font-bold'>سوییج</span>
                   </Link>
-                  <Link href='#'>
+                  <Link aria-label='دسته بندی' href='#'>
                      <Image
                         className='rounded-xl'
                         src={'/model/rack.webp'}
@@ -239,7 +239,7 @@ async function Home() {
                      />
                      <span className='font-bold'>رک</span>
                   </Link>
-                  <Link href='#'>
+                  <Link aria-label='دسته بندی' href='#'>
                      <Image
                         className='rounded-xl'
                         src={'/model/router.webp'}
@@ -254,7 +254,7 @@ async function Home() {
             </div>
 
             <div className='md:flex md:justify-around'>
-               <Link href='#'>
+               <Link aria-label='دسته بندی' href='#'>
                   <Image
                      className='rounded-xl'
                      src={'/product-banner/modem.webp'}
@@ -265,7 +265,7 @@ async function Home() {
                   />
                </Link>
 
-               <Link href='#'>
+               <Link aria-label='دسته بندی' href='#'>
                   <Image
                      className='rounded-xl'
                      src={'/product-banner/point.webp'}
@@ -279,7 +279,7 @@ async function Home() {
 
             <div className='bg-white shadow shadow-slate-200 rounded-lg p-5 pb-2'>
                <div className='flex justify-between items-center'>
-                  <Link href='/search/cctv?type=category&name=دوربین مداربسته'>
+                  <Link id='category' href='/search/cctv?type=category&name=دوربین مداربسته'>
                      <span>...بیشتر</span>
                   </Link>
                   <h2>دوربین مداربسته</h2>
@@ -290,7 +290,7 @@ async function Home() {
 
             <div className='bg-white shadow shadow-slate-200 rounded-lg p-3'>
                <div className='flex justify-between items-center'>
-                  <Link href='/search/modem-router?type=category&name=مودم روتر'>
+                  <Link id='category' href='/search/modem-router?type=category&name=مودم روتر'>
                      <span>...بیشتر</span>
                   </Link>
                   <h2>مودم</h2>

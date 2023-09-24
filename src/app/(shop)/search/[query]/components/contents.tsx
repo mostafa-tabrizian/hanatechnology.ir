@@ -84,7 +84,11 @@ const Contents = ({
          if (filters.type) {
             switch (filters.type) {
                case 'discounted':
-                  products = products.filter((product) => product.discount !== 0)
+                  products = products.filter((product) => product.discount)
+                  break
+               case 'available':
+                  products = products.filter((product) => product.inStock)
+                  break
             }
          }
 

@@ -245,6 +245,7 @@ const HeaderLinksforDesktop = ({
                   <ul className='rtl space-y-4 p-3'>
                      <li>
                         <a
+                        aria-label='ایتا'
                            id='eitaa'
                            rel='noreferrer'
                            className='flex items-center'
@@ -272,6 +273,7 @@ const HeaderLinksforDesktop = ({
                      </li>
                      <li>
                         <a
+                        aria-label='اینستاگرام'
                            id='instagram'
                            rel='noreferrer'
                            className='flex items-center'
@@ -302,6 +304,7 @@ const HeaderLinksforDesktop = ({
                      </li>
                      <li>
                         <a
+                        aria-label='تلگرام'
                            id='telegram'
                            rel='noreferrer'
                            className='flex items-center'
@@ -334,6 +337,7 @@ const HeaderLinksforDesktop = ({
 
                      <li>
                         <a
+                        aria-label='تماس تلفنی'
                            id='phone_call'
                            rel='noreferrer'
                            className='flex items-center'

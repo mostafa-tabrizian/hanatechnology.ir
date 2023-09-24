@@ -80,7 +80,7 @@ const Sidebar = ({
                         </svg>
                      </button>
                      <div>
-                        <Link href='/'>
+                        <Link aria-label='صفحه اصلی' href='/'>
                            <Image
                               src='/logo/logo-sidebar.jpg'
                               alt='لوگو حانا تکنولوژی'

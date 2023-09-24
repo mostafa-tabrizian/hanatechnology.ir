@@ -53,6 +53,7 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
                      style={{ zIndex: opacities[idx] * 10 | 0 }}
                   >
                      <Link
+                     aria-label='لینک به اسلاید'
                         id='slide'
                         key={slide._id}
                         href={slide.link}

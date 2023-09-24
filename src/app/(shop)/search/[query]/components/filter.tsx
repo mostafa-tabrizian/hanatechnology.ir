@@ -221,6 +221,7 @@ export const FilterOptions = ({
                   }}
                >
                   <FormControlLabel value='discounted' control={<Radio />} label='تخفیف دار' />
+                  <FormControlLabel value='available' control={<Radio />} label='موجود' />
                </RadioGroup>
             </Collapse>
          </div>

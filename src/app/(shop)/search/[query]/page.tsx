@@ -116,14 +116,18 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
 
    return (
       <>
-         <GTMViewItemList
-            params={JSON.parse(
-               JSON.stringify({
-                  query,
-                  productList: uniqueMergedProducts,
-               }),
-            )}
-         />
+         {uniqueMergedProducts.length ? (
+            <GTMViewItemList
+               params={JSON.parse(
+                  JSON.stringify({
+                     query,
+                     productList: uniqueMergedProducts,
+                  }),
+               )}
+            />
+         ) : (
+            ''
+         )}
 
          <GTMSearch query={query} />
 

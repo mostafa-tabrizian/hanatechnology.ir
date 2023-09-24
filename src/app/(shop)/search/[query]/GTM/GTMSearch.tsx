@@ -3,10 +3,14 @@
 'use client'
 
 import { useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 const GTMSearch = ({ query }: { query: string }) => {
+   const searchParams = useSearchParams()
+   const type = searchParams.get('type')
+
    useEffect(() => {
-      console.log('gtmSearch', query)
+      if (type !== 'search') return
 
       // @ts-ignore
       window.dataLayer = window.dataLayer || []
@@ -18,7 +22,7 @@ const GTMSearch = ({ query }: { query: string }) => {
       })
 
       return () => {}
-   }, [query])
+   }, [query, type])
 
    return <span></span>
 }

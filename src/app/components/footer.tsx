@@ -7,7 +7,7 @@ const Footer = () => {
          <div className='grid gap-10 max-w-screen-lg grid-cols-5 grid-row-2 container mx-auto'>
             <div className='col-span-5 flex flex-col justify-start'>
                <div className='text-center'>
-                  <Link href='/' className='flex justify-center'>
+                  <Link aria-label='صفحه اصلی' href='/' className='flex justify-center'>
                      <Image
                         className='object-contain'
                         src='/logo/logo-footer.jpg'
@@ -27,6 +27,7 @@ const Footer = () => {
                      <ul className='flex gap-3 items-center'>
                         <li className='block'>
                            <a
+                           aria-label='ایتا'
                               id='eitaa'
                               rel='noreferrer'
                               href='https://eitaa.com/HanaTech2023'
@@ -47,6 +48,7 @@ const Footer = () => {
                         </li>
                         <li className='block'>
                            <a
+                           aria-label='اینستاگرام'
                               id='instagram'
                               rel='noreferrer'
                               href='https://www.instagram.com/HanaTech2023/'
@@ -70,6 +72,7 @@ const Footer = () => {
                         </li>
                         <li className='block'>
                            <a
+                           aria-label='تلگرام'
                               id='telegram'
                               rel='noreferrer'
                               href='https://t.me/HanaTech2023'
@@ -94,6 +97,7 @@ const Footer = () => {
                         </li>
                         <li className='block'>
                            <a
+                           aria-label='تماس تلفنی'
                               id='phone_call'
                               href='tel:+989128530920'
                               className='flex items-center'
@@ -143,6 +147,7 @@ const Footer = () => {
                         <br />
                         در {' '}
                         <a
+                        aria-label='ایتا'
                            id='eitaa'
                            rel='noreferrer'
                            className='text-blue-600 text-sm font-semibold'
@@ -153,6 +158,7 @@ const Footer = () => {
                         </a>
                         ،{' '}
                         <a
+                        aria-label='اینستاگرام'
                            id='instagram'
                            rel='noreferrer'
                            className='text-blue-600 text-sm font-semibold'
@@ -163,6 +169,7 @@ const Footer = () => {
                         </a>
                         ،{' '}
                         <a
+                        aria-label='تلگرام'
                            id='telegram'
                            rel='noreferrer'
                            className='text-blue-600 text-sm font-semibold'
@@ -173,6 +180,7 @@ const Footer = () => {
                         </a>{' '}
                         و یا از طریق شماره های{' '}
                         <a
+                        aria-label='تماس تلفنی'
                            id='phone_call'
                            rel='noreferrer'
                            className='text-blue-600 text-sm font-semibold tracking-widest'
@@ -182,6 +190,7 @@ const Footer = () => {
                         </a>
                         و{' '}
                         <a
+                        aria-label='تماس تلفنی'
                            id='phone_call'
                            rel='noreferrer'
                            className='text-blue-600 text-sm font-semibold tracking-widest'
