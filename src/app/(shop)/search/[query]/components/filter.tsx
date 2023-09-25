@@ -159,6 +159,7 @@ export const FilterOptions = memo(
                      onChange={(_e, newValue) =>
                         setFilters({
                            ...filters,
+                           type: 'available',
                            priceRange: newValue as number[],
                         })
                      }
