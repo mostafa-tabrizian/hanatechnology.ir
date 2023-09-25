@@ -84,7 +84,7 @@ const Contents = memo(({
          if (filters.type) {
             switch (filters.type) {
                case 'discounted':
-                  products = products.filter((product) => product.discount)
+                  products = products.filter((product) => product.discount && product.inStock)
                   break
                case 'available':
                   products = products.filter((product) => product.inStock)
