@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import hyphen from '@/lib/hyphen'
 import { toast } from 'react-toastify'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const SearchInput = () => {
    const [searchQuery, setSearchQuery] = useState('')
@@ -12,7 +13,24 @@ const SearchInput = () => {
    const handleFormSubmit = (e: React.FormEvent) => {
       e.preventDefault()
 
-      toast.info('در حال جستجو...')
+      toast(
+         <div className='mx-auto flex justify-center'>
+            <CircularProgress size={25} />
+         </div>,
+         {
+            hideProgressBar: true,
+            closeButton: false,
+            style: {
+               display: 'flex',
+               justifyContent: 'center',
+               textAlign: 'center',
+               width: '3.5rem',
+               marginLeft: 'auto',
+               marginRight: 'auto',
+            },
+            autoClose: 750,
+         },
+      )
 
       if (searchQuery.trim()) {
          router.push(`/search/${hyphen(searchQuery)}?type=search`)
