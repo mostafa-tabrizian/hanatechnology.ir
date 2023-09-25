@@ -137,19 +137,21 @@ export const FilterOptions = memo(
       const [modelCollapse, setModelCollapse] = useState(false)
 
       return (
-         <>
+         <div>
             <div className='bg-white rtl text-right py-2 my-3 px-3 rounded-xl'>
-               <span>
-                  بازه قیمتی
-                  <br />
-                  <span className=''>
-                     {(filters.priceRange[1] * 200_000).toLocaleString('fa')} تومان
-                  </span>{' '}
-                  تا
-                  <span className='mr-2'>
-                     {(filters.priceRange[0] * 200_000).toLocaleString('fa')} تومان
-                  </span>
-               </span>
+               <div className='flex justify-between mb-3'>
+                  <span className='text-base'>بازه قیمتی</span>
+
+                  <div>
+                     <span className='text-base font-semibold'>
+                        {(filters.priceRange[1] * 200_000).toLocaleString('fa')} تومان
+                     </span>{' '}
+                     تا
+                     <span className='mr-2 text-base font-semibold'>
+                        {(filters.priceRange[0] * 200_000).toLocaleString('fa')} تومان
+                     </span>
+                  </div>
+               </div>
 
                <div className='px-5'>
                   <Slider
@@ -165,7 +167,7 @@ export const FilterOptions = memo(
                      }
                      valueLabelDisplay='auto'
                      getAriaValueText={(value) => `تومان ${(value * 200_000).toLocaleString('fa')}`}
-                     valueLabelFormat={(value) => `تومان ${(value * 200_000).toLocaleString('fa')}`}
+                     valueLabelFormat={() => ''}
                   />
                </div>
             </div>
@@ -376,7 +378,7 @@ export const FilterOptions = memo(
                   </RadioGroup>
                </Collapse>
             </div>
-         </>
+         </div>
       )
    },
 )

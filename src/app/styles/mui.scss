@@ -66,6 +66,10 @@
    color: #2495ff !important;
 }
 
+.MuiSlider-valueLabel {
+   display: none;
+}
+
 .MuiSlider-track {
    background-color: #0066ff !important;
    border: none !important;
