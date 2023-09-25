@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Script from 'next/script'
+import Image from 'next/legacy/image'
 
 import ProductSuggestion from './components/productSuggestion'
 import Images from '@/components/product/images'
@@ -72,19 +73,45 @@ const getProductsByBrand = async (
 export const generateMetadata = async ({ params }: { params: { slug: string } }) => {
    const product = await getProduct(params.slug)
 
-   return {
-      title: (dehyphen(product.name) || 'محصولی یافت نشد!') + ' | حانا تکنولوژی',
-      description:
-         'ما در حانا به حفاظت از شما و محیط‌هایتان متعهدیم. با ارائه ابزارهای پیشرفته دوربین مداربسته، سیستم‌های اعلام حریق، دزدگیرهای امنیتی و تجهیزات شبکه، ما به شما امکان می‌دهیم تا نظارت، امنیت، و ارتباطات خود را به سطح جدیدی برسانید. ما در تلاشیم تا با ارائه راه‌حل‌هایی نوآورانه و اطمینان‌بخش، زندگی و کسب و کار شما را تقویت کنیم. به ما بپیوندید و با ما در جهت ساختن یک آینده امن‌تر و بهتر همکاری کنید. ',
-      alternates: {
-         canonical: `https://hanatechnology.ir/product/${hyphen(product.slug)}`,
-      },
+   if (product) {
+      return {
+         title: dehyphen(product.name) + ' | حانا تکنولوژی',
+         description:
+            'ما در حانا به حفاظت از شما و محیط‌هایتان متعهدیم. با ارائه ابزارهای پیشرفته دوربین مداربسته، سیستم‌های اعلام حریق، دزدگیرهای امنیتی و تجهیزات شبکه، ما به شما امکان می‌دهیم تا نظارت، امنیت، و ارتباطات خود را به سطح جدیدی برسانید. ما در تلاشیم تا با ارائه راه‌حل‌هایی نوآورانه و اطمینان‌بخش، زندگی و کسب و کار شما را تقویت کنیم. به ما بپیوندید و با ما در جهت ساختن یک آینده امن‌تر و بهتر همکاری کنید. ',
+         alternates: {
+            canonical: `https://hanatechnology.ir/product/${hyphen(product.slug)}`,
+         },
+      }
+   } else {
+      return {
+         title: 'محصولی یافت نشد! | حانا تکنولوژی',
+         description:
+            'ما در حانا به حفاظت از شما و محیط‌هایتان متعهدیم. با ارائه ابزارهای پیشرفته دوربین مداربسته، سیستم‌های اعلام حریق، دزدگیرهای امنیتی و تجهیزات شبکه، ما به شما امکان می‌دهیم تا نظارت، امنیت، و ارتباطات خود را به سطح جدیدی برسانید. ما در تلاشیم تا با ارائه راه‌حل‌هایی نوآورانه و اطمینان‌بخش، زندگی و کسب و کار شما را تقویت کنیم. به ما بپیوندید و با ما در جهت ساختن یک آینده امن‌تر و بهتر همکاری کنید. ',
+      }
    }
 }
 
 const ProductPage = async ({ params }: { params: { slug: string } }) => {
    const slug = params.slug
    const product: IProduct = await getProduct(slug)
+
+   if (!product)
+      return (
+         <div className='my-20 text-center space-y-2'>
+            <span className='font-semibold text-xl'>!هیچ محصولی یافت نشد</span>
+            <span className='text-sm block'>این محصول وجود ندارد یا در حال حاضر غیر فعال می‌باشد</span>
+            <div className='w-[20rem] mx-auto aspect-square relative'>
+               <Image
+                  src='/noSearchResult.jpg'
+                  alt='no search result'
+                  layout='fill'
+                  objectFit='contain'
+                  loading='lazy'
+               />
+            </div>
+         </div>
+      )
+
    const category = product.category[0] as unknown as { _id: string; name: string; slug: string }
    const brand = product.brand[0] as unknown as { _id: string; name: string; slug: string }
    const model = product.model[0] as unknown as { _id: string; name: string; slug: string }
