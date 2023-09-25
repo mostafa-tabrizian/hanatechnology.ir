@@ -139,7 +139,7 @@ export const FilterOptions = memo(
       return (
          <div>
             <div className='bg-white rtl text-right py-2 my-3 px-3 rounded-xl'>
-               <div className='flex justify-between mb-3'>
+               <div className='flex md:block justify-between mb-3'>
                   <span className='text-base'>بازه قیمتی</span>
 
                   <div>
