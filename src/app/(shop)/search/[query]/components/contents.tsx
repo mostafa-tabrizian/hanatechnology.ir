@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, memo } from 'react'
 
 import { IProduct } from '@/models/product'
 import stringtoDate from '@/lib/stringToDate'
@@ -10,7 +10,7 @@ import SortComponent, { SortOptions } from './sort'
 import { IBrand } from '@/models/brand'
 import { IModel } from '@/models/model'
 
-const Contents = ({
+const Contents = memo(({
    params: { dbProducts, brands, models },
 }: {
    params: {
@@ -116,19 +116,12 @@ const Contents = ({
          <div>
             <div className='flex md:hidden gap-x-4 text-gray-400 mb-8'>
                <FilterComponent
-                  params={{
-                     filters,
-                     setFilters,
-                     brands,
-                     models,
-                  }}
+                  filters={filters}
+                  setFilters={setFilters}
+                  brands={brands}
+                  models={models}
                />
-               <SortComponent
-                  params={{
-                     sortValue,
-                     setSortValue,
-                  }}
-               />
+               <SortComponent sortValue={sortValue} setSortValue={setSortValue} />
             </div>
          </div>
          <div className='md:grid md:grid-cols-4 md:gap-3'>
@@ -142,24 +135,19 @@ const Contents = ({
             </div>
 
             <div className='col-span-1 hidden md:block'>
-               <SortOptions
-                  params={{
-                     sortValue,
-                     setSortValue,
-                  }}
-               />
+               <SortOptions sortValue={sortValue} setSortValue={setSortValue} />
                <FilterOptions
-                  params={{
-                     filters,
-                     setFilters,
-                     brands,
-                     models,
-                  }}
+                  filters={filters}
+                  setFilters={setFilters}
+                  brands={brands}
+                  models={models}
                />
             </div>
          </div>
       </div>
    )
-}
+})
+
+Contents.displayName = 'Contents'
 
 export default Contents

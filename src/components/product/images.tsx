@@ -27,6 +27,7 @@ const Images = ({ params: { name, thumbnail, images } }: ImageProps) => {
    useEffect(() => {
       return () => {
          setGalleryList([])
+         setLightboxOpen(false)
       }
    }, [])
 

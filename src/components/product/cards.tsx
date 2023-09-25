@@ -7,8 +7,9 @@ import CircularProgress from '@mui/material/CircularProgress'
 import { IProduct } from '@/models/product'
 
 import hyphen from '@/lib/hyphen'
+import { memo } from 'react'
 
-const ProductCards = ({ product }: { product: IProduct }) => {
+const ProductCards = memo(({ product }: { product: IProduct }) => {
    return (
       <Link
          id={product.slug}
@@ -107,6 +108,8 @@ const ProductCards = ({ product }: { product: IProduct }) => {
          </div>
       </Link>
    )
-}
+})
+
+ProductCards.displayName = 'ProductCards'
 
 export default ProductCards

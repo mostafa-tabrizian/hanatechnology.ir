@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import Link from 'next/link'
 import Sidebar from './sidebar'
 import SearchInput from '@/components/searchInput'
@@ -6,7 +7,7 @@ import LinksForDesktop from './headerLinksforDesktop'
 import { ICategory } from '@/models/category'
 import { IBrand } from '@/models/brand'
 
-const Header = ({
+const Header = memo(({
    params: { categories, brands },
 }: {
    params: { categories: ICategory[]; brands: IBrand[] }
@@ -66,6 +67,8 @@ const Header = ({
          </a>
       </header>
    )
-}
+})
+
+Header.displayName = 'Header'
 
 export default Header
