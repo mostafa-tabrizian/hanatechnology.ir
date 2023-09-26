@@ -326,9 +326,9 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
                            <span className='yekanExtraBold text-xl'>جزئیات</span>
                            <ul className='space-y-2'>
                               {product.detail
-                                 ? Object.entries(product.detail).map((data) => {
+                                 ? Object.entries(product.detail).map((data, idx) => {
                                       return (
-                                         <li key={data[0]} className='text-slate-500 text-sm'>
+                                         <li key={idx} className='text-slate-500 text-sm'>
                                             {data[0]} : {data[1]}
                                          </li>
                                       )

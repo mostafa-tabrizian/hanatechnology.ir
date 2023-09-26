@@ -127,7 +127,6 @@ const NewSlide = () => {
                   <div className='text-sm flex w-fit mx-auto bg-blue-100 border-2 border-slate-200 rounded-xl'>
                      {slideImageToUploadMemo?.length ? (
                         <Image
-                           key={slideImageToUploadMemo[0].name}
                            className='rounded-xl aspect-video'
                            src={URL.createObjectURL(slideImageToUploadMemo[0])}
                            alt={slideImageToUploadMemo[0].name}

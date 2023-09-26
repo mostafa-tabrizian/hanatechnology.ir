@@ -9,7 +9,6 @@ import 'react-toastify/dist/ReactToastify.min.css'
 import { SessionProvider } from 'next-auth/react'
 import { ToastContainer } from 'react-toastify'
 import Analytics from './GTM'
-import _ from 'lodash'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
    console.log(
