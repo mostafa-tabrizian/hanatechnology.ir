@@ -6,13 +6,13 @@ import nowDate from '@/lib/nowDate'
 import authOptions from './auth'
 
 const UserDetail = async () => {
-   const session: { _doc: { username: string } } | null = await getServerSession(authOptions)
+   const session: { username: string } | null = await getServerSession(authOptions)
 
    if (!session) return null
 
    await dbConnect()
    const user = await User.findOne({
-      username: session._doc.username,
+      username: session.username,
    }).exec()
 
    user.lastVisit = nowDate()
