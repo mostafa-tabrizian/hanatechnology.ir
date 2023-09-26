@@ -1,6 +1,7 @@
 import User from '@/lib/user'
 import Link from 'next/link'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
+import LogoutButton from './components/logoutButton'
 
 export const metadata = {
    title: 'حانا تکنولوژی | پنل ادمین',
@@ -25,7 +26,7 @@ const AdminPanel = async () => {
             </div>
 
             <div className='px-4 py-10 space-y-4 from-gray-50 to-gray-100 bg-gradient-to-b rounded-lg max-w-sm mx-auto'>
-               <div className='bg-white rounded-lg py-2 px-2'>
+               <div className='bg-white rounded-lg py-2 px-2 hover:shadow-lg hover:shadow-blue-100 transition-all hover:border-blue-600'>
                   <Link href='/--admin--/products'>
                      <div className='flex justify-end space-x-3 items-center'>
                         <span className='text-base text-black'>محصولات</span>
@@ -46,7 +47,7 @@ const AdminPanel = async () => {
                   </Link>
                </div>
 
-               <div className='bg-white rounded-lg py-2 px-2'>
+               <div className='bg-white rounded-lg py-2 px-2 hover:shadow-lg hover:shadow-blue-100 transition-all hover:border-blue-600'>
                   <Link href='/--admin--/slides'>
                      <div className='flex justify-end space-x-3 items-center'>
                         <span className='text-base text-black'>اسلاید ها</span>
@@ -75,7 +76,7 @@ const AdminPanel = async () => {
                   </Link>
                </div>
 
-               <div className='bg-white rounded-lg py-2 px-2'>
+               <div className='bg-white rounded-lg py-2 px-2 hover:shadow-lg hover:shadow-blue-100 transition-all hover:border-blue-600'>
                   <Link href='/--admin--/categories'>
                      <div className='flex justify-end space-x-3 items-center'>
                         <span className='text-base text-black'>دسته بندی ها</span>
@@ -101,7 +102,7 @@ const AdminPanel = async () => {
                   </Link>
                </div>
 
-               <div className='bg-white rounded-lg py-2 px-2'>
+               <div className='bg-white rounded-lg py-2 px-2 hover:shadow-lg hover:shadow-blue-100 transition-all hover:border-blue-600'>
                   <Link href='/--admin--/brands'>
                      <div className='flex justify-end space-x-3 items-center'>
                         <span className='text-base text-black'>برند ها</span>
@@ -125,7 +126,7 @@ const AdminPanel = async () => {
                   </Link>
                </div>
 
-               <div className='bg-white rounded-lg py-2 px-2'>
+               <div className='bg-white rounded-lg py-2 px-2 hover:shadow-lg hover:shadow-blue-100 transition-all hover:border-blue-600'>
                   <Link href='/--admin--/models'>
                      <div className='flex justify-end space-x-3 items-center'>
                         <span className='text-base text-black'>مدل ها</span>
@@ -150,7 +151,7 @@ const AdminPanel = async () => {
                   </Link>
                </div>
 
-               {/* <div className='bg-white rounded-lg py-2 px-2'>
+               {/* <div className='bg-white rounded-lg py-2 px-2 hover:shadow-lg hover:shadow-blue-100 transition-all hover:border-blue-600'>
                   <Link href='/--admin--/statistic'>
                      <div className='flex justify-end space-x-3 items-center'>
                         <span className='text-base text-black'>آمار</span>
@@ -172,6 +173,8 @@ const AdminPanel = async () => {
                      </div>
                   </Link>
                </div> */}
+
+               <LogoutButton />
             </div>
          </>
       </div>
