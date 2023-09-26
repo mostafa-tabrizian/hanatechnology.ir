@@ -13,6 +13,7 @@ import SearchTitle from './components/title'
 
 import GTMViewItemList from './GTM/GTMViewItemList'
 import GTMSearch from './GTM/GTMSearch'
+import limiter from '@/lib/limiter'
 
 const getProducts = async ({ query }: { query: string }) => {
    query = dehyphen(query)
@@ -112,6 +113,14 @@ export const generateMetadata = async ({ params }: { params: { query: string } }
 
 const Search = async ({ params: { query } }: { params: { query: string } }) => {
    query = dehyphen(decodeURI(query))
+
+   const remaining = await limiter.removeTokens(1)
+   if (remaining < 0) {
+      return (
+         <h1 className='text-center mx-10 md:mx-auto my-20 max-w-screen-sm'>متاسفانه تعداد درخواست‌های شما به حداکثر مجاز رسیده است. لطفاً کمی صبر کنید و سپس دوباره امتحان کنید</h1>
+      )
+   }
+   
    const { uniqueMergedProducts, brands, models } = await getProducts({ query })
 
    return (

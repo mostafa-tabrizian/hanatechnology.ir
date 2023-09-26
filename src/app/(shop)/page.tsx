@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/legacy/image'
 
 import dbConnect from '@/lib/dbConnect'
+import limiter from '@/lib/limiter'
 import Product from '@/models/product'
 import Slide from '@/models/slide'
 
@@ -119,6 +120,15 @@ const corporationJsonLd = {
 }
 
 async function Home() {
+
+   const remaining = await limiter.removeTokens(2)
+
+   if (remaining < 0) {
+      return (
+         <h1 className='text-center mx-10 md:mx-auto my-20 max-w-screen-sm'>متاسفانه تعداد درخواست‌های شما به حداکثر مجاز رسیده است. لطفاً کمی صبر کنید و سپس دوباره امتحان کنید</h1>
+      )
+   }
+   
    const categories = await getCategories()
    const slides = await getSlides()
 

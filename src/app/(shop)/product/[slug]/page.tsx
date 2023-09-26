@@ -8,6 +8,7 @@ import Product, { IProduct } from '@/models/product'
 import dbConnect from '@/lib/dbConnect'
 import hyphen from '@/lib/hyphen'
 import dehyphen from '@/lib/dehyphen'
+import limiter from '@/lib/limiter'
 
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import GTMViewItem from './components/GTMViewItem'
@@ -71,6 +72,13 @@ const getProductsByBrand = async (
 }
 
 export const generateMetadata = async ({ params }: { params: { slug: string } }) => {
+
+   const remaining = await limiter.removeTokens(1)
+
+   if (remaining < 0) return {
+      title: 'خطای 429'
+   }
+
    const product = await getProduct(params.slug)
 
    if (product) {
@@ -92,6 +100,17 @@ export const generateMetadata = async ({ params }: { params: { slug: string } })
 }
 
 const ProductPage = async ({ params }: { params: { slug: string } }) => {
+   const remaining = await limiter.removeTokens(1)
+
+   if (remaining < 0) {
+      return (
+         <h1 className='text-center mx-10 md:mx-auto my-20 max-w-screen-sm'>
+            متاسفانه تعداد درخواست‌های شما به حداکثر مجاز رسیده است. لطفاً کمی صبر کنید و سپس دوباره
+            امتحان کنید
+         </h1>
+      )
+   }
+
    const slug = params.slug
    const product: IProduct = await getProduct(slug)
 
@@ -99,7 +118,9 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
       return (
          <div className='my-20 text-center space-y-2'>
             <span className='font-semibold text-xl'>!هیچ محصولی یافت نشد</span>
-            <span className='text-sm block'>این محصول وجود ندارد یا در حال حاضر غیر فعال می‌باشد</span>
+            <span className='text-sm block'>
+               این محصول وجود ندارد یا در حال حاضر غیر فعال می‌باشد
+            </span>
             <div className='w-[20rem] mx-auto aspect-square relative'>
                <Image
                   src='/noSearchResult.jpg'
