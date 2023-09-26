@@ -13,11 +13,9 @@ import imageUploadHandler from '@/lib/imageUploadHandler'
 import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 
 const ImageInput = ({
-   params: { product },
+   product,
 }: {
-   params: {
-      product: { _id: string; thumbnail: string; images: string[] }
-   }
+   product: { _id: string; thumbnail: string; images: string[] }
 }) => {
    const [imageToUpload, setImageToUpload] = useState<FileList | null>(null)
    const [loading, setLoading] = useState(false)

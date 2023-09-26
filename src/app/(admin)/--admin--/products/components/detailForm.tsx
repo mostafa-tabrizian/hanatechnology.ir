@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, memo } from 'react'
 import { Formik, Form } from 'formik'
 import { toast } from 'react-toastify'
 
@@ -17,16 +17,18 @@ import Autocomplete from '@mui/material/Autocomplete'
 import ImageInput from './imageInput'
 import { ProductEditForm } from '@/formik/schema/validation'
 
-const DetailForm = ({
-   params: { addingNewProduct, product, categories, brands, models },
+const DetailForm = memo(({
+   addingNewProduct,
+   product,
+   categories,
+   brands,
+   models,
 }: {
-   params: {
-      addingNewProduct: boolean
-      product: IProduct
-      categories: ICategory[]
-      brands: IBrand[]
-      models: IModel[]
-   }
+   addingNewProduct: boolean
+   product: IProduct
+   categories: ICategory[]
+   brands: IBrand[]
+   models: IModel[]
 }) => {
    const [selectedCategoryId, selectCategoryId] = useState(
       // @ts-ignore
@@ -133,15 +135,11 @@ const DetailForm = ({
                      ''
                   ) : (
                      <ImageInput
-                        params={JSON.parse(
-                           JSON.stringify({
-                              product: {
-                                 _id: product._id,
-                                 thumbnail: product.thumbnail,
-                                 images: product.images,
-                              },
-                           }),
-                        )}
+                        product={{
+                           _id: product._id,
+                           thumbnail: product.thumbnail,
+                           images: product.images,
+                        }}
                      />
                   )}
                </div>
@@ -405,6 +403,8 @@ const DetailForm = ({
          )}
       </Formik>
    )
-}
+})
+
+DetailForm.displayName = 'DetailForm'
 
 export default DetailForm
