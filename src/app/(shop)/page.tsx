@@ -28,7 +28,7 @@ const getCategories = async () => {
 
 const getSlides = async () => {
    dbConnect()
-   return await Slide.find()
+   return await Slide.find().sort({createdAt:-1})
 }
 
 export const metadata = {

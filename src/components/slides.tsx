@@ -15,29 +15,62 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
    const [currentSlide, setCurrentSlide] = useState(0)
    const [loaded, setLoaded] = useState(false)
 
+   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
+      {
+         initial: 0,
+         slides: slides.length - 1,
+         rtl: true,
+         loop: true,
+         detailsChanged(s) {
+            const newOpacities = s.track.details.slides.map((slide) => slide.portion)
+            setOpacities(newOpacities)
+         },
+         slideChanged(slider) {
+            setCurrentSlide(slider.track.details.rel)
+         },
+         created() {
+            setLoaded(true)
+         },
+      },
+      [
+         (slider) => {
+            let timeout: ReturnType<typeof setTimeout>
+            let mouseOver = false
+            function clearNextTimeout() {
+               clearTimeout(timeout)
+            }
+            function nextTimeout() {
+               clearTimeout(timeout)
+               if (mouseOver) return
+               timeout = setTimeout(() => {
+                  slider.next()
+               }, 4000)
+            }
+            slider.on('created', () => {
+               slider.container.addEventListener('mouseover', () => {
+                  mouseOver = true
+                  clearNextTimeout()
+               })
+               slider.container.addEventListener('mouseout', () => {
+                  mouseOver = false
+                  nextTimeout()
+               })
+               nextTimeout()
+            })
+            slider.on('dragStarted', clearNextTimeout)
+            slider.on('animationEnded', nextTimeout)
+            slider.on('updated', nextTimeout)
+         },
+      ],
+   )
+
    useEffect(() => {
       return () => {
          setOpacities([])
          setCurrentSlide(0)
+         instanceRef.current = null
       }
    }, [])
-
-   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
-      initial: 0,
-      slides: slides.length - 1,
-      loop: true,
-      rtl: true,
-      detailsChanged(s) {
-         const newOpacities = s.track.details.slides.map((slide) => slide.portion)
-         setOpacities(newOpacities)
-      },
-      slideChanged(slider) {
-         setCurrentSlide(slider.track.details.rel)
-      },
-      created() {
-         setLoaded(true)
-      },
-   })
 
    return (
       <div className='mx-auto w-full md:w-4/6 rtl relative space-y-3'>
@@ -74,7 +107,7 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
             })}
          </div>
          {loaded && instanceRef.current && (
-            <div className='dots'>
+            <div className='dots rtl'>
                {[...Array(instanceRef.current.track.details.slides.length).keys()].map((idx) => {
                   return (
                      <button

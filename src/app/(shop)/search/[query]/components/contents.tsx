@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, memo } from 'react'
+import CircularProgress from '@mui/material/CircularProgress'
 
 import { IProduct } from '@/models/product'
 import stringtoDate from '@/lib/stringToDate'
@@ -20,6 +21,7 @@ const Contents = memo(
          models: IModel[]
       }
    }) => {
+      const [loading, setLoading] = useState(true)
       const [initProducts, setInitProducts] = useState<IProduct[]>(dbProducts)
       const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([])
 
@@ -48,6 +50,7 @@ const Contents = memo(
          dbProducts?.sort((a, b) => stringtoDate(b.createdAt) - stringtoDate(a.createdAt))
          setInitProducts(dbProducts)
          setFilteredProducts(dbProducts)
+         setLoading(false)
       }, [dbProducts])
 
       useEffect(() => {
@@ -105,6 +108,10 @@ const Contents = memo(
                products = products.filter((product) => product.brand == filters.brand)
             }
 
+            if (filters.model) {
+               products = products.filter((product) => product.model == filters.model)
+            }
+
             setFilteredProducts(products)
             handleSort(products)
          }
@@ -137,7 +144,11 @@ const Contents = memo(
                   </div>
                ) : (
                   <span className='grid-cols-2 md:col-span-3 text-lg font-medium text-center mt-5'>
-                     💢 با این فیلتر ها هیچ محصولی موجود نمی‌باشد
+                     {loading ? (
+                        <CircularProgress color='primary' size={40} />
+                     ) : (
+                        '💢 با این فیلتر ها هیچ محصولی موجود نمی‌باشد'
+                     )}
                   </span>
                )}
 
