@@ -72,12 +72,12 @@ const getProductsByBrand = async (
 }
 
 export const generateMetadata = async ({ params }: { params: { slug: string } }) => {
-
    const remaining = await limiter.removeTokens(1)
 
-   if (remaining < 0) return {
-      title: 'خطای 429'
-   }
+   if (remaining < 0)
+      return {
+         title: 'خطای 429',
+      }
 
    const product = await getProduct(params.slug)
 
@@ -123,7 +123,9 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
             </span>
             <div className='w-[20rem] mx-auto aspect-square relative'>
                <Image
-                  src='/noSearchResult.jpg'
+                  src={
+                     'https://tabrizian.storage.iran.liara.space/hanatechnology/noSearchResult.jpg'
+                  }
                   alt='no search result'
                   layout='fill'
                   objectFit='contain'

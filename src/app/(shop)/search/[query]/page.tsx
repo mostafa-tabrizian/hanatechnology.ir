@@ -117,10 +117,13 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
    const remaining = await limiter.removeTokens(1)
    if (remaining < 0) {
       return (
-         <h1 className='text-center mx-10 md:mx-auto my-20 max-w-screen-sm'>متاسفانه تعداد درخواست‌های شما به حداکثر مجاز رسیده است. لطفاً کمی صبر کنید و سپس دوباره امتحان کنید</h1>
+         <h1 className='text-center mx-10 md:mx-auto my-20 max-w-screen-sm'>
+            متاسفانه تعداد درخواست‌های شما به حداکثر مجاز رسیده است. لطفاً کمی صبر کنید و سپس دوباره
+            امتحان کنید
+         </h1>
       )
    }
-   
+
    const { uniqueMergedProducts, brands, models } = await getProducts({ query })
 
    return (
@@ -160,7 +163,9 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
                      <span className='text-sm block'>عبارت دیگری را امتحان کنید</span>
                      <div className='w-[20rem] mx-auto aspect-square relative'>
                         <Image
-                           src='/noSearchResult.jpg'
+                           src={
+                              'https://tabrizian.storage.iran.liara.space/hanatechnology/noSearchResult.jpg'
+                           }
                            alt='no search result'
                            layout='fill'
                            objectFit='contain'

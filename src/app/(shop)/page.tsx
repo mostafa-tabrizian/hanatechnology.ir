@@ -120,15 +120,17 @@ const corporationJsonLd = {
 }
 
 async function Home() {
-
    const remaining = await limiter.removeTokens(2)
-   
+
    if (remaining < 0) {
       return (
-         <h1 className='text-center mx-10 md:mx-auto my-20 max-w-screen-sm'>متاسفانه تعداد درخواست‌های شما به حداکثر مجاز رسیده است. لطفاً کمی صبر کنید و سپس دوباره امتحان کنید</h1>
+         <h1 className='text-center mx-10 md:mx-auto my-20 max-w-screen-sm'>
+            متاسفانه تعداد درخواست‌های شما به حداکثر مجاز رسیده است. لطفاً کمی صبر کنید و سپس دوباره
+            امتحان کنید
+         </h1>
       )
    }
-   
+
    const categories = await getCategories()
    const slides = await getSlides()
 
@@ -152,7 +154,9 @@ async function Home() {
                <Link aria-label='دسته بندی کابل' id='category' href='#'>
                   <Image
                      className='rounded-xl'
-                     src={'/category/cable.webp'}
+                     src={
+                        'https://tabrizian.storage.iran.liara.space/hanatechnology/category/cable.webp'
+                     }
                      alt='slide1'
                      width={460}
                      height={260}
@@ -162,7 +166,9 @@ async function Home() {
                <Link aria-label='دسته بندی فیبر نوری' id='category' href='#'>
                   <Image
                      className='rounded-xl'
-                     src={'/category/fiberoptic.webp'}
+                     src={
+                        'https://tabrizian.storage.iran.liara.space/hanatechnology/category/fiberoptic.webp'
+                     }
                      alt='slide1'
                      width={460}
                      height={260}
@@ -172,7 +178,9 @@ async function Home() {
                <Link aria-label='دسته بندی روتر' id='category' href='#'>
                   <Image
                      className='rounded-xl'
-                     src={'/category/router.webp'}
+                     src={
+                        'https://tabrizian.storage.iran.liara.space/hanatechnology/category/router.webp'
+                     }
                      alt='slide1'
                      width={460}
                      height={260}
@@ -182,7 +190,9 @@ async function Home() {
                <Link aria-label='دسته بندی سویتج' id='category' href='#'>
                   <Image
                      className='rounded-xl'
-                     src={'/category/switch.webp'}
+                     src={
+                        'https://tabrizian.storage.iran.liara.space/hanatechnology/category/switch.webp'
+                     }
                      alt='slide1'
                      width={460}
                      height={260}
@@ -197,7 +207,9 @@ async function Home() {
                   <Link aria-label='دسته بندی' href='#'>
                      <Image
                         className='rounded-xl'
-                        src={'/model/etesalat.webp'}
+                        src={
+                           'https://tabrizian.storage.iran.liara.space/hanatechnology/model/etesalat.webp'
+                        }
                         alt='slide1'
                         width={460}
                         height={260}
@@ -208,7 +220,9 @@ async function Home() {
                   <Link aria-label='دسته بندی' href='#'>
                      <Image
                         className='rounded-xl'
-                        src={'/model/fiberoptic-cable.webp'}
+                        src={
+                           'https://tabrizian.storage.iran.liara.space/hanatechnology/model/fiberoptic-cable.webp'
+                        }
                         alt='slide1'
                         width={460}
                         height={260}
@@ -219,7 +233,9 @@ async function Home() {
                   <Link aria-label='دسته بندی' href='#'>
                      <Image
                         className='rounded-xl'
-                        src={'/model/network-cable.webp'}
+                        src={
+                           'https://tabrizian.storage.iran.liara.space/hanatechnology/model/network-cable.webp'
+                        }
                         alt='slide1'
                         width={460}
                         height={260}
@@ -230,7 +246,9 @@ async function Home() {
                   <Link aria-label='دسته بندی' href='#'>
                      <Image
                         className='rounded-xl'
-                        src={'/model/network-switch.webp'}
+                        src={
+                           'https://tabrizian.storage.iran.liara.space/hanatechnology/model/network-switch.webp'
+                        }
                         alt='slide1'
                         width={460}
                         height={260}
@@ -241,7 +259,9 @@ async function Home() {
                   <Link aria-label='دسته بندی' href='#'>
                      <Image
                         className='rounded-xl'
-                        src={'/model/rack.webp'}
+                        src={
+                           'https://tabrizian.storage.iran.liara.space/hanatechnology/model/rack.webp'
+                        }
                         alt='slide1'
                         width={460}
                         height={260}
@@ -252,7 +272,9 @@ async function Home() {
                   <Link aria-label='دسته بندی' href='#'>
                      <Image
                         className='rounded-xl'
-                        src={'/model/router.webp'}
+                        src={
+                           'https://tabrizian.storage.iran.liara.space/hanatechnology/model/router.webp'
+                        }
                         alt='slide1'
                         width={460}
                         height={260}
@@ -267,7 +289,9 @@ async function Home() {
                <Link aria-label='دسته بندی' href='#'>
                   <Image
                      className='rounded-xl'
-                     src={'/product-banner/modem.webp'}
+                     src={
+                        'https://tabrizian.storage.iran.liara.space/hanatechnology/banner/modem.webp'
+                     }
                      alt='slide1'
                      width={460}
                      height={190}
@@ -278,7 +302,9 @@ async function Home() {
                <Link aria-label='دسته بندی' href='#'>
                   <Image
                      className='rounded-xl'
-                     src={'/product-banner/point.webp'}
+                     src={
+                        'https://tabrizian.storage.iran.liara.space/hanatechnology/banner/point.webp'
+                     }
                      alt='slide1'
                      width={460}
                      height={190}

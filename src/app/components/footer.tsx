@@ -10,7 +10,9 @@ const Footer = () => {
                   <Link aria-label='صفحه اصلی' href='/' className='flex justify-center'>
                      <Image
                         className='object-contain'
-                        src='/logo/logo-footer.jpg'
+                        src={
+                           'https://tabrizian.storage.iran.liara.space/hanatechnology/logo/logo-footer.jpg'
+                        }
                         alt='لوگو حانا تکنولوژی'
                         width={150}
                         height={150}

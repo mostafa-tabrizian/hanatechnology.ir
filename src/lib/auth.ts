@@ -46,8 +46,10 @@ const authOptions: NextAuthOptions = {
             user.lastVisit = new Date()
             user.save()
 
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const { _doc: { password: _, ...filteredUser } } = user as { _doc: IUser } & {
+            const {
+               // eslint-disable-next-line @typescript-eslint/no-unused-vars
+               _doc: { password: _, ...filteredUser },
+            } = user as { _doc: IUser } & {
                password: string
             }
 

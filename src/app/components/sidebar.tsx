@@ -77,7 +77,9 @@ const Sidebar = memo(
                         <div>
                            <Link aria-label='صفحه اصلی' href='/'>
                               <Image
-                                 src='/logo/logo-sidebar.jpg'
+                                 src={
+                                    'https://tabrizian.storage.iran.liara.space/hanatechnology/logo/logo-sidebar.jpg'
+                                 }
                                  alt='لوگو حانا تکنولوژی'
                                  width={100}
                                  height={100}

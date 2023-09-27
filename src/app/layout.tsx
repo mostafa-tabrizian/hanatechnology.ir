@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
      |_|\\__,_|_.__/|_|  |_/___|_|\\__,_|_| |_|
      Telegram: @Tabrizian_dev
 `,
-      'color: #2495ff; font-weight: bold;'
+      'color: #2495ff; font-weight: bold;',
    )
 
    return (

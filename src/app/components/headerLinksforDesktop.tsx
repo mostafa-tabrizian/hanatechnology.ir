@@ -10,7 +10,6 @@ import { IBrand } from '@/models/brand'
 
 const HeaderLinksforDesktop = memo(
    ({ categoriesList, brandsList }: { categoriesList: ICategory[]; brandsList: IBrand[] }) => {
-      
       const [categories, setCategories] = useState<null | HTMLElement>(null)
       const [brands, setBrands] = useState<null | HTMLElement>(null)
       const [contactUsOptions, setContactUsOptions] = useState<null | HTMLElement>(null)
