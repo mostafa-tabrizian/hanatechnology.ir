@@ -1,10 +1,14 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import Image from 'next/legacy/image'
-
-import { SlideshowLightbox } from 'lightbox.js-react'
 import 'lightbox.js-react/dist/index.css'
+import dynamic from 'next/dynamic'
+import Image from 'next/legacy/image'
+import { useEffect, useState } from 'react'
+
+const DynamicSlideshowLightbox = dynamic(
+   () => import('lightbox.js-react').then((res) => res.SlideshowLightbox),
+   { ssr: false },
+)
 
 type ImageProps = {
    params: {
@@ -20,6 +24,7 @@ type TGallery = {
 }[]
 
 const Images = ({ params: { name, thumbnail, images } }: ImageProps) => {
+   const [lightboxDynamicActive, setLightboxDynamicActive] = useState(false)
    const [lightboxOpen, setLightboxOpen] = useState(false)
    const [galleryList, setGalleryList] = useState<TGallery>([])
    const [currentImageIndex, setCurrentIndex] = useState(0)
@@ -28,6 +33,7 @@ const Images = ({ params: { name, thumbnail, images } }: ImageProps) => {
       return () => {
          setGalleryList([])
          setLightboxOpen(false)
+         setLightboxDynamicActive(false)
       }
    }, [])
 
@@ -55,6 +61,7 @@ const Images = ({ params: { name, thumbnail, images } }: ImageProps) => {
             className='text-center bg-white rounded-xl shadow-lg shadow-slate-200 '
             onClick={() => {
                if (galleryList.length) {
+                  setLightboxDynamicActive(true)
                   setLightboxOpen(true)
                   setCurrentIndex(0)
                }
@@ -86,6 +93,9 @@ const Images = ({ params: { name, thumbnail, images } }: ImageProps) => {
                         if (galleryList.length) {
                            setLightboxOpen(true)
                            setCurrentIndex(idx)
+
+                           console.log('lightboxOpen', lightboxOpen)
+                           console.log('galleryList.length', galleryList.length)
                         }
                      }}
                   >
@@ -103,8 +113,9 @@ const Images = ({ params: { name, thumbnail, images } }: ImageProps) => {
                )
             })}
          </div>
-         {galleryList.length ? (
-            <SlideshowLightbox
+
+         {lightboxDynamicActive && galleryList.length ? (
+            <DynamicSlideshowLightbox
                theme='lightbox'
                lightboxIdentifier='lightbox1'
                framework='next'

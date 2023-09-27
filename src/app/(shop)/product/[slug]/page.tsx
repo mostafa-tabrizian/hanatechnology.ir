@@ -1,14 +1,14 @@
+import Image from 'next/legacy/image'
 import Link from 'next/link'
 import Script from 'next/script'
-import Image from 'next/legacy/image'
 
-import ProductSuggestion from './components/productSuggestion'
 import Images from '@/components/product/images'
-import Product, { IProduct } from '@/models/product'
 import dbConnect from '@/lib/dbConnect'
-import hyphen from '@/lib/hyphen'
 import dehyphen from '@/lib/dehyphen'
+import hyphen from '@/lib/hyphen'
 import limiter from '@/lib/limiter'
+import Product, { IProduct } from '@/models/product'
+import ProductSuggestion from './components/productSuggestion'
 
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import GTMViewItem from './components/GTMViewItem'
